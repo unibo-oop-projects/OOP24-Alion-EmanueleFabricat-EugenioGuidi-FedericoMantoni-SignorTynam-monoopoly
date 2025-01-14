@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model;
+package it.unibo.monoopoly.model.api;
 
 /**
  * Cell interface.
