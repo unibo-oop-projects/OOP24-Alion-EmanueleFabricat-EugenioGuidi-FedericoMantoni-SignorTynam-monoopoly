@@ -13,9 +13,8 @@ public interface Card {
     /**
      * This method deals with applying effects,
      * if they are about cash.
-     * @return the amount to be pay or collected
      */
-    public int getValue();
+    public void getValue();
     /**
      * @return the text of the card.
      */
