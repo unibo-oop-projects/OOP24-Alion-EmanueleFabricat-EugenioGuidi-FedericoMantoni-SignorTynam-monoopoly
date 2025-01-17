@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.api.Player;
+package it.unibo.monoopoly.model.api.player;
 
 /**
  * Represents the bank account of a player in the game.

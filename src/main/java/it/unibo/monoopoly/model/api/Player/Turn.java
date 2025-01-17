@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.api.Player;
+package it.unibo.monoopoly.model.api.player;
 
 /**
  * Interface representing the turn of a player.
