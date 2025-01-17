@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.api.gameboard;
 
+import it.unibo.monoopoly.model.api.player.Player;
 /**
  * Represents the cells of the gameboard not buyable
  */
