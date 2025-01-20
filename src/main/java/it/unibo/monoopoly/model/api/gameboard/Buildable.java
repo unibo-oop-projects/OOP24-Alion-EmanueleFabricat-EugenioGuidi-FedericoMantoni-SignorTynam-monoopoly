@@ -3,30 +3,27 @@ package it.unibo.monoopoly.model.api.gameboard;
 public interface Buildable extends Buyable{
 
     /**
-     * method that return the cost of the next house.
      * 
      * @return the cost of the house
      */
-    public int getHouseCost();
+    int getHouseCost();
 
     /**
-     * method that build house.
+     * build a house if possible.
      * 
      */
-    public void buildHouse();
+    void buildHouse();
 
     /**
-     * method that return the value of selling a house.
      * 
      * @return the value of selling a house
      */
-    public int sellHouse();
+    int sellHouse();
 
     /**
-     * method that return the number of house constructed.
      * 
      * @return the number of house constructed
      */
-    public int getHousesNumber();
+    int getHousesNumber();
 
 }

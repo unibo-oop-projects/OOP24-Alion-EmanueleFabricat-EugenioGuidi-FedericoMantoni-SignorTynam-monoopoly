@@ -8,19 +8,19 @@ public interface GameBoard {
      * @param index, index of cell
      * @return the cell in the index position
      */
-    public Cell getCell(int index);
+    Cell getCell(int index);
 
     /**
      * method that remove a player from the game.
      * 
      */
-    public void removePlayer();
+    void removePlayer();
 
     /**
      * method that control if the game is ended controlling the number of player remaining.
      * 
      * @return true if the game is ended.
      */
-    public boolean isGameEnded();
+    boolean isGameEnded();
 
 }

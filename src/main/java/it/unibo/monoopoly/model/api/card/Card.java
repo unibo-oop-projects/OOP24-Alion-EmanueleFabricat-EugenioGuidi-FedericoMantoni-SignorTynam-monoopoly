@@ -11,11 +11,6 @@ public interface Card {
      */
     public void doAction();
     /**
-     * This method deals with applying effects,
-     * if they are about cash.
-     */
-    public void getValue();
-    /**
      * @return the text of the card.
      */
     public String getText();
