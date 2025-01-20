@@ -11,19 +11,11 @@ import it.unibo.monoopoly.model.api.player.Player;
 public interface Notary {
 
     /**
-     * Tells if a property is owned by a {@code Player} different from a given one
-     * @param player the player to check
-     * @param cell the cell of the property to check
-     * @return if the property is not owned by the given player nor by the bank
-     */
-    boolean isOtherProperty(Player player, Buyable cell);
-
-    /**
-     * Set the given player as owner of the property
+     * Manages the sale or payment when a {@code Player} ends up in a {@code Buyable}
      * @param player the player who buys
      * @param cell the property to buy
      */
-    void buyProperty(Player player, Buyable cell);
+    void work(Player player, Buyable cell);
 
     
 
