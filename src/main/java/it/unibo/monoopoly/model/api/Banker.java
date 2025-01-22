@@ -9,5 +9,5 @@ public interface Banker {
      * 
      * @return the proceeds of the oparationes.
      */
-    public int makeOperations ();
+    int makeOperations();
 }
