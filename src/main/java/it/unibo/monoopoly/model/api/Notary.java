@@ -12,12 +12,12 @@ import it.unibo.monoopoly.model.api.player.Player;
 public interface Notary {
 
     /**
-     * Tells how the active {@code Player} is going to interacte with the {@code Buyable} property is on.
+     * Tells how the active {@link Player} is going to interacte with the {@link Buyable} property is on.
      * @param player the player to check
      * @param cell the cell of the property to check
      * @return the type of event if this occurs
      */
-    Optional<Event> checkProperty (Player player, Buyable cell);
+    Optional<Event> checkProperty(Player player, Buyable cell);
 
     /**
      * Set the given player as owner of the property.

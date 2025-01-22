@@ -8,13 +8,13 @@ public interface Cell {
 
     /**
      * 
-     * @return if the cell is a {@code Buyable} property
+     * @return if the cell is a {@link Buyable} property
      */
     boolean isBuyable();
 
     /**
      * 
-     * @return if the cell is a {@code Buildable} property
+     * @return if the cell is a {@link Buildable} property
      */
     boolean isBuildable();
 

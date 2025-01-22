@@ -18,10 +18,10 @@ public interface Turn {
      * Executes the construction phase of the player's turn.
      */
     void constructPhase();
-    
+
     /**
-     * Check the relation between the active {@code Player} and the {@code Cell} is on
-     * @return the type of event, if one occurs.
+     * Check the relation between the active {@link Player} and the {@link Cell} is on.
+     * @return the type of event, if one occurs
      */
     Optional<Event> checkAction();
 
