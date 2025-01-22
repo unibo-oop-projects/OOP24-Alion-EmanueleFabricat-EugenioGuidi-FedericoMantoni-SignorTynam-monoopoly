@@ -39,7 +39,7 @@ public interface Buyable {
      * 
      * @return the value of rent the property
      */
-    int getTRentalValue();
+    int getRentalValue();
 
     /**
      * method that set the mortgage of property.

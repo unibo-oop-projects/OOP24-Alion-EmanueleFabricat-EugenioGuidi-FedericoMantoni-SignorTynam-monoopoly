@@ -1,5 +1,9 @@
 package it.unibo.monoopoly.model.api.player;
 
+import java.util.Optional;
+
+import it.unibo.monoopoly.common.Event;
+
 /**
  * Interface representing the turn of a player.
  */
@@ -14,6 +18,12 @@ public interface Turn {
      * Executes the construction phase of the player's turn.
      */
     void constructPhase();
+    
+    /**
+     * Check the relation between the active {@code Player} and the {@code Cell} is on
+     * @return the type of event, if one occurs.
+     */
+    Optional<Event> checkAction();
 
     /**
      * Rolls the dice for the player's turn.

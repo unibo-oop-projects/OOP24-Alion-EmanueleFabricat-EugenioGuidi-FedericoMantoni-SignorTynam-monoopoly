@@ -28,7 +28,7 @@ public interface Player {
     /**
      * @return true if the player can pay, false otherwise.
      */
-    public boolean isPayable();
+    public boolean isPayable(int amount);
 
     /**
      * Deducts the specified amount from the player's money.
