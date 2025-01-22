@@ -7,14 +7,17 @@ import it.unibo.monoopoly.model.api.Notary;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 
-public class NotaryImpl implements Notary{
+/**
+ * Implementation of {@link Notary} interface.
+ */
+public class NotaryImpl implements Notary {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Optional<Event> checkProperty(Player player, Buyable cell) {
-        Optional<Player> owner = cell.getOwner();
+    public Optional<Event> checkProperty(final Player player, final Buyable cell) {
+        final Optional<Player> owner = cell.getOwner();
         if (owner.isEmpty() && player.isPayable(cell.getCost())) {
             return Optional.of(Event.BUY_PROPERTY);
         } else if (owner.get().equals(player)) {
@@ -35,7 +38,7 @@ public class NotaryImpl implements Notary{
      * {@inheritDoc}
      */
     @Override
-    public void buyProperty(Player player, Buyable cell) {
+    public void buyProperty(final Player player, final Buyable cell) {
         player.pay(cell.getCost());
         cell.setOwner(Optional.of(player));
     }
