@@ -29,8 +29,7 @@ public abstract class AbstractBuyable implements Buyable{
 
     @Override
     public Optional<Player> getOwner() {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+        return this.owner;
     }
 
     @Override
