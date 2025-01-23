@@ -10,11 +10,13 @@ public abstract class AbstractBuyable implements Buyable{
     private Optional<Player> owner;
     private final int cost;
     private final int mortgageValue;
+    private boolean mortgaged;
 
     public AbstractBuyable(final int cost, final int mortgageValue) {
         this.owner = Optional.empty();
         this.cost = cost;
         this.mortgageValue = mortgageValue;
+        this.mortgaged = false;
     }
 
     @Override
@@ -45,8 +47,7 @@ public abstract class AbstractBuyable implements Buyable{
 
     @Override
     public void mortgage() {
-        // TODO Auto-generated method stub
-        
+        this.mortgaged = true;
     }
 
     @Override
