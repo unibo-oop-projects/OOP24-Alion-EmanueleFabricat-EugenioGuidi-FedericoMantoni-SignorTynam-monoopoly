@@ -40,8 +40,7 @@ public abstract class AbstractBuyable implements Buyable{
 
     @Override
     public boolean isBuyable() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.owner.isEmpty();
     }
 
     @Override
