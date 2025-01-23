@@ -9,9 +9,9 @@ public interface Card {
      * This method deals with applying effects,
      * if they don't are about cash.
      */
-    public void doAction();
+    void doAction();
     /**
      * @return the text of the card.
      */
-    public String getText();
+    String getText();
 }
