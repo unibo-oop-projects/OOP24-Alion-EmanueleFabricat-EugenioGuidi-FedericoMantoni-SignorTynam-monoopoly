@@ -46,7 +46,7 @@ public abstract class AbstractBuyable implements Buyable{
     }
 
     @Override
-    public void mortgage() {
+    public void setMortgage() {
         this.mortgaged = true;
     }
 

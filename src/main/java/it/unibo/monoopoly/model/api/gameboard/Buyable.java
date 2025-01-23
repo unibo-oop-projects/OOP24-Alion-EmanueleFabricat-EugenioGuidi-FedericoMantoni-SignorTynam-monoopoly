@@ -14,6 +14,12 @@ public interface Buyable {
     boolean isBuyable();
 
     /**
+     * 
+     * @return true if the property is already mortgaged
+     */
+    boolean isMortaged();
+
+    /**
      * method that return the owner of property.
      * 
      * @return the owner of property
@@ -45,7 +51,7 @@ public interface Buyable {
      * method that set the mortgage of property.
      * 
      */
-    void mortgage();
+    void setMortgage();
 
     /**
      * method that return the mortgage value.
