@@ -7,6 +7,16 @@ import it.unibo.monoopoly.model.api.player.Player;
 
 public abstract class AbstractBuyable implements Buyable{
 
+    private Optional<Player> owner;
+    private final int cost;
+    private final int mortgageValue;
+
+    public AbstractBuyable(final int cost, final int mortgageValue) {
+        this.owner = Optional.empty();
+        this.cost = cost;
+        this.mortgageValue = mortgageValue;
+    }
+
     @Override
     public int getCost() {
         // TODO Auto-generated method stub
