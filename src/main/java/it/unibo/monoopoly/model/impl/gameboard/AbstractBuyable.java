@@ -35,14 +35,13 @@ public abstract class AbstractBuyable implements Buyable{
     }
 
     @Override
-    public int getTRentalValue() {
-        // TODO Auto-generated method stub
-        return 0;
+    public boolean isBuyable() {
+        return this.owner.isEmpty();
     }
 
     @Override
-    public boolean isBuyable() {
-        return this.owner.isEmpty();
+    public boolean isMortaged() {
+        return this.mortgaged;
     }
 
     @Override
@@ -52,8 +51,7 @@ public abstract class AbstractBuyable implements Buyable{
 
     @Override
     public void setOwner(Optional<Player> ownerPlayer) {
-        // TODO Auto-generated method stub
-        
+        this.owner = ownerPlayer;
     }
 
 }
