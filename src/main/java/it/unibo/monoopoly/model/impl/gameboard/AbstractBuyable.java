@@ -24,8 +24,7 @@ public abstract class AbstractBuyable implements Buyable{
 
     @Override
     public int getMortgageValue() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.mortgageValue;
     }
 
     @Override
