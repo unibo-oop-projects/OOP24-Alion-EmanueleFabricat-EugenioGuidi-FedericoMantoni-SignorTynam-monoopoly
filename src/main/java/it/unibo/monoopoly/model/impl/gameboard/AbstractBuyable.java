@@ -19,8 +19,7 @@ public abstract class AbstractBuyable implements Buyable{
 
     @Override
     public int getCost() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.cost;
     }
 
     @Override
