@@ -18,10 +18,6 @@ public enum Event {
      * Event triggered by finishing in a {@link Buyable} cell owned by bank,
      * involving the choice of the player to buy or not buy the property.
      */
-    BUY_PROPERTY,
-    /**
-     * Event triggered when a {@link Player} has not enough money to pay.
-     */
-    NO_LIQUIDITY,
+    BUY_PROPERTY
 
 }
