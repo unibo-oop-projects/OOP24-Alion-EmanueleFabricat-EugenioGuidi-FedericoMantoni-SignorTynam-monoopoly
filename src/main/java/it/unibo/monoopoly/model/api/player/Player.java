@@ -36,4 +36,11 @@ public interface Player {
      * @param amount the amount to be deducted.
      */
     public void pay(int amount);
+
+    /**
+     * Adds the specified amount to the player's money.
+     * 
+     * @param amount the amount to be added.
+     */
+    public void receive(int amount);
 }
