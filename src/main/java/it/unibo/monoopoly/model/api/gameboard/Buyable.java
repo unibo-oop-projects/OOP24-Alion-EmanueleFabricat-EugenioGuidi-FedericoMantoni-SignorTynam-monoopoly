@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.model.api.player.Player;
 
-public interface Buyable {
+public interface Buyable extends Cell{
 
     /**
      * method that return if is buyable.

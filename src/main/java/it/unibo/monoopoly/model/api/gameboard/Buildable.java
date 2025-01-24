@@ -1,6 +1,6 @@
 package it.unibo.monoopoly.model.api.gameboard;
 
-public interface Buildable extends Buyable{
+public interface Buildable{
 
     /**
      * 
