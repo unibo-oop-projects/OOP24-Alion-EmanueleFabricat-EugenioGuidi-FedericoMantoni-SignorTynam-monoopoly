@@ -20,17 +20,10 @@ public class NotaryImpl implements Notary {
         final Optional<Player> owner = cell.getOwner();
         if (owner.isEmpty() && player.isPayable(cell.getCost())) {
             return Optional.of(Event.BUY_PROPERTY);
-        } else if (owner.get().equals(player)) {
+        } else if (cell.isMortaged() || owner.get().equals(player)) {
             return Optional.empty();
         } else {
-            final int amount = cell.getRentalValue();
-            if (player.isPayable(amount)) {
-                player.pay(amount);
-                return Optional.of(Event.RENT_PAYMENT);
-            } else {
-                player.pay(amount);
-                return Optional.of(Event.NO_LIQUIDITY);
-            }
+            return Optional.of(Event.RENT_PAYMENT);
         }
     }
 
