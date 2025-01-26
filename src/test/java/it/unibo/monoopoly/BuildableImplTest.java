@@ -54,10 +54,11 @@ public class BuildableImplTest {
 
     @Test
     public void testIsMortgaged() {
-        assertFalse(this.property.isMortaged());
+        assertEquals(COST / 2, this.property.getMortgageValue());
+        assertFalse(this.property.isMortgaged());
         this.property.setMortgage();
-        assertTrue(this.property.isMortaged());
+        assertTrue(this.property.isMortgaged());
         this.property.removeMortgage();
-        assertFalse(this.property.isMortaged());
+        assertFalse(this.property.isMortgaged());
     }
 }
