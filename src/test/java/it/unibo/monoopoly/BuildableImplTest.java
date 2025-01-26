@@ -1,7 +1,9 @@
 package it.unibo.monoopoly;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.foreign.Linker.Option;
 import java.util.Optional;
@@ -41,5 +43,12 @@ public class BuildableImplTest {
         assertNotEquals(FIRSTOWNER, this.property.getOwner());
         assertNotEquals(SECONDOWNER, this.property.getOwner());
         assertEquals(Optional.empty(), this.property.getOwner());
+    }
+
+    @Test
+    public void testIsBuyable() {
+        assertTrue(this.property.isBuyable());
+        this.property.setOwner(FIRSTOWNER);
+        assertFalse(this.property.isBuyable());
     }
 }
