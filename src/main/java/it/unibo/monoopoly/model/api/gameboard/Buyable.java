@@ -53,11 +53,4 @@ public interface Buyable extends Cell{
      */
     void setMortgage();
 
-    /**
-     * method that return the mortgage value.
-     * 
-     * @return the mortgage value
-     */
-    int getMortgageValue();
-
 }

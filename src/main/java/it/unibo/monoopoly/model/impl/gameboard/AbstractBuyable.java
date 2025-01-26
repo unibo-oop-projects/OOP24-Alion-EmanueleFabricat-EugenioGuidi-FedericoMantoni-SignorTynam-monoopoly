@@ -9,24 +9,17 @@ public abstract class AbstractBuyable implements Buyable{
 
     private Optional<Player> owner;
     private final int cost;
-    private final int mortgageValue;
     private boolean mortgaged;
 
     public AbstractBuyable(final int cost, final int mortgageValue) {
         this.owner = Optional.empty();
         this.cost = cost;
-        this.mortgageValue = mortgageValue;
         this.mortgaged = false;
     }
 
     @Override
     public int getCost() {
         return this.cost;
-    }
-
-    @Override
-    public int getMortgageValue() {
-        return this.mortgageValue;
     }
 
     @Override
