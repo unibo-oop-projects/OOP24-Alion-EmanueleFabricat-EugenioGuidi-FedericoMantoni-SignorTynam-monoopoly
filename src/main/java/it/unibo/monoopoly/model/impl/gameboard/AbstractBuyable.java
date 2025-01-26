@@ -5,13 +5,14 @@ import java.util.Optional;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 
-public abstract class AbstractBuyable implements Buyable{
+public abstract class AbstractBuyable extends AbstractCell implements Buyable{
 
     private Optional<Player> owner;
     private final int cost;
     private boolean mortgaged;
 
-    public AbstractBuyable(final int cost) {
+    public AbstractBuyable(final String name, final int cost) {
+        super(name);
         this.owner = Optional.empty();
         this.cost = cost;
         this.mortgaged = false;
