@@ -1,6 +1,9 @@
 package it.unibo.monoopoly.model.api.player;
 
 import java.util.Optional;
+import java.util.Set;
+
+import it.unibo.monoopoly.model.api.gameboard.Buyable;
 
 /**
  * Represents the player of the game.
@@ -45,4 +48,27 @@ public interface Player {
      * @param amount the amount to be added.
      */
     public void receive(int amount);
+
+    /**
+     * Adds a property to the player's list of owned properties.
+     * 
+     * @param property the property to be added.
+     * @return the total amount of money the player possesses, including cash and bank account balance.
+     */
+    boolean addProperty(Buyable property);
+
+    /**
+     * Removes a property from the player's list of owned properties.
+     * 
+     * @param property the property to be removed.
+     * @return the total amount of money the player possesses, including cash and bank account balance.
+     */
+    boolean removeProperty(Buyable property);
+
+    /**
+     * Retrieves the properties owned by the player.
+     * 
+     * @return the properties owned by the player.
+     */
+    Set<Buyable> getProperties();
 }
