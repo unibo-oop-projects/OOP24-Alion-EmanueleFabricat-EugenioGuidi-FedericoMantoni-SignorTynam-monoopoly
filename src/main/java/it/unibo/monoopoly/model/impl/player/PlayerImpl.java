@@ -6,7 +6,7 @@ import it.unibo.monoopoly.model.api.player.Player;
 
 public class PlayerImpl implements Player {
 
-    private final String name;
+    private final Optional<String> name;
     private int moneyAmount;
     private int actualPosition;
     private boolean prisoned;
@@ -19,10 +19,10 @@ public class PlayerImpl implements Player {
      * @param prisoned          true if the player is in prison, false otherwise.
      */
     public PlayerImpl(String name, int moneyAmount, int actualPosition, boolean prisoned) {
-        this.name = Optional.ofNullable(name).orElseThrow(() -> new IllegalArgumentException("Name cannot be null"));
+        this.name = Optional.ofNullable(Optional.ofNullable(name).orElseThrow(() -> new IllegalArgumentException("Name cannot be null")));
         this.moneyAmount = validatePositive(moneyAmount, "Money amount cannot be negative");
         this.actualPosition = validatePositive(actualPosition, "Position cannot be negative");
-                this.prisoned = prisoned;
+        this.prisoned = prisoned;
     }
     
     /**
@@ -36,42 +36,66 @@ public class PlayerImpl implements Player {
         return Optional.of(value).filter(i -> i >= 0).orElseThrow(() -> new IllegalArgumentException(errorMessage));
     }
         
+    /**
+     * Retrieves the name of the player.
+     * @return the name of the player.
+     */
     @Override
-    public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    public Optional<String> getName() {
+        return this.name;
     }
 
+    /**
+     * Retrieves the amount of money the player has.
+     * @return the amount of money the player has.
+     */
     @Override
     public int getMoneyAmount() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMoneyAmount'");
+        return this.moneyAmount;
     }
 
+    /**
+     * Retrieves the current position of the player.
+     * @return the current position of the player.
+     */
     @Override
     public int getActualPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getActualPosition'");
+        return this.actualPosition;
     }
 
+    /**
+     * Checks if the player is in prison.
+     * @return true if the player is in prison, false otherwise.
+     */
     @Override
     public boolean isPrisoned() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isPrisoned'");
+        return this.prisoned;
     }
 
+    /**
+     * Checks if the player can pay a specified amount.
+     * @param amount the amount to be paid.
+     * @return true if the player can pay, false otherwise.
+     */
     @Override
     public boolean isPayable(int amount) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isPayable'");
     }
 
+    /**
+     * Deducts the specified amount from the player's money.
+     * @param amount the amount to be deducted.
+     */
     @Override
     public void pay(int amount) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'pay'");
     }
 
+    /**
+     * Adds the specified amount to the player's money.
+     * @param amount the amount to be added.
+     */
     @Override
     public void receive(int amount) {
         // TODO Auto-generated method stub
