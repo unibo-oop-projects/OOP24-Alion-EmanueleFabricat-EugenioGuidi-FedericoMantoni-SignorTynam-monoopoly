@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.model.api.player.Player;
 
-public interface Buyable {
+public interface Buyable extends Cell{
 
     /**
      * method that return if is buyable.
@@ -17,7 +17,7 @@ public interface Buyable {
      * 
      * @return true if the property is already mortgaged
      */
-    boolean isMortaged();
+    boolean isMortgaged();
 
     /**
      * method that return the owner of property.
@@ -48,16 +48,21 @@ public interface Buyable {
     int getRentalValue();
 
     /**
+     * 
+     * @return the mortgage value
+     */
+    int getMortgageValue();
+
+    /**
      * method that set the mortgage of property.
      * 
      */
     void setMortgage();
 
     /**
-     * method that return the mortgage value.
+     * remove the mortgage of property
      * 
-     * @return the mortgage value
      */
-    int getMortgageValue();
+    void removeMortgage();
 
 }

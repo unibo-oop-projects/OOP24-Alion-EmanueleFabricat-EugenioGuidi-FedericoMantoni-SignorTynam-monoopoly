@@ -8,7 +8,13 @@ public interface Cell {
 
     /**
      * 
-     * @return if the cell is a {@link Buyable} property
+     * @return the name of the cell
+     */
+    String getName();
+
+    /**
+     * 
+     * @return if the cell is a {@code Buyable} property
      */
     boolean isBuyable();
 

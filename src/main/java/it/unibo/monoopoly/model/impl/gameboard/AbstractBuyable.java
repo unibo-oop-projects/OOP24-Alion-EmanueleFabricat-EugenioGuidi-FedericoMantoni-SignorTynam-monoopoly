@@ -5,28 +5,22 @@ import java.util.Optional;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 
-public abstract class AbstractBuyable implements Buyable{
+public abstract class AbstractBuyable extends AbstractCell implements Buyable{
 
     private Optional<Player> owner;
     private final int cost;
-    private final int mortgageValue;
     private boolean mortgaged;
 
-    public AbstractBuyable(final int cost, final int mortgageValue) {
+    public AbstractBuyable(final String name, final int cost) {
+        super(name);
         this.owner = Optional.empty();
         this.cost = cost;
-        this.mortgageValue = mortgageValue;
         this.mortgaged = false;
     }
 
     @Override
     public int getCost() {
         return this.cost;
-    }
-
-    @Override
-    public int getMortgageValue() {
-        return this.mortgageValue;
     }
 
     @Override
@@ -40,13 +34,23 @@ public abstract class AbstractBuyable implements Buyable{
     }
 
     @Override
-    public boolean isMortaged() {
+    public boolean isMortgaged() {
         return this.mortgaged;
     }
 
     @Override
     public void setMortgage() {
         this.mortgaged = true;
+    }
+
+    @Override
+    public int getMortgageValue() {
+        return (int)(this.cost / 2);
+    }
+
+    @Override
+    public void removeMortgage() {
+        this.mortgaged = false;
     }
 
     @Override
