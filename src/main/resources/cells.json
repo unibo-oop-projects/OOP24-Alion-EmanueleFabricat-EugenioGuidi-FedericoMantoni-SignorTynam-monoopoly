@@ -1,0 +1,32 @@
+[
+    {
+        "name":"Società elettrica",
+        "cost":150,
+        "mortgageValue":75
+    },
+    {
+        "name":"Società acqua potabile",
+        "cost":150,
+        "mortgageValue":75
+    },
+    {
+        "name": "Stazione Sud",
+        "cost":200,
+        "mortgageValue":100
+    },
+    {
+        "name": "Stazione Ovest",
+        "cost":200,
+        "mortgageValue":100
+    },
+    {
+        "name": "Stazione Nord",
+        "cost":200,
+        "mortgageValue":100
+    },
+    {
+        "name": "Stazione Est",
+        "cost":200,
+        "mortgageValue":100
+    }
+]
