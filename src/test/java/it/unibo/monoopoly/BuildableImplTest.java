@@ -51,4 +51,13 @@ public class BuildableImplTest {
         this.property.setOwner(FIRSTOWNER);
         assertFalse(this.property.isBuyable());
     }
+
+    @Test
+    public void testIsMortgaged() {
+        assertFalse(this.property.isMortaged());
+        this.property.setMortgage();
+        assertTrue(this.property.isMortaged());
+        this.property.removeMortgage();
+        assertFalse(this.property.isMortaged());
+    }
 }
