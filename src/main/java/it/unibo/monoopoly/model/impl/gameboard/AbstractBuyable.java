@@ -11,7 +11,7 @@ public abstract class AbstractBuyable implements Buyable{
     private final int cost;
     private boolean mortgaged;
 
-    public AbstractBuyable(final int cost, final int mortgageValue) {
+    public AbstractBuyable(final int cost) {
         this.owner = Optional.empty();
         this.cost = cost;
         this.mortgaged = false;
