@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.model.api.player;
 
+import java.util.Optional;
+
 /**
  * Represents the player of the game.
  */
@@ -8,7 +10,7 @@ public interface Player {
     /**
      * @return the name of the player.
      */
-    public String getName();
+    public Optional<String> getName();
 
     /**
      * @return the amount of money the player has.
