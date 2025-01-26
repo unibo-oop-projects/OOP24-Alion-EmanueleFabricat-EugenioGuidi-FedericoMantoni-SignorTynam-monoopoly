@@ -33,13 +33,18 @@ public abstract class AbstractBuyable implements Buyable{
     }
 
     @Override
-    public boolean isMortaged() {
+    public boolean isMortgaged() {
         return this.mortgaged;
     }
 
     @Override
     public void setMortgage() {
         this.mortgaged = true;
+    }
+
+    @Override
+    public int getMortgageValue() {
+        return (int)(this.cost / 2);
     }
 
     @Override
