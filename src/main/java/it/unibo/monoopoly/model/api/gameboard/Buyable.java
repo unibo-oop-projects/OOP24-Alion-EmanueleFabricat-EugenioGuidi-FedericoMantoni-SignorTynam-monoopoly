@@ -17,7 +17,7 @@ public interface Buyable extends Cell{
      * 
      * @return true if the property is already mortgaged
      */
-    boolean isMortaged();
+    boolean isMortgaged();
 
     /**
      * method that return the owner of property.
@@ -46,6 +46,12 @@ public interface Buyable extends Cell{
      * @return the value of rent the property
      */
     int getRentalValue();
+
+    /**
+     * 
+     * @return the mortgage value
+     */
+    int getMortgageValue();
 
     /**
      * method that set the mortgage of property.
