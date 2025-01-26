@@ -4,7 +4,11 @@ import it.unibo.monoopoly.model.api.gameboard.Buildable;
 
 public class BuildableImpl extends AbstractBuyable implements Buildable{
 
-    @Override
+    public BuildableImpl(int cost) {
+            super(cost);
+        }
+    
+        @Override
     public int getRentalValue() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getRentalValue'");
