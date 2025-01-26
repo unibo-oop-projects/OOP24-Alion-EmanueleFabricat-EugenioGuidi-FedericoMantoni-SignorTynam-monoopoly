@@ -43,6 +43,11 @@ public abstract class AbstractBuyable implements Buyable{
     }
 
     @Override
+    public void removeMortgage() {
+        this.mortgaged = false;
+    }
+
+    @Override
     public void setOwner(Optional<Player> ownerPlayer) {
         this.owner = ownerPlayer;
     }

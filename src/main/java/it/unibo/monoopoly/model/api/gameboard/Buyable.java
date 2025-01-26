@@ -53,4 +53,10 @@ public interface Buyable extends Cell{
      */
     void setMortgage();
 
+    /**
+     * remove the mortgage of property
+     * 
+     */
+    void removeMortgage();
+
 }
