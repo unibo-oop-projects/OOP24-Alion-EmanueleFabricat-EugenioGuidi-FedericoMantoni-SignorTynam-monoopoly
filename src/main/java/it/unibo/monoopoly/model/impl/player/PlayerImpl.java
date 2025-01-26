@@ -1,8 +1,15 @@
 package it.unibo.monoopoly.model.impl.player;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
+
+/**
+ * Implements the player of the game.
+ */
 
 public class PlayerImpl implements Player {
 
@@ -10,6 +17,7 @@ public class PlayerImpl implements Player {
     private int moneyAmount;
     private int actualPosition;
     private boolean prisoned;
+    private Set<Buyable> properties;
 
     /**
      * Constructor for the player.
@@ -23,6 +31,7 @@ public class PlayerImpl implements Player {
         this.moneyAmount = validatePositive(moneyAmount, "Money amount cannot be negative");
         this.actualPosition = validatePositive(actualPosition, "Position cannot be negative");
         this.prisoned = prisoned;
+        this.properties = Set.of();
     }
     
     /**
@@ -79,8 +88,7 @@ public class PlayerImpl implements Player {
      */
     @Override
     public boolean isPayable(int amount) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isPayable'");
+        return this.moneyAmount >= amount;
     }
 
     /**
@@ -89,7 +97,7 @@ public class PlayerImpl implements Player {
      */
     @Override
     public void pay(int amount) {
-        throw new UnsupportedOperationException("Unimplemented method 'pay'");
+        this.moneyAmount -= validatePositive(amount, "Amount cannot be negative");
     }
 
     /**
@@ -98,8 +106,39 @@ public class PlayerImpl implements Player {
      */
     @Override
     public void receive(int amount) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'receive'");
+        this.moneyAmount += validatePositive(amount, "Amount cannot be negative");
+    }
+
+    /**
+     * Adds a property to the player's list of owned properties.
+     * 
+     * @param property the property to be added.
+     * @return true if the property was added, false otherwise.
+     */
+    @Override
+    public boolean addProperty(Buyable property) {
+        return this.properties.add(property);
+    }
+
+    /**
+     * Removes a property from the player's list of owned properties.
+     * 
+     * @param property the property to be removed.
+     * @return true if the property was removed, false otherwise.
+     */
+    @Override
+    public boolean removeProperty(Buyable property) {
+        return this.properties.remove(property);
+    }
+
+    /**
+     * Retrieves the properties owned by the player.
+     * 
+     * @return the properties owned by the player.
+     */
+    @Override
+    public Set<Buyable> getProperties() {
+        return Set.copyOf(this.properties);
     }
 
 }
