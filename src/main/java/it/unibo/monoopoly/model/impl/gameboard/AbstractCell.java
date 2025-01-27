@@ -5,7 +5,7 @@ import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
 
 /**
- * Abstract class implementing common method of a generic {@link Cell}.
+ * Abstract class implementing common methods of a generic {@link Cell}.
  */
 public abstract class AbstractCell implements Cell {
 

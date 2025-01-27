@@ -35,14 +35,14 @@ public class NotaryImpl implements Notary {
     public void buyProperty(final Player player, final Buyable cell) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(cell);
-        if(cell.isBuyable()) {
+        if (cell.isBuyable()) {
             player.pay(cell.getCost());
             cell.setOwner(Optional.of(player));
             player.addProperty(cell);
         } else {
             throw new IllegalStateException("Property must be owned by the bank to be buyable");
         }
-        
+
     }
 
 }
