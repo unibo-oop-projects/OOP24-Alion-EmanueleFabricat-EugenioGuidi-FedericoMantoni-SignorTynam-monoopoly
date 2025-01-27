@@ -13,5 +13,5 @@ public interface Banker {
      * @param amount to subtract from player
      * @return the proceeds of the oparationes.
      */
-    int makeOperations(Player player, int amount);
+    int selectOperations(Player player, int amount);
 }
