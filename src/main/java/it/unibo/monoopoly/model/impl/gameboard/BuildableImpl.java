@@ -4,8 +4,8 @@ import it.unibo.monoopoly.model.api.gameboard.Buildable;
 
 public class BuildableImpl extends AbstractBuyable implements Buildable{
 
-    public BuildableImpl(int cost) {
-            super(cost);
+    public BuildableImpl(final String name, final int cost) {
+            super(name, cost);
         }
     
         @Override
