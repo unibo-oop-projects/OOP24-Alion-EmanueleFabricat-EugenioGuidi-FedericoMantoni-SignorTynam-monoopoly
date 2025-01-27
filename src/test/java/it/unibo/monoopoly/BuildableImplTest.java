@@ -1,9 +1,6 @@
 package it.unibo.monoopoly;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +16,7 @@ import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
 public class BuildableImplTest {
 
     static final int COST = 550;
+    static final int HOUSE_COST = 100;
     static final String PROPERTY_NAME = "Corso Magellano";
     static final Optional<Player> FIRSTOWNER = Optional.of(new PlayerImpl("Mario", 1500, 0, false));
     static final Optional<Player> SECONDOWNER = Optional.of(new PlayerImpl("Franco", 1500, 0, false));
@@ -39,7 +37,7 @@ public class BuildableImplTest {
     
         @BeforeEach
         public void initialization() {
-            this.property = new BuildableImpl(RENTAL_MAP, PROPERTY_NAME, COST);
+            this.property = new BuildableImpl(RENTAL_MAP, PROPERTY_NAME, COST, HOUSE_COST);
         }
 
     @Test
@@ -91,5 +89,45 @@ public class BuildableImplTest {
         assertTrue(this.property.isMortgaged());
         this.property.removeMortgage();
         assertFalse(this.property.isMortgaged());
+    }
+
+    @Test
+    public void testBuildHouse() {
+        this.property.buildHouse();
+        assertEquals(1, this.property.getHousesNumber());
+        assertEquals(RENTAL_MAP.get(1), this.property.getRentalValue());
+
+        for (int i = 0; i < 4; i++) {
+            this.property.buildHouse();
+        }
+
+        assertEquals(5, this.property.getHousesNumber());
+        assertThrows(IllegalStateException.class, () -> this.property.buildHouse());
+    }
+
+    @Test
+    public void testSellHouse() {
+        this.property.buildHouse();
+        this.property.buildHouse();
+        assertEquals(2, this.property.getHousesNumber());
+        
+        int sellValue = this.property.sellHouse();
+        assertEquals(HOUSE_COST / 2, sellValue);
+        assertEquals(1, this.property.getHousesNumber());
+        assertEquals(RENTAL_MAP.get(1), this.property.getRentalValue());
+
+        this.property.sellHouse();
+        assertEquals(0, this.property.getHousesNumber());
+        assertEquals(RENTAL_MAP.get(0), this.property.getRentalValue());
+        assertThrows(IllegalStateException.class, () -> this.property.sellHouse());
+    }
+
+    @Test
+    public void testBuildAndSellHouseOnMortgagedProperty() {
+        this.property.setMortgage();
+        assertTrue(this.property.isMortgaged());
+        
+        assertThrows(IllegalStateException.class, () -> this.property.buildHouse());
+        assertThrows(IllegalStateException.class, () -> this.property.sellHouse());
     }
 }
