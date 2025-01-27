@@ -25,4 +25,8 @@ public class BankerImpl implements Banker{
                 .anyMatch(p -> p.getHousesNumber() != 0);
     }
 
+    private boolean haveProperties(Set<Buyable> propreties) {
+        return !propreties.isEmpty();
+    }
+
 }
