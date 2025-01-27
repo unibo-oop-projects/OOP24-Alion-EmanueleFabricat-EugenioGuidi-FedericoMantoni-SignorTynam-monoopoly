@@ -38,8 +38,7 @@ public class BuildableImpl extends AbstractBuyable implements Buildable{
     
     @Override
     public int getRentalValue() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRentalValue'");
+        return this.rentalMap.get(this.houses);
     }
 
     /**
