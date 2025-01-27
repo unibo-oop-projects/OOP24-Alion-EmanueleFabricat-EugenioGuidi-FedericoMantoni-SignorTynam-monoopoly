@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ public class TestNotary {
     void init() {
         this.player1 = new PlayerImpl("Marco", START_MONEY, 0, false);
         this.player2 = new PlayerImpl("Franco", START_MONEY, 0, false);
-        this.buildableProperty = new BuildableImpl(150);
+        this.buildableProperty = new BuildableImpl(Map.of(), "Prova", 150, 50);
     }
 
     @Test
