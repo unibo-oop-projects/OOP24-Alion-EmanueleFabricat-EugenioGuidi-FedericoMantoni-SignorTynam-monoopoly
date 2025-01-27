@@ -14,7 +14,7 @@ public interface Cell {
 
     /**
      * 
-     * @return if the cell is a {@code Buyable} property
+     * @return if the cell is a {@link Buyable} property
      */
     boolean isBuyable();
 
@@ -23,5 +23,17 @@ public interface Cell {
      * @return if the cell is a {@link Buildable} property
      */
     boolean isBuildable();
+
+    /**
+     * 
+     * @return if the cell is a buyable {@link Railroad}
+     */
+    boolean isRailroad();
+
+    /**
+     * 
+     * @return if the cell is a buyable {@link Company}
+     */
+    boolean isCompany();
 
 }
