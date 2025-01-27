@@ -1,11 +1,16 @@
 package it.unibo.monoopoly.model.impl.gameboard;
 
+import java.util.Map;
+
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 
 public class BuildableImpl extends AbstractBuyable implements Buildable{
 
-    public BuildableImpl(final String name, final int cost) {
+    private final Map<Integer, Integer> rentalMap;
+
+    public BuildableImpl(final Map<Integer, Integer> rentalMap, final String name, final int cost) {
             super(name, cost);
+            this.rentalMap = rentalMap;
         }
     
         @Override
