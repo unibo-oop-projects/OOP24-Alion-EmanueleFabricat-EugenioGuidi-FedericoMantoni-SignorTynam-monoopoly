@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,23 +18,44 @@ import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
 
 public class BuildableImplTest {
 
-    static final int COST = 100;
+    static final int COST = 550;
     static final String PROPERTY_NAME = "Corso Magellano";
     static final Optional<Player> FIRSTOWNER = Optional.of(new PlayerImpl("Mario", 1500, 0, false));
     static final Optional<Player> SECONDOWNER = Optional.of(new PlayerImpl("Franco", 1500, 0, false));
+    static final Map<Integer, Integer> RENTAL_MAP = BuildableImplTest.initializeRentalMap();
+    
+        private BuildableImpl property;
 
-    private BuildableImpl property;
-
-    @BeforeEach
-    public void initialization() {
-        this.property = new BuildableImpl(PROPERTY_NAME, COST);
-    }
+        private static Map<Integer, Integer> initializeRentalMap() {
+            final Map<Integer, Integer> rentalMap = new HashMap<>();
+            rentalMap.put(0, 45);
+            rentalMap.put(1, 225);
+            rentalMap.put(2, 625);
+            rentalMap.put(3, 1750);
+            rentalMap.put(4, 2200);
+            rentalMap.put(5, 2625);
+            return rentalMap;
+        }
+    
+        @BeforeEach
+        public void initialization() {
+            this.property = new BuildableImpl(RENTAL_MAP, PROPERTY_NAME, COST);
+        }
 
     @Test
     public void testCell() {
         assertEquals(PROPERTY_NAME, this.property.getName());
         assertTrue(this.property.isBuildable());
         assertTrue(this.property.isBuyable());
+    }
+
+    @Test
+    public void testGetRentalValue() {
+        assertEquals(BuildableImplTest.RENTAL_MAP.get(0), this.property.getRentalValue());
+        this.property.buildHouse();
+        assertEquals(BuildableImplTest.RENTAL_MAP.get(1), this.property.getRentalValue());
+        this.property.sellHouse();
+        assertEquals(BuildableImplTest.RENTAL_MAP.get(0), this.property.getRentalValue());
     }
 
     @Test
