@@ -7,13 +7,17 @@ import it.unibo.monoopoly.model.api.gameboard.Buildable;
 public class BuildableImpl extends AbstractBuyable implements Buildable{
 
     private final Map<Integer, Integer> rentalMap;
+    private int houses;
+    private final int houseCost;
 
-    public BuildableImpl(final Map<Integer, Integer> rentalMap, final String name, final int cost) {
-            super(name, cost);
-            this.rentalMap = rentalMap;
-        }
+    public BuildableImpl(final Map<Integer, Integer> rentalMap, final String name, final int cost, final int houseCost) {
+        super(name, cost);
+        this.rentalMap = rentalMap;
+        this.houses = 0;
+        this.houseCost = houseCost;
+    }
     
-        @Override
+    @Override
     public int getRentalValue() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getRentalValue'");
