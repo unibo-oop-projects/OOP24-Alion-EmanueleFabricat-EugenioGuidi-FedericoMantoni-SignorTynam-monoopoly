@@ -15,12 +15,6 @@ public class BuildableImpl extends AbstractBuyable implements Buildable{
     }
 
     @Override
-    public boolean isBuildable() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isBuildable'");
-    }
-
-    @Override
     public int getHouseCost() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getHouseCost'");

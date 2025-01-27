@@ -5,26 +5,34 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.lang.foreign.Linker.Option;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.impl.player.PlayerImpl;
 import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
 
 public class BuildableImplTest {
 
     static final int COST = 100;
-    static final Optional<Player> FIRSTOWNER = new PlayerImpl();
-    static final Optional<Player> SECONDOWNER = new PlayerImpl();
+    static final String PROPERTY_NAME = "Corso Magellano";
+    static final Optional<Player> FIRSTOWNER = Optional.of(new PlayerImpl("Mario", 1500, 0, false));
+    static final Optional<Player> SECONDOWNER = Optional.of(new PlayerImpl("Franco", 1500, 0, false));
 
     private BuildableImpl property;
 
     @BeforeEach
     public void initialization() {
-        this.property = new BuildableImpl(COST);
+        this.property = new BuildableImpl(PROPERTY_NAME, COST);
+    }
+
+    @Test
+    public void testCell() {
+        assertEquals(PROPERTY_NAME, this.property.getName());
+        assertTrue(this.property.isBuildable());
+        assertTrue(this.property.isBuyable());
     }
 
     @Test
