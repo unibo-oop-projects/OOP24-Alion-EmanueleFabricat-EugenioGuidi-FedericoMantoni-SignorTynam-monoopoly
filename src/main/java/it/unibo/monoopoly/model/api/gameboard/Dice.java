@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.api.card;
+package it.unibo.monoopoly.model.api.gameboard;
 
 public interface Dice {
 
