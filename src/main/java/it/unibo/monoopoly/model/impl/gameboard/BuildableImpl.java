@@ -39,6 +39,7 @@ public class BuildableImpl extends AbstractBuyable implements Buildable{
      * Add a house to the property.
      * 
      * @return the houses
+     * @throws IllegalStateException if the property is mortgaged or there are already 5 houses on the property
      */
 
     @Override
@@ -50,18 +51,40 @@ public class BuildableImpl extends AbstractBuyable implements Buildable{
         if (this.houses >= MAX_HOUSES) {
             throw new IllegalStateException("Cannot build more than " + MAX_HOUSES + " houses on a property");
         }
+
+        this.houses++;
     }
+
+    /**
+     * Remove a house from the property.
+     * 
+     * @return the houses
+     * @throws IllegalStateException if the property is mortgaged or there are no houses on the property
+     */
 
     @Override
     public int sellHouse() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sellHouse'");
+        if (this.isMortgaged()) {
+            throw new IllegalStateException("Cannot sell a house on a mortgaged property");
+        }
+
+        if (this.houses <= 0) {
+            throw new IllegalStateException("Cannot sell a house if there are no houses on the property");
+        }
+
+        this.houses--;
+
+        return this.getHouseCost() / 2;
     }
+
+    /**
+     * Return the number of houses on the property.
+     * 
+     * @return the houses
+     */
 
     @Override
     public int getHousesNumber() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHousesNumber'");
+        return this.houses;
     }
-
 }
