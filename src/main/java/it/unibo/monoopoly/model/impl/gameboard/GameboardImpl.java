@@ -43,8 +43,8 @@ public class GameBoardImpl implements GameBoard{
 
     @Override
     public Player getNextPlayer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNextPlayer'");
+        this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playersList.size();
+        return this.getCurrentPlayer();
     }
 
     @Override
