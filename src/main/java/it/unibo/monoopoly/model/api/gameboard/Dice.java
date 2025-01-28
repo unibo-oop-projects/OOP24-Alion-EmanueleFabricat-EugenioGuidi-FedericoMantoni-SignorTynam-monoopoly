@@ -2,12 +2,33 @@ package it.unibo.monoopoly.model.api.gameboard;
 
 public interface Dice {
 
-    record Pair<T, U> (T firstRoll, U secondRoll){}
+    class Pair {
+        private final Integer firstRoll;
+        private final Integer secondRoll;
+
+        public Pair(Integer firstRoll, Integer secondRoll) {
+            this.firstRoll = firstRoll;
+            this.secondRoll = secondRoll;
+        }
+
+        public Integer getFirstRoll() {
+            return this.firstRoll;
+        }
+
+        public Integer getSecondRoll() {
+            return this.secondRoll;
+        }
+    }
+
+    /*
+     * create a pair of Integer random from 1 to 6.
+     */
+    Void rollDices();
 
     /**
      * 
-     * @return the roll of the dice
+     * @return dices rolled.
      */
-    Pair<Integer,Integer> rollDice();
+    Pair getDices();
 
 }
