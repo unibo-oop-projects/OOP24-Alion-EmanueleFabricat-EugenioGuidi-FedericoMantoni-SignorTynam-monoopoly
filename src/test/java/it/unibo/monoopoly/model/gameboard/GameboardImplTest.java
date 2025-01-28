@@ -1,7 +1,9 @@
 package it.unibo.monoopoly.model.gameboard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -51,6 +53,15 @@ public class GameBoardImplTest {
     public void testGetCell() {
         assertEquals(this.CELLS_LIST.get(0), this.gameBoardImpl.getCell(0));
         assertNotEquals(this.CELLS_LIST.get(0), this.gameBoardImpl.getCell(1));
+    }
+
+    @Test
+    public void testRemovePlayerAndGameEnded() {
+        assertFalse(this.gameBoardImpl.isGameEnded());
+        this.gameBoardImpl.removePlayer();
+        assertFalse(this.gameBoardImpl.isGameEnded());
+        this.gameBoardImpl.removePlayer();
+        assertTrue(this.gameBoardImpl.isGameEnded());
     }
 
 }
