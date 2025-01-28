@@ -1,11 +1,15 @@
 package it.unibo.monoopoly.model.gameboard;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.GameBoard;
@@ -41,6 +45,12 @@ public class GameBoardImplTest {
     @BeforeEach
     public void initialization() {
         this.gameBoardImpl = new GameBoardImpl(CELLS_LIST, PLAYERS_LIST);
+    }
+
+    @Test
+    public void testGetCell() {
+        assertEquals(this.CELLS_LIST.get(0), this.gameBoardImpl.getCell(0));
+        assertNotEquals(this.CELLS_LIST.get(0), this.gameBoardImpl.getCell(1));
     }
 
 }
