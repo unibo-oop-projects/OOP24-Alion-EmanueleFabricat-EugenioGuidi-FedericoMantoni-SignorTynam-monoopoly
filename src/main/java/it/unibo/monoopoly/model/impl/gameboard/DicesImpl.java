@@ -5,11 +5,11 @@ import java.util.Random;
 
 import it.unibo.monoopoly.model.api.gameboard.Dices;
 
-public class DiceImpl implements Dices{
+public class DicesImpl implements Dices{
 
     private Optional<Pair> currentRoll;
 
-    public DiceImpl() {
+    public DicesImpl() {
         this.currentRoll = Optional.empty();
     }
 

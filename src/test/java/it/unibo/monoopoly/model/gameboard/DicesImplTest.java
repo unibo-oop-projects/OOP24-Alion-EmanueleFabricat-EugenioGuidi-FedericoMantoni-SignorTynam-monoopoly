@@ -8,15 +8,15 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.impl.gameboard.DiceImpl;
+import it.unibo.monoopoly.model.impl.gameboard.DicesImpl;
 
 public class DicesImplTest {
 
-    private DiceImpl diceImpl;
+    private DicesImpl diceImpl;
 
     @BeforeEach
     void initialization() {
-        this.diceImpl = new DiceImpl();
+        this.diceImpl = new DicesImpl();
     }
 
     @Test
