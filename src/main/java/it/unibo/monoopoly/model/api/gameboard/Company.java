@@ -5,4 +5,6 @@ package it.unibo.monoopoly.model.api.gameboard;
  */
 public interface Company extends Buyable {
 
+    int rollAndCalculate();
+
 }
