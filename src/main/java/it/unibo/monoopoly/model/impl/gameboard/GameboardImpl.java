@@ -49,8 +49,7 @@ public class GameBoardImpl implements GameBoard{
 
     @Override
     public Player getCurrentPlayer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCurrentPlayer'");
+        return this.playersList.get(this.currentPlayerIndex);
     }
 
 }
