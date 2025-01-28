@@ -5,10 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,8 +49,8 @@ public class GameBoardImplTest {
 
     @Test
     public void testGetCell() {
-        assertEquals(this.CELLS_LIST.get(0), this.gameBoardImpl.getCell(0));
-        assertNotEquals(this.CELLS_LIST.get(0), this.gameBoardImpl.getCell(1));
+        assertEquals(GameBoardImplTest.CELLS_LIST.get(0), this.gameBoardImpl.getCell(0));
+        assertNotEquals(GameBoardImplTest.CELLS_LIST.get(0), this.gameBoardImpl.getCell(1));
     }
 
     @Test

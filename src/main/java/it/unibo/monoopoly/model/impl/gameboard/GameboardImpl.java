@@ -20,8 +20,10 @@ public class GameBoardImpl implements GameBoard{
 
     @Override
     public Cell getCell(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCell'");
+        if(index < 0 || index < 39) {
+            throw new IndexOutOfBoundsException("Index " + index + " not valid, it must be between 0 and 39 inclusive");
+        }
+        return cellsList.get(index);
     }
 
     @Override
