@@ -23,8 +23,7 @@ public class DiceImpl implements Dices{
 
     @Override
     public Optional<Pair> getDices() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDices'");
+        return this.currentRoll;
     }
 
 }
