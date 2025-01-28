@@ -45,11 +45,17 @@ public abstract class AbstractCell implements Cell {
         return this instanceof Buyable;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isCompany() {
         return this instanceof Company;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isRailroad() {
         return this instanceof Railroad;
