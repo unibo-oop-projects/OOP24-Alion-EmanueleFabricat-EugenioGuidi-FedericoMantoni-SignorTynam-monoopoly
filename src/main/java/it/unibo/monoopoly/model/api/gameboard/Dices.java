@@ -25,7 +25,7 @@ public interface Dices {
     /*
      * create a pair of Integer random from 1 to 6.
      */
-    Void rollDices();
+    void rollDices();
 
     /**
      * 
