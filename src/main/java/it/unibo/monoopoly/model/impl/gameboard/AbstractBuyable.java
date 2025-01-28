@@ -58,6 +58,17 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
         return this.mortgaged;
     }
 
+    @Override
+    public int getRentalValue() {
+        if(!isBuyable()) {
+            return calculateRentalValue();
+        } else {
+            throw new IllegalStateException("The property must be owned by a player");
+        }
+    }
+
+    public abstract int calculateRentalValue();
+
     /**
      * {@inheritDoc}
      */
