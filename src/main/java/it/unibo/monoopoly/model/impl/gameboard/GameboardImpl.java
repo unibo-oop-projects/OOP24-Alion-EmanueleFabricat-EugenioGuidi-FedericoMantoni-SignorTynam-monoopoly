@@ -3,7 +3,7 @@ package it.unibo.monoopoly.model.impl.gameboard;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 
-public class GameboardImpl implements GameBoard{
+public class GameBoardImpl implements GameBoard{
 
     @Override
     public Cell getCell(int index) {

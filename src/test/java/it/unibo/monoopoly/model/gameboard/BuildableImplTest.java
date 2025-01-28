@@ -10,8 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
 import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
+import it.unibo.monoopoly.model.impl.player.PlayerImpl;
 
 public class BuildableImplTest {
 
