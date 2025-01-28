@@ -10,12 +10,12 @@ public class GameBoardImpl implements GameBoard{
 
     private final List<Cell> cellsList;
     private final List<Player> playersList;
-    private int currentPlayer;
+    private int currentPlayerIndex;
     
     public GameBoardImpl(final List<Cell> cellsList, List<Player> playersList) {
         this.cellsList = cellsList;
         this.playersList = playersList;
-        this.currentPlayer = 0;
+        this.currentPlayerIndex = 0;
     }
 
     @Override
@@ -27,9 +27,13 @@ public class GameBoardImpl implements GameBoard{
     }
 
     @Override
-    public void removePlayer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removePlayer'");
+    public void removePlayer(){
+        this.playersList.remove(this.currentPlayerIndex);
+        if(this.currentPlayerIndex != 0) {
+            this.currentPlayerIndex--;
+        }else {
+            this.currentPlayerIndex = this.playersList.size() - 1;
+        }
     }
 
     @Override
