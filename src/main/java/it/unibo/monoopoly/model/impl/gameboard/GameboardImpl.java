@@ -41,4 +41,16 @@ public class GameBoardImpl implements GameBoard{
         return this.playersList.size() < 2;
     }
 
+    @Override
+    public Player getNextPlayer() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNextPlayer'");
+    }
+
+    @Override
+    public Player getCurrentPlayer() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCurrentPlayer'");
+    }
+
 }

@@ -62,4 +62,15 @@ public class GameBoardImplTest {
         assertTrue(this.gameBoardImpl.isGameEnded());
     }
 
+    @Test
+    public void testGetNextAndCurrentPlayer() {
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), GameBoardImplTest.PLAYERS_LIST.get(0));
+        this.gameBoardImpl.getNextPlayer();
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), GameBoardImplTest.PLAYERS_LIST.get(1));
+        this.gameBoardImpl.getNextPlayer();
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), GameBoardImplTest.PLAYERS_LIST.get(2));
+        this.gameBoardImpl.getNextPlayer();
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), GameBoardImplTest.PLAYERS_LIST.get(0));
+    }
+
 }
