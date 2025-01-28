@@ -42,6 +42,9 @@ public class GameBoardImplTest {
         return playersList;
     }
 
+    /**
+     * initialize the field everytime before every test.
+     */
     @BeforeEach
     public void initialization() {
         this.gameBoardImpl = new GameBoardImpl(CELLS_LIST, PLAYERS_LIST);
