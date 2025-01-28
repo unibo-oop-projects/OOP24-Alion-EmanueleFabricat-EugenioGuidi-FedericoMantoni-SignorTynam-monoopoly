@@ -1,4 +1,4 @@
-package it.unibo.monoopoly;
+package it.unibo.monoopoly.model.gameboard;
 
 import static org.junit.jupiter.api.Assertions.*;
 
