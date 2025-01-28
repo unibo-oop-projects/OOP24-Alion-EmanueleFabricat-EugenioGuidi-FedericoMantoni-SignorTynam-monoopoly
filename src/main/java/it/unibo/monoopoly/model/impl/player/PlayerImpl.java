@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.impl.player;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ public class PlayerImpl implements Player {
         this.moneyAmount = validatePositive(moneyAmount, "Money amount cannot be negative");
         this.actualPosition = validatePositive(actualPosition, "Position cannot be negative");
         this.prisoned = prisoned;
-        this.properties = Set.of();
+        this.properties = new HashSet<>();
     }
     
     /**
