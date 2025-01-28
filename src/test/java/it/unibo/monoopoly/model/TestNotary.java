@@ -42,13 +42,13 @@ public class TestNotary {
         assertEquals(Event.BUY_PROPERTY,notary.checkProperty(player1, buildableProperty).get());
         notary.buyProperty(player1, buildableProperty);
         assertEquals(Optional.empty(), notary.checkProperty(player1, buildableProperty));
-        assertEquals(Event.RENT_PAYMENT, notary.checkProperty(player2, buildableProperty));
+        assertEquals(Event.RENT_PAYMENT, notary.checkProperty(player2, buildableProperty).get());
     }
 
     @Test
     void testBuyProperty() {
         notary.buyProperty(player1, buildableProperty);
-        assertEquals(player1, buildableProperty.getOwner());
+        assertEquals(player1, buildableProperty.getOwner().get());
         assertFalse(buildableProperty.isBuyable());
         assertTrue(player1.getProperties().contains(buildableProperty));
     }
