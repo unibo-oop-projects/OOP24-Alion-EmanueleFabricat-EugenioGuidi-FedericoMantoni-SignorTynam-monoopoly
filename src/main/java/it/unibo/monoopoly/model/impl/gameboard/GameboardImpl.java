@@ -20,7 +20,7 @@ public class GameBoardImpl implements GameBoard{
 
     @Override
     public Cell getCell(int index) {
-        if(index < 0 || index < 39) {
+        if(index < 0 || index > 39) {
             throw new IndexOutOfBoundsException("Index " + index + " not valid, it must be between 0 and 39 inclusive");
         }
         return cellsList.get(index);
@@ -34,8 +34,7 @@ public class GameBoardImpl implements GameBoard{
 
     @Override
     public boolean isGameEnded() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isGameEnded'");
+        return this.playersList.size() < 2;
     }
 
 }
