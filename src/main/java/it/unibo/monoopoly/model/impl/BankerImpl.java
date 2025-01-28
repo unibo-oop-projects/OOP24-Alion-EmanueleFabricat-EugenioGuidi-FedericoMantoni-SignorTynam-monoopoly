@@ -14,7 +14,11 @@ public class BankerImpl implements Banker{
         if (player.isPayable(amount)) {
 
         } else {
-            makeChoose(haveHouse(player.getProperties()) || haveProperties(player.getProperties()));
+            if (haveHouse(player.getProperties())) {
+
+            } else if (haveProperties(player.getProperties())) {
+                
+            }
         }
     }
 
