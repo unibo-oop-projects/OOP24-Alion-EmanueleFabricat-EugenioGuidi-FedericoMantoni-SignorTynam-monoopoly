@@ -1,6 +1,6 @@
 package it.unibo.monoopoly.model.api.gameboard;
 
-public interface Dice {
+public interface Dices {
 
     class Pair {
         private final Integer firstRoll;
