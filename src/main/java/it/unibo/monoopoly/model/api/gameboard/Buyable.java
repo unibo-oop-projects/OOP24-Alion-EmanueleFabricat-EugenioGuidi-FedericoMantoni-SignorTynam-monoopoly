@@ -14,7 +14,7 @@ public interface Buyable extends Cell {
      * 
      * @return true if is buyable
      */
-    boolean hasOwner();
+    boolean isAvailable();
 
     /**
      * 

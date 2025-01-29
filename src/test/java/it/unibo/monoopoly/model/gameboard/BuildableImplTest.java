@@ -44,7 +44,7 @@ public class BuildableImplTest {
     public void testCell() {
         assertEquals(PROPERTY_NAME, this.property.getName());
         assertTrue(this.property.isBuildable());
-        assertTrue(this.property.isBuyable());
+        assertTrue(this.property.isAvailable());
     }
 
     @Test
@@ -76,9 +76,9 @@ public class BuildableImplTest {
 
     @Test
     public void testIsBuyable() {
-        assertTrue(this.property.isBuyable());
+        assertTrue(this.property.isAvailable());
         this.property.setOwner(FIRSTOWNER);
-        assertFalse(this.property.isBuyable());
+        assertFalse(this.property.isAvailable());
     }
 
     @Test
