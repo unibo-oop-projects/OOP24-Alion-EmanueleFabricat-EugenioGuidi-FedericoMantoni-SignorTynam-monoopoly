@@ -46,7 +46,7 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
      * {@inheritDoc}
      */
     @Override
-    public boolean isBuyable() {
+    public boolean isAvailable() {
         return this.owner.isEmpty();
     }
 
@@ -60,7 +60,7 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
 
     @Override
     public int getRentalValue() {
-        if(!isBuyable()) {
+        if(!isAvailable()) {
             return calculateRentalValue();
         } else {
             throw new IllegalStateException("The property must be owned by a player");

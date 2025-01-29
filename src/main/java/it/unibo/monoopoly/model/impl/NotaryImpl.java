@@ -35,7 +35,7 @@ public class NotaryImpl implements Notary {
     public void buyProperty(final Player player, final Buyable cell) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(cell);
-        if (cell.isBuyable()) {
+        if (cell.isAvailable()) {
             player.pay(cell.getCost());
             cell.setOwner(Optional.of(player));
             player.addProperty(cell);

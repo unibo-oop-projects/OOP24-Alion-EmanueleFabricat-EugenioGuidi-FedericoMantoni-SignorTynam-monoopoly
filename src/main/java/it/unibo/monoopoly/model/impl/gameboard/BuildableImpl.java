@@ -31,17 +31,6 @@ public class BuildableImpl extends AbstractBuyable implements Buildable{
     }
 
     /**
-     * Return the rental value of the property.
-     * 
-     * @return the rental value
-     */
-    
-    @Override
-    public int getRentalValue() {
-        return this.rentalMap.get(this.houses);
-    }
-
-    /**
      * Return the number of houses on the property.
      * 
      * @return the houseCost
@@ -109,5 +98,10 @@ public class BuildableImpl extends AbstractBuyable implements Buildable{
     @Override
     public int getHousesNumber() {
         return this.houses;
+    }
+
+    @Override
+    public int calculateRentalValue() {
+        return this.rentalMap.get(this.houses);
     }
 }

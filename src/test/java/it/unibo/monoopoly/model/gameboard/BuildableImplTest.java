@@ -44,11 +44,12 @@ public class BuildableImplTest {
     public void testCell() {
         assertEquals(PROPERTY_NAME, this.property.getName());
         assertTrue(this.property.isBuildable());
-        assertTrue(this.property.isBuyable());
+        assertTrue(this.property.isAvailable());
     }
 
     @Test
     public void testGetRentalValue() {
+        this.property.setOwner(FIRSTOWNER);
         assertEquals(BuildableImplTest.RENTAL_MAP.get(0), this.property.getRentalValue());
         this.property.buildHouse();
         assertEquals(BuildableImplTest.RENTAL_MAP.get(1), this.property.getRentalValue());
@@ -76,9 +77,9 @@ public class BuildableImplTest {
 
     @Test
     public void testIsBuyable() {
-        assertTrue(this.property.isBuyable());
+        assertTrue(this.property.isAvailable());
         this.property.setOwner(FIRSTOWNER);
-        assertFalse(this.property.isBuyable());
+        assertFalse(this.property.isAvailable());
     }
 
     @Test
@@ -93,6 +94,7 @@ public class BuildableImplTest {
 
     @Test
     public void testBuildHouse() {
+        this.property.setOwner(FIRSTOWNER);
         this.property.buildHouse();
         assertEquals(1, this.property.getHousesNumber());
         assertEquals(RENTAL_MAP.get(1), this.property.getRentalValue());
@@ -107,6 +109,7 @@ public class BuildableImplTest {
 
     @Test
     public void testSellHouse() {
+        this.property.setOwner(FIRSTOWNER);
         this.property.buildHouse();
         this.property.buildHouse();
         assertEquals(2, this.property.getHousesNumber());
