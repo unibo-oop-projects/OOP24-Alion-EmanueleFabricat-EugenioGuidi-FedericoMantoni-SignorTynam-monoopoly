@@ -5,53 +5,99 @@ import java.util.Optional;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 
-public abstract class AbstractBuyable extends AbstractCell implements Buyable{
+/**
+ * Abstract class implementing methods common to all {@link Buyable} cells.
+ */
+public abstract class AbstractBuyable extends AbstractCell implements Buyable {
 
     private Optional<Player> owner;
     private final int cost;
-    private final int mortgageValue;
     private boolean mortgaged;
 
-    public AbstractBuyable(final int cost, final int mortgageValue, final String name) {
+    /**
+     * Constructor of a {@link Buyable} cell.
+     * @param name the name of the cell
+     * @param cost the cost of the property
+     */
+    public AbstractBuyable(final String name, final int cost) {
         super(name);
         this.owner = Optional.empty();
         this.cost = cost;
-        this.mortgageValue = mortgageValue;
         this.mortgaged = false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getCost() {
         return this.cost;
     }
 
-    @Override
-    public int getMortgageValue() {
-        return this.mortgageValue;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<Player> getOwner() {
         return this.owner;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean isBuyable() {
+    public boolean isAvailable() {
         return this.owner.isEmpty();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean isMortaged() {
+    public boolean isMortgaged() {
         return this.mortgaged;
     }
 
+    @Override
+    public int getRentalValue() {
+        if(!isAvailable()) {
+            return calculateRentalValue();
+        } else {
+            throw new IllegalStateException("The property must be owned by a player");
+        }
+    }
+
+    public abstract int calculateRentalValue();
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setMortgage() {
         this.mortgaged = true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setOwner(Optional<Player> ownerPlayer) {
+    public int getMortgageValue() {
+        return (int) (this.cost / 2);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeMortgage() {
+        this.mortgaged = false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setOwner(final Optional<Player> ownerPlayer) {
         this.owner = ownerPlayer;
     }
 

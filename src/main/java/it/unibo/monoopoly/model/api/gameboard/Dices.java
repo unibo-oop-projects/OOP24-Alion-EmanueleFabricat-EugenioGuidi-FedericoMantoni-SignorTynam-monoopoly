@@ -1,0 +1,40 @@
+package it.unibo.monoopoly.model.api.gameboard;
+
+public interface Dices {
+
+    class Pair {
+        private final Integer firstRoll;
+        private final Integer secondRoll;
+
+        public Pair(Integer firstRoll, Integer secondRoll) {
+            this.firstRoll = firstRoll;
+            this.secondRoll = secondRoll;
+        }
+
+        public Integer getFirstRoll() {
+            return this.firstRoll;
+        }
+
+        public Integer getSecondRoll() {
+            return this.secondRoll;
+        }
+    }
+
+    /*
+     * create a pair of Integer random from 1 to 6.
+     */
+    void rollDices();
+
+    /**
+     * 
+     * @return dices rolled.
+     */
+    Pair getDices();
+
+    /**
+     * 
+     * @return sum of two dices
+     */
+    int getResult();
+
+}

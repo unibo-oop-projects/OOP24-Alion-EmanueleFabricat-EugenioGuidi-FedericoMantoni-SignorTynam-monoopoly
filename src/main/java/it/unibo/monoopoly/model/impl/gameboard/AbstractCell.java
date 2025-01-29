@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
+import it.unibo.monoopoly.model.api.gameboard.Company;
+import it.unibo.monoopoly.model.api.gameboard.Railroad;
 
 @JsonTypeInfo(
 use = JsonTypeInfo.Id.NAME,
@@ -16,7 +18,7 @@ property = "type") // field name
 })
 
 /**
- * Abstract class implementing common method of a generic {@link Cell}.
+ * Abstract class implementing common methods of a generic {@link Cell}.
  */
 public abstract class AbstractCell implements Cell {
 
@@ -52,6 +54,22 @@ public abstract class AbstractCell implements Cell {
     @Override
     public boolean isBuyable() {
         return this instanceof Buyable;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isCompany() {
+        return this instanceof Company;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isRailroad() {
+        return this instanceof Railroad;
     }
 
 }

@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.model.api.gameboard;
 
+import it.unibo.monoopoly.model.api.player.Player;
+
 public interface GameBoard {
 
     /**
@@ -22,5 +24,17 @@ public interface GameBoard {
      * @return true if the game is ended.
      */
     boolean isGameEnded();
+
+    /**
+     * 
+     * @return next player to play.
+     */
+    Player getNextPlayer();
+
+    /**
+     * 
+     * @return current player to play
+     */
+    Player getCurrentPlayer();
 
 }

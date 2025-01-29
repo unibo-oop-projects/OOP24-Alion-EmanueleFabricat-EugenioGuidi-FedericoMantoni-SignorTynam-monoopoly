@@ -4,20 +4,23 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.model.api.player.Player;
 
-public interface Buyable extends Cell{
+/**
+ * Represents the buyable cells of the gameboard.
+ */
+public interface Buyable extends Cell {
 
     /**
      * method that return if is buyable.
      * 
      * @return true if is buyable
      */
-    boolean isBuyable();
+    boolean isAvailable();
 
     /**
      * 
      * @return true if the property is already mortgaged
      */
-    boolean isMortaged();
+    boolean isMortgaged();
 
     /**
      * method that return the owner of property.
@@ -48,16 +51,21 @@ public interface Buyable extends Cell{
     int getRentalValue();
 
     /**
+     * 
+     * @return the mortgage value
+     */
+    int getMortgageValue();
+
+    /**
      * method that set the mortgage of property.
      * 
      */
     void setMortgage();
 
     /**
-     * method that return the mortgage value.
+     * remove the mortgage of property.
      * 
-     * @return the mortgage value
      */
-    int getMortgageValue();
+    void removeMortgage();
 
 }
