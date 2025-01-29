@@ -17,7 +17,7 @@ public class CompanyImpl extends AbstractBuyable implements Company {
     private Optional<Integer> actualRentalValue;
 
     /**
-     * Constructor that will be replaced by CellFactory.
+     * Constructor of a company cell.
      * @param name the name of the cell
      * @param cost the cost of the cell
      */
@@ -41,9 +41,14 @@ public class CompanyImpl extends AbstractBuyable implements Company {
      */
     @Override
     public void rollAndCalculate() {
-        this.dice.rollDices();
-        final int multiplier = this.hasAnotherCompany() ? MULTIPLIER_2 : MULTIPLIER_1;
-        this.actualRentalValue=Optional.of(multiplier*this.dice.getResult());
+        if (!isAvailable()) {
+            this.dice.rollDices();
+            final int multiplier = this.hasAnotherCompany() ? MULTIPLIER_2 : MULTIPLIER_1;
+            this.actualRentalValue = Optional.of(multiplier * this.dice.getResult());
+        } else {
+            throw new IllegalStateException("The property must be owned by a player");
+        }
+
     }
 
     private boolean hasAnotherCompany() {
