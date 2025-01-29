@@ -19,11 +19,11 @@ public class BankerImpl implements Banker{
             return new Message(Actions.PAY, amount);
         } else {
             if (haveHouse(player.getProperties())) {
-                return new Message(Actions.WRITE, getPropretiesWithHome(player.getProperties()));
+                return new Message(Actions.CHOOSE, getPropretiesWithHome(player.getProperties()));
             } else if (haveProperties(player.getProperties())) {
-                return new Message(Actions.WRITE, player.getProperties().stream().toList());
+                return new Message(Actions.CHOOSE, player.getProperties().stream().toList());
             } else {
-                return new Message(Actions.PAY, player);
+                return new Message(Actions.BANKRUPTCY, player);
             }
         }
     }
