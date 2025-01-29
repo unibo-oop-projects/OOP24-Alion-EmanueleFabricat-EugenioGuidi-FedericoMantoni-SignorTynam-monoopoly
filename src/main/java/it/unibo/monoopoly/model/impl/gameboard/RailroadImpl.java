@@ -10,7 +10,7 @@ public class RailroadImpl extends AbstractBuyable implements Railroad {
     private static final int BASE_VALUE = 25;
 
     /**
-     * To replace by CellFactory.
+     * Constructor of a railroad cell.
      * @param name
      * @param cost
      */
@@ -23,9 +23,9 @@ public class RailroadImpl extends AbstractBuyable implements Railroad {
      */
     @Override
     public int calculateRentalValue() {
-        return (int) Math.pow(2,
+        return BASE_VALUE * (int) Math.pow(2,
             Math.toIntExact(this.getOwner().get().getProperties().stream()
-            .filter(p -> p.isRailroad()).count())-1)*BASE_VALUE;
+            .filter(p -> p.isRailroad()).count()) - 1);
     }
 
 }
