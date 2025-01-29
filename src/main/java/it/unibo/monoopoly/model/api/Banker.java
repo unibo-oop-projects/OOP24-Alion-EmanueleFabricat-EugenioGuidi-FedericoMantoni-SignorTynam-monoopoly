@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.model.api;
 
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.utils.Message;
 
 /**
  * Interface that implements a benker who help the player decide wich house sell or properties mortagage.
@@ -11,7 +12,7 @@ public interface Banker {
      * 
      * @param player from who to subtract the amount.
      * @param amount to subtract from player
-     * @return the proceeds of the oparationes.
+     * @return 
      */
-    int selectOperations(Player player, int amount);
+    Message selectOperations(Player player, int amount);
 }

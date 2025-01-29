@@ -6,11 +6,12 @@ import it.unibo.monoopoly.model.api.Banker;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.utils.Message;
 
 public class BankerImpl implements Banker{
     
     @Override
-    public int selectOperations(Player player, int amount) {
+    public Message selectOperations(Player player, int amount) {
         if (player.isPayable(amount)) {
 
         } else {
