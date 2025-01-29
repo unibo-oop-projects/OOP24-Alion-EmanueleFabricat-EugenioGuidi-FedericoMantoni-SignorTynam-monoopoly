@@ -71,9 +71,17 @@ public class TestBuyable {
     void testCompany() {
         final Company company1 = (Company) this.company1;
         final Company company2 = (Company) this.company2;
-        assertThrows(IllegalStateException.class, () -> company1.getRentalValue());
-        assertThrows(IllegalStateException.class, () -> company1.rollAndCalculate());
+        final Exception exception1 = assertThrows(IllegalStateException.class, () ->
+            company1.getRentalValue());
+        final Exception exception2 = assertThrows(IllegalStateException.class, () ->
+            company1.rollAndCalculate());
+        assertEquals("The property must be owned by a player", exception1.getMessage());
+        assertEquals("The property must be owned by a player", exception2.getMessage());
         notary.buyProperty(owner, company1);
+        final Exception exception3 = assertThrows(IllegalStateException.class, () ->
+            company1.getRentalValue());
+        assertEquals("Rental value need to be first calculated for Companies",
+            exception3.getMessage());
         this.checkRental(company1,8, 48);
         notary.buyProperty(owner, company2);
         this.checkRental(company1, 20, 120);
@@ -82,8 +90,8 @@ public class TestBuyable {
 
     private void checkRental(final Company company, final int min, final int max) {
         for (int i = 0; i < TRIES; i++) {
-            company1.rollAndCalculate();
-            final int rentalValue = company1.getMortgageValue();
+            company.rollAndCalculate();
+            final int rentalValue = company.getRentalValue();
             assertTrue(rentalValue >= min && rentalValue <= max);
         }
     }
