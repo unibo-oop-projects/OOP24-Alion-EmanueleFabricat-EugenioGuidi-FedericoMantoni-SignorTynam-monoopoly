@@ -46,7 +46,7 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
      * {@inheritDoc}
      */
     @Override
-    public boolean isBuyable() {
+    public boolean hasOwner() {
         return this.owner.isEmpty();
     }
 
