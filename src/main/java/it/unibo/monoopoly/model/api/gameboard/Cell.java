@@ -20,7 +20,7 @@ public interface Cell {
 
     /**
      * 
-     * @return if the cell is a {@code Buildable} property
+     * @return if the cell is a {@link Buildable} property
      */
     boolean isBuildable();
 
