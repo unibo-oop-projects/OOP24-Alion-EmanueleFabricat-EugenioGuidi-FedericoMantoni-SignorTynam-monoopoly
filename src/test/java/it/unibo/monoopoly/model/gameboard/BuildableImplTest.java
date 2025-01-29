@@ -49,6 +49,7 @@ public class BuildableImplTest {
 
     @Test
     public void testGetRentalValue() {
+        this.property.setOwner(FIRSTOWNER);
         assertEquals(BuildableImplTest.RENTAL_MAP.get(0), this.property.getRentalValue());
         this.property.buildHouse();
         assertEquals(BuildableImplTest.RENTAL_MAP.get(1), this.property.getRentalValue());
@@ -93,6 +94,7 @@ public class BuildableImplTest {
 
     @Test
     public void testBuildHouse() {
+        this.property.setOwner(FIRSTOWNER);
         this.property.buildHouse();
         assertEquals(1, this.property.getHousesNumber());
         assertEquals(RENTAL_MAP.get(1), this.property.getRentalValue());
@@ -107,6 +109,7 @@ public class BuildableImplTest {
 
     @Test
     public void testSellHouse() {
+        this.property.setOwner(FIRSTOWNER);
         this.property.buildHouse();
         this.property.buildHouse();
         assertEquals(2, this.property.getHousesNumber());
