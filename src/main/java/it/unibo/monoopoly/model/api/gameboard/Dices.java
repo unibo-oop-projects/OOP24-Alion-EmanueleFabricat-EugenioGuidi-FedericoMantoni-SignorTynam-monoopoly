@@ -33,4 +33,10 @@ public interface Dices {
      */
     Optional<Pair> getDices();
 
+    /**
+     * 
+     * @return sum of two dices
+     */
+    int getResult();
+
 }
