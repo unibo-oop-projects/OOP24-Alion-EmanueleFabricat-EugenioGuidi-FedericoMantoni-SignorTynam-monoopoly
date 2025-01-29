@@ -49,7 +49,7 @@ public class TestNotary {
     void testBuyProperty() {
         notary.buyProperty(player1, buildableProperty);
         assertEquals(player1, buildableProperty.getOwner().get());
-        assertFalse(buildableProperty.isBuyable());
+        assertFalse(buildableProperty.isAvailable());
         assertTrue(player1.getProperties().contains(buildableProperty));
     }
 

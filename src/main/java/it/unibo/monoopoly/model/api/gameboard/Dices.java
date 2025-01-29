@@ -1,7 +1,5 @@
 package it.unibo.monoopoly.model.api.gameboard;
 
-import java.util.Optional;
-
 public interface Dices {
 
     class Pair {
@@ -31,6 +29,12 @@ public interface Dices {
      * 
      * @return dices rolled.
      */
-    Optional<Pair> getDices();
+    Pair getDices();
+
+    /**
+     * 
+     * @return sum of two dices
+     */
+    int getResult();
 
 }
