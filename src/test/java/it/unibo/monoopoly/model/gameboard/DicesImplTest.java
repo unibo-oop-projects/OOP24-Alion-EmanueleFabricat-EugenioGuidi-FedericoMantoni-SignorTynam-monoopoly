@@ -22,9 +22,9 @@ public class DicesImplTest {
 
     @Test
     public void testGetDices() {
-        assertEquals(Optional.empty(), this.diceImpl.getDices());
+        assertEquals(null, this.diceImpl.getDices());
         this.diceImpl.rollDices();
-        assertNotEquals(Optional.empty(), this.diceImpl.getDices());
+        assertNotEquals(null, this.diceImpl.getDices());
     }
 
     @Test
