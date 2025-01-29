@@ -10,6 +10,9 @@ import it.unibo.monoopoly.model.api.gameboard.Dices;
  */
 public class CompanyImpl extends AbstractBuyable implements Company {
 
+    private static final int MULTIPLIER_1 = 4;
+    private static final int MULTIPLIER_2 = 10;
+
     private final Dices dice;
     private Optional<Integer> actualRentalValue;
 
@@ -39,8 +42,8 @@ public class CompanyImpl extends AbstractBuyable implements Company {
     @Override
     public void rollAndCalculate() {
         this.dice.rollDices();
-        final int multiplier = this.hasAnotherCompany() ? 10 : 4;
-        this.actualRentalValue=multiplier*this.dice.getResult();
+        final int multiplier = this.hasAnotherCompany() ? MULTIPLIER_2 : MULTIPLIER_1;
+        this.actualRentalValue=Optional.of(multiplier*this.dice.getResult());
     }
 
     private boolean hasAnotherCompany() {
