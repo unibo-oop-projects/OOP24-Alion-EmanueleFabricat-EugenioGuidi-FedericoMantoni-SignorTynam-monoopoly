@@ -2,12 +2,17 @@ package it.unibo.monoopoly.model.impl.gameboard;
 
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import it.unibo.monoopoly.model.api.gameboard.Company;
 import it.unibo.monoopoly.model.api.gameboard.Dices;
 
 /**
  * Implements the {@link Company} interface.
  */
+@JsonTypeName("Company")
 public class CompanyImpl extends AbstractBuyable implements Company {
 
     private static final int MULTIPLIER_1 = 4;
@@ -21,7 +26,8 @@ public class CompanyImpl extends AbstractBuyable implements Company {
      * @param name the name of the cell
      * @param cost the cost of the cell
      */
-    public CompanyImpl(final String name, final int cost) {
+    @JsonCreator
+    public CompanyImpl(@JsonProperty("name")final String name, @JsonProperty("cost")final int cost) {
             super(name, cost);
             this.dice = new DicesImpl();
             this.actualRentalValue = Optional.empty();

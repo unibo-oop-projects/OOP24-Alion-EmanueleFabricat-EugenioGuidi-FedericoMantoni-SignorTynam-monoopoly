@@ -1,10 +1,14 @@
 package it.unibo.monoopoly.model.impl.gameboard;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import it.unibo.monoopoly.model.api.gameboard.Railroad;
 
 /**
  * Implementation of {@link Railroad} interface.
  */
+@JsonTypeName("Railroad")
 public class RailroadImpl extends AbstractBuyable implements Railroad {
 
     private static final int BASE_VALUE = 25;
@@ -14,9 +18,9 @@ public class RailroadImpl extends AbstractBuyable implements Railroad {
      * @param name
      * @param cost
      */
-    public RailroadImpl(final String name, final int cost) {
-            super(name, cost);
-        }
+    public RailroadImpl(@JsonProperty("name")final String name, @JsonProperty("cost")final int cost) {
+        super(name, cost);
+    }
 
     /**
      * {@inheritDoc}
