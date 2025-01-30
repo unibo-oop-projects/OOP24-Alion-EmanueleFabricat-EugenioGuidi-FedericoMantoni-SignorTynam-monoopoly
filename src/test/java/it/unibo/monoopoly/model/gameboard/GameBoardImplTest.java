@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,46 +19,59 @@ import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
 import it.unibo.monoopoly.model.impl.gameboard.GameBoardImpl;
 import it.unibo.monoopoly.model.impl.player.PlayerImpl;
 
+/**
+ * This class test the GameBoardImpl class.
+ */
+class GameBoardImplTest {
 
-public class GameBoardImplTest {
+    static final List<Cell> CELLS_LIST = initializeCellsList();
+    static final List<Player> PLAYERS_LIST = initializePlayersList();
 
-    static final List<Cell> CELLS_LIST = GameBoardImplTest.initializeCellsList();
-    static final List<Player> PLAYERS_LIST = GameBoardImplTest.initializePlayersList();
+    static final int INITIAL_AMOUNT = 1500;
+    static final int ONE_HUNDRED = 100;
+    static final int TWO_HUNDRED = 200;
+    static final int THREE_HUNDRED = 300;
 
     private GameBoard gameBoardImpl;
 
     private static List<Cell> initializeCellsList() {
         final List<Cell> cellsList = new LinkedList<>();
-        cellsList.add(new BuildableImpl(null, "first", 100, 100));
-        cellsList.add(new BuildableImpl(null, "second", 200, 200));
-        cellsList.add(new BuildableImpl(null, "third", 300, 300));
+        cellsList.add(new BuildableImpl(new HashMap<>(), "first", ONE_HUNDRED, ONE_HUNDRED));
+        cellsList.add(new BuildableImpl(new HashMap<>(), "second", TWO_HUNDRED, TWO_HUNDRED));
+        cellsList.add(new BuildableImpl(new HashMap<>(), "third", THREE_HUNDRED, THREE_HUNDRED));
         return cellsList;
     }
 
     private static List<Player> initializePlayersList() {
         final List<Player> playersList = new LinkedList<>();
-        playersList.add(new PlayerImpl("Mario", 1500, 0, false));
-        playersList.add(new PlayerImpl("Franco", 1500, 0, false));
-        playersList.add(new PlayerImpl("Luigi", 1500, 0, false));
+        playersList.add(new PlayerImpl("Mario", INITIAL_AMOUNT, 0, false));
+        playersList.add(new PlayerImpl("Franco", INITIAL_AMOUNT, 0, false));
+        playersList.add(new PlayerImpl("Luigi", INITIAL_AMOUNT, 0, false));
         return playersList;
     }
 
     /**
-     * initialize the field everytime before every test.
+     * initialize the field before every test.
      */
     @BeforeEach
-    public void initialization() {
+    void initialization() {
         this.gameBoardImpl = new GameBoardImpl(CELLS_LIST, PLAYERS_LIST);
     }
 
+    /**
+     * Test the method getCell.
+     */
     @Test
-    public void testGetCell() {
-        assertEquals(GameBoardImplTest.CELLS_LIST.get(0), this.gameBoardImpl.getCell(0));
-        assertNotEquals(GameBoardImplTest.CELLS_LIST.get(0), this.gameBoardImpl.getCell(1));
+    void testGetCell() {
+        assertEquals(CELLS_LIST.get(0), this.gameBoardImpl.getCell(0));
+        assertNotEquals(CELLS_LIST.get(0), this.gameBoardImpl.getCell(1));
     }
 
+    /**
+     * Test the methods isGameEnded and removePlayer.
+     */
     @Test
-    public void testRemovePlayerAndGameEnded() {
+    void testRemovePlayerAndGameEnded() {
         assertFalse(this.gameBoardImpl.isGameEnded());
         this.gameBoardImpl.removePlayer();
         assertFalse(this.gameBoardImpl.isGameEnded());
@@ -65,15 +79,18 @@ public class GameBoardImplTest {
         assertTrue(this.gameBoardImpl.isGameEnded());
     }
 
+    /**
+     * Test the methods getCurrrentPlayer and getNextPlayer.
+     */
     @Test
-    public void testGetNextAndCurrentPlayer() {
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), GameBoardImplTest.PLAYERS_LIST.get(0));
+    void testGetNextAndCurrentPlayer() {
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(0));
         this.gameBoardImpl.getNextPlayer();
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), GameBoardImplTest.PLAYERS_LIST.get(1));
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(1));
         this.gameBoardImpl.getNextPlayer();
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), GameBoardImplTest.PLAYERS_LIST.get(2));
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(2));
         this.gameBoardImpl.getNextPlayer();
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), GameBoardImplTest.PLAYERS_LIST.get(0));
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(0));
     }
 
 }

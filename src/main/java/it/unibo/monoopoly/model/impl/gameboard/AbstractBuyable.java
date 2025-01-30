@@ -58,15 +58,21 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
         return this.mortgaged;
     }
 
+    /**
+     * Check if the current class has an owner, if not there is an error.
+     */
     @Override
     public int getRentalValue() {
-        if(!isAvailable()) {
+        if (!isAvailable()) {
             return calculateRentalValue();
         } else {
             throw new IllegalStateException("The property must be owned by a player");
         }
     }
 
+    /**
+     * @return the relative rental of property.
+     */
     public abstract int calculateRentalValue();
 
     /**
@@ -82,7 +88,7 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
      */
     @Override
     public int getMortgageValue() {
-        return (int) (this.cost / 2);
+        return this.cost / 2;
     }
 
     /**
