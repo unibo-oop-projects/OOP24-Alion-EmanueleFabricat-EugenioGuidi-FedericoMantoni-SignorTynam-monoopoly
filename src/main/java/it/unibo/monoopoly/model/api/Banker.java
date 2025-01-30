@@ -1,7 +1,5 @@
 package it.unibo.monoopoly.model.api;
 
-import java.util.List;
-
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
@@ -16,7 +14,7 @@ public interface Banker {
      * 
      * @param player on which to perform the operation.
      * @param amount to subtract from player.
-     * @return 
+     * @return the {@link Message} to {@link Turn}.
      */
     Message selectOperations(Player player, int amount);
     /**
@@ -25,12 +23,12 @@ public interface Banker {
      * @param property to sell.
      * @param player to pay.
      */
-    void sellHouse(Buildable proprety, Player player);
+    void sellHouse(Buildable property, Player player);
     /**
      * Mortgage the given input proprety, and pay the player.
      * 
-     * @param proprety to be mortgaged.
-     * @param palyer to pay.
+     * @param property to be mortgaged.
+     * @param player to pay.
      */
-    void mortgageProprety(Buyable proprety, Player player);
+    void mortgageProprety(Buyable property, Player player);
 }
