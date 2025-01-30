@@ -3,6 +3,7 @@ package it.unibo.monoopoly.model.api;
 import java.util.List;
 
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
+import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.utils.Message;
 
@@ -19,19 +20,17 @@ public interface Banker {
      */
     Message selectOperations(Player player, int amount);
     /**
-     * Sell a house of the selected proprety and retry the payment.
+     * Sell the given input house, and pay the player.
      * 
-     * @param list of propreties.
-     * @param selected proprety.
-     * @return the {@link Message} returned after try the payment.
+     * @param property to sell.
+     * @param player to pay.
      */
-    Message sellHouse(List<Buildable> list, int selected);
+    void sellHouse(Buildable proprety, Player player);
     /**
-     * Bankruptcy the proprety selected and retry the payment.
+     * Mortgage the given input proprety, and pay the player.
      * 
-     * @param list of propreties.
-     * @param selected proprety.
-     * @return the {@link Message} returned after try the payment.
+     * @param proprety to be mortgaged.
+     * @param palyer to pay.
      */
-    Message bankruptcyPropreties(List<Buildable> list, int selected);
+    void mortgageProprety(Buyable proprety, Player player);
 }
