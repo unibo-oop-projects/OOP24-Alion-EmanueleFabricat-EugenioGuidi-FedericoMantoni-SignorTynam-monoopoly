@@ -28,5 +28,9 @@
         "type": "Railroad",
         "name": "Stazione Est",
         "cost":200
+    },
+    {
+        "type": "Functional",
+        "name": "VIA!"
     }
 ]
