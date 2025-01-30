@@ -9,6 +9,9 @@ import it.unibo.monoopoly.model.impl.gameboard.CompanyImpl;
 import it.unibo.monoopoly.model.impl.gameboard.FunctionalImpl;
 import it.unibo.monoopoly.model.impl.gameboard.RailroadImpl;
 
+/**
+ * Cell interface.
+ */
 @JsonTypeInfo(
 use = JsonTypeInfo.Id.NAME,
 include = JsonTypeInfo.As.PROPERTY,
@@ -19,11 +22,6 @@ property = "type")
     @Type(value = RailroadImpl.class, name = "Railroad"),
     @Type(value = FunctionalImpl.class, name = "Functional")
 })
-
-/**
- * Cell interface.
- */
-
 public interface Cell {
 
     /**

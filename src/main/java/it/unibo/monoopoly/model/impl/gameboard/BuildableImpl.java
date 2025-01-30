@@ -27,7 +27,11 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
      * @param cost the cost of the property
      * @param houseCost the cost of building a house on the property
      */
-    public BuildableImpl(@JsonProperty("rentalMap")final Map<Integer, Integer> rentalMap, @JsonProperty("name")final String name, @JsonProperty("cost")final int cost, @JsonProperty("houseCost")final int houseCost) {
+    public BuildableImpl(
+        @JsonProperty("rentalMap")final Map<Integer, Integer> rentalMap,
+        @JsonProperty("name")final String name,
+        @JsonProperty("cost")final int cost,
+        @JsonProperty("houseCost")final int houseCost) {
         super(name, cost);
         this.rentalMap = new HashMap<>();
         this.rentalMap.putAll(rentalMap);

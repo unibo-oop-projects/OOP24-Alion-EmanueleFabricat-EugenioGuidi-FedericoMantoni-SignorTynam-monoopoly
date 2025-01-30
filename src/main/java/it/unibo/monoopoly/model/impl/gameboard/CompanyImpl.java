@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
+import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.Company;
 import it.unibo.monoopoly.model.api.gameboard.Dices;
 
@@ -60,7 +61,7 @@ public class CompanyImpl extends AbstractBuyable implements Company {
     private boolean hasAnotherCompany() {
         return Math.toIntExact(
             this.getOwner().get().getProperties().stream()
-            .filter(p -> p.isCompany()).count()) == 2;
+            .filter(Cell::isCompany).count()) == 2;
     }
 
 }
