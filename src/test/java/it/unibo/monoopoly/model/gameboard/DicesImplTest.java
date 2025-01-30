@@ -9,26 +9,38 @@ import org.junit.jupiter.api.Test;
 import it.unibo.monoopoly.model.impl.gameboard.DicesImpl;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
-public class DicesImplTest {
+/**
+ * This class test the correct functioning of class DicesImpl.
+ */
+class DicesImplTest {
 
     private DicesImpl diceImpl;
 
+    /**
+     * Initialize the field diceImpl every time before each test.
+     */
     @BeforeEach
     void initialization() {
         this.diceImpl = new DicesImpl();
     }
 
+    /**
+     * Test the methods getDices and rollDices.
+     */
     @Test
-    public void testGetDices() {
+    void testGetDices() {
         assertEquals(null, this.diceImpl.getDices());
         this.diceImpl.rollDices();
         assertNotEquals(null, this.diceImpl.getDices());
     }
 
+    /**
+     * Test method getResult.
+     */
     @Test
-    public void testGetResult() {
-        int sumOfDices;
-        Pair pair;
+    void testGetResult() {
+        final int sumOfDices;
+        final Pair pair;
         assertEquals(0, this.diceImpl.getResult());
         this.diceImpl.rollDices();
         pair = this.diceImpl.getDices();
