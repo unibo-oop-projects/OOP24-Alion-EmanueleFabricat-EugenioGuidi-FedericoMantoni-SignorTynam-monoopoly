@@ -53,7 +53,8 @@ public class BankerImpl implements Banker{
 
     @Override
     public void mortgageProprety(Buyable proprety, Player player) {
-        player.receive(0);
+        player.receive(proprety.getMortgageValue());
+        proprety.setMortgage();
     }
 
     
