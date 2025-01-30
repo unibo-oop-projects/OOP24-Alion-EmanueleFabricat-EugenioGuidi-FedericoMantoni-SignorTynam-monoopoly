@@ -1,9 +1,8 @@
 package it.unibo.monoopoly.model.impl;
 
 import java.util.List;
-import java.util.Set;
 
-import ch.qos.logback.core.joran.action.Action;
+import java.util.Set;
 import it.unibo.monoopoly.model.api.Banker;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
@@ -47,4 +46,15 @@ public class BankerImpl implements Banker{
                 .toList();
     }
 
+    @Override
+    public void sellHouse(Buildable proprety, Player player) {
+        player.receive(proprety.sellHouse());
+    }
+
+    @Override
+    public void mortgageProprety(Buyable proprety, Player player) {
+        player.receive(0);
+    }
+
+    
 }
