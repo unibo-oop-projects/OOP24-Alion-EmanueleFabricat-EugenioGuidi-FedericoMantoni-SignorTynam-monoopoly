@@ -2,7 +2,24 @@ package it.unibo.monoopoly.model.api.gameboard;
 
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
+import it.unibo.monoopoly.model.impl.gameboard.CompanyImpl;
+import it.unibo.monoopoly.model.impl.gameboard.RailroadImpl;
+
+@JsonTypeInfo(
+use = JsonTypeInfo.Id.NAME,
+include = JsonTypeInfo.As.PROPERTY,
+property = "type")
+@JsonSubTypes({
+    @Type(value = BuildableImpl.class, name = "Buildable"),
+    @Type(value = CompanyImpl.class, name = "Company"),
+    @Type(value = RailroadImpl.class, name = "Railroad")
+})
 
 /**
  * Represents the buyable cells of the gameboard.
