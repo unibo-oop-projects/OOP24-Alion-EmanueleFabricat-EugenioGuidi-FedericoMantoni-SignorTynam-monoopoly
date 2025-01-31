@@ -7,9 +7,11 @@ package it.unibo.monoopoly.utils;
  */
 public record Message(Actions typeOfActions, Object data) {   
     public enum Actions {
-        PAY,
+        CHOOSE,
+        BANKRUPTCY,
         MOVE,
-        WRITE,
+        PAY,
+        WRITE
     }
 
 }
