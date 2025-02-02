@@ -3,12 +3,12 @@ package it.unibo.monoopoly.model.impl;
 import java.util.List;
 
 import java.util.Set;
+
+import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.Banker;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.utils.Message;
-import it.unibo.monoopoly.utils.Message.Actions;
 /**
  * Implementation of {@link Banker}.
  */
@@ -17,16 +17,17 @@ public class BankerImpl implements Banker {
      * {@inheritDoc}
      */
     @Override
-    public Message selectOperations(final Player player, final int amount) {
+    public Event selectOperations(final Player player, final int amount) {
         if (player.isPayable(amount)) {
-            return new Message(Actions.PAY, amount);
+            player.pay(amount);
+            return Event.;
         } else {
             if (haveHouse(player.getProperties())) {
-                return new Message(Actions.CHOOSE, getPropretiesWithHome(player.getProperties()));
+                return Event.;
             } else if (haveProperties(player.getProperties())) {
-                return new Message(Actions.CHOOSE, player.getProperties().stream().toList());
+                return Event.;
             } else {
-                return new Message(Actions.BANKRUPTCY, player);
+                return Event.;
             }
         }
     }
