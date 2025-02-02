@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 
 import it.unibo.monoopoly.utils.api.JsonConverter;
 
@@ -26,6 +27,7 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
      */
     public JsonConverterImpl(final Class<T> type) {
         this.type = type;
+        this.mapper.registerModule(new Jdk8Module());
     }
 
     /**
