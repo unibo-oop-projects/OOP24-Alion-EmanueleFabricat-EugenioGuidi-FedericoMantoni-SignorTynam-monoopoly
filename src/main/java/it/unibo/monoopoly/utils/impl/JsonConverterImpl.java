@@ -38,7 +38,7 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
         final List<T> out;
         try {
             final JavaType outType = mapper.getTypeFactory()
-                    .constructCollectionLikeType(List.class, type);
+                .constructCollectionLikeType(List.class, type);
             out = mapper.readValue(fileJson, outType);
         } catch (final IOException e) {
             throw new UncheckedIOException("Failed to convert the Json file", e);

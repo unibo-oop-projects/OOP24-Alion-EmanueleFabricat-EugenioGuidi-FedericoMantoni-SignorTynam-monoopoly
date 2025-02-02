@@ -19,7 +19,10 @@ public class RailroadImpl extends AbstractBuyable implements Railroad {
      * @param name
      * @param cost
      */
-    public RailroadImpl(@JsonProperty("name")final String name, @JsonProperty("cost")final int cost) {
+    public RailroadImpl(
+        @JsonProperty("name")final String name,
+        @JsonProperty("cost")final int cost
+    ) {
         super(name, cost);
     }
 

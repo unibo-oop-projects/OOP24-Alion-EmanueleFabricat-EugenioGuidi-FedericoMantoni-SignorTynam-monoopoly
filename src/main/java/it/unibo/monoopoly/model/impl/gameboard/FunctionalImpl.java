@@ -17,15 +17,19 @@ public class FunctionalImpl extends AbstractCell implements Functional {
     private final Optional<Message> action;
 
     /**
-     * Constructor of a cell 
+     * Constructor of a functional cell.
+     * 
      * @param name the name of the cell
-     * @param action the action triggered by the cell
+     * @param effect the action triggered by the cell, can be null
      */
-    public FunctionalImpl(@JsonProperty("name")final String name, @JsonProperty("action")final Message action) {
-            super(name);
-            this.action = Optional.ofNullable(action);
-        }
-    
+    public FunctionalImpl(
+        @JsonProperty("name")final String name,
+        @JsonProperty("effect")final Message effect
+    ) {
+        super(name);
+        this.action = Optional.ofNullable(effect);
+    }
+
     /**
      * {@inheritDoc}
      */

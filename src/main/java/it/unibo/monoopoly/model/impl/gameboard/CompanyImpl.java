@@ -26,11 +26,14 @@ public class CompanyImpl extends AbstractBuyable implements Company {
      * @param name the name of the cell
      * @param cost the cost of the cell
      */
-    public CompanyImpl(@JsonProperty("name")final String name, @JsonProperty("cost")final int cost) {
-            super(name, cost);
-            this.dice = new DicesImpl();
-            this.actualRentalValue = Optional.empty();
-        }
+    public CompanyImpl(
+        @JsonProperty("name")final String name,
+        @JsonProperty("cost")final int cost
+    ) {
+        super(name, cost);
+        this.dice = new DicesImpl();
+        this.actualRentalValue = Optional.empty();
+    }
 
     /**
      * {@inheritDoc}

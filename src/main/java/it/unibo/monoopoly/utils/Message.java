@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public record Message(
     @JsonProperty("action") Actions typeOfAction,
-    @JsonProperty("data") Object data) {
+    @JsonProperty("data") Object data
+) {
     public enum Actions {
         CHOOSE,
         BANKRUPTCY,
