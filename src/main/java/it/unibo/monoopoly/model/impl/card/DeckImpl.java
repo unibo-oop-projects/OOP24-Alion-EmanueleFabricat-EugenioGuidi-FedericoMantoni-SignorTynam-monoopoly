@@ -11,8 +11,8 @@ import it.unibo.monoopoly.model.api.card.Deck;
 import it.unibo.monoopoly.model.api.player.Player;
 
 public class DeckImpl  implements Deck{
-    List<Card> deck = new LinkedList<>();
-    Set<Card> discardPile = new HashSet<>();
+    private List<Card> deck = new LinkedList<>();
+    private Set<Card> discardPile = new HashSet<>();
 
     @Override
     public void shuffleDeck() {
