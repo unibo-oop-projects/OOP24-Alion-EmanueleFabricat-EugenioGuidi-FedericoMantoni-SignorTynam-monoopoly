@@ -96,7 +96,7 @@ public interface Player {
     int getFreeJailCards();
 
     /**
-     * Uses a "Get Out of Jail Free" card, decrementin the card count by 1.
+     * Uses a "Get Out of Jail Free" card, decrementing the card count by 1.
      * @return true if the card was used, false if none was available.
      */
     boolean useGetOutOfJailCard();
@@ -105,4 +105,9 @@ public interface Player {
      * Sets the player as in prison.
      */
     void setPrisoned();
+
+    /**
+     * Releases the player from prison (sets the prison flag to false).
+     */
+    void releaseFromPrison();
 }
