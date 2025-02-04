@@ -20,8 +20,7 @@ public class CellFactoryImpl implements CellFactory {
 
     @Override
     public List<Cell> createCells() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createCells'");
+        return this.deserializer.jsonToList(ClassLoader.getSystemResourceAsStream(PATH));
     }
 
 }
