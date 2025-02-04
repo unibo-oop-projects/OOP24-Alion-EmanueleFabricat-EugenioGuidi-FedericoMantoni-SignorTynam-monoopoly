@@ -93,4 +93,12 @@ class GameBoardImplTest {
         assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(0));
     }
 
+    /**
+     * Test the method getPlayersList.
+     */
+    @Test
+    void testGetPlayersList() {
+        assertEquals(PLAYERS_LIST, this.gameBoardImpl.getPlayersList());
+    }
+
 }
