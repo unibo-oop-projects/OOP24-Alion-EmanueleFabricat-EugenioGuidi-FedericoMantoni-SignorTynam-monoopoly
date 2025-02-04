@@ -76,4 +76,12 @@ public class GameBoardImpl implements GameBoard {
         return this.playersList.get(this.currentPlayerIndex);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Player> getPlayersList() {
+        return List.copyOf(this.playersList);
+    }
+
 }
