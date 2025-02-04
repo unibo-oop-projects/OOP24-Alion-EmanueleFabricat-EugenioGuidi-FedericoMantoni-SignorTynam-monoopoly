@@ -28,7 +28,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
-     * @return the cell in position index.
+     * {@inheritDoc}
      */
     @Override
     public Cell getCell(final int index) {
@@ -39,7 +39,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
-     * Remove the current player from the list of players.
+     * {@inheritDoc}
      */
     @Override
     public void removePlayer() {
@@ -52,7 +52,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
-     * @return true if the game is ended, when only one player remains.
+     * {@inheritDoc}
      */
     @Override
     public boolean isGameEnded() {
@@ -60,7 +60,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
-     * @return the next player in game to paly.
+     * {@inheritDoc}
      */
     @Override
     public Player getNextPlayer() {
@@ -69,11 +69,19 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
-     * @return the current player in game to play.
+     * {@inheritDoc}
      */
     @Override
     public Player getCurrentPlayer() {
         return this.playersList.get(this.currentPlayerIndex);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Player> getPlayersList() {
+        return List.copyOf(this.playersList);
     }
 
 }

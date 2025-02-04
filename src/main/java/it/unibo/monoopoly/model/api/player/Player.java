@@ -71,4 +71,41 @@ public interface Player {
      * @return the properties owned by the player.
      */
     Set<Buyable> getProperties();
+
+    /**
+     * Sets the player as bankrupt.
+    */
+    void inBankrupt();
+
+    /**
+     * Checks if the player is bankrupt.
+     * 
+     * @return true if the player is bankrupt, false otherwise.
+     */
+    boolean isBankrupt();
+
+    /**
+     * Adds a "Get Out of Jail Free" vard to the player's collection.
+     * 
+     */
+    void addGetOutOfJailCard();
+
+    /**
+     * Retrieves the number of "Get Out of Jail Free" cards the player has.
+     * 
+     * @return the number of "Get Out of Jail Free" cards the player currently has.
+     */
+    int getFreeJailCards();
+
+    /**
+     * Uses a "Get Out of Jail Free" card, decrementin the card count by 1.
+     * 
+     * @return true if the card was used, false if none was available.
+     */
+    boolean useGetOutOfJailCard();
+
+    /**
+     * Sets the player as in prison.
+     */
+    void setPrisoned();
 }

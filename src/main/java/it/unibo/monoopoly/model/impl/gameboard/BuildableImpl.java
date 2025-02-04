@@ -3,12 +3,15 @@ package it.unibo.monoopoly.model.impl.gameboard;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 
 /**
  * Represents a buildable property in the game.
  */
-
+@JsonTypeName("Buildable")
 public class BuildableImpl extends AbstractBuyable implements Buildable {
 
     private final Map<Integer, Integer> rentalMap;
@@ -24,7 +27,12 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
      * @param cost the cost of the property
      * @param houseCost the cost of building a house on the property
      */
-    public BuildableImpl(final Map<Integer, Integer> rentalMap, final String name, final int cost, final int houseCost) {
+    public BuildableImpl(
+        @JsonProperty("rentalMap")final Map<Integer, Integer> rentalMap,
+        @JsonProperty("name")final String name,
+        @JsonProperty("cost")final int cost,
+        @JsonProperty("houseCost")final int houseCost
+    ) {
         super(name, cost);
         this.rentalMap = new HashMap<>();
         this.rentalMap.putAll(rentalMap);
