@@ -11,47 +11,50 @@ import it.unibo.monoopoly.model.api.gameboard.Buyable;
 public interface Player {
 
     /**
+     * Retrieves the name of the player.
      * @return the name of the player.
      */
     public Optional<String> getName();
 
     /**
+     * Retrieves the amount of money the player has.
      * @return the amount of money the player has.
      */
     public int getMoneyAmount();
 
     /**
+     * Retrieves the current position of the player.
      * @return the current position of the player.
      */
     public int getActualPosition();
 
     /**
+     * Checks if the player is in prison.
      * @return true if the player is in prison, false otherwise.
      */
     public boolean isPrisoned();
 
     /**
+     * Checks if the player can pay a specified amount.
+     * @param amount the amount to be paid.
      * @return true if the player can pay, false otherwise.
      */
     public boolean isPayable(int amount);
 
     /**
      * Deducts the specified amount from the player's money.
-     * 
      * @param amount the amount to be deducted.
      */
     public void pay(int amount);
 
     /**
      * Adds the specified amount to the player's money.
-     * 
      * @param amount the amount to be added.
      */
     public void receive(int amount);
 
     /**
      * Adds a property to the player's list of owned properties.
-     * 
      * @param property the property to be added.
      * @return the total amount of money the player possesses, including cash and bank account balance.
      */
@@ -59,7 +62,6 @@ public interface Player {
 
     /**
      * Removes a property from the player's list of owned properties.
-     * 
      * @param property the property to be removed.
      * @return the total amount of money the player possesses, including cash and bank account balance.
      */
@@ -67,7 +69,6 @@ public interface Player {
 
     /**
      * Retrieves the properties owned by the player.
-     * 
      * @return the properties owned by the player.
      */
     Set<Buyable> getProperties();
@@ -79,27 +80,23 @@ public interface Player {
 
     /**
      * Checks if the player is bankrupt.
-     * 
      * @return true if the player is bankrupt, false otherwise.
      */
     boolean isBankrupt();
 
     /**
      * Adds a "Get Out of Jail Free" vard to the player's collection.
-     * 
      */
     void addGetOutOfJailCard();
 
     /**
      * Retrieves the number of "Get Out of Jail Free" cards the player has.
-     * 
      * @return the number of "Get Out of Jail Free" cards the player currently has.
      */
     int getFreeJailCards();
 
     /**
      * Uses a "Get Out of Jail Free" card, decrementin the card count by 1.
-     * 
      * @return true if the card was used, false if none was available.
      */
     boolean useGetOutOfJailCard();
