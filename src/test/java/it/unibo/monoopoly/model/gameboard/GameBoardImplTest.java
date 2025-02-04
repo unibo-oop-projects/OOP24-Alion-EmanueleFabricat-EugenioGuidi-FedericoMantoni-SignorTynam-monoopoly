@@ -24,13 +24,13 @@ import it.unibo.monoopoly.model.impl.player.PlayerImpl;
  */
 class GameBoardImplTest {
 
-    static final List<Cell> CELLS_LIST = initializeCellsList();
-    static final List<Player> PLAYERS_LIST = initializePlayersList();
+    private static final List<Cell> CELLS_LIST = initializeCellsList();
+    private static final List<Player> PLAYERS_LIST = initializePlayersList();
 
-    static final int INITIAL_AMOUNT = 1500;
-    static final int ONE_HUNDRED = 100;
-    static final int TWO_HUNDRED = 200;
-    static final int THREE_HUNDRED = 300;
+    private static final int INITIAL_AMOUNT = 1500;
+    private static final int ONE_HUNDRED = 100;
+    private static final int TWO_HUNDRED = 200;
+    private static final int THREE_HUNDRED = 300;
 
     private GameBoard gameBoardImpl;
 
