@@ -37,7 +37,7 @@ public class CellFactoryTest {
         assertEquals(N_BUYABLE, Math.toIntExact(cells.stream().filter(Cell::isBuyable).count()));
         assertEquals(N_COMPANY, Math.toIntExact(cells.stream().filter(Cell::isCompany).count()));
         assertEquals(N_RAILROAD, Math.toIntExact(cells.stream().filter(Cell::isRailroad).count()));
-        assertEquals(N_BUILDABLE, Math.toIntExact(cells.stream().filter(Predicate.not(Cell::isBuildable)).count()));
+        assertEquals(N_FUNCTIONAL, Math.toIntExact(cells.stream().filter(Predicate.not(Cell::isBuyable)).count()));
     }
 
 }

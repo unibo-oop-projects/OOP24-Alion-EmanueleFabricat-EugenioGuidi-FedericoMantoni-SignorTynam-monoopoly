@@ -1,3 +1,5 @@
+package it.unibo.monoopoly.model.utils;
+
 import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.model.api.gameboard.Cell;
