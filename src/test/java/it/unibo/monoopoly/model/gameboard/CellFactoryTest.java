@@ -12,7 +12,10 @@ import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.CellFactory;
 import it.unibo.monoopoly.model.impl.gameboard.CellFactoryImpl;
 
-public class CellFactoryTest {
+/**
+ * Test for the correct creation of all the cells of the game.
+ */
+class CellFactoryTest {
 
     private static final int N_CELLS = 40;
     private static final int N_BUILDABLE = 22;

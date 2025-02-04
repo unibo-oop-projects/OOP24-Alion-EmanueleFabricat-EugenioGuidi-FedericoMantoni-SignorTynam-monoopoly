@@ -6,13 +6,15 @@ import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 
-public class TestJsonConverter {
-
-    private JsonConverter<Cell> converter;
+/**
+ * Test for the Json deserialization.
+ */
+class TestJsonConverter {
 
     @Test
     void testConversion() {
-        this.converter = new JsonConverterImpl<>(Cell.class);
+        final JsonConverter<Cell> converter;
+        converter = new JsonConverterImpl<>(Cell.class);
         converter.jsonToList(ClassLoader.getSystemResourceAsStream("cells.json"));
     }
 
