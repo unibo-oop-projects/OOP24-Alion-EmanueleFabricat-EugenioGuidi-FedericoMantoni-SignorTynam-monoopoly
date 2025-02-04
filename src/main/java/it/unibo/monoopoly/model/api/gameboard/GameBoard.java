@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.model.api.gameboard;
 
+import java.util.List;
+
 import it.unibo.monoopoly.model.api.player.Player;
 
 /**
@@ -34,5 +36,10 @@ public interface GameBoard {
      * @return current player to play.
      */
     Player getCurrentPlayer();
+
+    /**
+     * @return list of players in game.
+     */
+    List<Player> getPlayersList();
 
 }
