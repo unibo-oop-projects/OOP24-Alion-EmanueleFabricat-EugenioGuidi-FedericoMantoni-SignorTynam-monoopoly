@@ -188,4 +188,13 @@ public class PlayerImpl implements Player {
     public boolean useGetOutOfJailCard() {
         return this.freeJailCards-- > 0;
     }
+
+    /**
+     *
+     *{@inheritDoc}
+     */
+    @Override
+    public void releaseFromPrison() {
+        this.prisoned = false;
+    }
 }
