@@ -1,13 +1,15 @@
 package it.unibo.monoopoly.model.api;
 
 
+import java.util.Optional;
+
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 
 /**
- * Interface that implements a benker who help the player decide wich house sell or properties mortagage.
+ * Interface that implements a banker who help the player decide witch house sell or properties mortagage.
  */
 public interface Banker {
     /**
@@ -17,19 +19,19 @@ public interface Banker {
      * @param amount to subtract from player.
      * @return the {@link Message} to {@link Turn}.
      */
-    Event selectOperations(Player player, int amount);
+    Optional<Event> selectOperations(Player player, int amount);
     /**
-     * Sell the given input house, and pay the player.
+     * Sell a house on the given input property, and pay the player.
      * 
      * @param property to sell.
      * @param player to pay.
      */
     void sellHouse(Buildable property, Player player);
     /**
-     * Mortgage the given input proprety, and pay the player.
+     * Mortgage the given input property, and pay the player.
      * 
      * @param property to be mortgaged.
      * @param player to pay.
      */
-    void mortgageProprety(Buyable property, Player player);
+    void mortgageProperty(Buyable property, Player player);
 }
