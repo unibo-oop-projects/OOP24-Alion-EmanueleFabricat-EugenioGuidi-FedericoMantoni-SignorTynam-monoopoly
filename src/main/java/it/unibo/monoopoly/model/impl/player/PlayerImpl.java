@@ -26,11 +26,11 @@ public class PlayerImpl implements Player {
      * @param actualPosition    the current position of the player.
      * @param prisoned          true if the player is in prison, false otherwise.
      */
-    public PlayerImpl(String name, int moneyAmount, int actualPosition, boolean prisoned) {
+    public PlayerImpl(String name, int moneyAmount, int actualPosition) {
         this.name = Optional.ofNullable(Optional.ofNullable(name).orElseThrow(() -> new IllegalArgumentException("Name cannot be null")));
         this.moneyAmount = validatePositive(moneyAmount, "Money amount cannot be negative");
         this.actualPosition = validatePositive(actualPosition, "Position cannot be negative");
-        this.prisoned = prisoned;
+        this.prisoned = false;
         this.properties = new HashSet<>();
     }
     
