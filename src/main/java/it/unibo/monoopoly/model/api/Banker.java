@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.model.api;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
@@ -19,7 +20,20 @@ public interface Banker {
      * @param amount to subtract from player.
      * @return the {@link Message} to {@link Turn}.
      */
+    
     Optional<Event> selectOperations(Player player, int amount);
+    /**
+     * 
+     * @param player from take the list of properties.
+     * @return the {@link List} of the properties with houses.
+     */
+    List<Buildable> getPropertiesWithHome(Player player);
+    /**
+     * 
+     * @param player from take the list of properties.
+     * @return the {@link List} of the properties mortgageable.
+     */
+    List<Buildable> getPropertiesMortgageable(Player player);
     /**
      * Sell a house on the given input property, and pay the player.
      * 
