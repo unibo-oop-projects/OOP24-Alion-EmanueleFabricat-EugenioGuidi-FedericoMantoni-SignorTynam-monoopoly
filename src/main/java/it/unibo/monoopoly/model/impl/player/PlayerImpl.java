@@ -17,6 +17,8 @@ public class PlayerImpl implements Player {
     private int moneyAmount;
     private int actualPosition;
     private boolean prisoned;
+    private boolean bankrupt;
+    private int freeJailCards;
     private Set<Buyable> properties;
 
     /**
@@ -31,6 +33,8 @@ public class PlayerImpl implements Player {
         this.moneyAmount = validatePositive(moneyAmount, "Money amount cannot be negative");
         this.actualPosition = validatePositive(actualPosition, "Position cannot be negative");
         this.prisoned = false;
+        this.bankrupt = false;
+        this.freeJailCards = 0;
         this.properties = new HashSet<>();
     }
     
@@ -141,4 +145,58 @@ public class PlayerImpl implements Player {
         return Set.copyOf(this.properties);
     }
 
+    /**
+     * Sets the player as bankrupt.
+     */
+    @Override
+    public void inBankrupt() {
+        this.bankrupt = true;
+    }
+
+    /**
+     * Checks if the player is bankrupt.
+     * 
+     * @return true if the player is bankrupt, false otherwise.
+     */
+    @Override
+    public boolean isBankrupt() {
+        return this.bankrupt;
+    }
+
+    /**
+     * Add a "Get Out of Jail Free" card to the player's collection.
+     * 
+     */
+    @Override
+    public void addGetOutOfJailCard() {
+        this.freeJailCards++;
+    }
+
+    /**
+     * Retrieves the number of "Get Out of Jail Free" cards the player has.
+     * 
+     * @return the number of "Get Out of Jail Free" cards the player has.
+     */
+    @Override
+    public int getFreeJailCards() {
+        return this.freeJailCards;
+    }
+
+    /**
+     * Sets the player as in prison.
+     */
+    @Override
+    public void setPrisoned() {
+        this.prisoned = true;
+    }
+
+    /**
+     * Uses a "Get Out of Jail Free" card, decrementing the card count by 1.
+     * 
+     * @return true if the card was used, false if none was available.
+     */
+    @Override
+    public boolean useGetOutOfJailCard() {
+        return this.freeJailCards-- > 0;
+    }
 }
