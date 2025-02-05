@@ -7,13 +7,20 @@ import java.util.List;
 import java.util.Set;
 
 import it.unibo.monoopoly.model.api.card.Card;
+import it.unibo.monoopoly.model.api.card.CardsFactory;
 import it.unibo.monoopoly.model.api.card.Deck;
 import it.unibo.monoopoly.model.api.player.Player;
 
-public class DeckImpl  implements Deck{
+public class DeckImpl implements Deck{
+    private final CardsFactory factory = new CardsFactoryImpl();
     private List<Card> deck = new LinkedList<>();
     private Set<Card> discardPile = new HashSet<>();
     private Card actualCard;
+
+    public DeckImpl() {
+        this.deck.addAll(factory.createDeck());
+        shuffleDeck();
+    }
     /**
      * 
      * {@inheritDoc}
@@ -28,8 +35,10 @@ public class DeckImpl  implements Deck{
     }
 
     private void shuffleDeck() {
-        this.deck.addAll(this.discardPile);
-        this.discardPile.removeAll(this.discardPile);
+        if (this.deck.isEmpty()) {
+            this.deck.addAll(this.discardPile);
+            this.discardPile.removeAll(this.discardPile);
+        }        
         Collections.shuffle(this.deck);
     }
     /**
