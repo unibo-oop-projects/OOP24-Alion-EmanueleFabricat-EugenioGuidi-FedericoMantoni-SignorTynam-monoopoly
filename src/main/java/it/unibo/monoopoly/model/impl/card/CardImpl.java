@@ -5,22 +5,25 @@ import it.unibo.monoopoly.utils.Message;
 
 public class CardImpl implements Card{
     private final String effect;
-    private final Message action;
+    private final Message message;
 
-    public CardImpl(String effect, Message action) {
+    public CardImpl(String effect, Message message) {
         this.effect = effect;
-        this.action = action;
+        this.message = message;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void doAction() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'doAction'");
+    public Message getMessage() {
+        return this.message;
     }
-
+    /**
+     * 
+     * {@inheritDoc}
+     */
     @Override
-    public String getText() {
+    public String getEffectText() {
         return this.effect;
     }
-
 }
