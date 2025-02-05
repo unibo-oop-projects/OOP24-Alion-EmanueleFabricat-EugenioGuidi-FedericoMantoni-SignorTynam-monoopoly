@@ -8,13 +8,13 @@ import it.unibo.monoopoly.model.api.player.Player;
  */
 public interface Deck {
     /**
-     * method that shuffle the card deck.
      * 
+     * @param player who drawn the card. 
      */
-    void shuffleDeck();
+    void draw(Player player);
     /**
-     * @param player who drawn the card.
      * 
+     * @return the drawn {@link Card}.
      */
-    void draw(Player player); 
+    Card getActualCard();
 }
