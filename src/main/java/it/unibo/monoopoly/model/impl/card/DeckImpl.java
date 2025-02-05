@@ -13,20 +13,32 @@ import it.unibo.monoopoly.model.api.player.Player;
 public class DeckImpl  implements Deck{
     private List<Card> deck = new LinkedList<>();
     private Set<Card> discardPile = new HashSet<>();
-
+    private Card actualCard;
+    /**
+     * 
+     * {@inheritDoc}
+     */
     @Override
-    public void shuffleDeck() {
+    public void draw(Player player) {
+        if (this.deck.isEmpty()) {
+            this.shuffleDeck();
+        }
+        this.actualCard = this.deck.removeFirst();
+        this.discardPile.add(actualCard);
+    }
+
+    private void shuffleDeck() {
         this.deck.addAll(this.discardPile);
         this.discardPile.removeAll(this.discardPile);
         Collections.shuffle(this.deck);
     }
-
+    /**
+     * 
+     * {@inheritDoc}
+     */
     @Override
-    public void draw(Player player) {
-        /*if (this.deck.isEmpty()) {
-            this.shuffleDeck();
-        }*/
-        this.deck.removeFirst();
+    public Card getActualCard() {
+        return this.actualCard;
     }
 
 }
