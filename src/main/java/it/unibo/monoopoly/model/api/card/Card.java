@@ -15,5 +15,5 @@ public interface Card {
     /**
      * @return the text of the card.
      */
-    String getText();
+    String getEffectText();
 }
