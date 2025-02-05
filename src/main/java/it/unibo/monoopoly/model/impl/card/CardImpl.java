@@ -1,13 +1,28 @@
 package it.unibo.monoopoly.model.impl.card;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import it.unibo.monoopoly.model.api.card.Card;
 import it.unibo.monoopoly.utils.Message;
 
+/**
+ * the implementations of {@link Card}
+ */
+@JsonTypeName("Card")
 public class CardImpl implements Card{
     private final String effect;
     private final Message message;
 
-    public CardImpl(String effect, Message message) {
+    /**
+     * the constructor of the class.
+     * @param effect the text of the card's effect
+     * @param message the {@link Message} to send
+     */
+    public CardImpl(
+        @JsonProperty("effect")final String effect, 
+        @JsonProperty("message")final Message message
+    ) {
         this.effect = effect;
         this.message = message;
     }
