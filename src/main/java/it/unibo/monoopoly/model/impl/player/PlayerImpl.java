@@ -8,7 +8,7 @@ import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 
 /**
- * Implements the player of the game.
+ * Represents the player of the game.
  */
 
 public class PlayerImpl implements Player {
@@ -48,10 +48,10 @@ public class PlayerImpl implements Player {
     private int validatePositive(int value, String errorMessage) {
         return Optional.of(value).filter(i -> i >= 0).orElseThrow(() -> new IllegalArgumentException(errorMessage));
     }
-        
+    
     /**
-     * Retrieves the name of the player.
-     * @return the name of the player.
+     *
+     *{@inheritDoc}
      */
     @Override
     public Optional<String> getName() {
@@ -59,26 +59,26 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Retrieves the amount of money the player has.
-     * @return the amount of money the player has.
-     */
+     *
+     *{@inheritDoc}
+     */    
     @Override
     public int getMoneyAmount() {
         return this.moneyAmount;
     }
 
     /**
-     * Retrieves the current position of the player.
-     * @return the current position of the player.
-     */
+     *
+     *{@inheritDoc}
+     */    
     @Override
     public int getActualPosition() {
         return this.actualPosition;
     }
 
     /**
-     * Checks if the player is in prison.
-     * @return true if the player is in prison, false otherwise.
+     *
+     *{@inheritDoc}
      */
     @Override
     public boolean isPrisoned() {
@@ -86,9 +86,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Checks if the player can pay a specified amount.
-     * @param amount the amount to be paid.
-     * @return true if the player can pay, false otherwise.
+     *
+     *{@inheritDoc}
      */
     @Override
     public boolean isPayable(int amount) {
@@ -96,8 +95,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Deducts the specified amount from the player's money.
-     * @param amount the amount to be deducted.
+     *
+     *{@inheritDoc}
      */
     @Override
     public void pay(int amount) {
@@ -105,8 +104,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Adds the specified amount to the player's money.
-     * @param amount the amount to be added.
+     *
+     *{@inheritDoc}
      */
     @Override
     public void receive(int amount) {
@@ -114,10 +113,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Adds a property to the player's list of owned properties.
-     * 
-     * @param property the property to be added.
-     * @return true if the property was added, false otherwise.
+     *
+     *{@inheritDoc}
      */
     @Override
     public boolean addProperty(Buyable property) {
@@ -125,28 +122,22 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Removes a property from the player's list of owned properties.
-     * 
-     * @param property the property to be removed.
-     * @return true if the property was removed, false otherwise.
+     *
+     *{@inheritDoc}
      */
     @Override
     public boolean removeProperty(Buyable property) {
         return this.properties.remove(property);
     }
 
-    /**
-     * Retrieves the properties owned by the player.
-     * 
-     * @return the properties owned by the player.
-     */
     @Override
     public Set<Buyable> getProperties() {
         return Set.copyOf(this.properties);
     }
 
     /**
-     * Sets the player as bankrupt.
+     *
+     *{@inheritDoc}
      */
     @Override
     public void inBankrupt() {
@@ -154,9 +145,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Checks if the player is bankrupt.
-     * 
-     * @return true if the player is bankrupt, false otherwise.
+     *
+     *{@inheritDoc}
      */
     @Override
     public boolean isBankrupt() {
@@ -164,8 +154,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Add a "Get Out of Jail Free" card to the player's collection.
-     * 
+     *
+     *{@inheritDoc}
      */
     @Override
     public void addGetOutOfJailCard() {
@@ -173,9 +163,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Retrieves the number of "Get Out of Jail Free" cards the player has.
-     * 
-     * @return the number of "Get Out of Jail Free" cards the player has.
+     *
+     *{@inheritDoc}
      */
     @Override
     public int getFreeJailCards() {
@@ -183,7 +172,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Sets the player as in prison.
+     *
+     *{@inheritDoc}
      */
     @Override
     public void setPrisoned() {
@@ -191,12 +181,20 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Uses a "Get Out of Jail Free" card, decrementing the card count by 1.
-     * 
-     * @return true if the card was used, false if none was available.
+     *
+     *{@inheritDoc}
      */
     @Override
     public boolean useGetOutOfJailCard() {
         return this.freeJailCards-- > 0;
+    }
+
+    /**
+     *
+     *{@inheritDoc}
+     */
+    @Override
+    public void releaseFromPrison() {
+        this.prisoned = false;
     }
 }
