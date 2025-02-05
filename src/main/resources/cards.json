@@ -15,8 +15,8 @@
     {
         "effect": "Multa di 40€ per aver guidato senza patente",
         "message": {
-            "action": "TRANSITION",
-            "data": -40
+            "action": "PAY",
+            "data": 40
         }
     }
 ]
