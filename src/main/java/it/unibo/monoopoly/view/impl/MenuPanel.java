@@ -2,19 +2,15 @@ package it.unibo.monoopoly.view.impl;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 
 public class MenuPanel extends PanelAdapter {
 
@@ -61,8 +57,8 @@ public class MenuPanel extends PanelAdapter {
         out.gridwidth = GridBagConstraints.REMAINDER;
         out.gridx=0;
         out.gridy=0;
-        out.weightx=0;
-        out.weighty=0;
+        out.weightx=0.1;
+        out.weighty=1;
         out.ipadx=250;
         out.ipady=50;
         out.insets= new Insets(70, 10, 10, 10);
@@ -78,18 +74,6 @@ public class MenuPanel extends PanelAdapter {
         out.weighty=1;
         out.insets= new Insets(10, 10, 10, 10);
         return out;
-    }
-
-    private Dimension divideDimension(Dimension start) {
-        final int heigth = (int) start.getHeight();
-        final int width = (int) start.getWidth();
-        return new Dimension(width/2, heigth/2);
-    }
-
-    private Dimension duplicateDimension(Dimension start) {
-        final int heigth = (int) start.getHeight();
-        final int width = (int) start.getWidth();
-        return new Dimension(width*2, heigth*2);
     }
 
 }

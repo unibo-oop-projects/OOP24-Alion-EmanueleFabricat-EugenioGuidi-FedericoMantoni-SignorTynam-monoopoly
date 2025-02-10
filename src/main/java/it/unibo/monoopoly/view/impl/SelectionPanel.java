@@ -64,7 +64,8 @@ public class SelectionPanel extends PanelAdapter {
             color.setPreferredSize(new Dimension(40, 20));
             color.setBackground(colors.get(i));
             nameLabel.setFont(this.font);
-            gbc.fill = GridBagConstraints.NONE;
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.weighty = 0;
             gbc.weightx = 0.05;
             this.namesPanel.add(color, gbc);
             gbc.weightx = 0.3;
