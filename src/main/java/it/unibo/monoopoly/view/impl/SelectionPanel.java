@@ -5,30 +5,34 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.GrayFilter;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+
+import it.unibo.monoopoly.controller.api.MenuController;
 
 public class SelectionPanel extends PanelAdapter {
 
     private JPanel namesPanel;
     private JPanel numberPanel;
     private List<Color> colors;
+    private List<JTextField> players;
+    private MenuController menuController;
     private Font font = new Font("Arial", Font.BOLD, 15);
 
-    public SelectionPanel() {
+    public SelectionPanel(MenuController controller) {
+        this.menuController = controller;
         this.colors = List.of(Color.BLUE, Color.GREEN, Color.RED, Color.ORANGE, Color.YELLOW, Color.PINK);
+        this.players = new ArrayList<>();
         this.setLayout(new GridBagLayout());
         final JLabel nPlayerTextSelection = new JLabel("Scegli il numero di giocatori");
         nPlayerTextSelection.setFont(this.font);
@@ -53,12 +57,13 @@ public class SelectionPanel extends PanelAdapter {
         this.add(numberPanel, getBasicConstraints());
     }
 
-    private void generateNamesPanel(int players) {
+    private void generateNamesPanel(int nPlayers) {
         this.remove(numberPanel);
         this.namesPanel = new JPanel(new GridBagLayout());
-        for (int i = 0; i < players; i++) {
+        for (int i = 0; i < nPlayers; i++) {
             final GridBagConstraints gbc = getBasicConstraints();
             final JTextField nameField = new JTextField(25);
+            players.add(nameField);
             final JLabel nameLabel = new JLabel("Inserisci il nome del player: ");
             final JPanel color = new JPanel();
             color.setPreferredSize(new Dimension(40, 20));
@@ -75,6 +80,7 @@ public class SelectionPanel extends PanelAdapter {
             gbc.gridwidth = GridBagConstraints.REMAINDER;
             this.namesPanel.add(nameField, gbc);
         }
+
         final JButton back = new JButton("Indietro");
         final JButton confirm = new JButton("Via!");
         back.setFont(font);
@@ -82,10 +88,10 @@ public class SelectionPanel extends PanelAdapter {
         final GridBagConstraints gbc = getBasicConstraints();
         gbc.fill = GridBagConstraints.NONE;
         gbc.gridx = 0;
-        this.namesPanel.add(back,gbc);
+        this.namesPanel.add(back, gbc);
         gbc.gridx = 2;
         gbc.anchor = GridBagConstraints.EAST;
-        this.namesPanel.add(confirm,gbc);
+        this.namesPanel.add(confirm, gbc);
         this.add(namesPanel, getNamesConstraint());
         this.revalidate();
         this.repaint();
@@ -96,6 +102,26 @@ public class SelectionPanel extends PanelAdapter {
             this.revalidate();
             this.repaint();
         });
+
+        confirm.addActionListener(e -> {
+            if (legalNames()) {
+                this.menuController.goGame(getPlayersNames());
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Ogni giocatore deve avere un nome di lunghezza minore di 25 caratteri", "Warning",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        });
+
+    }
+
+    private List<String> getPlayersNames() {
+        return this.players.stream().map(jt -> jt.getText()).toList();
+    }
+
+    private boolean legalNames() {
+        return players.stream().map(t -> t.getText()).allMatch(
+                t -> !t.isBlank() && !t.isEmpty() && t.length() < 25);
     }
 
     private GridBagConstraints getNamesConstraint() {
