@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.Banker;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
@@ -18,52 +17,56 @@ public class BankerImpl implements Banker {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Event> selectOperations(final Player player, final int amount) {
-        if (player.isPayable(amount)) {
-            player.pay(amount);
-            return Optional.empty();
-        } else {
-            if (haveHouse(player.getProperties())) {
-                return Event.SELL_HOUSE;
-            } else if (haveProperties(player.getProperties())) {
-                return Event.MORTGAGE_PROPERTY;
-            }
+    public Optional<List<Buyable>> selectOperations(final Player player) {
+        if (haveHouse(player.getProperties())) {
+            return Optional.of(getPropertiesWithHome(player));
+        } else if (haveProperties(player.getProperties())) {
+            return Optional.of(getPropertiesMortgageable(player));
         }
         player.inBankrupt(); 
         return Optional.empty();
     }
 
-    private Stream<Buildable> buildableList(final Set<Buyable> properties) {
+    private Stream<Buyable> unmortgagedList(final Set<Buyable> properties) {
         return properties.stream()
                 .filter(p -> p instanceof Buildable)
-                .filter(p -> !p.isMortgaged())
-                .map(p -> (Buildable) p);
+                .filter(p -> !p.isMortgaged());
     }
 
     private boolean haveHouse(final Set<Buyable> properties) {
-        return buildableList(properties)
+        return unmortgagedList(properties)
+                .map(p -> (Buildable)p)
                 .anyMatch(p -> p.getHousesNumber() != 0);
     }
 
     private boolean haveProperties(final Set<Buyable> properties) {
-        return buildableList(properties)
+        return unmortgagedList(properties)
                 .count() > 0;
     }
     /**
      * {@inheritDoc}
      */
-    public List<Buildable> getPropertiesWithHome(Player player) {
-        return buildableList(player.getProperties())
+    @Override
+    public List<Buyable> getPropertiesWithHome(Player player) {
+        return unmortgagedList(player.getProperties())
+                .map(p -> (Buildable)p)
                 .filter(p -> p.getHousesNumber() > 0)
+                .map(p -> (Buyable)p)
                 .toList();
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
-    public List<Buildable> getPropertiesMortgageable(Player player) {
-        return buildableList(player.getProperties()).toList();
+    public List<Buyable> getPropertiesMortgageable(Player player) {
+        return Stream.concat( unmortgagedList(player.getProperties())
+                    .filter(p -> !(p instanceof Buildable)),
+                unmortgagedList(player.getProperties())
+                    .filter(p -> p instanceof Buildable)
+                    .map(p -> (Buildable)p)
+                    .filter(p -> p.getHousesNumber() == 0)
+                    .map(p -> (Buyable)p))
+                .toList();
     }
     /**
      * {@inheritDoc}
@@ -79,9 +82,5 @@ public class BankerImpl implements Banker {
     public void mortgageProperty(final Buyable property, final Player player) {
         player.receive(property.getMortgageValue());
         property.setMortgage();
-    }
-
-    
-
-    
+    }    
 }
