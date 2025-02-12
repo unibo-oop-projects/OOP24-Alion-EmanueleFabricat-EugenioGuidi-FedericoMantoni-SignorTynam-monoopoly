@@ -38,4 +38,11 @@ public interface Turn {
      * @return the current phase
      */
     Player getPhase();
+
+    /**
+     * Gets the actual {@link Player}
+     * 
+     * @return the actual {@link Player}
+     */
+    Player getActualPlayer();
 }
