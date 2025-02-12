@@ -67,4 +67,9 @@ public class TurnImpl implements Turn {
         throw new UnsupportedOperationException("Unimplemented method 'getPhase'");
     }
 
+    @Override
+    public Player getActualPlayer() {
+        return this.actualPlayer;
+    }
+
 }
