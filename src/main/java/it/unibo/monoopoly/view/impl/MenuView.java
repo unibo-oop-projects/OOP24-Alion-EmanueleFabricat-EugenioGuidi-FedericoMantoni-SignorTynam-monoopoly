@@ -1,29 +1,35 @@
 package it.unibo.monoopoly.view.impl;
 
-import java.util.Set;
-
 import it.unibo.monoopoly.controller.impl.MenuControllerImpl;
 
+/**
+ * Initial view shown at the start of application.
+ */
 public class MenuView extends AbstractView {
 
     private final PanelAdapter menuPanel;
 
+    /**
+     * Construct and initialize thr frame and panels of {@link MenuView}.
+     */
     public MenuView() {
         super();
-        menuPanel = new MenuPanel(new MenuControllerImpl());
-        this.getMainFrame().add(menuPanel);
+        menuPanel = new MenuPanel(new MenuControllerImpl(), super.getColors());
     }
 
-    /*
-     * MAIN ONLY FOR TEST
+    /**
+     * MAIN ONLY FOR TEST.
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         new MenuView().display();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Set<PanelAdapter> getAllPanels() {
-        return Set.of(menuPanel);
+    public PanelAdapter getMainPanel() {
+        return this.menuPanel;
     }
 
 }

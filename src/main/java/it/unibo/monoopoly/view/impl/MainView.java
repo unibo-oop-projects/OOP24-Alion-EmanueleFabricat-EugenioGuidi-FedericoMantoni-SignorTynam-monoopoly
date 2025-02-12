@@ -3,7 +3,6 @@ package it.unibo.monoopoly.view.impl;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
-import java.util.Set;
 
 import javax.swing.JFrame;
 
@@ -20,9 +19,14 @@ public class MainView extends AbstractView {
         //this.getMainFrame.getContentPane().add(gamePanel);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Set<PanelAdapter> getAllPanels() {
-        return Set.of(/*this.gamePanel*/);
+    public PanelAdapter getMainPanel() {
+        //TODO To complete when GamePanel will be available.
+        throw new UnsupportedOperationException();
+        //return (/*this.gamePanel*/);
     }
 
 }
