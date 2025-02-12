@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.model.api.Banker;
 import it.unibo.monoopoly.model.api.ModelState;
+import it.unibo.monoopoly.model.api.gameboard.Buildable;
+import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.BankerImpl;
 
@@ -19,24 +21,37 @@ public class ModelBankerState implements ModelState<Optional<List<Integer>>>{
 
     @Override
     public void verify() {
+        this.isIndebted = turn.getActualPlayer().getMoneyAmount() < 0; 
     }
 
     @Override
     public void doAction(Optional<List<Integer>> propertyChosen) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'doAction'");
+        this.isIndebted = turn.getActualPlayer().getMoneyAmount() < 0;
     }
 
     @Override
     public Optional<List<Integer>> getData() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getData'");
+        if (isIndebted) {
+            return cellToIndex(this.banker.selectOperations(this.turn.getActualPlayer()));
+        }
+    }
+
+    private Optional<List<Integer>> cellToIndex(Optional<List<Buyable>> propertyList) {
+        return Optional.of(
+                propertyList.stream()
+                .map()
+                .toList());
+    }
+
+    private Integer propertyIndexOf(Buyable property) {
+        return 
     }
 
     @Override
     public void closeState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'closeState'");
+        if (isIndebted) {
+            this.turn.
+        }
     }
 
 }
