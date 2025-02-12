@@ -14,6 +14,9 @@ public class MenuView extends AbstractView {
         this.getMainFrame().add(menuPanel);
     }
 
+    /*
+     * MAIN ONLY FOR TEST
+     */
     public static void main(String[] args) {
         new MenuView().display();
     }
