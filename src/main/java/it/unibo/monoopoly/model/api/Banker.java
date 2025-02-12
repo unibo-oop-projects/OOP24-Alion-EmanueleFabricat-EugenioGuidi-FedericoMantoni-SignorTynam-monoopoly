@@ -4,10 +4,11 @@ package it.unibo.monoopoly.model.api;
 import java.util.List;
 import java.util.Optional;
 
-import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.api.player.Turn;
+import it.unibo.monoopoly.utils.Message;
 
 /**
  * Interface that implements a banker who help the player decide witch house sell or properties mortagage.
@@ -21,19 +22,19 @@ public interface Banker {
      * @return the {@link Message} to {@link Turn}.
      */
     
-    Optional<Event> selectOperations(Player player, int amount);
+    Optional<List<Buyable>> selectOperations(Player player);
     /**
      * 
      * @param player from take the list of properties.
      * @return the {@link List} of the properties with houses.
      */
-    List<Buildable> getPropertiesWithHome(Player player);
+    List<Buyable> getPropertiesWithHome(Player player);
     /**
      * 
      * @param player from take the list of properties.
      * @return the {@link List} of the properties mortgageable.
      */
-    List<Buildable> getPropertiesMortgageable(Player player);
+    List<Buyable> getPropertiesMortgageable(Player player);
     /**
      * Sell a house on the given input property, and pay the player.
      * 
