@@ -42,7 +42,7 @@ public class TestBuyable {
         this.railroads = Set.of(RAILROAD_E, RAILROAD_N, RAILROAD_O, RAILROAD_S);
         this.company1 = new CompanyImpl("Società idrica", 150);
         this.company2 = new CompanyImpl("Società Elettrica", 150);
-        this.owner = new PlayerImpl("Franco", START_MONEY, 0, false);
+        this.owner = new PlayerImpl("Franco", START_MONEY, 0);
         this.notary = new NotaryImpl();
     }
 
