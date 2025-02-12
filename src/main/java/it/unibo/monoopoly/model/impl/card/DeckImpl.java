@@ -11,6 +11,7 @@ import it.unibo.monoopoly.model.api.card.Card;
 import it.unibo.monoopoly.model.api.card.CardsFactory;
 import it.unibo.monoopoly.model.api.card.Deck;
 import it.unibo.monoopoly.utils.Message;
+import it.unibo.monoopoly.utils.Message.Actions;
 /**
  * Implementation of {@link Deck} 
  */
@@ -58,7 +59,7 @@ public class DeckImpl implements Deck{
     @Override
     public void addPrisonCard() {
          Card card = new CardImpl("Uscite gratis di prigione, se non ci siete: potete conservare questo cartoncino sino al momento di servirvene",
-                new Message(Actions.SPECIAL, Optional.of(0)));
+                new Message(Actions.FREE_CARD, Optional.of(0)));
         this.discardPile.add(card);
     }
 
