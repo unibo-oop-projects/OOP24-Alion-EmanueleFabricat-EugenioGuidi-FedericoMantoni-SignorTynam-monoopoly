@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @param data that {@link Turn} have to use to do the operation.
  */
 public record Message(
-    @JsonProperty("action") Actions typeOfAction,
+    @JsonProperty("action") Message.Actions typeOfAction,
     @JsonProperty("data") Optional<Integer> data
 ) {
     public enum Actions {

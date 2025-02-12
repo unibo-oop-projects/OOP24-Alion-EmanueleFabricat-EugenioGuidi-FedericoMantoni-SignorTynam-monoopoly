@@ -1,0 +1,22 @@
+[
+    {
+        "effect": "Andate sino a Largo Colombo, se passate dal via ritirate 200€",
+        "message": {
+            "action": "MOVE",
+            "data": 24
+        }
+    },
+    {
+        "effect": "Andate in prigione senza passare dal via",
+        "message": {
+            "action": "SPECIAL"
+        }
+    },
+    {
+        "effect": "Multa di 40€ per aver guidato senza patente",
+        "message": {
+            "action": "PAY",
+            "data": 40
+        }
+    }
+]
