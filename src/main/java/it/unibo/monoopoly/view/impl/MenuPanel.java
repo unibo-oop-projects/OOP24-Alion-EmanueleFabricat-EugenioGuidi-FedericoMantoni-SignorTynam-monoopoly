@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -35,7 +36,6 @@ public class MenuPanel extends PanelAdapter {
 
     private final SelectionPanel playerSelection;
 
-    private JPanel title;
     private JButton start;
     private JLabel monoopoly;
 
@@ -44,10 +44,11 @@ public class MenuPanel extends PanelAdapter {
      * 
      * @param controller the istance of {@link MenuController}, needed to initialize
      *                   the game based on player inputs
+     * @param colors the colors used in the game to represent the players
      */
-    public MenuPanel(final MenuController controller) {
+    public MenuPanel(final MenuController controller, final List<Color> colors) {
         super();
-        this.playerSelection = new SelectionPanel(controller);
+        this.playerSelection = new SelectionPanel(controller, colors);
     }
 
     /**
@@ -55,18 +56,18 @@ public class MenuPanel extends PanelAdapter {
      */
     @Override
     protected void panelInit() {
-        this.title = new JPanel(new BorderLayout());
+        final JPanel title = new JPanel(new BorderLayout());
         this.start = new JButton("START");
         this.monoopoly = new JLabel("MONOOPOLY");
         this.setBackground(GREEN_MONOPOLY);
         this.setLayout(new GridBagLayout());
         this.start.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_BUTTON));
         this.start.setPreferredSize(start.getPreferredSize());
-        this.title.setBackground(Color.RED);
+        title.setBackground(Color.RED);
         this.monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_TITLE));
         this.monoopoly.setForeground(Color.WHITE);
         this.monoopoly.setHorizontalAlignment(SwingConstants.CENTER);
-        this.title.add(monoopoly, BorderLayout.CENTER);
+        title.add(monoopoly, BorderLayout.CENTER);
         this.start.addActionListener(e -> {
             start.setVisible(false);
             this.add(playerSelection, getSelectionConstraints());
@@ -74,6 +75,8 @@ public class MenuPanel extends PanelAdapter {
         });
         this.add(start, getButtonCostraints());
         this.add(title, getTitleConstraints());
+        this.revalidate();
+        this.repaint();
     }
 
     /**
