@@ -17,22 +17,64 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.text.JTextComponent;
 
 import it.unibo.monoopoly.controller.api.MenuController;
 
+/**
+ * Panel for handle input of the number and names of players decided by the
+ * user.
+ */
 public class SelectionPanel extends PanelAdapter {
+
+    private static final int MAX_NAME_LENGTH = 25;
+    private static final double NUMBER_LABEL_WEIGHT = 0.4;
+    private static final double SPINNER_WEIGHT = 0.3;
+    private static final double BUTTON_WEIGHT = 0.3;
+    private static final double COLOR_WEIGHT = 0.05;
+    private static final double NAME_LABEL_WEIGHT = 0.3;
+    private static final double TEXTFIELD_WEIGHT = 0.65;
+
+    private static final Dimension PREFERRED_SIZE_COLOR = new Dimension(40, 20);
+
+    private static final long serialVersionUID = 1L;
 
     private JPanel namesPanel;
     private JPanel numberPanel;
-    private List<Color> colors;
-    private List<JTextField> players;
-    private MenuController menuController;
-    private Font font = new Font("Arial", Font.BOLD, 15);
+    private final List<Color> colors;
+    private final List<JTextField> players;
+    private final MenuController menuController;
+    private final Font font = new Font("Arial", Font.BOLD, 15);
 
-    public SelectionPanel(MenuController controller) {
+    /**
+     * Construct and inizialize the SelectionPanel.
+     * @param controller the istance of {@link MenuController}, needed to initialize
+     *                   the game based on player inputs
+     */
+    public SelectionPanel(final MenuController controller) {
+        super();
         this.menuController = controller;
         this.colors = List.of(Color.BLUE, Color.GREEN, Color.RED, Color.ORANGE, Color.YELLOW, Color.PINK);
         this.players = new ArrayList<>();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void display() {
+        this.setVisible(true);
+    }
+
+    @Override
+    public void resizeText(final Dimension screenSize) {
+        //TODO Implementare dichiarando componenti come campi o con Name
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void panelInit() {
         this.setLayout(new GridBagLayout());
         final JLabel nPlayerTextSelection = new JLabel("Scegli il numero di giocatori");
         nPlayerTextSelection.setFont(this.font);
@@ -42,8 +84,7 @@ public class SelectionPanel extends PanelAdapter {
             try {
                 spinnerSelection.commitEdit();
                 generateNamesPanel((int) spinnerSelection.getValue());
-            } catch (ParseException ex) {
-                System.out.print("s");
+            } catch (final ParseException ex) {
                 JOptionPane.showMessageDialog(this,
                         "Input non valido: " + spinnerSelection.getValue() + " è un numero di giocatori non consentito",
                         "Errore numero giocatori",
@@ -57,7 +98,7 @@ public class SelectionPanel extends PanelAdapter {
         this.add(numberPanel, getBasicConstraints());
     }
 
-    private void generateNamesPanel(int nPlayers) {
+    private void generateNamesPanel(final int nPlayers) {
         this.remove(numberPanel);
         this.namesPanel = new JPanel(new GridBagLayout());
         for (int i = 0; i < nPlayers; i++) {
@@ -66,16 +107,16 @@ public class SelectionPanel extends PanelAdapter {
             players.add(nameField);
             final JLabel nameLabel = new JLabel("Inserisci il nome del player: ");
             final JPanel color = new JPanel();
-            color.setPreferredSize(new Dimension(40, 20));
+            color.setPreferredSize(PREFERRED_SIZE_COLOR);
             color.setBackground(colors.get(i));
             nameLabel.setFont(this.font);
             gbc.fill = GridBagConstraints.BOTH;
             gbc.weighty = 0;
-            gbc.weightx = 0.05;
+            gbc.weightx = COLOR_WEIGHT;
             this.namesPanel.add(color, gbc);
-            gbc.weightx = 0.3;
+            gbc.weightx = NAME_LABEL_WEIGHT;
             this.namesPanel.add(nameLabel, gbc);
-            gbc.weightx = 0.65;
+            gbc.weightx = TEXTFIELD_WEIGHT;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             gbc.gridwidth = GridBagConstraints.REMAINDER;
             this.namesPanel.add(nameField, gbc);
@@ -116,12 +157,12 @@ public class SelectionPanel extends PanelAdapter {
     }
 
     private List<String> getPlayersNames() {
-        return this.players.stream().map(jt -> jt.getText()).toList();
+        return this.players.stream().map(JTextComponent::getText).toList();
     }
 
     private boolean legalNames() {
-        return players.stream().map(t -> t.getText()).allMatch(
-                t -> !t.isBlank() && !t.isEmpty() && t.length() < 25);
+        return players.stream().map(JTextComponent::getText).allMatch(
+                t -> !t.isBlank() && !t.isEmpty() && t.length() < MAX_NAME_LENGTH);
     }
 
     private GridBagConstraints getNamesConstraint() {
@@ -132,25 +173,21 @@ public class SelectionPanel extends PanelAdapter {
         return gbc;
     }
 
-    public void display() {
-        this.setVisible(true);
-    }
-
     private GridBagConstraints getLabelConstraints() {
         final GridBagConstraints gbc = getBasicConstraints();
-        gbc.weightx = 0.4;
+        gbc.weightx = NUMBER_LABEL_WEIGHT;
         return gbc;
     }
 
     private GridBagConstraints getSpinnerConstraints() {
         final GridBagConstraints gbc = getBasicConstraints();
-        gbc.weightx = 0.3;
+        gbc.weightx = SPINNER_WEIGHT;
         return gbc;
     }
 
     private GridBagConstraints getButtonConstraints() {
         final GridBagConstraints gbc = getBasicConstraints();
-        gbc.weightx = 0.3;
+        gbc.weightx = BUTTON_WEIGHT;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         return gbc;
     }

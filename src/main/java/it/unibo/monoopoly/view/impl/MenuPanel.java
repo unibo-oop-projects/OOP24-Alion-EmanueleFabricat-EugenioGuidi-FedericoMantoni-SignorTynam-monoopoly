@@ -2,18 +2,15 @@ package it.unibo.monoopoly.view.impl;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import it.unibo.monoopoly.controller.api.MenuController;
@@ -23,6 +20,11 @@ import it.unibo.monoopoly.controller.api.MenuController;
  */
 public class MenuPanel extends PanelAdapter {
 
+    private static final String ARIAL_FONT = "Arial";
+    private static final long serialVersionUID = 1L;
+    private static final int MARGIN_TOP_TITLE = 70;
+    private static final int BUTTON_RATIO = 77;
+    private static final int TITLE_RATIO = 25;
     private static final int PADX_TITLE = 250;
     private static final int PADY_TITLE = 50;
     private static final int PADX_BUTTON = 80;
@@ -33,23 +35,31 @@ public class MenuPanel extends PanelAdapter {
 
     private final SelectionPanel playerSelection;
 
+    /**
+     * Construct and inizialize the MenuPanel.
+     * 
+     * @param controller the istance of {@link MenuController}, needed to initialize
+     *                   the game based on player inputs
+     */
+    public MenuPanel(final MenuController controller) {
+        super();
+        this.playerSelection = new SelectionPanel(controller);
+    }
 
     /**
-     * Construct and inizialize the menuPanel.
+     * {@inheritDoc}
      */
-    public MenuPanel(MenuController controller, Dimension screenSize) {
-        this.playerSelection = new SelectionPanel(controller);
+    @Override
+    protected void panelInit() {
         this.setBackground(GREEN_MONOPOLY);
         this.setLayout(new GridBagLayout());
         final JPanel title = new JPanel(new BorderLayout());
         final JButton start = new JButton("START");
         final JLabel monoopoly = new JLabel("MONOOPOLY");
-        System.out.println("label" + monoopoly.getSize());
-        System.out.println("panel" + title.getSize());
-        start.setFont(new Font("Arial", Font.BOLD, FONT_SIZE_BUTTON));
+        start.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_BUTTON));
         start.setPreferredSize(start.getPreferredSize());
         title.setBackground(Color.RED);
-        monoopoly.setFont(new Font("Arial", Font.BOLD, FONT_SIZE_TITLE));
+        monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_TITLE));
         monoopoly.setForeground(Color.WHITE);
         monoopoly.setHorizontalAlignment(SwingConstants.CENTER);
         title.add(monoopoly, BorderLayout.CENTER);
@@ -62,18 +72,22 @@ public class MenuPanel extends PanelAdapter {
         this.add(title, getTitleConstraints());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void resizeText (Dimension frameSize) {
-        final var components = List.of(this.getComponents());
-        components.get(0).setFont(new Font("Arial", Font.BOLD, (int) frameSize.getWidth()/25));
-        ((JPanel) components.get(1)).getComponent(0).setFont(new Font("Arial", Font.BOLD, (int) frameSize.getWidth()/77));
-        this.playerSelection.resizeText(frameSize);
+    public void resizeText(final Dimension frameSize) {
+        //final var components = List.of(this.getComponents());
+        //components.get(0).setFont(new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / TITLE_RATIO));
+        //((JPanel) components.get(1)).getComponent(0).setFont(
+                //new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / BUTTON_RATIO));
+        //this.playerSelection.resizeText(frameSize);
     }
 
-    private Font getPersonalizedFont(Component c) {
+    /*private Font getPersonalizedFont(final Component c) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPersonalizedFont'");
-    }
+    }*/
 
     private GridBagConstraints getButtonCostraints() {
         final GridBagConstraints gbc = new GridBagConstraints();
@@ -97,7 +111,7 @@ public class MenuPanel extends PanelAdapter {
         out.weighty = 1;
         out.ipadx = PADX_TITLE;
         out.ipady = PADY_TITLE;
-        out.insets = new Insets(70, 10, 10, 10);
+        out.insets = new Insets(MARGIN_TOP_TITLE, 10, 10, 10);
         return out;
     }
 
