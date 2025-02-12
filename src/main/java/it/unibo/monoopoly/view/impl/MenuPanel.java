@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -35,15 +36,19 @@ public class MenuPanel extends PanelAdapter {
 
     private final SelectionPanel playerSelection;
 
+    private JButton start;
+    private JLabel monoopoly;
+
     /**
      * Construct and inizialize the MenuPanel.
      * 
      * @param controller the istance of {@link MenuController}, needed to initialize
      *                   the game based on player inputs
+     * @param colors the colors used in the game to represent the players
      */
-    public MenuPanel(final MenuController controller) {
+    public MenuPanel(final MenuController controller, final List<Color> colors) {
         super();
-        this.playerSelection = new SelectionPanel(controller);
+        this.playerSelection = new SelectionPanel(controller, colors);
     }
 
     /**
@@ -51,25 +56,27 @@ public class MenuPanel extends PanelAdapter {
      */
     @Override
     protected void panelInit() {
+        final JPanel title = new JPanel(new BorderLayout());
+        this.start = new JButton("START");
+        this.monoopoly = new JLabel("MONOOPOLY");
         this.setBackground(GREEN_MONOPOLY);
         this.setLayout(new GridBagLayout());
-        final JPanel title = new JPanel(new BorderLayout());
-        final JButton start = new JButton("START");
-        final JLabel monoopoly = new JLabel("MONOOPOLY");
-        start.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_BUTTON));
-        start.setPreferredSize(start.getPreferredSize());
+        this.start.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_BUTTON));
+        this.start.setPreferredSize(start.getPreferredSize());
         title.setBackground(Color.RED);
-        monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_TITLE));
-        monoopoly.setForeground(Color.WHITE);
-        monoopoly.setHorizontalAlignment(SwingConstants.CENTER);
+        this.monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_TITLE));
+        this.monoopoly.setForeground(Color.WHITE);
+        this.monoopoly.setHorizontalAlignment(SwingConstants.CENTER);
         title.add(monoopoly, BorderLayout.CENTER);
-        start.addActionListener(e -> {
+        this.start.addActionListener(e -> {
             start.setVisible(false);
             this.add(playerSelection, getSelectionConstraints());
             playerSelection.display();
         });
         this.add(start, getButtonCostraints());
         this.add(title, getTitleConstraints());
+        this.revalidate();
+        this.repaint();
     }
 
     /**
@@ -77,11 +84,9 @@ public class MenuPanel extends PanelAdapter {
      */
     @Override
     public void resizeText(final Dimension frameSize) {
-        //final var components = List.of(this.getComponents());
-        //components.get(0).setFont(new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / TITLE_RATIO));
-        //((JPanel) components.get(1)).getComponent(0).setFont(
-                //new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / BUTTON_RATIO));
-        //this.playerSelection.resizeText(frameSize);
+        this.monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / TITLE_RATIO));
+        this.start.setFont(new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / BUTTON_RATIO));
+        this.playerSelection.resizeText(frameSize);
     }
 
     /*private Font getPersonalizedFont(final Component c) {

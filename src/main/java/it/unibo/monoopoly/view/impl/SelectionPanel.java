@@ -50,11 +50,12 @@ public class SelectionPanel extends PanelAdapter {
      * Construct and inizialize the SelectionPanel.
      * @param controller the istance of {@link MenuController}, needed to initialize
      *                   the game based on player inputs
+     * @param colors the colors used in the game to represent the players
      */
-    public SelectionPanel(final MenuController controller) {
+    public SelectionPanel(final MenuController controller, final List<Color> colors) {
         super();
         this.menuController = controller;
-        this.colors = List.of(Color.BLUE, Color.GREEN, Color.RED, Color.ORANGE, Color.YELLOW, Color.PINK);
+        this.colors = colors;
         this.players = new ArrayList<>();
     }
 
