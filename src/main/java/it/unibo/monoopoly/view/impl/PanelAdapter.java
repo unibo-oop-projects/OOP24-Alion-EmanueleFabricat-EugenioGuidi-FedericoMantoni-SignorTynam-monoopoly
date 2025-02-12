@@ -18,6 +18,8 @@ public abstract class PanelAdapter extends JPanel implements GamePanel {
     public PanelAdapter() {
         super();
         SwingUtilities.invokeLater(this::panelInit); // Posticipo l'inizializzazione dopo la costruzione del JPanel
+        revalidate();
+        repaint();
     }
 
     /**
