@@ -1,7 +1,11 @@
 package it.unibo.monoopoly.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +20,10 @@ import it.unibo.monoopoly.utils.Message.Actions;
 public class TestDeckAndCard {
     
     private Deck deck;
+    private static int MAX_DRAW = 29;
+    private static int NUM_MOVE_CARDS = 8;
+    private static int NUM_PAY_CARDS = 17;
+    private static int NUM_SPECIAL_CARDS = 4;
 
     @BeforeEach
     void init() {
@@ -24,12 +32,33 @@ public class TestDeckAndCard {
 
     @Test
     void testCorrectCards() {
-        assert(Stream
-                .iterate(0, n -> deck.draw(null))
-                .anyMatch(deck.getActualCard().equals(
-                    new CardImpl(
-                        "Andate sino a Largo Colombo, se passate dal via ritirate 200€", 
-                        new Message(Actions.MOVE,  24))
-                )));
+        int countMove = 0;
+        int countPay = 0;
+        int countSpecial = 0;
+        for (int i = 0; i < MAX_DRAW; i++) {
+            this.deck.draw(null);
+            switch (this.deck.getActualCard().getMessage().typeOfAction()) {
+                case Message.Actions.MOVE:
+                    countMove++;
+                    break;
+                case Message.Actions.PAY:
+                    countMove++;
+                    break;
+                case Message.Actions.SPECIAL:
+                    countMove++;
+                    break;
+            }
+        }
+        assertEquals(NUM_MOVE_CARDS, countMove);
+        assertEquals(NUM_PAY_CARDS, countPay);
+        assertEquals(NUM_SPECIAL_CARDS, countSpecial);
+    }
+
+    @Test
+    void testRefill() {
+        for (int i = 0; i < MAX_DRAW + 1; i++) {
+            this.deck.draw(null);
+        }
+        
     }
 }
