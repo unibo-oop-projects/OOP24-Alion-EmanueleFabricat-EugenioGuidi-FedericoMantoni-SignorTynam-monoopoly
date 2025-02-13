@@ -18,8 +18,8 @@ import it.unibo.monoopoly.utils.Message.Actions;
  */
 public class DeckImpl implements Deck {
     private final CardsFactory factory = new CardsFactoryImpl();
-    private List<Card> deck = new LinkedList<>();
-    private Set<Card> discardPile = new HashSet<>();
+    private final  List<Card> deck = new LinkedList<>();
+    private final Set<Card> discardPile = new HashSet<>();
     private Card actualCard;
 
     /**
@@ -63,7 +63,7 @@ public class DeckImpl implements Deck {
      */
     @Override
     public void addPrisonCard() {
-        Card card = new CardImpl(
+        final Card card = new CardImpl(
                 "Uscite gratis di prigione, se non ci siete: potete conservare questo cartoncino sino al momento di servirvene",
                 new Message(Actions.FREE_CARD, Optional.of(0)));
         this.discardPile.add(card);
