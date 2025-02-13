@@ -40,7 +40,6 @@ public class TurnImpl implements Turn {
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         this.deck = new DeckImpl();
         this.actualPlayer = gameBoard.getCurrentPlayer();
-        
         //TODO initialize state
     }
 
@@ -100,6 +99,9 @@ public class TurnImpl implements Turn {
         throw new UnsupportedOperationException("Unimplemented method 'getPhase'");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Player getActualPlayer() {
         return this.actualPlayer;
