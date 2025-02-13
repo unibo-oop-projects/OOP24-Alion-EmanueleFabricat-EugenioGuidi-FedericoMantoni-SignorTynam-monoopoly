@@ -46,7 +46,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("it.unibo.monoopoly.controller.Application")
+    mainClass.set("it.unibo.monoopoly.application.Monoopoly")
 }
 
 tasks.test {
