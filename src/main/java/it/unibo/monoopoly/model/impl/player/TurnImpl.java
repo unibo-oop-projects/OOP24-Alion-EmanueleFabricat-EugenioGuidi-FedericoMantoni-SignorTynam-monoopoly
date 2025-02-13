@@ -68,18 +68,24 @@ public class TurnImpl implements Turn {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPhase'");
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Player getActualPlayer() {
         return this.actualPlayer;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Cell> getCellsList() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCellsList'");
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setState(ModelState<?> state) {
         // TODO Auto-generated method stub
