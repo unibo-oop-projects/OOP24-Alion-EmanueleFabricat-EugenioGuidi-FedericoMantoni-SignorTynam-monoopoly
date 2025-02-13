@@ -3,7 +3,7 @@ package it.unibo.monoopoly.model.api;
  * The model of the pattern State for the model.
  * @param <X> a type of data that is an input, output  or both.
  */
-public interface ModelState<X> {
+public interface ModelState<X, Y> {
     /**
      * Set the state ready to be execute.
      */
@@ -17,7 +17,7 @@ public interface ModelState<X> {
      * Return a data of the state.
      * @return the data.
      */
-    X getData();
+    Y getData();
     /**
      * ends the state and sets the next one.
      */
