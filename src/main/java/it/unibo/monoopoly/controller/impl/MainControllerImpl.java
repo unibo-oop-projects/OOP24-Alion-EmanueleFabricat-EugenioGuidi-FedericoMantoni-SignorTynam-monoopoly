@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
+import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.view.impl.MainView;
 
@@ -25,7 +26,8 @@ public class MainControllerImpl implements MainController {
      */
     public MainControllerImpl(final Turn model, final List<String> playersName) {
         this.model = model;
-        this.mainView = new MainView(this, playersName);
+        final List<String> cellsNames = model.getGameBoard().getCellsNames();
+        this.mainView = new MainView(this, playersName, cellsNames);
         this.mainView.display();
         // this.actualState = new PrisonControllerState();
     }
