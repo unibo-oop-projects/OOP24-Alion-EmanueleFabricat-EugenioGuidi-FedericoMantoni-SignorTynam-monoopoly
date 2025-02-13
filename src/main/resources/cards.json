@@ -9,7 +9,7 @@
     {
         "effect": "Andate in prigione senza passare dal via",
         "message": {
-            "action": "SPECIAL"
+            "action": "PAY"
         }
     },
     {
