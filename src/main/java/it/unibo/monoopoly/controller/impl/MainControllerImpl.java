@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.controller.impl;
 
+import java.util.List;
+
 import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.player.Turn;
@@ -11,7 +13,7 @@ public class MainControllerImpl implements MainController {
     private final MainView mainView;
     private final Turn model;
 
-    public MainControllerImpl(Turn model) {
+    public MainControllerImpl(Turn model, List<String> playersName) {
         this.model = model;
         this.mainView = new MainView();
         this.mainView.display();
