@@ -12,8 +12,6 @@ import it.unibo.monoopoly.view.impl.MenuView;
  */
 public class MenuControllerImpl implements MenuController {
 
-    private MainController mainController;
-
     /**
      * Constructor of {@link MenuControllerImpl}; start and display the {@link MenuView}.
      */
@@ -26,8 +24,8 @@ public class MenuControllerImpl implements MenuController {
      */
     @Override
     public void goGame(final List<String> namePlayers) {
-        this.mainController = new MainControllerImpl(new TurnImpl(namePlayers), namePlayers);
-        this.mainController.startTurn();
+        final MainController mainController = new MainControllerImpl(new TurnImpl(namePlayers), namePlayers);
+        mainController.startTurn();
     }
 
 }

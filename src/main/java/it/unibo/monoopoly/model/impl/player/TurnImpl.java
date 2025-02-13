@@ -44,6 +44,10 @@ public class TurnImpl implements Turn {
         //TODO initialize state
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public GameBoard getGameBoard() {
         return this.getGameBoard();
     }
