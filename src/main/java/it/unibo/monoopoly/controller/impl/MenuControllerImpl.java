@@ -3,9 +3,7 @@ package it.unibo.monoopoly.controller.impl;
 import java.util.List;
 
 import it.unibo.monoopoly.controller.api.MenuController;
-import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.player.TurnImpl;
-import it.unibo.monoopoly.view.api.View;
 import it.unibo.monoopoly.view.impl.MenuView;
 
 /**
@@ -13,6 +11,9 @@ import it.unibo.monoopoly.view.impl.MenuView;
  */
 public class MenuControllerImpl implements MenuController {
 
+    /**
+     * Constructor of {@link MenuControllerImpl}; start and display the {@link MenuView}.
+     */
     public MenuControllerImpl() {
         new MenuView(this).display();
     }

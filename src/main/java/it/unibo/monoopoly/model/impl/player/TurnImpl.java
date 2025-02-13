@@ -25,11 +25,15 @@ public class TurnImpl implements Turn {
 
     private Cell actualCell;
     private final Notary notary = new NotaryImpl();
-    private Player actualPlayer;
-    private GameBoard gameBoard;
-    private Deck deck;
+    private final Player actualPlayer;
+    private final GameBoard gameBoard;
+    private final Deck deck;
 
-    public TurnImpl(List<String> playersName) {
+    /**
+     * Initialize the model and set the correct state of the game to start the first turn.
+     * @param playersName the list of the name of the players
+     */
+    public TurnImpl(final List<String> playersName) {
         final List<Player> players = playersName.stream()
                 .map(name -> (Player) new PlayerImpl(name, START_MONEY_AMOUNT, 0)).toList();
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);

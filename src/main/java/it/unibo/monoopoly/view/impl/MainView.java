@@ -3,18 +3,18 @@ package it.unibo.monoopoly.view.impl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Toolkit;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javax.swing.JFrame;
 
 import it.unibo.monoopoly.controller.api.MainController;
-import it.unibo.monoopoly.model.api.player.Player;
 
+/**
+ * Represents the main view component of the application when game starts.
+ */
 public class MainView extends AbstractView {
 
     // private final PanelAdapter gamePanel;
@@ -22,9 +22,16 @@ public class MainView extends AbstractView {
     // private final ViewState<?,?> viewState;
     private final List<Color> colors;
     private final Map<Color, String> players;
-    //private final List<String> nameCells;
+    // private final List<String> nameCells;
 
-    public MainView(MainController controller, List<String> namePlayers) {
+    /**
+     * Initialize the {@link JFrame} and all the informations needed to show
+     * correctly the state of the game to the user.
+     * 
+     * @param controller  the main controller of the application
+     * @param namePlayers the names of the players
+     */
+    public MainView(final MainController controller, final List<String> namePlayers) {
         this.controller = controller;
         this.colors = super.getColors();
         this.players = IntStream.range(0, colors.size()).boxed()
