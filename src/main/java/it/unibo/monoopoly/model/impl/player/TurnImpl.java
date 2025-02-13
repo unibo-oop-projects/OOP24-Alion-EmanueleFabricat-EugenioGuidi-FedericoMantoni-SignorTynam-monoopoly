@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.impl.player;
 
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
@@ -70,6 +71,12 @@ public class TurnImpl implements Turn {
     @Override
     public Player getActualPlayer() {
         return this.actualPlayer;
+    }
+
+    @Override
+    public List<Cell> getCellsList() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCellsList'");
     }
 
 }
