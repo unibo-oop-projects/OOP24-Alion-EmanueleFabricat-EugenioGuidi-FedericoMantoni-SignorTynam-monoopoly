@@ -8,6 +8,7 @@ import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.Notary;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
+import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.NotaryImpl;
@@ -90,6 +91,14 @@ public class TurnImpl implements Turn {
     public void setState(ModelState<?> state) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setState'");
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GameBoard getGameBoard() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getGameBoard'");
     }
 
 }
