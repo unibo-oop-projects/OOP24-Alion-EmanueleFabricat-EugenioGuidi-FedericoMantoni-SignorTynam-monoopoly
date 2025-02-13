@@ -84,4 +84,10 @@ public class GameBoardImpl implements GameBoard {
         return List.copyOf(this.playersList);
     }
 
+    @Override
+    public List<String> getCellsNames() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCellsNames'");
+    }
+
 }
