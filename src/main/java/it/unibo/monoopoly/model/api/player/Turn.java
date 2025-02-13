@@ -3,6 +3,7 @@ package it.unibo.monoopoly.model.api.player;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 
 /**
  * Interface representing the turn of a player.
@@ -38,6 +39,12 @@ public interface Turn {
      * @return the current phase
      */
     Player getPhase();
+
+    /**
+     * 
+     * @return the {@link GameBoard} of the game.
+     */
+    GameBoard getGameBoard();
 
     /**
      * Gets the actual {@link Player}

@@ -40,7 +40,12 @@ public class TurnImpl implements Turn {
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         this.deck = new DeckImpl();
         this.actualPlayer = gameBoard.getCurrentPlayer();
+        
         //TODO initialize state
+    }
+
+    public GameBoard getGameBoard() {
+        return this.getGameBoard();
     }
 
     /**
