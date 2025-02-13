@@ -35,6 +35,13 @@ public interface Player {
     public boolean isPrisoned();
 
     /**
+     * Change the position of the player.
+     * @param position the new position of the player.
+     * @throws IllegalArgumentException if the position isn't applicable.
+     */
+    public void changePosition(int position);
+
+    /**
      * Checks if the player can pay a specified amount.
      * @param amount the amount to be paid.
      * @return true if the player can pay, false otherwise.
