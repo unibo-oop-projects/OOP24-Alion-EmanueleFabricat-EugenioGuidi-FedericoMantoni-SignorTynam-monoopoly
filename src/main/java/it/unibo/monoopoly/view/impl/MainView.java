@@ -22,7 +22,7 @@ public class MainView extends AbstractView {
     // private final ViewState<?,?> viewState;
     private final List<Color> colors;
     private final Map<Color, String> players;
-    // private final List<String> nameCells;
+    private final List<String> nameCells;
 
     /**
      * Initialize the {@link JFrame} and all the informations needed to show
@@ -31,11 +31,12 @@ public class MainView extends AbstractView {
      * @param controller  the main controller of the application
      * @param namePlayers the names of the players
      */
-    public MainView(final MainController controller, final List<String> namePlayers) {
+    public MainView(final MainController controller, final List<String> namePlayers, final List<String> nameCells) {
         this.controller = controller;
         this.colors = super.getColors();
         this.players = IntStream.range(0, colors.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
+        this.nameCells = nameCells;
         // gamePanel = new GamePanel(new MainControllerImpl());
         // this.viewState = new ViewPrisonState();
         // this.getMainFrame.getContentPane().add(gamePanel);
