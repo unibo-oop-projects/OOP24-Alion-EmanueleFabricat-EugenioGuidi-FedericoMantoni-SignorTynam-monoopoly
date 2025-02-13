@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.impl.player;
+package it.unibo.monoopoly.model.impl;
 
 import it.unibo.monoopoly.model.api.player.Player;
 
@@ -7,7 +7,7 @@ import it.unibo.monoopoly.model.api.player.Player;
  * 1. Usando una carta "Esci Gratis di Prigione" se ne possiede almeno una.
  * 2. Pagando una multa fissa (ad esempio 50) se ha sufficiente denaro.
  */
-public class PrisonManager {
+public class PrisonModelState {
 
     public static final int FINE_AMOUNT = 50;
 
