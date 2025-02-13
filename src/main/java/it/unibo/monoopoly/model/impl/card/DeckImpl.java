@@ -39,8 +39,11 @@ public class DeckImpl implements Deck {
             this.shuffleDeck();
         }
         this.actualCard = this.deck.removeFirst();
-        this.discardPile.add(actualCard);
+        if (this.actualCard.getMessage().typeOfAction() != Actions.FREE_CARD) {
+            this.discardPile.add(actualCard);
+        }
     }
+        
 
     private void shuffleDeck() {
         if (this.deck.isEmpty()) {
