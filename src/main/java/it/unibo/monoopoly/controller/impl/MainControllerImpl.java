@@ -15,7 +15,7 @@ public class MainControllerImpl implements MainController {
 
     public MainControllerImpl(Turn model, List<String> playersName) {
         this.model = model;
-        this.mainView = new MainView();
+        this.mainView = new MainView(this, playersName);
         this.mainView.display();
         //this.actualState = new PrisonControllerState();
         this.startTurn();
