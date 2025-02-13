@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.view.impl;
 
+import it.unibo.monoopoly.controller.api.MenuController;
 import it.unibo.monoopoly.controller.impl.MenuControllerImpl;
 
 /**
@@ -12,9 +13,9 @@ public class MenuView extends AbstractView {
     /**
      * Construct and initialize thr frame and panels of {@link MenuView}.
      */
-    public MenuView() {
+    public MenuView(MenuController menuController) {
         super();
-        menuPanel = new MenuPanel(new MenuControllerImpl(), super.getColors());
+        menuPanel = new MenuPanel(menuController, super.getColors());
     }
 
     /**
