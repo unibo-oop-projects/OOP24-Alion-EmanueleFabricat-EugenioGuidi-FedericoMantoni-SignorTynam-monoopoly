@@ -2,6 +2,8 @@ package it.unibo.monoopoly.model.impl.gameboard;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.GameBoard;
@@ -86,8 +88,9 @@ public class GameBoardImpl implements GameBoard {
 
     @Override
     public List<String> getCellsNames() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCellsNames'");
+        return this.cellsList.stream()
+                            .map(Cell::getName)
+                            .collect(Collectors.toList());
     }
 
 }
