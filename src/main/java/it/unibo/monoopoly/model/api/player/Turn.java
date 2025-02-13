@@ -1,8 +1,10 @@
 package it.unibo.monoopoly.model.api.player;
 
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.model.api.gameboard.Cell;
 
 /**
  * Interface representing the turn of a player.
@@ -45,4 +47,10 @@ public interface Turn {
      * @return the actual {@link Player}
      */
     Player getActualPlayer();
+    /**
+     * Gets the list of all {@link cell} of the game
+     * 
+     * @return the list of {@link cell}
+     */
+    List<Cell> getCellsList();
 }
