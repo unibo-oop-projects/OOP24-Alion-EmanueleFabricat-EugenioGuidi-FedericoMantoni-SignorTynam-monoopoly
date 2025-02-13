@@ -30,6 +30,7 @@ public class MainView extends AbstractView {
      * 
      * @param controller  the main controller of the application
      * @param namePlayers the names of the players
+     * @param nameCells the list of names of the cells
      */
     public MainView(final MainController controller, final List<String> namePlayers, final List<String> nameCells) {
         this.controller = controller;
