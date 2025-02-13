@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.Notary;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
@@ -77,6 +78,12 @@ public class TurnImpl implements Turn {
     public List<Cell> getCellsList() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCellsList'");
+    }
+
+    @Override
+    public void setState(ModelState<?> state) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setState'");
     }
 
 }
