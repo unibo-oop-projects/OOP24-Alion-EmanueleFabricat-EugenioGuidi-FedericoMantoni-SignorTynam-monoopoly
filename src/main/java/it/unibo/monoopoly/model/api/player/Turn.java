@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
 
 /**
@@ -37,20 +38,26 @@ public interface Turn {
     /**
      * Gets the current phase of the player's turn.
      * 
-     * @return the current phase
+     * @return the current phase.
      */
     Player getPhase();
 
     /**
-     * Gets the actual {@link Player}
+     * Gets the actual {@link Player}.
      * 
-     * @return the actual {@link Player}
+     * @return the actual {@link Player}.
      */
     Player getActualPlayer();
     /**
-     * Gets the list of all {@link cell} of the game
+     * Gets the list of all {@link cell} of the game.
      * 
-     * @return the list of {@link cell}
+     * @return the list of {@link cell}.
      */
     List<Cell> getCellsList();
+    /**
+     * Set the {@link ModelState} of the model.
+     * 
+     * @param state to set.
+     */
+    void setState(ModelState<?> state);
 }
