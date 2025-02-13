@@ -22,7 +22,7 @@ public class MenuControllerImpl implements MenuController {
      */
     @Override
     public void goGame(final List<String> namePlayers) {
-        //new MainControllerImpl(new TurnImpl(namePlayers));
+        new MainControllerImpl(new TurnImpl(namePlayers), namePlayers);
     }
 
 }
