@@ -7,6 +7,7 @@ import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.GameBoard;
+import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 
 /**
  * Interface representing the turn of a player.
@@ -44,7 +45,7 @@ public interface Turn {
     Player getPhase();
 
     /**
-     * Gets the actual {@link Player}.
+     * Gets the actual {@link Player}
      * 
      * @return the actual {@link Player}.
      */
