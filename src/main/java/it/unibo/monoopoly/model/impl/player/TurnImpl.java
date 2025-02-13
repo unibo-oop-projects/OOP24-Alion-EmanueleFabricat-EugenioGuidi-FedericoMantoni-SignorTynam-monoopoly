@@ -2,6 +2,7 @@ package it.unibo.monoopoly.model.impl.player;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.Notary;
@@ -35,7 +36,7 @@ public class TurnImpl implements Turn {
      */
     public TurnImpl(final List<String> playersName) {
         final List<Player> players = playersName.stream()
-                .map(name -> (Player) new PlayerImpl(name, START_MONEY_AMOUNT, 0)).toList();
+                .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 0)).collect(Collectors.toList());
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         this.deck = new DeckImpl();
         this.actualPlayer = gameBoard.getCurrentPlayer();
