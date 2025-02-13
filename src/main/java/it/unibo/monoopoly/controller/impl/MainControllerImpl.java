@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
-import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.view.impl.MainView;
 
