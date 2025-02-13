@@ -1,14 +1,12 @@
 package it.unibo.monoopoly.model.api.card;
 
-import it.unibo.monoopoly.model.api.player.Player;
-
 /**
  * The interface that implemented the deck of cards,
  * and its management.
  */
 public interface Deck {
     /**
-     * @param player who drawn the card. 
+     * Draw the next {@link Card} and set actualCard field. 
      */
     void draw();
     /**
@@ -16,7 +14,7 @@ public interface Deck {
      */
     Card getActualCard();
     /**
-     * To add a go to prison card in the discard pile.
+     * To add a: go to prison card, in the discard pile.
      */
     void addPrisonCard();
 }

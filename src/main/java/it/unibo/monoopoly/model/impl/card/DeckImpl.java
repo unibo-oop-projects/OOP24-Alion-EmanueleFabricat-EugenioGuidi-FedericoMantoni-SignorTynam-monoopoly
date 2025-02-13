@@ -12,21 +12,24 @@ import it.unibo.monoopoly.model.api.card.CardsFactory;
 import it.unibo.monoopoly.model.api.card.Deck;
 import it.unibo.monoopoly.utils.Message;
 import it.unibo.monoopoly.utils.Message.Actions;
+
 /**
- * Implementation of {@link Deck} 
+ * Implementation of {@link Deck}.
  */
-public class DeckImpl implements Deck{
+public class DeckImpl implements Deck {
     private final CardsFactory factory = new CardsFactoryImpl();
     private List<Card> deck = new LinkedList<>();
     private Set<Card> discardPile = new HashSet<>();
     private Card actualCard;
+
     /**
-     * Constructor that initialize and shuffle the deck
+     * Constructor that initialize and shuffle the deck.
      */
     public DeckImpl() {
         this.deck.addAll(factory.createDeck());
         shuffleDeck();
     }
+
     /**
      * {@inheritDoc}
      */
@@ -43,9 +46,10 @@ public class DeckImpl implements Deck{
         if (this.deck.isEmpty()) {
             this.deck.addAll(this.discardPile);
             this.discardPile.removeAll(this.discardPile);
-        }        
+        }
         Collections.shuffle(this.deck);
     }
+
     /**
      * {@inheritDoc}
      */
@@ -53,12 +57,14 @@ public class DeckImpl implements Deck{
     public Card getActualCard() {
         return this.actualCard;
     }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void addPrisonCard() {
-         Card card = new CardImpl("Uscite gratis di prigione, se non ci siete: potete conservare questo cartoncino sino al momento di servirvene",
+        Card card = new CardImpl(
+                "Uscite gratis di prigione, se non ci siete: potete conservare questo cartoncino sino al momento di servirvene",
                 new Message(Actions.FREE_CARD, Optional.of(0)));
         this.discardPile.add(card);
     }

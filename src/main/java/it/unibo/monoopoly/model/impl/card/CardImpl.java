@@ -7,10 +7,10 @@ import it.unibo.monoopoly.model.api.card.Card;
 import it.unibo.monoopoly.utils.Message;
 
 /**
- * the implementations of {@link Card}
+ * the implementations of {@link Card}.
  */
 @JsonTypeName("Card")
-public class CardImpl implements Card{
+public class CardImpl implements Card {
     private final String effect;
     private final Message message;
 

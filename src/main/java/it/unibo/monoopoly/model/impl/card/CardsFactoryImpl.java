@@ -14,11 +14,15 @@ public class CardsFactoryImpl implements CardsFactory {
     private final JsonConverter<Card> deserializer;
     private static final String PATH = "cards.json";
 
-    /* */
+    /**
+     * constructor of the factory that sets the class.
+     */
     public CardsFactoryImpl() {
         this.deserializer = new JsonConverterImpl<>(Card.class);
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Card> createDeck() {
         return this.deserializer.jsonToList(ClassLoader.getSystemResourceAsStream(PATH));
