@@ -2,7 +2,6 @@ package it.unibo.monoopoly.model.impl.gameboard;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.model.api.gameboard.Cell;
@@ -86,6 +85,9 @@ public class GameBoardImpl implements GameBoard {
         return List.copyOf(this.playersList);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<String> getCellsNames() {
         return this.cellsList.stream()
