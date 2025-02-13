@@ -13,7 +13,6 @@ import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 public class CardsFactoryImpl implements CardsFactory {
     private final JsonConverter<Card> deserializer;
     private static final String PATH = "cards.json";
-
     /**
      * constructor of the factory that sets the class.
      */
