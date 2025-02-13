@@ -1,11 +1,11 @@
 package it.unibo.monoopoly.controller.api;
 /**
  * The model of the pattern State for the controller.
- */
+ * @param <X> a type of data that is an input for the status.
+*/
 public interface ControllerState<X> {
     /**
      * Launch the state, calling all the other state method in the right order.
-     * {@link X} a type of data that is an input, output  or both.
      */
     void startState();
     /**

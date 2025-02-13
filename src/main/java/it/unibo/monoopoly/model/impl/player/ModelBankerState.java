@@ -19,7 +19,7 @@ import it.unibo.monoopoly.model.impl.BankerImpl;
 public class ModelBankerState implements ModelState<Optional<List<Integer>>> {
     private final Turn turn;
     private final Banker banker = new BankerImpl();
-    private boolean isIndebted = false;
+    private boolean isIndebted;
     /**
      * Constructor of the class,
      * that takes the {@link Turn} reference to perform all necessary state operations,
@@ -42,7 +42,7 @@ public class ModelBankerState implements ModelState<Optional<List<Integer>>> {
      */
     @Override
     public void doAction(final Optional<List<Integer>> propertyChosen) {
-        Cell chosen = this.turn.getGameBoard().getCell(propertyChosen.get().get(0));
+        final Cell chosen = this.turn.getGameBoard().getCell(propertyChosen.get().get(0));
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             this.turn.getActualPlayer().receive(((Buildable) chosen).sellHouse());
         } else {

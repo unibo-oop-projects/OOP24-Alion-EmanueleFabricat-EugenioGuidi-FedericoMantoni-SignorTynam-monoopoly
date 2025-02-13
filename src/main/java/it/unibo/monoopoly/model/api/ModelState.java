@@ -1,9 +1,9 @@
 package it.unibo.monoopoly.model.api;
 /**
  * The model of the pattern State for the model.
- *{@link X} a type of data that is an input, output  or both.
+ * @param <X> a type of data that is an input, output  or both.
  */
-public interface ModelState <X>{
+public interface ModelState<X> {
     /**
      * Set the state ready to be execute.
      */
