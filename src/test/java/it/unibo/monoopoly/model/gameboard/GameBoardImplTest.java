@@ -101,4 +101,11 @@ class GameBoardImplTest {
         assertEquals(PLAYERS_LIST, this.gameBoardImpl.getPlayersList());
     }
 
+    @Test
+    void testGetCellsNames() {
+        assertEquals(List.of("first", "second", "third"), this.gameBoardImpl.getCellsNames());
+        assertNotEquals(List.of("first", "third", "second"), this.gameBoardImpl.getCellsNames());
+        assertTrue(List.of("first" ,"second", "third").size() == this.gameBoardImpl.getCellsNames().size());
+    }
+
 }
