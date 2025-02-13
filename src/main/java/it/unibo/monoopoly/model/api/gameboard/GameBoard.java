@@ -42,4 +42,9 @@ public interface GameBoard {
      */
     List<Player> getPlayersList();
 
+    /**
+     * @return list of names of cells
+     */
+    List<String> getCellsNames();
+
 }
