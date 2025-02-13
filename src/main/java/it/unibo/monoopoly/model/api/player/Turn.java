@@ -6,6 +6,7 @@ import java.util.Optional;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
+import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 
 /**
  * Interface representing the turn of a player.
@@ -60,4 +61,10 @@ public interface Turn {
      * @param state to set.
      */
     void setState(ModelState<?> state);
+    /**
+     * Gets the {@link GameBoard}.
+     * 
+     * @return the {@link GameBoard}.
+     */
+    GameBoard getGameBoard();
 }
