@@ -30,9 +30,12 @@ public class TurnImpl implements Turn {
     private Deck deck;
 
     public TurnImpl(List<String> playersName) {
-        final List<Player> players = playersName.stream().map(name -> (Player) new PlayerImpl(name, START_MONEY_AMOUNT, 0)).toList();
+        final List<Player> players = playersName.stream()
+                .map(name -> (Player) new PlayerImpl(name, START_MONEY_AMOUNT, 0)).toList();
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         this.deck = new DeckImpl();
+        this.actualPlayer = gameBoard.getCurrentPlayer();
+        //TODO initialize state
     }
 
     /**
@@ -61,7 +64,7 @@ public class TurnImpl implements Turn {
         if (this.actualCell.isBuyable()) {
             return this.notary.checkProperty(this.actualPlayer, (Buyable) this.actualCell);
         } else {
-            return Optional.empty(); //TODO manage others cases
+            return Optional.empty(); // TODO manage others cases
         }
     }
 
