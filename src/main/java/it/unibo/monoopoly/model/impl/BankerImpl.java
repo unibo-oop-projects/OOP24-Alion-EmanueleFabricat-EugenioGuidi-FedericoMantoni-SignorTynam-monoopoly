@@ -35,7 +35,7 @@ public class BankerImpl implements Banker {
 
     private boolean haveHouse(final Set<Buyable> properties) {
         return unmortgagedList(properties)
-                .map(p -> (Buildable)p)
+                .map(p -> (Buildable) p)
                 .anyMatch(p -> p.getHousesNumber() != 0);
     }
 
@@ -47,25 +47,25 @@ public class BankerImpl implements Banker {
      * {@inheritDoc}
      */
     @Override
-    public List<Buyable> getPropertiesWithHome(Player player) {
+    public List<Buyable> getPropertiesWithHome(final Player player) {
         return unmortgagedList(player.getProperties())
-                .map(p -> (Buildable)p)
+                .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
-                .map(p -> (Buyable)p)
+                .map(p -> (Buyable) p)
                 .toList();
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<Buyable> getPropertiesMortgageable(Player player) {
-        return Stream.concat( unmortgagedList(player.getProperties())
+    public List<Buyable> getPropertiesMortgageable(final Player player) {
+        return Stream.concat(unmortgagedList(player.getProperties())
                     .filter(p -> !(p instanceof Buildable)),
                 unmortgagedList(player.getProperties())
                     .filter(p -> p instanceof Buildable)
-                    .map(p -> (Buildable)p)
+                    .map(p -> (Buildable) p)
                     .filter(p -> p.getHousesNumber() == 0)
-                    .map(p -> (Buyable)p))
+                    .map(p -> (Buyable) p))
                 .toList();
     }
     /**
@@ -82,5 +82,5 @@ public class BankerImpl implements Banker {
     public void mortgageProperty(final Buyable property, final Player player) {
         player.receive(property.getMortgageValue());
         property.setMortgage();
-    }    
+    }
 }

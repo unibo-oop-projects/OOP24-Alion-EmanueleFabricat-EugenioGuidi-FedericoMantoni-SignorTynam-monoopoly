@@ -18,21 +18,19 @@ public interface Banker {
      * Select the right Operations to pay the amount.
      * 
      * @param player on which to perform the operation.
-     * @param amount to subtract from player.
      * @return the {@link Message} to {@link Turn}.
      */
-    
     Optional<List<Buyable>> selectOperations(Player player);
     /**
      * 
      * @param player from take the list of properties.
-     * @return the {@link List} of the properties with houses.
+     * @return the {@link List} of the properties with houses of the {@link Player}.
      */
     List<Buyable> getPropertiesWithHome(Player player);
     /**
      * 
      * @param player from take the list of properties.
-     * @return the {@link List} of the properties mortgageable.
+     * @return the {@link List} of the properties mortgageable of the {@link Player}.
      */
     List<Buyable> getPropertiesMortgageable(Player player);
     /**
