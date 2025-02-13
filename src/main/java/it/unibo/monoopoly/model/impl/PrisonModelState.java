@@ -1,43 +1,62 @@
 package it.unibo.monoopoly.model.impl;
 
+import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Player;
 
-/**
- * Il giocatore può uscire:
- * 1. Usando una carta "Esci Gratis di Prigione" se ne possiede almeno una.
- * 2. Pagando una multa fissa (ad esempio 50) se ha sufficiente denaro.
- */
-public class PrisonModelState {
+public class PrisonModelState implements ModelState<Boolean, String> {   
 
-    public static final int FINE_AMOUNT = 50;
+    private final Player player;
+    private String message;
 
-    /**
-     * Tenta di far uscire il giocatore dalla prigione.
-     *
-     * @param player il giocatore in prigione.
-     * @return true se il giocatore esce dalla prigione, false altrimenti.
-     */
-    public boolean attemptExitPrison(Player player) {
-        // Se il giocatore non è in prigione, non c'è nulla da fare.
+    public PrisonModelState(Player player) {
+        this.player = player;
+    }
+
+    @Override
+    public void verify() {
+        if (player.isPrisoned()) {
+            message = "You are in prison, you can't move";
+        } else {
+            message = "You are not in prison, you can move";
+        }
+    }
+
+    @Override
+    public void doAction(Boolean useCard){
         if (!player.isPrisoned()) {
-            return true;
+            message = "You are not in prison, you can move";
+            return;
         }
 
-        // 1. Se il giocatore possiede la carta "Esci Gratis", la usa ed esce.
-        if (player.getFreeJailCards() > 0) {
-            player.useGetOutOfJailCard();
-            player.releaseFromPrison();
-            return true;
+        if (useCard != null && useCard) {
+            if (player.getFreeJailCards() > 0) {
+                boolean used = player.useGetOutOfJailCard();
+                if (used) {
+                    message = "You used a get out of jail card";
+                } else {
+                    message = "You don't have any get out of jail card";
+                }
+            } else {
+                message = "Cannot use a get out of jail card, you don't have any";
+            }
+        } else {
+            if (player.isPayable(50)) {
+                player.pay(50);
+                message = "You paid 50 and you are out of prison";
+                player.releaseFromPrison();
+            } else {
+                message = "You can't afford to pay, you risk bankruptcy.";
+            }
         }
+    }
 
-        // 2. Se il giocatore può pagare la multa, la paga ed esce.
-        if (player.isPayable(FINE_AMOUNT)) {
-            player.pay(FINE_AMOUNT);
-            player.releaseFromPrison();
-            return true;
-        }
+    @Override
+    public String getData() {
+        return message;
+    }
 
-        // Altrimenti, il giocatore non riesce a uscire dalla prigione.
-        return false;
+    @Override
+    public void closeState() {
+        
     }
 }
