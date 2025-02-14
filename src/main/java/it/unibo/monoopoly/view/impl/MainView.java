@@ -65,9 +65,7 @@ public class MainView extends AbstractView {
      */
     @Override
     public PanelAdapter getMainPanel() {
-        // TODO To complete when GamePanel will be available.
-        throw new UnsupportedOperationException();
-        // return (/*this.gamePanel*/);
+        return (this.gamePanel);
     }
 
 }
