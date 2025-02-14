@@ -20,6 +20,7 @@ public class ModelBankerState implements ModelState<Optional<Integer>, Optional<
     private final Turn turn;
     private final Banker banker = new BankerImpl();
     private boolean isIndebted;
+    private final int amountToPay;
     /**
      * Constructor of the class,
      * that takes the {@link Turn} reference to perform all necessary state operations,
@@ -27,38 +28,55 @@ public class ModelBankerState implements ModelState<Optional<Integer>, Optional<
      * 
      * @param turn the reference to perform the operations.
      */
-    public ModelBankerState(final Turn turn) {
+    public ModelBankerState(final Turn turn, final int amountToPay) {
         this.turn = turn;
+        this.amountToPay = amountToPay;
+    }
+
+    private Player getPlayer() {
+        return getPlayer();
     }
     /**
      * {@inheritDoc}
+     * In this specific case,
+     * the method verify if the {@link player} have enough money to pay,
+     * and set the relative field.
      */
     @Override
     public boolean verify() {
-        this.isIndebted = turn.getActualPlayer().getMoneyAmount() < 0;
+        if (getPlayer().getMoneyAmount() - this.amountToPay >= 0) {
+            getPlayer().pay(amountToPay);
+        } else {
+            this.isIndebted = true;
+        }
         return this.isIndebted;
     }
     /**
      * {@inheritDoc}
+     * In this specific case,
+     * pay the {@link Player} depending on the property chosen by the player.
      */
     @Override
     public void doAction(final Optional<Integer> propertyChosen) {
         final Cell chosen = this.turn.getGameBoard().getCell(propertyChosen.get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
-            this.turn.getActualPlayer().receive(((Buildable) chosen).sellHouse());
+            getPlayer().receive(((Buildable) chosen).sellHouse());
         } else {
-            this.turn.getActualPlayer().receive(((Buyable) chosen).getMortgageValue());
+            getPlayer().receive(((Buyable) chosen).getMortgageValue());
             ((Buyable) chosen).isMortgaged();
         }
         this.verify();
     }
     /**
      * {@inheritDoc}
+     * In this specific case,
+     * return the {@link List} of {@link Integer} that which correspond to the index of the cell that the player must select,
+     * depending on whether houses need to be sold or properties need to be mortgaged.
      */
     @Override
     public Optional<List<Integer>> getData() {
         if (isIndebted) {
-            return cellToIndex(this.banker.selectOperations(this.turn.getActualPlayer()));
+            return cellToIndex(this.banker.selectOperations(getPlayer()));
         } else {
             return Optional.empty();
         }
@@ -72,11 +90,20 @@ public class ModelBankerState implements ModelState<Optional<Integer>, Optional<
     }
     /**
      * {@inheritDoc}
+     * In this specific case,
+     * set the new {@link ModelState}:
+     * -{@link ModelPrisonState} if the {@link Player} is bankrupt
+     * -{@link ModelBankerState} if the payment isn't enough to pay the amount
+     * -{@link ModelConstructionState} if the payment is enough to pay the amount
      */
     @Override
     public void closeState() {
-        if (isIndebted) {
-            this.turn.setState(new ModelBankerState(turn));
+        if (getPlayer().isBankrupt()) {
+            this.turn.setState(null);
+        } else if (isIndebted) {
+            this.turn.setState(new ModelBankerState(turn, this.amountToPay));
+        } else {
+            this.turn.setState(null);
         }
     }
 }
