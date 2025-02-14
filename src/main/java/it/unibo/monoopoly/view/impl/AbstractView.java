@@ -27,17 +27,7 @@ public abstract class AbstractView implements View {
      * initialize the main frame of a {@link View}.
      */
     public AbstractView() {
-        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(screenSize.width / 2, screenSize.height / 2);
-        mainFrame.setExtendedState(Frame.MAXIMIZED_BOTH);
-        mainFrame.addComponentListener(new ComponentAdapter() {
-
-            @Override
-            public void componentResized(final ComponentEvent e) {
-                getMainPanel().resizeText(mainFrame.getSize());
-            }
-        });
     }
 
     /**
