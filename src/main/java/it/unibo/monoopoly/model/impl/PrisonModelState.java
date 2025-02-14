@@ -13,21 +13,22 @@ public class PrisonModelState implements ModelState<Boolean, String> {
     }
 
     @Override
-    public void verify() {
+    public boolean verify() {
         if (player.isPrisoned()) {
             message = "You are in prison, you can't move";
+            return true;
         } else {
             message = "You are not in prison, you can move";
+            return false;
         }
     }
 
     @Override
-    public void doAction(Boolean useCard){
+    public void doAction(Boolean useCard) {
         if (!player.isPrisoned()) {
             message = "You are not in prison, you can move";
             return;
         }
-
         if (useCard != null && useCard) {
             if (player.getFreeJailCards() > 0) {
                 boolean used = player.useGetOutOfJailCard();
