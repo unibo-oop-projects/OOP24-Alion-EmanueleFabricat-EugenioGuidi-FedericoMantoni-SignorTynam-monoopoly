@@ -2,8 +2,8 @@ package it.unibo.monoopoly.view.impl;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.Toolkit;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,6 +12,8 @@ import java.util.stream.IntStream;
 import javax.swing.JFrame;
 
 import it.unibo.monoopoly.controller.api.MainController;
+import it.unibo.monoopoly.controller.impl.MainControllerImpl;
+import it.unibo.monoopoly.model.impl.player.TurnImpl;
 
 /**
  * Represents the main view component of the application when game starts.
@@ -65,7 +67,11 @@ public class MainView extends AbstractView {
      */
     @Override
     public PanelAdapter getMainPanel() {
-        return (this.gamePanel);
+        return this.gamePanel;
+    }
+
+    public static void main(String[] args) {
+        new MainView(new MainControllerImpl(new TurnImpl(List.of("maurizio")), List.of("franco")), List.of("Mauro"), List.of("Via banana")).display();
     }
 
 }
