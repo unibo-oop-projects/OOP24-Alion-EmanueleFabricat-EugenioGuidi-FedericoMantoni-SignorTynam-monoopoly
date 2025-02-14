@@ -27,7 +27,7 @@ public class GameBoardPanel extends PanelAdapter{
 
     @Override
     protected void panelInit() {
-        setPreferredSize(new Dimension(getHeight(), getHeight()));
+        setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
         /*final URL imgURL = ClassLoader.getSystemResource("/images/gameBoard.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         JLabel gameBoardLabel = new JLabel(icon);
