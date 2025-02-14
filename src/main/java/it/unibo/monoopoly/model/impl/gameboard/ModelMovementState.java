@@ -12,7 +12,7 @@ import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
  * Implementation of {@link ModelState} for the Dices state,
  * used to move the actual {@link Player}.
  */
-public class ModelDicesState implements ModelState<Optional<Integer>, Pair>{
+public class ModelMovementState implements ModelState<Optional<Integer>, Pair>{
 
     private static final int PASS_GO_REWARD = 200;
 
@@ -20,12 +20,12 @@ public class ModelDicesState implements ModelState<Optional<Integer>, Pair>{
     private final Dices dices = new DicesImpl();
 
     /**
-     * Creates a new instance of {@link ModelDicesState}.
+     * Creates a new instance of {@link ModelMovementState}.
      * This state is used to move the current {@link Player} based on the dice result.
      * @param turn used to associate the dices roll state with the specific 
      * next state to execute.
      */
-    public ModelDicesState(final Turn turn) {
+    public ModelMovementState(final Turn turn) {
         this.turn = turn;
     }
 
