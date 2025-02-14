@@ -27,12 +27,6 @@ public class MainPanel extends PanelAdapter {
     }
 
     @Override
-    public void resizeText(Dimension screenSize) {
-        int fontSize = Math.max(12, screenSize.width / 100);
-        textArea.setFont(new Font("Arial", Font.PLAIN, fontSize));
-    }
-
-    @Override
     protected void panelInit() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'panelInit'");
