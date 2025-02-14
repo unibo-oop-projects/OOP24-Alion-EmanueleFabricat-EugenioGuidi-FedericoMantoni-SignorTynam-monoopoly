@@ -197,4 +197,15 @@ public class PlayerImpl implements Player {
     public void releaseFromPrison() {
         this.prisoned = false;
     }
+
+    /**
+     *
+     *{@inheritDoc}
+     */
+    @Override
+    public void changePosition(int position) {
+        this.actualPosition = Optional.of(position)
+            .filter(i -> i >= 0 && i <= 39)
+            .orElseThrow(() -> new IllegalArgumentException("Position must be between 0 and 39"));
+    }
 }

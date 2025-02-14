@@ -110,7 +110,7 @@ public class TurnImpl implements Turn {
      * {@inheritDoc}
      */
     @Override
-    public void setState(ModelState<?> state) {
+    public void setState(ModelState<?, ?> state) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setState'");
     }
@@ -120,6 +120,12 @@ public class TurnImpl implements Turn {
     @Override
     public GameBoard getGameBoard() {
         return this.getGameBoard();
+    }
+
+    @Override
+    public ModelState<?, ?> getCheckActionState() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCheckActionState'");
     }
 
 }

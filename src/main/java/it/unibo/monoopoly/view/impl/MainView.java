@@ -23,6 +23,7 @@ public class MainView extends AbstractView {
     private final List<Color> colors;
     private final Map<Color, String> players;
     private final List<String> nameCells;
+    // private final PanelAdapter mainPanel;
 
     /**
      * Initialize the {@link JFrame} and all the informations needed to show
@@ -41,6 +42,7 @@ public class MainView extends AbstractView {
         // gamePanel = new GamePanel(new MainControllerImpl());
         // this.viewState = new ViewPrisonState();
         // this.getMainFrame.getContentPane().add(gamePanel);
+        // mainPanel = new MainPanel();
     }
 
     /**
