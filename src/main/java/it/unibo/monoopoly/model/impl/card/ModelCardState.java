@@ -9,6 +9,12 @@ import it.unibo.monoopoly.model.impl.gameboard.ModelMovementState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 import it.unibo.monoopoly.utils.Message;
 
+/**
+ * Implementations of {@link ModelState} for the card's phase:
+ * the state will draw the next card,
+ * return the text and depending on the type of action,
+ * it changes the state.
+ */
 public class ModelCardState implements ModelState<Void, String>{
     private final Turn turn;
 
@@ -23,22 +29,38 @@ public class ModelCardState implements ModelState<Void, String>{
     private Card getCard() {
         return getDeck().getActualCard();
     }
-
+    /**
+     * {@inheritDoc}
+     * In this specific case,
+     * this method is useless.
+     */
     @Override
     public boolean verify() {
         return true;
     }
-
+    /**
+     * {@inheritDoc}
+     * In this specific case,
+     * the method draw the next {@link Card}.
+     */
     @Override
     public void doAction(Void empty) {
         getDeck().draw();
     }
-
+    /**
+     * {@inheritDoc}
+     * In this specific case,
+     * return the text of the {@link Card}.
+     */
     @Override
     public String getData() {
         return getDeck().getActualCard().getEffectText();
     }
-
+    /**
+     * {@inheritDoc}
+     * In this case,
+     * depending on the {@link typeOfAction} set the next state.
+     */
     @Override
     public void closeState() {
         ModelState<?, ?> nextState  = null;
