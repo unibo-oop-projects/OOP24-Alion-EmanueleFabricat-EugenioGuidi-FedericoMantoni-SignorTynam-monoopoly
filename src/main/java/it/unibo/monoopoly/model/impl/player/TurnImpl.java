@@ -122,4 +122,10 @@ public class TurnImpl implements Turn {
         return this.getGameBoard();
     }
 
+    @Override
+    public ModelState<?, ?> getCheckActionState() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCheckActionState'");
+    }
+
 }
