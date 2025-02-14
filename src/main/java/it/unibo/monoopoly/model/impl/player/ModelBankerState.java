@@ -16,7 +16,7 @@ import it.unibo.monoopoly.model.impl.BankerImpl;
  * Implementation of {@link ModelState} for the banker state,
  * used to pay an amount to the actual {@link Player}.
  */
-public class ModelBankerState implements ModelState<Optional<List<Integer>>> {
+public class ModelBankerState implements ModelState<Optional<Integer>, Optional<List<Integer>>> {
     private final Turn turn;
     private final Banker banker = new BankerImpl();
     private boolean isIndebted;
@@ -34,15 +34,16 @@ public class ModelBankerState implements ModelState<Optional<List<Integer>>> {
      * {@inheritDoc}
      */
     @Override
-    public void verify() {
-        this.isIndebted = turn.getActualPlayer().getMoneyAmount() < 0; 
+    public boolean verify() {
+        this.isIndebted = turn.getActualPlayer().getMoneyAmount() < 0;
+        return this.isIndebted;
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void doAction(final Optional<List<Integer>> propertyChosen) {
-        final Cell chosen = this.turn.getGameBoard().getCell(propertyChosen.get().get(0));
+    public void doAction(final Optional<Integer> propertyChosen) {
+        final Cell chosen = this.turn.getGameBoard().getCell(propertyChosen.get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             this.turn.getActualPlayer().receive(((Buildable) chosen).sellHouse());
         } else {
@@ -66,14 +67,8 @@ public class ModelBankerState implements ModelState<Optional<List<Integer>>> {
     private Optional<List<Integer>> cellToIndex(final Optional<List<Buyable>> propertyList) {
         return Optional.of(
                 propertyList.get().stream()
-                .map(this::propertyIndexOf)
+                .map(this.turn.getCellsList()::indexOf)
                 .toList());
-    }
-
-    private Integer propertyIndexOf(final Buyable property) {
-        return this.turn.getCellsList().stream()
-                .filter(cell -> cell instanceof Buyable)
-                .toList().indexOf(property);
     }
     /**
      * {@inheritDoc}

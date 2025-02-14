@@ -1,13 +1,16 @@
 package it.unibo.monoopoly.model.api;
 /**
  * The model of the pattern State for the model.
- * @param <X> a type of data that is an input, output  or both.
+ * @param <X> the input data type.
+ * @param <Y> the output data type.
  */
 public interface ModelState<X, Y> {
     /**
      * Set the state ready to be execute.
+     * 
+     * @return a boolean the result of check.
      */
-    void verify();
+    boolean verify();
     /**
      * Execute the state.
      * @param x a possible data to process.
