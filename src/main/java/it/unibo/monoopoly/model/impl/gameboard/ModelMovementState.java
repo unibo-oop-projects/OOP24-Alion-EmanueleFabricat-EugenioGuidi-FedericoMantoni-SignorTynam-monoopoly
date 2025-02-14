@@ -12,12 +12,13 @@ import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
  * Implementation of {@link ModelState} for the Dices state,
  * used to move the actual {@link Player}.
  */
-public class ModelMovementState implements ModelState<Optional<Integer>, Pair>{
+public class ModelMovementState implements ModelState<Void, Pair>{
 
     private static final int PASS_GO_REWARD = 200;
 
     private final Turn turn;
     private final Dices dices = new DicesImpl();
+    private final Optional<Integer> cellIndex;
 
     /**
      * Creates a new instance of {@link ModelMovementState}.
@@ -25,8 +26,9 @@ public class ModelMovementState implements ModelState<Optional<Integer>, Pair>{
      * @param turn used to associate the dices roll state with the specific 
      * next state to execute.
      */
-    public ModelMovementState(final Turn turn) {
+    public ModelMovementState(final Turn turn, final Optional<Integer> cellIndex) {
         this.turn = turn;
+        this.cellIndex = cellIndex;
     }
 
     /**
@@ -34,16 +36,18 @@ public class ModelMovementState implements ModelState<Optional<Integer>, Pair>{
      */
     @Override
     public boolean verify() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'verify'");
+        if(this.cellIndex.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void doAction(final Optional<Integer> cellIndex) {
-        if(cellIndex.isEmpty()) {
+    public void doAction(Void empty) {
+        if(verify()) {
             moveWithDices();
         } else {
-            moveWithCards(cellIndex.get());
+            moveWithCards(cellIndex());
         }
     }
 
@@ -58,20 +62,22 @@ public class ModelMovementState implements ModelState<Optional<Integer>, Pair>{
     }
 
     private void moveWithCards(int cellIndex) {
-        if(cellIndex >= 0){
-            if(!getPlayer().isPrisoned()) {
-                if(cellIndex < getPlayer().getActualPosition()) {
-                    getPlayer().receive(PASS_GO_REWARD);
-                }
+        if(cellIndex() >= 0){
+            if(!getPlayer().isPrisoned() && cellIndex() < getPlayer().getActualPosition()) {
+                getPlayer().receive(PASS_GO_REWARD);
             }
-            movePlayer(cellIndex);
+            movePlayer(cellIndex());
         } else {
-            if(getPlayerPosition() + cellIndex < 0) {
-                movePlayer(getPlayerPosition() + cellIndex + numberOfCells());
+            if(getPlayerPosition() + cellIndex() < 0) {
+                movePlayer(getPlayerPosition() + cellIndex() + numberOfCells());
             } else {
-                movePlayer(getPlayerPosition() + cellIndex);
+                movePlayer(getPlayerPosition() + cellIndex());
             }
         }
+    }
+
+    private int cellIndex() {
+        return this.cellIndex.get();
     }
 
     private int diceResult() {
@@ -91,7 +97,7 @@ public class ModelMovementState implements ModelState<Optional<Integer>, Pair>{
     }
 
     private void movePlayer(final int cellIndex) {
-        getPlayer().changePosition(cellIndex);
+        getPlayer().changePosition(cellIndex());
     }
 
     private boolean hasPassedGo() {
@@ -100,8 +106,7 @@ public class ModelMovementState implements ModelState<Optional<Integer>, Pair>{
 
     @Override
     public Pair getData() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getData'");
+        return this.dices.getDices();
     }
 
     @Override
