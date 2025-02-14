@@ -27,7 +27,7 @@ public class TurnImpl implements Turn {
 
     private Cell actualCell;
     private final Notary notary = new NotaryImpl();
-    private final Player actualPlayer;
+    private Player actualPlayer;
     private final GameBoard gameBoard;
     private final Deck deck;
 
@@ -126,6 +126,12 @@ public class TurnImpl implements Turn {
     public ModelState<?, ?> getCheckActionState() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCheckActionState'");
+    }
+
+    @Override
+    public Deck getDeck() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDeck'");
     }
 
 }
