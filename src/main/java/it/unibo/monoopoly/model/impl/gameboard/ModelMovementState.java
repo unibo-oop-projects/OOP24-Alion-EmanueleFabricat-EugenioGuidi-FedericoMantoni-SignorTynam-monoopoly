@@ -41,25 +41,35 @@ public class ModelMovementState implements ModelState<Optional<Integer>, Pair>{
     @Override
     public void doAction(final Optional<Integer> cellIndex) {
         if(cellIndex.isEmpty()) {
-            this.dices.rollDices();
-            if(hasPassedGo()) {
-                getPlayer().receive(PASS_GO_REWARD);
-                movePlayer((getPlayerPosition() + diceResult()) % numberOfCells());
-            } else {
-                movePlayer(getPlayerPosition() + diceResult());
-            }
-        } else if(cellIndex.get() >= 0){
+            moveWithDices();
+        } else {
+            moveWithCards(cellIndex.get());
+        }
+    }
+
+    private void moveWithDices() {
+        this.dices.rollDices();
+        if(hasPassedGo()) {
+            getPlayer().receive(PASS_GO_REWARD);
+            movePlayer((getPlayerPosition() + diceResult()) % numberOfCells());
+        } else {
+            movePlayer(getPlayerPosition() + diceResult());
+        }
+    }
+
+    private void moveWithCards(int cellIndex) {
+        if(cellIndex >= 0){
             if(!getPlayer().isPrisoned()) {
-                if(cellIndex.get() < getPlayer().getActualPosition()) {
+                if(cellIndex < getPlayer().getActualPosition()) {
                     getPlayer().receive(PASS_GO_REWARD);
                 }
             }
-            movePlayer(cellIndex.get());
+            movePlayer(cellIndex);
         } else {
-            if(getPlayerPosition() + cellIndex.get() < 0) {
-                movePlayer(getPlayerPosition() + cellIndex.get() + numberOfCells());
+            if(getPlayerPosition() + cellIndex < 0) {
+                movePlayer(getPlayerPosition() + cellIndex + numberOfCells());
             } else {
-                movePlayer(getPlayerPosition() + cellIndex.get());
+                movePlayer(getPlayerPosition() + cellIndex);
             }
         }
     }
