@@ -111,8 +111,7 @@ public class ModelMovementState implements ModelState<Void, Pair>{
 
     @Override
     public void closeState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'closeState'");
+        this.turn.setState(this.turn.getCheckActionState());
     }
 
 }
