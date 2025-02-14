@@ -119,7 +119,7 @@ public class TurnImpl implements Turn {
      */
     @Override
     public GameBoard getGameBoard() {
-        return this.getGameBoard();
+        return this.gameBoard;
     }
 
     @Override

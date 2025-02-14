@@ -26,12 +26,6 @@ public class GamePanel extends PanelAdapter{
     }
 
     @Override
-    public void resizeText(Dimension screenSize) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resizeText'");
-    }
-
-    @Override
     protected void panelInit() {
         setLayout(new BorderLayout());
 
