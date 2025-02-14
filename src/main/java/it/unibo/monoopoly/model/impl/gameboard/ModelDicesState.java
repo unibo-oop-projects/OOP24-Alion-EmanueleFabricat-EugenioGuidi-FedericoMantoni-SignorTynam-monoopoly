@@ -39,29 +39,50 @@ public class ModelDicesState implements ModelState<Optional<Integer>, Pair>{
     public void doAction(final Optional<Integer> cellIndex) {
         if(cellIndex.isEmpty()) {
             this.dices.rollDices();
-            if(checkPassGo()) {
-                this.turn.getActualPlayer().receive(PASS_GO_REWARD);
-                movePlayer((getPlayerPosition() + this.dices.getResult()) % this.turn.getCellsList().size());
+            if(hasPassedGo()) {
+                getPlayer().receive(PASS_GO_REWARD);
+                movePlayer((getPlayerPosition() + diceResult()) % numberOfCells());
             } else {
-                movePlayer(getPlayerPosition() + this.dices.getResult());
+                movePlayer(getPlayerPosition() + diceResult());
             }
+        } else if(cellIndex.get() >= 0){
+            if(!getPlayer().isPrisoned()) {
+                if(cellIndex.get() < getPlayer().getActualPosition()) {
+                    getPlayer().receive(PASS_GO_REWARD);
+                }
+            }
+            movePlayer(cellIndex.get());
         } else {
-            if(this.turn.getActualPlayer().isPrisoned()) {
-                movePlayer(cellIndex.get());
+            if(getPlayerPosition() + cellIndex.get() < 0) {
+                movePlayer(getPlayerPosition() + cellIndex.get() + numberOfCells());
+            } else {
+                movePlayer(getPlayerPosition() + cellIndex.get());
             }
         }
     }
 
+    private int diceResult() {
+        return this.dices.getResult();
+    }
+
+    private int numberOfCells() {
+        return this.turn.getCellsList().size();
+    }
+
     private int getPlayerPosition() {
-        return this.turn.getActualPlayer().getActualPosition();
+        return getPlayer().getActualPosition();
+    }
+
+    private Player getPlayer() {
+        return this.turn.getActualPlayer();
     }
 
     private void movePlayer(final int cellIndex) {
-        this.turn.getActualPlayer().changePosition(cellIndex);
+        getPlayer().changePosition(cellIndex);
     }
 
-    private boolean checkPassGo() {
-        return getPlayerPosition() + this.dices.getResult() >= this.turn.getCellsList().size();
+    private boolean hasPassedGo() {
+        return getPlayerPosition() + diceResult() >= numberOfCells();
     }
 
     @Override
