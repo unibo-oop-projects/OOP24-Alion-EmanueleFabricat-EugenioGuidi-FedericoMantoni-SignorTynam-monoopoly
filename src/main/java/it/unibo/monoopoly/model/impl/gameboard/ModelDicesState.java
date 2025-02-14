@@ -33,7 +33,10 @@ public class ModelDicesState implements ModelState<Optional<Integer>, Pair>{
      * {@inheritDoc}
      */
     @Override
-    public void verify() {}
+    public boolean verify() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'verify'");
+    }
 
     @Override
     public void doAction(final Optional<Integer> cellIndex) {
