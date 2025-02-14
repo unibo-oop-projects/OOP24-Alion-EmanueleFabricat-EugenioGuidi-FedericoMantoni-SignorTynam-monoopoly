@@ -61,10 +61,18 @@ public interface Turn {
      * @param state to set.
      */
     void setState(ModelState<?, ?> state);
+
     /**
      * Gets the {@link GameBoard}.
      * 
      * @return the {@link GameBoard}.
      */
     GameBoard getGameBoard();
+
+    /**
+     * 
+     * @return next correct {@link ModelState} to execute the event triggered by a {@link Cell}.
+     */
+    ModelState<?,?> getCheckActionState();
+
 }
