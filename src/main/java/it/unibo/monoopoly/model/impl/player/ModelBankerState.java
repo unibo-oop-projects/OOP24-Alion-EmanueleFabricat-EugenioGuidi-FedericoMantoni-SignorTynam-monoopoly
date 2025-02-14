@@ -43,7 +43,7 @@ public class ModelBankerState implements ModelState<Optional<Integer>, Optional<
      */
     @Override
     public void doAction(final Optional<Integer> propertyChosen) {
-        final Cell chosen = this.turn.getGameBoard().getCell(propertyChosen.get().get(0));
+        final Cell chosen = this.turn.getGameBoard().getCell(propertyChosen.get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             this.turn.getActualPlayer().receive(((Buildable) chosen).sellHouse());
         } else {
