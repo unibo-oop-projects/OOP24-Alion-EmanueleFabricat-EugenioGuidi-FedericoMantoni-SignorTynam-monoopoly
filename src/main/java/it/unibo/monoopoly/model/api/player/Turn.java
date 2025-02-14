@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.ModelState;
+import it.unibo.monoopoly.model.api.card.Deck;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 
@@ -17,32 +18,27 @@ public interface Turn {
      * Executes the move phase of the player's turn.
      */
     void movePhase();
-
     /**
      * Executes the construction phase of the player's turn.
      */
     void constructPhase();
-
     /**
      * Check the relation between the active {@link Player} and the {@link Cell} is on.
      * @return the type of event, if one occurs
      */
     Optional<Event> checkAction();
-
     /**
      * Rolls the dice for the player's turn.
      * 
      * @return the result of the dice roll
      */
     int rollDice();
-
     /**
      * Gets the current phase of the player's turn.
      * 
      * @return the current phase.
      */
     Player getPhase();
-
     /**
      * Gets the actual {@link Player}
      * 
@@ -61,18 +57,25 @@ public interface Turn {
      * @param state to set.
      */
     void setState(ModelState<?, ?> state);
-
     /**
      * Gets the {@link GameBoard}.
      * 
      * @return the {@link GameBoard}.
      */
     GameBoard getGameBoard();
-
     /**
+     * Gets the {@link GameBoard}.
      * 
      * @return next correct {@link ModelState} to execute the event triggered by a {@link Cell}.
      */
     ModelState<?,?> getCheckActionState();
+    /**
+     * Gets the {@link Deck}.
+     * 
+     * @return the {@link Deck}.
+     */
+    Deck getDeck();
+
+
 
 }
