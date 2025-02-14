@@ -3,17 +3,17 @@ package it.unibo.monoopoly.view.impl;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import it.unibo.monoopoly.view.api.GamePanel;
+import it.unibo.monoopoly.view.api.Panel;
 
 /**
  * Pattern Adapter to build a JPanel with personalized methods.
  */
-public abstract class PanelAdapter extends JPanel implements GamePanel {
+public abstract class PanelAdapter extends JPanel implements Panel {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructor in common for all {@link GamePanel}s used.
+     * Constructor in common for all {@link Panel}s used.
      */
     public PanelAdapter() {
         super();
@@ -27,7 +27,7 @@ public abstract class PanelAdapter extends JPanel implements GamePanel {
     }
 
     /**
-     * Initialize the {@link GamePanel} and all its components.
+     * Initialize the {@link Panel} and all its components.
      */
     protected abstract void panelInit();
 

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 /**
  * Interface for personalized methods of the {@link JPanel}s used in the game.
  */
-public interface GamePanel {
+public interface Panel {
 
     /**
      * Resize the text of the {@link JComponent}s containing text when frame is resized.
