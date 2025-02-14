@@ -26,17 +26,11 @@ public class GamePanel extends PanelAdapter{
     }
 
     @Override
-    public void resizeText(Dimension screenSize) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resizeText'");
-    }
-
-    @Override
     protected void panelInit() {
         setLayout(new BorderLayout());
 
-        this.gameBoardPanel = new GameBoardPanel(this.mainFrameWidth, this.mainFrameHeight);
-        this.playerPanel = new PlayerPanel(this.mainFrameWidth, this.mainFrameHeight);
+        this.gameBoardPanel = new GameBoardPanel(this.mainController, this.mainFrameWidth, this.mainFrameHeight);
+        this.playerPanel = new PlayerPanel(this.mainController, this.mainFrameWidth, this.mainFrameHeight);
         this.mainEastPanel.setBackground(Color.GREEN);//devo settare il colore giusto
         this.mainWestPanel.setBackground(Color.GREEN);//devo settare il colore giusto
 
