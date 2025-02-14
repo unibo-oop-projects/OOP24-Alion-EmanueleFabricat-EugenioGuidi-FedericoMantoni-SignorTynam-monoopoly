@@ -110,7 +110,7 @@ public class TurnImpl implements Turn {
      * {@inheritDoc}
      */
     @Override
-    public void setState(ModelState<?> state) {
+    public void setState(ModelState<?, ?> state) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setState'");
     }
