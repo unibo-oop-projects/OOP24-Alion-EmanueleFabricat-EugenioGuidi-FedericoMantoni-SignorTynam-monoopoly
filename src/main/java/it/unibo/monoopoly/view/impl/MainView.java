@@ -10,10 +10,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javax.swing.JFrame;
+import javax.swing.text.View;
 
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.controller.impl.MainControllerImpl;
 import it.unibo.monoopoly.model.impl.player.TurnImpl;
+import it.unibo.monoopoly.view.api.ViewState;
 
 /**
  * Represents the main view component of the application when game starts.
@@ -68,6 +70,15 @@ public class MainView extends AbstractView {
     @Override
     public PanelAdapter getMainPanel() {
         return this.gamePanel;
+    }
+
+    /**
+     * Return the actual {@link ViewState}.
+     * 
+     * @return the actual {@link ViewState}.
+     */
+    public ViewState<?, ?> getViewState() {
+        return this.viewState;
     }
 
     public static void main(String[] args) {

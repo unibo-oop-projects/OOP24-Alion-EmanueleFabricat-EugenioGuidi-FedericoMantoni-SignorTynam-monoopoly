@@ -8,15 +8,17 @@ import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.view.api.ViewState;
 
-public class ControllerBankerState implements ControllerState<Optional<Integer>>{
+public class ControllerBankerState implements ControllerState<Optional<Integer>> {
     MainController mainController;
     ModelState<Optional<Integer>, Optional<List<Integer>>> actualModelState;
     ViewState<Boolean, Optional<List<Integer>>> actualViewState;
 
+    @SuppressWarnings("unchecked")
     public ControllerBankerState(MainController mainController) {
         this.mainController = mainController;
-        this.actualModelState = this.mainController.getModelState();
-        this.actualViewState = this.mainController.getViewState();
+        this.actualModelState = (ModelState<Optional<Integer>, Optional<List<Integer>>>) this.mainController
+                .getModelState();
+        this.actualViewState = (ViewState<Boolean, Optional<List<Integer>>>) this.mainController.getViewState();
     }
 
     @Override
