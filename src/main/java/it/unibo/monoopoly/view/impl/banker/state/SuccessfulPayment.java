@@ -1,23 +1,29 @@
-package it.unibo.monoopoly.view.impl.card.state;
+package it.unibo.monoopoly.view.impl.banker.state;
 
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
 
 import it.unibo.monoopoly.view.impl.PanelAdapter;
 
 public class SuccessfulPayment extends PanelAdapter{
     JTextArea message;
+    ActionListener closeMethod;
+    JButton closeButton;
 
-    public SuccessfulPayment() {
+    public SuccessfulPayment(ActionListener closeMethod) {
         super();
+        this.closeMethod = closeMethod;
     }
 
     @Override
     protected void panelInit() {
         this.setLayout(new BorderLayout());
+        this.closeButton = new JButton("Ok");
+        this.closeButton.addActionListener(closeMethod);
         this.add(new JTextArea("Pagamento effetuato con successo"), BorderLayout.CENTER);
-        this.add(new JButton("Ok"), BorderLayout.SOUTH);
+        this.add(this.closeButton, BorderLayout.SOUTH);
     }
 
 }

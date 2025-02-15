@@ -82,6 +82,11 @@ public class MainView extends AbstractView {
 
     @Override
     public MainController getMainController() {
-        return null;
+        return this.controller;
+    }
+
+    @Override
+    public List<String> getNameCells() {
+        return this.nameCells;
     }
 }

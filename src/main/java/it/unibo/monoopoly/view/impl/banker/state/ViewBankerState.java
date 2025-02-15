@@ -13,7 +13,7 @@ import it.unibo.monoopoly.view.impl.MainView;
 
 public class ViewBankerState implements ViewState<Boolean, Optional<List<Integer>>>{
     private final MainView mainView;
-    private boolean mode;
+    private boolean payOrHouse;
     private JPanel panel;
 
     public ViewBankerState(MainView mainView) {
@@ -22,35 +22,49 @@ public class ViewBankerState implements ViewState<Boolean, Optional<List<Integer
 
     @Override
     public void setMode(Boolean mode) {
-        this.mode = mode;
+        this.payOrHouse = mode;
     }
 
     @Override
     public void visualize(Optional<List<Integer>> cellList) {
         if (cellList.isPresent()) {
-            if (mode) {
+            if (payOrHouse) {
                 
             } else {
 
             }
             
         } else {
-            if (mode) {
-                
+            if (payOrHouse) {
+                this.panel = new SuccessfulPayment(new SimpleExit());
+                this.mainView.getMainFrame().add(panel);
             } else {
-                
+                this.panel = new Bankruptcy(new SimpleExit());
+                this.mainView.getMainFrame().add(panel);
             }
 
         }
     }
 
-    public class exit implements ActionListener {
+    public class CellGiver implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             var button = (JButton)e.getSource();
             String cellName = button.getText();
-            mainView.getMainController().getControllerState().continueState(cellName);
+            int cell = mainView.getNameCells().indexOf(cellName);
+            mainView.getMainFrame().remove(panel);
+            mainView.getMainController().getControllerState().continueState(Optional.of(cell));
+        }
+
+    }
+
+    public class SimpleExit implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            mainView.getMainFrame().remove(panel);
+            mainView.getMainController().getControllerState().continueState(Optional.empty());
         }
 
     }

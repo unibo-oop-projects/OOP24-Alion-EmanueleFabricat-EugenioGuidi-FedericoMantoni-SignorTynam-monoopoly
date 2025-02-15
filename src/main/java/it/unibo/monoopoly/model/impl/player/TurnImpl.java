@@ -30,6 +30,7 @@ public class TurnImpl implements Turn {
     private Player actualPlayer;
     private final GameBoard gameBoard;
     private final Deck deck;
+    private ModelState actualState;
 
     /**
      * Initialize the model and set the correct state of the game to start the first turn.
@@ -41,6 +42,7 @@ public class TurnImpl implements Turn {
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         this.deck = new DeckImpl();
         this.actualPlayer = gameBoard.getCurrentPlayer();
+        this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT);
         //TODO initialize state
     }
 
@@ -86,10 +88,10 @@ public class TurnImpl implements Turn {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public <X, Y>ModelState<X, Y> getState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPhase'");
+        return this.actualState;
     }
     /**
      * {@inheritDoc}

@@ -20,6 +20,7 @@ public class MainControllerImpl implements MainController {
 
     //private final MainView mainView;
     private final Turn model;
+    private ControllerState actualState;
 
     /**
      * Constructor that creates the model (TurnImpl) and the main view.
@@ -32,6 +33,7 @@ public class MainControllerImpl implements MainController {
         // Create the main view passing this controller, players' names, and the cells' names
         /*this.mainView = new MainView(this, playersName, cellsNames);
         this.mainView.display();*/
+        this.actualState =  new ControllerBankerState(this);
     }
 
     /**
@@ -72,14 +74,15 @@ public class MainControllerImpl implements MainController {
     }
 
     @Override
-    public ViewState<?, ?> getViewState() {
+    public <X, Y>ViewState<X, Y> getViewState() {
         //return this.mainView.getState();
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public ControllerState<?> getControllerState() {
-        return null;
+    public <X>ControllerState<X> getControllerState() {
+        return this.actualState;
     }
 
     

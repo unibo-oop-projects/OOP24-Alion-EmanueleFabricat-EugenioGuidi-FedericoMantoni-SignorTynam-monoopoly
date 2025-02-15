@@ -1,5 +1,8 @@
 package it.unibo.monoopoly.view.api;
 
+
+import java.util.List;
+
 import javax.swing.JFrame;
 
 import it.unibo.monoopoly.controller.api.MainController;
@@ -21,5 +24,8 @@ public interface View {
 
     /* */
     MainController getMainController();
+
+    /* */
+    List<String> getNameCells();
 
 }
