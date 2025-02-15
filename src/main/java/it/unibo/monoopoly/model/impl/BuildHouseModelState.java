@@ -7,20 +7,21 @@ import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.api.player.Turn;
 
 public class BuildHouseModelState implements ModelState<Integer, String> {
-    private final Player player;
     private List<Buildable> buildableProperties;
     private String message;
+    private final Turn mainmodel;
 
-    public BuildHouseModelState(Player player) {
-        this.player = player;
+    public BuildHouseModelState(Turn mainModel) {
+        this.mainmodel = mainModel;
     }
 
     @Override
-    public void verify() {
+    public boolean verify() {
         buildableProperties = new ArrayList<>();
-        for (Buyable property : player.getProperties()) {
+        for (Buyable property : mainmodel.getActualPlayer().getProperties()) {
             if (property instanceof Buildable) {
                 buildableProperties.add((Buildable)property);
             }
@@ -36,6 +37,7 @@ public class BuildHouseModelState implements ModelState<Integer, String> {
             }
             message = sb.toString();
         }
+        return false;
     }
 
     @Override
@@ -52,8 +54,8 @@ public class BuildHouseModelState implements ModelState<Integer, String> {
 
         Buildable property = buildableProperties.get(index);
         int cost = property.getHouseCost();
-        if (player.isPayable(cost)) {
-            player.pay(cost);
+        if (mainmodel.getActualPlayer().isPayable(cost)) {
+            mainmodel.getActualPlayer().pay(cost);
             property.buildHouse();
             message = "You built a house on " + property.toString() + ".";
         } else {
