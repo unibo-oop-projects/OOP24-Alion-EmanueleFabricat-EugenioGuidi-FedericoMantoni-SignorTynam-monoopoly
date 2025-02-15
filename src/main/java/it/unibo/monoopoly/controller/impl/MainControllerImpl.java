@@ -72,6 +72,7 @@ public class MainControllerImpl implements MainController {
 
     @Override
     public ViewState<?, ?> getViewState() {
-        return this.mainView.getState();
+        //return this.mainView.getState();
+        return null;
     }
 }

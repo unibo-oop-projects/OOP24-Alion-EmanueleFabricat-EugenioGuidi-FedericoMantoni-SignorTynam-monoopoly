@@ -76,6 +76,7 @@ public class MainView extends AbstractView {
      * @return the actual {@link ViewState}.
      */
     public ViewState<?, ?> getViewState() {
-        return this.viewState;
+        //return this.viewState;
+        return null;
     }
 }
