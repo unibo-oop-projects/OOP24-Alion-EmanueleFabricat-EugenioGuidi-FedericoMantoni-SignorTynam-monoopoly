@@ -23,4 +23,7 @@ public interface MainController {
      */
     ViewState<?, ?> getViewState();
 
+    /* */
+    ControllerState<?> getControllerState();
+
 }

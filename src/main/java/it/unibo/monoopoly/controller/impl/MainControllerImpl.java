@@ -2,6 +2,7 @@ package it.unibo.monoopoly.controller.impl;
 
 import java.util.List;
 
+import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Turn;
@@ -75,4 +76,11 @@ public class MainControllerImpl implements MainController {
         //return this.mainView.getState();
         return null;
     }
+
+    @Override
+    public ControllerState<?> getControllerState() {
+        return null;
+    }
+
+    
 }

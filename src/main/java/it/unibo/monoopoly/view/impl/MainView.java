@@ -79,4 +79,9 @@ public class MainView extends AbstractView {
         //return this.viewState;
         return null;
     }
+
+    @Override
+    public MainController getMainController() {
+        return null;
+    }
 }
