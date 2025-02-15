@@ -34,11 +34,11 @@ public enum Event {
     /**
      * Actions represents having to move a the actual {@link Player}.
      */
-    MOVE,
+    MOVE_CARD,
     /**
      * Actions represents having to pay an amount.
      */
-    PAY,
+    CARD_PAYMENT,
     /**
      * Actions represents having to go to prison the actual {@link Player}. 
      */
@@ -46,6 +46,6 @@ public enum Event {
     /**
      * Actions represents having to receive an amount.
      */
-    RECEIVE
+    RECEIVE_CARD
 
 }
