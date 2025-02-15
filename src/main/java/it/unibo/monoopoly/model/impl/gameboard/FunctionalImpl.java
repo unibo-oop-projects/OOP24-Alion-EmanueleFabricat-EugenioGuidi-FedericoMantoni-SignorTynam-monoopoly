@@ -34,8 +34,8 @@ public class FunctionalImpl extends AbstractCell implements Functional {
      * {@inheritDoc}
      */
     @Override
-    public Message getAction() {
-        return this.action.get();
+    public Optional<Message> getAction() {
+        return this.action;
     }
 
     /**
