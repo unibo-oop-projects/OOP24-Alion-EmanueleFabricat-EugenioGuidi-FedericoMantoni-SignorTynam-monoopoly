@@ -34,11 +34,11 @@ public interface Turn {
      */
     int rollDice();
     /**
-     * Gets the current phase of the player's turn.
+     * Gets the current {@link ModelState}.
      * 
-     * @return the current phase.
+     * @return the current {@link ModelState}.
      */
-    Player getPhase();
+    ModelState<?, ?> getState();
     /**
      * Gets the actual {@link Player}
      * 

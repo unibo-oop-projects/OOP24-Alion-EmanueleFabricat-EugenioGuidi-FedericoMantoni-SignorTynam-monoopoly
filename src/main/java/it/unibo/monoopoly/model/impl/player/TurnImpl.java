@@ -87,7 +87,7 @@ public class TurnImpl implements Turn {
      * {@inheritDoc}
      */
     @Override
-    public Player getPhase() {
+    public ModelState<?, ?> getState() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPhase'");
     }
