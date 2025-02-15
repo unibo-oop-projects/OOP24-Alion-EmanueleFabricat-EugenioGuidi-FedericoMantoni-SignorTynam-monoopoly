@@ -42,7 +42,7 @@ public class MainView extends AbstractView {
         
         this.controller = controller;
         this.colors = super.getColors();
-        this.players = IntStream.range(0, colors.size()).boxed()
+        this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth());
