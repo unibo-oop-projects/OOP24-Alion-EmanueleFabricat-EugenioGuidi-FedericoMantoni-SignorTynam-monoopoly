@@ -16,14 +16,14 @@ public interface MainController {
     /**
      * @return the actual {@link ModelState}
      */
-    ModelState<?, ?> getModelState();
+    <X, Y>ModelState<X, Y> getModelState();
 
     /**
      * @return the actual {@link ViewStatus}
      */
-    ViewState<?, ?> getViewState();
+    <X, Y>ViewState<X, Y> getViewState();
 
     /* */
-    ControllerState<?> getControllerState();
+    <X>ControllerState<X> getControllerState();
 
 }

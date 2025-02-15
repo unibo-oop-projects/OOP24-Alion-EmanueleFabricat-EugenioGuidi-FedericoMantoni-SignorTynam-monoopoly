@@ -38,7 +38,7 @@ public interface Turn {
      * 
      * @return the current {@link ModelState}.
      */
-    ModelState<?, ?> getState();
+    <X, Y>ModelState<X, Y> getState();
     /**
      * Gets the actual {@link Player}
      * 

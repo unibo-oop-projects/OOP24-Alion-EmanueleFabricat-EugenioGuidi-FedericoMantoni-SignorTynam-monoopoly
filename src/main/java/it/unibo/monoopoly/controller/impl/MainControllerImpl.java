@@ -67,7 +67,7 @@ public class MainControllerImpl implements MainController {
     }
 
     @Override
-    public ModelState<?, ?> getModelState() {
+    public <X, Y> ModelState<X, Y> getModelState() {
         return this.model.getState();
     }
 

@@ -13,12 +13,10 @@ public class ControllerUnmortgageState implements ControllerState<Optional<Integ
     ModelState<Optional<Integer>, Optional<List<Integer>>> actualModelState;
     ViewState<Boolean, Optional<List<Integer>>> actualViewState;
 
-    @SuppressWarnings("unchecked")
     public ControllerUnmortgageState(MainController mainController) {
         this.mainController = mainController;
-        this.actualModelState = (ModelState<Optional<Integer>, Optional<List<Integer>>>) this.mainController
-                .getModelState();
-        this.actualViewState = (ViewState<Boolean, Optional<List<Integer>>>) this.mainController.getViewState();
+        this.actualModelState = this.mainController.getModelState();
+        this.actualViewState = this.mainController.getViewState();
     }
 
     @Override

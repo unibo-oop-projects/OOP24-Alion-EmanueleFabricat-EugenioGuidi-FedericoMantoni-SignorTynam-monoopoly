@@ -10,11 +10,10 @@ public class ControllerCardState implements ControllerState<Void> {
     ModelState<Void, String> actualModelState;
     ViewState<Boolean, String> actualViewState;
 
-    @SuppressWarnings("unchecked")
     public ControllerCardState(MainController mainController) {
         this.mainController = mainController;
-        this.actualModelState = (ModelState<Void, String>) this.mainController.getModelState();
-        this.actualViewState = (ViewState<Boolean, String>) this.mainController.getViewState();
+        this.actualModelState = this.mainController.getModelState();
+        this.actualViewState = this.mainController.getViewState();
     }
 
     @Override
