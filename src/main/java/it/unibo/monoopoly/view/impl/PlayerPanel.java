@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.view.impl;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
@@ -20,8 +21,8 @@ public class PlayerPanel extends PanelAdapter{
 
     @Override
     protected void panelInit() {
-        setPreferredSize(new Dimension(this.mainFrameWidth - this.mainFrameHeight, this.mainFrameHeight));
-        add(new JLabel("SPERO VADA BENE PLAYER"));
+        setBackground(Color.BLUE);
+        add(new JLabel("PLAYER"));
     }
 
 }

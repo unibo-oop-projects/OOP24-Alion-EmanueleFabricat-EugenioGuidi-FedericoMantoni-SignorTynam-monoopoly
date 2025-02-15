@@ -49,9 +49,7 @@ public class MainView extends AbstractView {
         this.nameCells = nameCells;
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth());
         // this.viewState = new ViewPrisonState();
-        // this.getMainFrame.getContentPane().add(gamePanel);
-        // mainPanel = new MainPanel();
-        mainFrame().add(this.gamePanel);
+        mainFrame().getContentPane().add(gamePanel);
 
         mainFrame().setVisible(true);
 
@@ -68,10 +66,6 @@ public class MainView extends AbstractView {
     @Override
     public PanelAdapter getMainPanel() {
         return this.gamePanel;
-    }
-
-    public static void main(String[] args) {
-        new MainView(new MainControllerImpl(new TurnImpl(List.of("maurizio")), List.of("franco")), List.of("Mauro"), List.of("Via banana")).display();
     }
 
 }

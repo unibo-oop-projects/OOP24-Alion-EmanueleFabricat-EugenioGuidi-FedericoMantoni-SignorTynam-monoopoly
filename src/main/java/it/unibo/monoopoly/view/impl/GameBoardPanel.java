@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.view.impl;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
@@ -21,12 +22,13 @@ public class GameBoardPanel extends PanelAdapter{
 
     @Override
     protected void panelInit() {
-        setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
+
         /*final URL imgURL = ClassLoader.getSystemResource("/images/gameBoard.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         JLabel gameBoardLabel = new JLabel(icon);
         add(gameBoardLabel);*/
-        add(new JLabel("SPERO VADA BENE MONOPOLY"));
+        setBackground(Color.RED);
+        add(new JLabel("MONOPOLY"));
     }
 
 }

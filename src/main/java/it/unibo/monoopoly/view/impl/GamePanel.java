@@ -40,13 +40,15 @@ public class GamePanel extends PanelAdapter{
 
         this.mainCenterPanel.setLayout(new BorderLayout());
         this.mainCenterPanel.add(this.gameBoardPanel, BorderLayout.WEST);
-        this.mainCenterPanel.add(this.playerPanel, BorderLayout.CENTER);
+        this.mainCenterPanel.add(this.playerPanel, BorderLayout.EAST);
 
         Dimension eastWeastDimension = new Dimension(((getWidth() - ((getHeight() * 3) / 2))) / 2 , getHeight());
 
         this.mainEastPanel.setPreferredSize(eastWeastDimension);
         this.mainWestPanel.setPreferredSize(eastWeastDimension);
-        this.mainCenterPanel.setPreferredSize(new Dimension(getHeight() / 2, getHeight()));
+        this.gameBoardPanel.setPreferredSize(new Dimension(getHeight(), getHeight()));
+        this.playerPanel.setPreferredSize(new Dimension(getHeight() / 2, getHeight()));
+        this.mainCenterPanel.setPreferredSize(new Dimension((getHeight() / 2) + getHeight(), getHeight()));
 
     }
 
