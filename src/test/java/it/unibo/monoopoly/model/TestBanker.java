@@ -42,7 +42,6 @@ public class TestBanker {
      */
     @Test
     void testOperations() {
-        -
     }
     
 }

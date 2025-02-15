@@ -3,9 +3,11 @@ package it.unibo.monoopoly.controller.impl;
 import java.util.List;
 
 import it.unibo.monoopoly.controller.api.MainController;
+import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.PrisonModelState;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
+import it.unibo.monoopoly.view.api.ViewState;
 import it.unibo.monoopoly.view.impl.GameViewState;
 import it.unibo.monoopoly.view.impl.MainPanel;
 import it.unibo.monoopoly.view.impl.MainView;
@@ -61,5 +63,15 @@ public class MainControllerImpl implements MainController {
             // Simulate input: for example, select index 0 (the first property)
             buildController.continueState(0);
         }
+    }
+
+    @Override
+    public ModelState<?, ?> getModelState() {
+        return this.model.getState();
+    }
+
+    @Override
+    public ViewState<?, ?> getViewState() {
+        return this.mainView.getState();
     }
 }
