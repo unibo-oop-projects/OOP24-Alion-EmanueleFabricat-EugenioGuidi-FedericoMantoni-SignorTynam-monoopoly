@@ -20,12 +20,6 @@ public class GameBoardPanel extends PanelAdapter{
     }
 
     @Override
-    public void resizeText(Dimension screenSize) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resizeText'");
-    }
-
-    @Override
     protected void panelInit() {
         setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
         /*final URL imgURL = ClassLoader.getSystemResource("/images/gameBoard.jpg");

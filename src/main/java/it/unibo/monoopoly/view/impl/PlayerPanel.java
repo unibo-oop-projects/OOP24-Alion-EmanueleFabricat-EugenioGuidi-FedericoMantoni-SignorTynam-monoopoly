@@ -19,12 +19,6 @@ public class PlayerPanel extends PanelAdapter{
     }
 
     @Override
-    public void resizeText(Dimension screenSize) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resizeText'");
-    }
-
-    @Override
     protected void panelInit() {
         setPreferredSize(new Dimension(this.mainFrameWidth - this.mainFrameHeight, this.mainFrameHeight));
         add(new JLabel("SPERO VADA BENE PLAYER"));

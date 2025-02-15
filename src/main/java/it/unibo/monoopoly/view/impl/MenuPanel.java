@@ -82,12 +82,12 @@ public class MenuPanel extends PanelAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
+    /*@Override
     public void resizeText(final Dimension frameSize) {
         this.monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / TITLE_RATIO));
         this.start.setFont(new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / BUTTON_RATIO));
         this.playerSelection.resizeText(frameSize);
-    }
+    }*/
 
     /*private Font getPersonalizedFont(final Component c) {
         // TODO Auto-generated method stub
