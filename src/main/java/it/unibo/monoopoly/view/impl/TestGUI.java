@@ -2,6 +2,7 @@ package it.unibo.monoopoly.view.impl;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -13,25 +14,14 @@ import it.unibo.monoopoly.model.impl.player.TurnImpl;
 
 public class TestGUI extends JFrame{
 
-    JPanel gamePanel;
-
-    public TestGUI() {
-        /*final MainController controller = new MainControllerImpl(new TurnImpl(List.of("maurizio")), List.of("franco"));*/
-
-        Dimension screeDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(screeDimension);
-        setResizable(false);
-        setUndecorated(true);
-
-        this.gamePanel = new GamePanel(/*controller, */ getHeight(), getWidth());
-        add(this.gamePanel);
-
-        setVisible(true);
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
     public static void main(String[] strg) {
-        new TestGUI();
+        List<String> lista = new ArrayList<>();
+        lista.add("ciao");
+        lista.add("lol");
+        List<String> lis = new ArrayList<>();
+        lis.add("Franco");
+        lis.add("Luca");
+        final MainController controller = new MainControllerImpl(new TurnImpl(lista), lis);
+        new MainView(controller, lista, lis);
     }
 }
