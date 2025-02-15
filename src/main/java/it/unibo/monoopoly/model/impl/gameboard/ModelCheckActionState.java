@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.impl.gameboard;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.commons.lang3.tuple.Triple;
@@ -12,13 +13,17 @@ import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.Functional;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
+import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.impl.NotaryImpl;
+import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 
-public class ModelCheckActionState implements ModelState<Optional<Boolean>, Triple<Event, Integer, String>> {
+public class ModelCheckActionState implements ModelState<Optional<Boolean>, Optional<Triple<Event, Integer, String>>> {
 
+    private static final String BANK = "Banca";
     private final Turn mainModel;
     private final Notary notary = new NotaryImpl();
     private boolean needInput;
+    private boolean isBuyableCell;
     private Optional<Event> actualEvent;
 
     public ModelCheckActionState(Turn mainModel) {
@@ -28,40 +33,78 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Trip
     @Override
     public boolean verify() {
         this.needInput = isActionBuy();
+        this.isBuyableCell = getActualCell().isBuyable();
+        if (needInput) {
+            this.actualEvent = Optional.of(Event.BUY_PROPERTY);
+        }
         return this.needInput;
     }
 
     @Override
     public void doAction(Optional<Boolean> choice) {
-        final Player actualPlayer = mainModel.getActualPlayer();
         if (choice.isEmpty()) {
             if (getActualCell().isBuyable()) {
                 checkBuyedProperty();
             } else {
                 checkFunctionalCell();
             }
+        } else {
+            handleBuyProperty(choice.get());
         }
     }
 
-    
     @Override
-    public Triple<Event, Integer, String> getData() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getData'");
+    public Optional<Triple<Event, Integer, String>> getData() {
+        if (actualEvent.isEmpty()) {
+            return Optional.empty();
+        } else if (isBuyableCell) {
+            return handleBuyableData();
+        } else {
+            return handleFunctionalData();
+        }
     }
-    
+
     @Override
     public void closeState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'closeState'");
+        if(actualEvent.equals(Optional.empty())) {
+            this.mainModel.setState(new BuildHouseModelState(mainModel));
+        } else {
+            this.mainModel.setState(
+                switch (this.actualEvent.get()) {
+                    case RENT_PAYMENT -> new ModelBankerState(mainModel, ((Buyable) getActualCell()).getRentalValue());
+                    case TAX_PAYMENT -> new ModelBankerState(mainModel, ((Functional)getActualCell()).getAction().get().data().get());
+                    case BUY_PROPERTY -> new ModelBankerState(mainModel, ((Buyable)getActualCell()).getCost());
+                    default -> throw new IllegalStateException("Card event or unsupported event was insert");
+                }
+            );
+        }
     }
-    
+
+    private Optional<Triple<Event, Integer, String>> handleFunctionalData() {
+        final Functional cell = (Functional) getActualCell();
+        return switch (this.actualEvent.get()) {
+            case TAX_PAYMENT -> Optional.of(Triple.of(this.actualEvent.get(), cell.getAction().get().data().get(), BANK));
+            case DRAW -> Optional.empty();
+            case PRISON -> Optional.empty();
+            default -> throw new IllegalStateException("A Functional cell cannot trigger this type of event");
+        };
+    }
+
+    private Optional<Triple<Event, Integer, String>> handleBuyableData() {
+        final Buyable cell = (Buyable) getActualCell();
+        return switch (this.actualEvent.get()) {
+            case RENT_PAYMENT ->
+                Optional.of(Triple.of(this.actualEvent.get(), cell.getRentalValue(), cell.getOwner().get().getName()));
+            case BUY_PROPERTY -> Optional.of(Triple.of(Event.BUY_PROPERTY, cell.getCost(), cell.getName()));
+            default -> throw new IllegalStateException("A Buyable cell cannot trigger this type of event");
+        };
+    }
+
     private void checkFunctionalCell() {
         final Functional functionalCell = (Functional) getActualCell();
-        this.actualEvent = switch (functionalCell.getAction().typeOfAction()) {
-            case PRISON -> Optional.of(Event.PRISON);
-            case 
-
+        this.actualEvent = functionalCell.getAction().map(m -> m.typeOfAction());
+        if (actualEvent.equals(Optional.of(Event.PRISON))) {
+            getActualPlayer().setPrisoned();
         }
     }
 
@@ -69,26 +112,52 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Trip
         final Buyable buyableCell = (Buyable) getActualCell();
         if (checkRentPayment(buyableCell)) {
             this.actualEvent = Optional.of(Event.RENT_PAYMENT);
+            payOwner(buyableCell);
         } else {
             this.actualEvent = Optional.empty();
         }
     }
 
+    private void payOwner(final Buyable buyableCell) {
+        buyableCell.getOwner().get().receive(buyableCell.getRentalValue());
+    }
+
     private boolean isActionBuy() {
         if (getActualCell().isBuyable()) {
             final Buyable buyableCell = (Buyable) getActualCell();
-            return buyableCell.isAvailable() && mainModel.getActualPlayer().isPayable(buyableCell.getCost());
+            return buyableCell.isAvailable() && getActualPlayer().isPayable(buyableCell.getCost());
         } else {
             return false;
         }
     }
 
     private Cell getActualCell() {
-        return mainModel.getGameBoard().getCell(mainModel.getActualPlayer().getActualPosition());
+        return mainModel.getGameBoard().getCell(getActualPlayer().getActualPosition());
     }
 
     private boolean checkRentPayment(Buyable cell) {
-        return !cell.isMortgaged() && !cell.getOwner().get().equals(mainModel.getActualPlayer());
+        return !cell.isMortgaged() && !cell.getOwner().get().equals(getActualPlayer());
+    }
+
+    private Player getActualPlayer() {
+        return getActualPlayer();
+    }
+
+    private void buyProperty(final Player player, final Buyable cell) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(cell);
+        if (cell.isAvailable()) {
+            cell.setOwner(Optional.of(player));
+            player.addProperty(cell);
+        } else {
+            throw new IllegalStateException("Property must be owned by the bank to be buyable");
+        }
+    }
+
+    private void handleBuyProperty(final boolean buy) {
+        if (buy) {
+            buyProperty(getActualPlayer(), (Buyable) getActualCell());
+        }
     }
 
 }
