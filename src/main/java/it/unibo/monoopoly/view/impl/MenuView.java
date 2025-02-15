@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.view.impl;
 
+import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.controller.api.MenuController;
 
 /**
@@ -31,6 +32,11 @@ public class MenuView extends AbstractView {
     @Override
     public PanelAdapter getMainPanel() {
         return this.menuPanel;
+    }
+
+    @Override
+    public MainController getMainController() {
+        return null;
     }
 
 }

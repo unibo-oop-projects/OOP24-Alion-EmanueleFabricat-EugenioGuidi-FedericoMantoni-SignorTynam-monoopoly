@@ -2,10 +2,13 @@ package it.unibo.monoopoly.controller.impl;
 
 import java.util.List;
 
+import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
+import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.PrisonModelState;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
+import it.unibo.monoopoly.view.api.ViewState;
 import it.unibo.monoopoly.view.impl.GameViewState;
 import it.unibo.monoopoly.view.impl.MainPanel;
 import it.unibo.monoopoly.view.impl.MainView;
@@ -15,7 +18,7 @@ import it.unibo.monoopoly.view.impl.MainView;
  */
 public class MainControllerImpl implements MainController {
 
-    private final MainView mainView;
+    //private final MainView mainView;
     private final Turn model;
 
     /**
@@ -27,8 +30,8 @@ public class MainControllerImpl implements MainController {
         this.model = model;
         final List<String> cellsNames = model.getGameBoard().getCellsNames();
         // Create the main view passing this controller, players' names, and the cells' names
-        this.mainView = new MainView(this, playersName, cellsNames);
-        this.mainView.display();
+        /*this.mainView = new MainView(this, playersName, cellsNames);
+        this.mainView.display();*/
     }
 
     /**
@@ -41,7 +44,7 @@ public class MainControllerImpl implements MainController {
      */
     @Override
     public void startTurn() {
-        // Get the MainPanel from the view and create the GameViewState
+        /*// Get the MainPanel from the view and create the GameViewState
         MainPanel mainPanel = (MainPanel) mainView.getMainPanel();
         GameViewState viewState = new GameViewState(mainPanel);
         
@@ -60,6 +63,24 @@ public class MainControllerImpl implements MainController {
             buildController.startState();
             // Simulate input: for example, select index 0 (the first property)
             buildController.continueState(0);
-        }
+        }*/
     }
+
+    @Override
+    public <X, Y> ModelState<X, Y> getModelState() {
+        return this.model.getState();
+    }
+
+    @Override
+    public ViewState<?, ?> getViewState() {
+        //return this.mainView.getState();
+        return null;
+    }
+
+    @Override
+    public ControllerState<?> getControllerState() {
+        return null;
+    }
+
+    
 }

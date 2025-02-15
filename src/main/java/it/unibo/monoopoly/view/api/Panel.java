@@ -10,10 +10,4 @@ import javax.swing.JPanel;
  */
 public interface Panel {
 
-    /**
-     * Resize the text of the {@link JComponent}s containing text when frame is resized.
-     * @param screenSize the size of the screen of the device where runs the application
-     */
-    void resizeText(Dimension screenSize);
-
 }

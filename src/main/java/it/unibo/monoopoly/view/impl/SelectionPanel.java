@@ -66,11 +66,6 @@ public class SelectionPanel extends PanelAdapter {
         this.setVisible(true);
     }
 
-    @Override
-    public void resizeText(final Dimension screenSize) {
-        //TODO Implementare dichiarando componenti come campi o con Name
-    }
-
     /**
      * {@inheritDoc}
      */

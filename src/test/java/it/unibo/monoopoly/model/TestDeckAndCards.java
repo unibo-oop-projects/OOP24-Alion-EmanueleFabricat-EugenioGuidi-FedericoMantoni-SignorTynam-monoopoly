@@ -25,7 +25,7 @@ class TestDeckAndCards {
     private final static int NUMBER_OF_RECEIVE = 10;
     private final static int NUMBER_OF_ALL_CARDS = 31;
     /**
-     * Initialization for the test
+     * Initialization for the test.
      */
     @BeforeEach
     void init(){

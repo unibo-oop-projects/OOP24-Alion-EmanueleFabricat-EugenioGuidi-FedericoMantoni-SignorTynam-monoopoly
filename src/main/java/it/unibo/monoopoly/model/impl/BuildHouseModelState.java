@@ -23,19 +23,25 @@ public class BuildHouseModelState implements ModelState<Integer, String> {
         buildableProperties = new ArrayList<>();
         for (Buyable property : mainmodel.getActualPlayer().getProperties()) {
             if (property instanceof Buildable) {
-                buildableProperties.add((Buildable)property);
+                buildableProperties.add((Buildable) property);
             }
         }
-
         if (buildableProperties.isEmpty()) {
             message = "You don't have any property to build on";
+            return false;
         } else {
             StringBuilder sb = new StringBuilder("Select the index of the property to build a house on:\n");
             for (int i = 0; i < buildableProperties.size(); i++) {
                 Buildable b = buildableProperties.get(i);
-                sb.append(i).append(" -> ").append(b.toString()).append(" (House cost: ").append(b.getHouseCost()).append(")\n");
+                sb.append(i)
+                  .append(" -> ")
+                  .append(b.toString())
+                  .append(" (House cost: ")
+                  .append(b.getHouseCost())
+                  .append(")\n");
             }
             message = sb.toString();
+            return true;
         }
         return false;
     }
@@ -46,12 +52,10 @@ public class BuildHouseModelState implements ModelState<Integer, String> {
             message = "You don't have any property to build on";
             return;
         }
-
         if (index < 0 || index >= buildableProperties.size()) {
             message = "Invalid index";
             return;
         }
-
         Buildable property = buildableProperties.get(index);
         int cost = property.getHouseCost();
         if (mainmodel.getActualPlayer().isPayable(cost)) {
