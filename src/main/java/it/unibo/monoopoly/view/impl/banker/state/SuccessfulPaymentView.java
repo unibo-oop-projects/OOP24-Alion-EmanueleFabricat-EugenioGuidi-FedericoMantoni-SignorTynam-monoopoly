@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 
 import it.unibo.monoopoly.view.impl.PanelAdapter;
 
-public class SuccessfulPayment extends PanelAdapter{
+public class SuccessfulPaymentView extends PanelAdapter{
     JTextArea message;
     ActionListener closeMethod;
     JButton closeButton;
 
-    public SuccessfulPayment(ActionListener closeMethod) {
+    public SuccessfulPaymentView(ActionListener closeMethod) {
         super();
         this.closeMethod = closeMethod;
     }

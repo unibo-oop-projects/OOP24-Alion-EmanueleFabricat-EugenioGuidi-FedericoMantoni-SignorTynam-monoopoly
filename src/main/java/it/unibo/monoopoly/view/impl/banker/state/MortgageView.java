@@ -11,12 +11,12 @@ import javax.swing.JTextArea;
 
 import it.unibo.monoopoly.view.impl.PanelAdapter;
 
-public class SellHouse extends PanelAdapter{
+public class MortgageView extends PanelAdapter{
     ActionListener closeMethod;
     List<String> cellList;
     JPanel innerPanel;
 
-    public SellHouse(ActionListener closeMethod, List<String> cellList) {
+    public MortgageView(ActionListener closeMethod, List<String> cellList) {
         super();
         this.closeMethod = closeMethod;
         this.cellList = cellList;
@@ -27,7 +27,7 @@ public class SellHouse extends PanelAdapter{
         this.innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
         this.innerPanel.setLayout(new GridLayout(0, cellList.size()));
-        this.add(new JTextArea("Scegli una proprietà su cui vendere una casa"), BorderLayout.NORTH);
+        this.add(new JTextArea("Scegli una proprietà da ipotecare"), BorderLayout.NORTH);
         for (String string : cellList) {
             JButton j = new JButton(string);
             this.innerPanel.add(j, BorderLayout.CENTER);
@@ -35,5 +35,4 @@ public class SellHouse extends PanelAdapter{
         }
         this.add(innerPanel, BorderLayout.CENTER);
     }
-
 }

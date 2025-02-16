@@ -8,12 +8,12 @@ import javax.swing.JTextArea;
 
 import it.unibo.monoopoly.view.impl.PanelAdapter;
 
-public class Bankruptcy extends PanelAdapter{
+public class BankruptcyView extends PanelAdapter{
     JTextArea message;
     ActionListener closeMethod;
     JButton closeButton;
 
-    public Bankruptcy(ActionListener closeMethod) {
+    public BankruptcyView(ActionListener closeMethod) {
         super();
         this.closeMethod = closeMethod;
     }

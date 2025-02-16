@@ -28,7 +28,7 @@ public class TestBanker extends JFrame{
         cells.add(0);
         final MainController controller = new MainControllerImpl(new TurnImpl(lista), lis);        
         state = new ViewBankerState(new MainView(controller, lista, lis));
-        state.setMode(true);
+        state.setMode(false);
         state.visualize(Optional.of(cells));
     }
 

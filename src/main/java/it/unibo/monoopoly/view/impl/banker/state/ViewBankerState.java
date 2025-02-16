@@ -29,22 +29,18 @@ public class ViewBankerState implements ViewState<Boolean, Optional<List<Integer
     public void visualize(Optional<List<Integer>> cellList) {
         if (cellList.isPresent()) {
             if (payOrHouse) {
-                this.panel = new SellHouse(new CellGiver(), intToTextCell(cellList.get()));
-                this.mainView.getMainFrame().add(panel);
+                this.panel = new SellHouseView(new CellGiver(), intToTextCell(cellList.get()));
             } else {
-
+                this.panel = new MortgageView(new CellGiver(), intToTextCell(cellList.get()));
             }
-
         } else {
             if (payOrHouse) {
-                this.panel = new SuccessfulPayment(new SimpleExit());
-                this.mainView.getMainFrame().add(panel);
+                this.panel = new SuccessfulPaymentView(new SimpleExit());
             } else {
-                this.panel = new Bankruptcy(new SimpleExit());
-                this.mainView.getMainFrame().add(panel);
+                this.panel = new BankruptcyView(new SimpleExit());
             }
-
         }
+        this.mainView.getMainFrame().add(panel);
     }
 
     private List<String> intToTextCell(List<Integer> cellList) {
