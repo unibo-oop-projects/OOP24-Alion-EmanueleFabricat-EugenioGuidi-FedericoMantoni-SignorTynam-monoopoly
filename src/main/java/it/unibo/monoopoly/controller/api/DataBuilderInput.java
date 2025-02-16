@@ -3,6 +3,7 @@ package it.unibo.monoopoly.controller.api;
 import java.util.List;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.controller.impl.DataInput;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 /**
@@ -55,5 +56,5 @@ public interface DataBuilderInput {
      * 
      * @return
      */
-    DataBuilderInput build();
+    DataInput build();
 }

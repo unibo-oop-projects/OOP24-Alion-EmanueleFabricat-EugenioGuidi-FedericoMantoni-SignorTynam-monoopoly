@@ -7,7 +7,7 @@ import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.api.DataBuilderInput;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
-public class DataBuilderInputImpl implements DataBuilderInput{    
+public class DataBuilderInputImpl implements DataBuilderInput {
     Optional<Event> event;
     Optional<String> nameOfProperty;
     Optional<String> nameOfPlayer;
@@ -54,13 +54,14 @@ public class DataBuilderInputImpl implements DataBuilderInput{
 
     @Override
     public DataBuilderInput cellList(final List<Integer> list) {
-        this.cellList =  Optional.of(list);
+        this.cellList = Optional.of(list);
         return this;
     }
 
     @Override
-    public DataBuilderInput build() {
-        return this;
+    public DataInput build() {
+        return new DataInput(this.event, this.nameOfProperty, this.nameOfPlayer, this.dices, this.setMode1,
+                this.setMode2, this.cellList);
     }
 
 }
