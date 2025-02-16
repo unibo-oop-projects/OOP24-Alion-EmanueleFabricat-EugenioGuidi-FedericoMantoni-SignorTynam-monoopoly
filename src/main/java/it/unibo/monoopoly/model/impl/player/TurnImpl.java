@@ -78,7 +78,7 @@ public class TurnImpl implements Turn {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public <X, Y>ModelState<X, Y> getState() {
+    public ModelState getState() {
         return this.actualState;
     }
     /**
@@ -100,7 +100,7 @@ public class TurnImpl implements Turn {
      * {@inheritDoc}
      */
     @Override
-    public void setState(ModelState<?, ?> state) {
+    public void setState(ModelState state) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setState'");
     }
