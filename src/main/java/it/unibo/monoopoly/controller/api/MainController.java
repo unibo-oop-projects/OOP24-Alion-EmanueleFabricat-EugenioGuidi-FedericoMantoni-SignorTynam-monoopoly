@@ -31,8 +31,4 @@ public interface MainController {
 
     /* */
     DataInput getDataInput();
-
-    /* */
-    DataOutput getDataOutput();
-
 }
