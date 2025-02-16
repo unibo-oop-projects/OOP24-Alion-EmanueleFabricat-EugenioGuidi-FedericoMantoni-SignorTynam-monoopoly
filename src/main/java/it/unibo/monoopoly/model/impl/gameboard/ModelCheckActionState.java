@@ -15,6 +15,7 @@ import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.impl.NotaryImpl;
+import it.unibo.monoopoly.model.impl.card.ModelCardState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 
 public class ModelCheckActionState implements ModelState<Optional<Boolean>, Optional<Triple<Event, Integer, String>>> {
@@ -74,6 +75,8 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
                     case RENT_PAYMENT -> new ModelBankerState(mainModel, ((Buyable) getActualCell()).getRentalValue());
                     case TAX_PAYMENT -> new ModelBankerState(mainModel, ((Functional)getActualCell()).getAction().get().data().get());
                     case BUY_PROPERTY -> new ModelBankerState(mainModel, ((Buyable)getActualCell()).getCost());
+                    case DRAW -> new ModelCardState(mainModel);
+                    case PRISON -> new ModelMovementState(mainModel, Optional.empty());
                     default -> throw new IllegalStateException("Card event or unsupported event was insert");
                 }
             );
