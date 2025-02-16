@@ -3,17 +3,18 @@ package it.unibo.monoopoly.model.impl.gameboard;
 import java.util.Optional;
 
 import it.unibo.monoopoly.model.api.gameboard.Dices;
+import it.unibo.monoopoly.controller.impl.DataOutput;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
-import it.unibo.monoopoly.model.impl.PrisonModelState;
+import it.unibo.monoopoly.model.impl.ModelPrisonState;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 /**
  * Implementation of {@link ModelState} for the Dices state,
  * used to move the actual {@link Player}.
  */
-public class ModelMovementState implements ModelState<Void, Pair>{
+public class ModelMovementState implements ModelState {
 
     private static final int PASS_GO_REWARD = 200;
 
@@ -44,7 +45,7 @@ public class ModelMovementState implements ModelState<Void, Pair>{
     }
 
     @Override
-    public void doAction(Void empty) {
+    public void doAction(Optional<DataOutput> data) {
         if(verify()) {
             moveWithDices();
         } else {
@@ -105,7 +106,7 @@ public class ModelMovementState implements ModelState<Void, Pair>{
         return getPlayerPosition() + diceResult() >= numberOfCells();
     }
 
-    @Override
+
     public Pair getData() {
         return this.dices.getDices();
     }
@@ -113,7 +114,7 @@ public class ModelMovementState implements ModelState<Void, Pair>{
     @Override
     public void closeState() {
         if(getPlayer().isPrisoned()) {
-            this.turn.setState(new PrisonModelState(this.turn.getGameBoard().getNextPlayer()));
+            this.turn.setState(new ModelPrisonState(turn, false));
         }else {
             this.turn.setState(new ModelCheckActionState(this.turn));
         }
