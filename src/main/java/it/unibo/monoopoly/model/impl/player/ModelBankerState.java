@@ -3,6 +3,7 @@ package it.unibo.monoopoly.model.impl.player;
 import java.util.List;
 import java.util.Optional;
 
+import it.unibo.monoopoly.controller.impl.DataOutput;
 import it.unibo.monoopoly.model.api.Banker;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
@@ -11,12 +12,13 @@ import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.BankerImpl;
+import it.unibo.monoopoly.model.impl.ModelPrisonState;
 
 /**
  * Implementation of {@link ModelState} for the banker state,
  * used to pay an amount to the actual {@link Player}.
  */
-public class ModelBankerState implements ModelState<Optional<Integer>, Optional<List<Integer>>> {
+public class ModelBankerState implements ModelState {
     private final Turn turn;
     private final Banker banker = new BankerImpl();
     private boolean isIndebted;
@@ -57,8 +59,8 @@ public class ModelBankerState implements ModelState<Optional<Integer>, Optional<
      * pay the {@link Player} depending on the property chosen by the player.
      */
     @Override
-    public void doAction(final Optional<Integer> propertyChosen) {
-        final Cell chosen = this.turn.getGameBoard().getCell(propertyChosen.get());
+    public void doAction(Optional<DataOutput> data) {
+        final Cell chosen = this.turn.getGameBoard().getCell(data.get().cellChoose().get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             getPlayer().receive(((Buildable) chosen).sellHouse());
         } else {
@@ -73,7 +75,6 @@ public class ModelBankerState implements ModelState<Optional<Integer>, Optional<
      * return the {@link List} of {@link Integer} that which correspond to the index of the cell that the player must select,
      * depending on whether houses need to be sold or properties need to be mortgaged.
      */
-    @Override
     public Optional<List<Integer>> getData() {
         if (isIndebted) {
             return cellToIndex(this.banker.selectOperations(getPlayer()));
