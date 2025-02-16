@@ -1,6 +1,6 @@
 package it.unibo.monoopoly.model.api;
 
-import it.unibo.monoopoly.controller.api.DataBuilderOutput;
+import java.io.DataOutput;
 
 /**
  * The model of the pattern State for the model.
@@ -15,7 +15,7 @@ public interface ModelState {
     /**
      * Execute the state.
      */
-    void doAction(DataBuilderOutput data);
+    void doAction(DataOutput data);
     /**
      * ends the state and sets the next one.
      */
