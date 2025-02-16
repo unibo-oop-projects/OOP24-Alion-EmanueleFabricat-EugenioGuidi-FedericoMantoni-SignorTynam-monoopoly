@@ -12,7 +12,6 @@ import it.unibo.monoopoly.controller.impl.MainControllerImpl;
 import it.unibo.monoopoly.model.impl.player.TurnImpl;
 import it.unibo.monoopoly.view.impl.MainView;
 import it.unibo.monoopoly.view.impl.banker.state.ViewBankerState;
-import it.unibo.monoopoly.view.impl.card.state.ViewCardState;
 
 public class TestBanker extends JFrame{
 
@@ -26,11 +25,11 @@ public class TestBanker extends JFrame{
         lis.add("Luca");
         List<Integer> cells = new LinkedList<>();
         cells.add(1);
-        cells.add(4);
+        cells.add(0);
         final MainController controller = new MainControllerImpl(new TurnImpl(lista), lis);        
         state = new ViewBankerState(new MainView(controller, lista, lis));
-        state.setMode(false);
-        state.visualize(Optional.empty());
+        state.setMode(true);
+        state.visualize(Optional.of(cells));
     }
 
 }

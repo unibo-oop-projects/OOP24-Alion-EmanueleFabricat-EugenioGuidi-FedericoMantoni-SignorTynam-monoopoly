@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import it.unibo.monoopoly.view.api.ViewState;
 import it.unibo.monoopoly.view.impl.MainView;
 
-public class ViewBankerState implements ViewState<Boolean, Optional<List<Integer>>>{
+public class ViewBankerState implements ViewState<Boolean, Optional<List<Integer>>> {
     private final MainView mainView;
     private boolean payOrHouse;
     private JPanel panel;
@@ -29,11 +29,12 @@ public class ViewBankerState implements ViewState<Boolean, Optional<List<Integer
     public void visualize(Optional<List<Integer>> cellList) {
         if (cellList.isPresent()) {
             if (payOrHouse) {
-                
+                this.panel = new SellHouse(new CellGiver(), intToTextCell(cellList.get()));
+                this.mainView.getMainFrame().add(panel);
             } else {
 
             }
-            
+
         } else {
             if (payOrHouse) {
                 this.panel = new SuccessfulPayment(new SimpleExit());
@@ -46,11 +47,17 @@ public class ViewBankerState implements ViewState<Boolean, Optional<List<Integer
         }
     }
 
+    private List<String> intToTextCell(List<Integer> cellList) {
+        return cellList.stream()
+                .map(this.mainView.getNameCells()::get)
+                .toList();
+    }
+
     public class CellGiver implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            var button = (JButton)e.getSource();
+            var button = (JButton) e.getSource();
             String cellName = button.getText();
             int cell = mainView.getNameCells().indexOf(cellName);
             mainView.getMainFrame().remove(panel);
