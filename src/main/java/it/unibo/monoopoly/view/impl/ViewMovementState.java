@@ -23,7 +23,7 @@ public class ViewMovementState implements ViewState<Boolean, Pair> {
     @Override
     public void visualize(Pair dices) {
         if(this.showRollDice) {
-            String string = "Primo dado: " + dices.getFirstRoll() + " Secondo dado: " + dices.getSecondRoll();
+            String string = "Primo dado: " + dices.getFirstRoll() + "\nSecondo dado: " + dices.getSecondRoll();
             JOptionPane.showMessageDialog(this.mainVIew.getMainFrame(), string, "Lancio dei dadi", JOptionPane.INFORMATION_MESSAGE);
         }
         this.mainVIew.getMainController().getControllerState().continueState(null);
