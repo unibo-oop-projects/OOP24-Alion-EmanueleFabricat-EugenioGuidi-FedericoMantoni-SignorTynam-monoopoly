@@ -31,7 +31,7 @@ public class ViewUnmortgageState implements ViewState<Boolean, Optional<List<Int
         if (doState) {
             this.panel = new UnmortgageView(new CellGiver(), intToTextCell(cellList.get()));
         } else {
-
+            this.panel = new NothingUnmortgageableView(new SimpleExit());
         } 
         this.mainView.getMainFrame().add(panel);
     }
