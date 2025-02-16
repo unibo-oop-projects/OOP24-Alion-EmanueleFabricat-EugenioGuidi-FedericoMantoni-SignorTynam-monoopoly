@@ -22,11 +22,7 @@ public interface Turn {
      * Executes the construction phase of the player's turn.
      */
     void constructPhase();
-    /**
-     * Check the relation between the active {@link Player} and the {@link Cell} is on.
-     * @return the type of event, if one occurs
-     */
-    Optional<Event> checkAction();
+
     /**
      * Rolls the dice for the player's turn.
      * 
@@ -63,12 +59,7 @@ public interface Turn {
      * @return the {@link GameBoard}.
      */
     GameBoard getGameBoard();
-    /**
-     * Gets the {@link GameBoard}.
-     * 
-     * @return next correct {@link ModelState} to execute the event triggered by a {@link Cell}.
-     */
-    ModelState<?,?> getCheckActionState();
+
     /**
      * Gets the {@link Deck}.
      * 

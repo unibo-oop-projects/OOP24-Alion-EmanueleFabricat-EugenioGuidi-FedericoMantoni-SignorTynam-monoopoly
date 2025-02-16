@@ -68,18 +68,6 @@ public class TurnImpl implements Turn {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Event> checkAction() {
-        if (this.actualCell.isBuyable()) {
-            return this.notary.checkProperty(this.actualPlayer, (Buyable) this.actualCell);
-        } else {
-            return Optional.empty(); // TODO manage others cases
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public int rollDice() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'rollDice'");
@@ -122,12 +110,6 @@ public class TurnImpl implements Turn {
     @Override
     public GameBoard getGameBoard() {
         return this.gameBoard;
-    }
-
-    @Override
-    public ModelState<?, ?> getCheckActionState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCheckActionState'");
     }
 
     @Override
