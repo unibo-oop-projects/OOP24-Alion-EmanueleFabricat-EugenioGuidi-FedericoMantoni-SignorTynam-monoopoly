@@ -53,6 +53,9 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
         }
     }
 
+    /*
+     * Da spostare su Controller
+     */
     @Override
     public Optional<Triple<Event, Integer, String>> getData() {
         if (actualEvent.isEmpty()) {
@@ -82,6 +85,9 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
         }
     }
 
+    /*
+     * Da spostare su Controller
+     */
     private Optional<Triple<Event, Integer, String>> handleFunctionalData() {
         final Functional cell = (Functional) getActualCell();
         return switch (this.actualEvent.get()) {
@@ -92,6 +98,9 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
         };
     }
 
+    /*
+     * Da spostare su Controller
+     */
     private Optional<Triple<Event, Integer, String>> handleBuyableData() {
         final Buyable cell = (Buyable) getActualCell();
         return switch (this.actualEvent.get()) {
