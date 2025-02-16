@@ -24,8 +24,8 @@ public class ControllerBankerState implements ControllerState {
     }
 
     @Override
-    public void continueState() {
-        this.actualModelState.doAction(this.mainController.getOutputData());
+    public void continueState(DataOutput dataOutput) {
+        this.actualModelState.doAction(dataOutput);
         this.actualModelState.closeState();
     }
 
