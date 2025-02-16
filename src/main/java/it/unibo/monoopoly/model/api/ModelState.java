@@ -1,4 +1,7 @@
 package it.unibo.monoopoly.model.api;
+
+import it.unibo.monoopoly.controller.api.DataBuilderOutput;
+
 /**
  * The model of the pattern State for the model.
  */
@@ -11,9 +14,8 @@ public interface ModelState {
     boolean verify();
     /**
      * Execute the state.
-     * @param x a possible data to process.
      */
-    void doAction();
+    void doAction(DataBuilderOutput data);
     /**
      * ends the state and sets the next one.
      */
