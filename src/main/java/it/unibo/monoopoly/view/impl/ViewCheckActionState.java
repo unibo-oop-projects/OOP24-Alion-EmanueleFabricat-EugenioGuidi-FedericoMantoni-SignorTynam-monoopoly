@@ -10,21 +10,21 @@ import it.unibo.monoopoly.view.api.ViewState;
 
 public class ViewCheckActionState implements ViewState<Event, Pair<Integer, String>> {
 
-    private final static String[] YES_NO = {"Sì", "No"};
+    private static final String[] YES_NO = {"Sì", "No"};
     private final View mainView;
     private Event actualEvent;
 
-    public ViewCheckActionState(View mainView) {
+    public ViewCheckActionState(final View mainView) {
         this.mainView = mainView;
     }
 
     @Override
-    public void setMode(Event actualEvent) {
+    public void setMode(final Event actualEvent) {
         this.actualEvent = actualEvent;
     }
 
     @Override
-    public void visualize(Pair<Integer, String> data) {
+    public void visualize(final Pair<Integer, String> data) {
         switch (actualEvent) {
             case RENT_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
             "Devi pagare " + data.getLeft() + "€ a " + data.getRight(),
@@ -33,7 +33,7 @@ public class ViewCheckActionState implements ViewState<Event, Pair<Integer, Stri
             case TAX_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
             "Devi pagare " + data.getLeft() + "€ a " + data.getRight(), "Pagamento tassa",
             JOptionPane.PLAIN_MESSAGE);
-            
+
             case BUY_PROPERTY -> {
             final int choice = JOptionPane.showOptionDialog(mainView.getMainFrame(),
             "Vuoi comprare la proprietà " + data.getRight() + "al costo di " + data.getLeft() + "€",
@@ -41,7 +41,7 @@ public class ViewCheckActionState implements ViewState<Event, Pair<Integer, Stri
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE, null,
             YES_NO, 1);
-            if(choice == 0) {
+            if (choice == 0) {
                 mainView.getMainController().getControllerState().continueState(true);
             } else {
                 mainView.getMainController().getControllerState().continueState(false);

@@ -17,6 +17,9 @@ import it.unibo.monoopoly.model.impl.NotaryImpl;
 import it.unibo.monoopoly.model.impl.card.ModelCardState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 
+/**
+ * State that represent the control of what action will be performed depending on the {@link Cell}.
+ */
 public class ModelCheckActionState implements ModelState<Optional<Boolean>, Optional<Triple<Event, Integer, String>>> {
 
     private static final String BANK = "Banca";
@@ -26,10 +29,19 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     private boolean isBuyableCell;
     private Optional<Event> actualEvent;
 
-    public ModelCheckActionState(Turn mainModel) {
+    /**
+     * Pass the mainModel to the state.
+     * @param mainModel the main model
+     */
+    public ModelCheckActionState(final Turn mainModel) {
         this.mainModel = mainModel;
     }
 
+    /**
+     * {@inheritDoc}
+     * 
+     * Check if the action to perform is buy a property and set the state correctly to perform the action.
+     */
     @Override
     public boolean verify() {
         this.needInput = notary.isActionBuy(getActualCell(), getActualPlayer());
@@ -40,8 +52,13 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
         return this.needInput;
     }
 
+    /**
+     * {@inheritDoc}
+     * 
+     * Perform the action or do nothing if the action it is duty of another state.
+     */
     @Override
-    public void doAction(Optional<Boolean> choice) {
+    public void doAction(final Optional<Boolean> choice) {
         if (choice.isEmpty()) {
             if (getActualCell().isBuyable()) {
                 notary.checkBuyedProperty(getActualPlayer(), getActualCell());
@@ -67,16 +84,24 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * 
+     * The next state is set based of the action to perform or to be performed. 
+     */
     @Override
     public void closeState() {
-        if(actualEvent.equals(Optional.empty())) {
+        if (actualEvent.equals(Optional.empty())) {
             this.mainModel.setState(new BuildHouseModelState(mainModel));
         } else {
             this.mainModel.setState(
                 switch (this.actualEvent.get()) {
-                    case RENT_PAYMENT -> new ModelBankerState(mainModel, ((Buyable) getActualCell()).getRentalValue());
-                    case TAX_PAYMENT -> new ModelBankerState(mainModel, ((Functional)getActualCell()).getAction().get().data().get());
-                    case BUY_PROPERTY -> new ModelBankerState(mainModel, ((Buyable)getActualCell()).getCost());
+                    case RENT_PAYMENT -> new ModelBankerState(mainModel,
+                        ((Buyable) getActualCell()).getRentalValue());
+                    case TAX_PAYMENT -> new ModelBankerState(mainModel,
+                        ((Functional) getActualCell()).getAction().get().data().get());
+                    case BUY_PROPERTY -> new ModelBankerState(mainModel,
+                        ((Buyable) getActualCell()).getCost());
                     case DRAW -> new ModelCardState(mainModel);
                     case PRISON -> new ModelMovementState(mainModel, Optional.empty() /* TODO Call gameboard.getPrisonCell */);
                     default -> throw new IllegalStateException("Card event or unsupported event was insert");
@@ -91,7 +116,8 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     private Optional<Triple<Event, Integer, String>> handleFunctionalData() {
         final Functional cell = (Functional) getActualCell();
         return switch (this.actualEvent.get()) {
-            case TAX_PAYMENT -> Optional.of(Triple.of(this.actualEvent.get(), cell.getAction().get().data().get(), BANK));
+            case TAX_PAYMENT -> Optional.of(Triple.of(this.actualEvent.get(),
+                cell.getAction().get().data().get(), BANK));
             case DRAW -> Optional.empty();
             case PRISON -> Optional.empty();
             default -> throw new IllegalStateException("A Functional cell cannot trigger this type of event");
@@ -105,7 +131,8 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
         final Buyable cell = (Buyable) getActualCell();
         return switch (this.actualEvent.get()) {
             case RENT_PAYMENT ->
-                Optional.of(Triple.of(this.actualEvent.get(), cell.getRentalValue(), cell.getOwner().get().getName()));
+                Optional.of(Triple.of(this.actualEvent.get(),
+                    cell.getRentalValue(), cell.getOwner().get().getName()));
             case BUY_PROPERTY -> Optional.of(Triple.of(Event.BUY_PROPERTY, cell.getCost(), cell.getName()));
             default -> throw new IllegalStateException("A Buyable cell cannot trigger this type of event");
         };
