@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.view.impl;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.lang3.tuple.Pair;
 
 import it.unibo.monoopoly.common.Event;
@@ -16,15 +18,16 @@ public class ViewCheckActionState implements ViewState<Event, Pair<Integer, Stri
     }
 
     @Override
-    public void setMode(Event x) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setMode'");
+    public void setMode(Event actualEvent) {
+        this.actualEvent = actualEvent;
     }
 
     @Override
     public void visualize(Pair<Integer, String> y) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'visualize'");
+        switch (actualEvent) {
+            case BUY_PROPERTY -> JOptionPane.showOptionDialog(mainView.getMainFrame(), y, null, 0, 0, null, null, y)
+            default -> throw new IllegalArgumentException("Nothing to visualize in this state");
+        }
     }
 
 }
