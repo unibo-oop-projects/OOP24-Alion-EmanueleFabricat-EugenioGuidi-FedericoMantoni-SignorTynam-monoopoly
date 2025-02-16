@@ -22,8 +22,7 @@ public class DataBuilderOutputImpl implements DataBuilderOutput{
     }
 
     @Override
-    public DataBuilderOutput build() {
-        return this;
+    public DataOutput build() {
+        return new DataOutput(this.buyProperty, this.cellChoose);
     }
-
 }
