@@ -1,4 +1,7 @@
 package it.unibo.monoopoly.controller.api;
+
+import it.unibo.monoopoly.controller.impl.DataOutput;
+
 /**
  * The builder of a class that contains all information for the model. 
  */
@@ -19,5 +22,5 @@ public interface DataBuilderOutput {
      * 
      * @return
      */
-    DataBuilderOutput build(); 
+    DataOutput build(); 
 }
