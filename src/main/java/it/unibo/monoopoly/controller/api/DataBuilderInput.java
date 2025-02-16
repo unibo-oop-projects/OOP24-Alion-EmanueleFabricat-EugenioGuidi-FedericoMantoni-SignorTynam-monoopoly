@@ -30,6 +30,12 @@ public interface DataBuilderInput {
     DataBuilderInput nameOfPlayer(String name);
     /**
      * 
+     * @param value
+     * @return
+     */
+    DataBuilderInput valueToPay(Integer value);
+    /**
+     * 
      * @param dices
      * @return
      */
