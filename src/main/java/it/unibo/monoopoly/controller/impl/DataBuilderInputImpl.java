@@ -1,13 +1,13 @@
-package it.unibo.monoopoly.model.impl.gameboard;
+package it.unibo.monoopoly.controller.impl;
 
 import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.controller.api.DataBuilder;
+import it.unibo.monoopoly.controller.api.DataBuilderInput;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
-public class DataBuilderImpl implements DataBuilder{    
+public class DataBuilderInputImpl implements DataBuilderInput{    
     Optional<Event> event;
     Optional<String> nameOfProperty;
     Optional<String> nameOfPlayer;
@@ -17,49 +17,49 @@ public class DataBuilderImpl implements DataBuilder{
     Optional<List<Integer>> cellList;
 
     @Override
-    public DataBuilder event(Event event) {
+    public DataBuilderInput event(final Event event) {
         this.event = Optional.of(event);
         return this;
     }
 
     @Override
-    public DataBuilder nameOfProperty(String name) {
+    public DataBuilderInput nameOfProperty(final String name) {
         this.nameOfProperty = Optional.of(name);
         return this;
     }
 
     @Override
-    public DataBuilder nameOfPlayer(String name) {
+    public DataBuilderInput nameOfPlayer(final String name) {
         this.nameOfPlayer = Optional.of(name);
         return this;
     }
 
     @Override
-    public DataBuilder dices(Pair dices) {
+    public DataBuilderInput dices(final Pair dices) {
         this.dices = Optional.of(dices);
         return this;
     }
 
     @Override
-    public DataBuilder setMode1(boolean mode) {
+    public DataBuilderInput setMode1(final boolean mode) {
         this.setMode1 = Optional.of(mode);
         return this;
     }
 
     @Override
-    public DataBuilder setMode2(boolean mode) {
+    public DataBuilderInput setMode2(final boolean mode) {
         this.setMode2 = Optional.of(mode);
         return this;
     }
 
     @Override
-    public DataBuilder cellList(List<Integer> list) {
+    public DataBuilderInput cellList(final List<Integer> list) {
         this.cellList =  Optional.of(list);
         return this;
     }
 
     @Override
-    public DataBuilder build() {
+    public DataBuilderInput build() {
         return this;
     }
 
