@@ -16,15 +16,16 @@ public class ViewMovementState implements ViewState<Boolean, Pair> {
     }
 
     @Override
-    public void setMode(Boolean x) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setMode'");
+    public void setMode(Boolean showRollDice) {
+        this.showRollDice = showRollDice;
     }
 
     @Override
     public void visualize(Pair dices) {
-        String string = "Primo dado: " + dices.getFirstRoll() + " Secondo dado: " + dices.getSecondRoll();
-        JOptionPane.showMessageDialog(this.mainVIew.getMainFrame(), string, "Lancio dei dadi", JOptionPane.INFORMATION_MESSAGE);
+        if(this.showRollDice) {
+            String string = "Primo dado: " + dices.getFirstRoll() + " Secondo dado: " + dices.getSecondRoll();
+            JOptionPane.showMessageDialog(this.mainVIew.getMainFrame(), string, "Lancio dei dadi", JOptionPane.INFORMATION_MESSAGE);
+        }
         this.mainVIew.getMainController().getControllerState().continueState(null);
     }
 
