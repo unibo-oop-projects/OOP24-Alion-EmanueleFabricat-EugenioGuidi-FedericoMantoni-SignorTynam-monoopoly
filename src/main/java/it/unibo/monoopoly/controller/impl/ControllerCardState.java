@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.controller.impl;
 
+import java.util.Optional;
+
 import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
@@ -18,13 +20,13 @@ public class ControllerCardState implements ControllerState {
 
     @Override
     public void startState() {
-        this.actualViewState.setMode(this.actualModelState.verify());
-        this.actualModelState.doAction(this.mainController.getOutputData());
+        this.actualViewState.setMode(new DataInput(null, null, null, null, null, null, null, null, null));
+        this.actualModelState.doAction(Optional.empty());
         this.actualViewState.visualize();
     }
 
     @Override
-    public void continueState() {
+    public void continueState(DataOutput dataOutput) {
         this.actualModelState.closeState();
     }
 

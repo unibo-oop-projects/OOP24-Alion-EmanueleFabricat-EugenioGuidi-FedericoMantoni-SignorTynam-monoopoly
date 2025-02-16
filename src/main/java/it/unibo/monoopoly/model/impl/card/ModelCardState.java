@@ -7,8 +7,11 @@ import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.impl.gameboard.ModelMovementState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
-import it.unibo.monoopoly.utils.Message;
+
+import java.util.Optional;
+
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.controller.impl.DataOutput;
 
 /**
  * Implementations of {@link ModelState} for the card's phase:
@@ -16,7 +19,7 @@ import it.unibo.monoopoly.common.Event;
  * return the text and depending on the type of action,
  * it changes the state.
  */
-public class ModelCardState implements ModelState<Void, String>{
+public class ModelCardState implements ModelState {
     private final Turn turn;
 
     public ModelCardState(final Turn turn) {
@@ -45,17 +48,8 @@ public class ModelCardState implements ModelState<Void, String>{
      * the method draw the next {@link Card}.
      */
     @Override
-    public void doAction(Void empty) {
+    public void doAction(Optional<DataOutput> data) {
         getDeck().draw();
-    }
-    /**
-     * {@inheritDoc}
-     * In this specific case,
-     * return the text of the {@link Card}.
-     */
-    @Override
-    public String getData() {
-        return getDeck().getActualCard().getEffectText();
     }
     /**
      * {@inheritDoc}
@@ -64,11 +58,11 @@ public class ModelCardState implements ModelState<Void, String>{
      */
     @Override
     public void closeState() {
-        ModelState<?, ?> nextState  = null;
+        ModelState nextState  = null;
         switch (getCard().getMessage().typeOfAction()) {
             case Event.FREE_CARD:
                 this.turn.getActualPlayer().addGetOutOfJailCard();
-                nextState = new BuildHouseModelState(turn);
+                nextState = new ModelBankerState(turn, 0);//da cambiare
                 break;
             case Event.MOVE_CARD:
                 nextState = new ModelMovementState(turn, getCard().getMessage().data());

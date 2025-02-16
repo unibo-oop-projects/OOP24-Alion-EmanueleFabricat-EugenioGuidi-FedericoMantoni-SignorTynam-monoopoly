@@ -2,15 +2,35 @@ package it.unibo.monoopoly.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import it.unibo.monoopoly.controller.impl.DataOutput;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 
-public class BuildHouseModelState implements ModelState<Integer, String> {
-    private List<Buildable> buildableProperties;
+public class BuildHouseModelState implements ModelState {
+
+    @Override
+    public boolean verify() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'verify'");
+    }
+
+    @Override
+    public void doAction(Optional<DataOutput> data) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'doAction'");
+    }
+
+    @Override
+    public void closeState() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'closeState'");
+    }
+/*    private List<Buildable> buildableProperties;
     private String message;
     private final Turn mainmodel;
 
@@ -76,4 +96,5 @@ public class BuildHouseModelState implements ModelState<Integer, String> {
     public void closeState() {
         
     }
+*/
 }

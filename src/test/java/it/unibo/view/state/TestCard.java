@@ -25,6 +25,5 @@ public class TestCard extends JFrame{
         lis.add("Luca");
         final MainController controller = new MainControllerImpl(new TurnImpl(lista), lis);        
         state = new ViewCardState(new MainView(controller, lista, lis));
-        state.visualize("ciao ciao");
     }
 }

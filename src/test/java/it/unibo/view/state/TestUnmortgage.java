@@ -3,7 +3,6 @@ package it.unibo.view.state;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.swing.JFrame;
 
@@ -28,8 +27,6 @@ public class TestUnmortgage extends JFrame{
         cells.add(0);
         final MainController controller = new MainControllerImpl(new TurnImpl(lista), lis);        
         state = new ViewUnmortgageState(new MainView(controller, lista, lis));
-        state.setMode(false);
-        state.visualize(Optional.of(cells));
     }
 
 }

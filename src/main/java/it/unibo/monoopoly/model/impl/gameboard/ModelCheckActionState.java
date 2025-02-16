@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.controller.impl.DataOutput;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.Notary;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
@@ -17,7 +18,7 @@ import it.unibo.monoopoly.model.impl.NotaryImpl;
 import it.unibo.monoopoly.model.impl.card.ModelCardState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 
-public class ModelCheckActionState implements ModelState<Optional<Boolean>, Optional<Triple<Event, Integer, String>>> {
+public class ModelCheckActionState implements ModelState {
 
     private static final String BANK = "Banca";
     private final Turn mainModel;
@@ -41,14 +42,14 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     }
 
     @Override
-    public void doAction(Optional<Boolean> choice) {
-        if (choice.isEmpty()) {
+    public void doAction(Optional<DataOutput> data) {
+        if (data.get().buyProperty().isEmpty()) {
             if (getActualCell().isBuyable()) {
                 notary.checkBuyedProperty(getActualPlayer(), getActualCell());
             } else {
                 checkFunctionalCell();
             }
-        } else if (choice.get()) {
+        } else if (data.get().buyProperty().get()) {
             notary.buyProperty(getActualPlayer(), (Buyable) getActualCell());
         }
     }
@@ -56,7 +57,6 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     /*
      * TODO Da spostare su Controller
      */
-    @Override
     public Optional<Triple<Event, Integer, String>> getData() {
         if (actualEvent.isEmpty()) {
             return Optional.empty();
@@ -70,7 +70,7 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     @Override
     public void closeState() {
         if(actualEvent.equals(Optional.empty())) {
-            this.mainModel.setState(new BuildHouseModelState(mainModel));
+            this.mainModel.setState(new ModelBankerState(mainModel, 0));//(new BuildHouseModelState(mainModel)
         } else {
             this.mainModel.setState(
                 switch (this.actualEvent.get()) {

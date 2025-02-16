@@ -27,5 +27,4 @@ public interface View {
 
     /* */
     List<String> getNameCells();
-
 }

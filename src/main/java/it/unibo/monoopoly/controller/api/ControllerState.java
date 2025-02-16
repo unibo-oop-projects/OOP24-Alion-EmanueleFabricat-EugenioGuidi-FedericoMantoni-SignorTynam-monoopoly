@@ -1,11 +1,10 @@
 package it.unibo.monoopoly.controller.api;
 
-import java.io.DataOutput;
+import it.unibo.monoopoly.controller.impl.DataOutput;
 
 /**
  * The model of the pattern State for the controller.
 */
-public interface ControllerState {
 public interface ControllerState {
     /**
      * Launch the state, calling all the other state method in the right order.

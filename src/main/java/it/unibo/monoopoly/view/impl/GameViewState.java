@@ -1,9 +1,22 @@
 package it.unibo.monoopoly.view.impl;
 
+import it.unibo.monoopoly.controller.impl.DataInput;
 import it.unibo.monoopoly.view.api.ViewState;
 
-public class GameViewState implements ViewState<String, String> {
-    private String mode;
+public class GameViewState implements ViewState {
+
+    @Override
+    public void setMode(DataInput dataInput) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setMode'");
+    }
+
+    @Override
+    public void visualize() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'visualize'");
+    }
+/*      private String mode;
     private final MainPanel panel;
 
     public GameViewState(MainPanel panel) {
@@ -20,4 +33,5 @@ public class GameViewState implements ViewState<String, String> {
         panel.appendText("===== " + mode + " =====");
         panel.appendText(y);
     }
+*/
 }

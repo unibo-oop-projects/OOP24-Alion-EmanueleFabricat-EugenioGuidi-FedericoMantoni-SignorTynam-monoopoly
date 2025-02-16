@@ -30,6 +30,12 @@ public interface DataBuilderInput {
     DataBuilderInput nameOfPlayer(String name);
     /**
      * 
+     * @param value
+     * @return
+     */
+    DataBuilderInput valueToPay(Integer value);
+    /**
+     * 
      * @param dices
      * @return
      */
@@ -52,6 +58,12 @@ public interface DataBuilderInput {
      * @return
      */
     DataBuilderInput cellList(List<Integer> list);
+    /**
+     * 
+     * @param text
+     * @return
+     */
+    DataBuilderInput cardText(String text);
     /**
      * 
      * @return
