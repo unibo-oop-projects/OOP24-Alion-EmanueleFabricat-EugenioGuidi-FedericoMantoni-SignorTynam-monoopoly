@@ -9,10 +9,10 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.card.Card;
 import it.unibo.monoopoly.model.api.card.Deck;
 import it.unibo.monoopoly.model.impl.card.DeckImpl;
-import it.unibo.monoopoly.utils.Message.Actions;
 /**
  * Tester of {@link Deck} and {@link Card}
  */
@@ -40,23 +40,23 @@ class TestDeckAndCards {
         boolean catchIt = false;
         List<Card> cards = getList(NUMBER_OF_ALL_CARDS);
         assert(cards.stream()
-                .filter(p -> p.getMessage().typeOfAction() == Actions.FREE_CARD)
+                .filter(p -> p.getMessage().typeOfAction() == Event.FREE_CARD)
                 .count() == NUMBER_OF_FREE_CARD
         );
         assert(cards.stream()
-                .filter(p -> p.getMessage().typeOfAction() == Actions.MOVE)
+                .filter(p -> p.getMessage().typeOfAction() == Event.MOVE_CARD)
                 .count() == NUMBER_OF_MOVE
         );
         assert(cards.stream()
-                .filter(p -> p.getMessage().typeOfAction() == Actions.PAY)
+                .filter(p -> p.getMessage().typeOfAction() == Event.CARD_PAYMENT)
                 .count() == NUMBER_OF_PAY
         );
         assert(cards.stream()
-                .filter(p -> p.getMessage().typeOfAction() == Actions.PRISON)
+                .filter(p -> p.getMessage().typeOfAction() == Event.PRISON)
                 .count() == NUMBER_OF_PRISON
         );
         assert(cards.stream()
-                .filter(p -> p.getMessage().typeOfAction() == Actions.RECEIVE)
+                .filter(p -> p.getMessage().typeOfAction() == Event.RECEIVE_CARD)
                 .count() == NUMBER_OF_RECEIVE
         );
         try {
@@ -92,7 +92,7 @@ class TestDeckAndCards {
         cards.addAll(getList(NUMBER_OF_ALL_CARDS-2));
         assertEquals(0, cards.stream()
                 .map(c -> c.getMessage().typeOfAction())
-                .filter(a -> a.equals(Actions.FREE_CARD))
+                .filter(a -> a.equals(Event.FREE_CARD))
                 .count()
         );
         this.deck.addPrisonCard();        
@@ -101,7 +101,7 @@ class TestDeckAndCards {
         cards.addAll(getList(NUMBER_OF_ALL_CARDS));
         assertEquals(2, cards.stream()
                 .map(c -> c.getMessage().typeOfAction())
-                .filter(a -> a.equals(Actions.FREE_CARD))
+                .filter(a -> a.equals(Event.FREE_CARD))
                 .count()
         );
     }
