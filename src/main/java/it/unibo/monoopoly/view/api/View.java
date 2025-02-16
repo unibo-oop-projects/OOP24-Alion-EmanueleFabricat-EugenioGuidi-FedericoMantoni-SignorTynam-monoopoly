@@ -28,8 +28,4 @@ public interface View {
 
     /* */
     List<String> getNameCells();
-
-    /* */
-    DataOutput getDataOutput();
-
 }
