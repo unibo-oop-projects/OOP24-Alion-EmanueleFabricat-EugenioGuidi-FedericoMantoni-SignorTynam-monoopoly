@@ -23,9 +23,9 @@ public class ViewCheckActionState implements ViewState<Event, Pair<Integer, Stri
     }
 
     @Override
-    public void visualize(Pair<Integer, String> y) {
+    public void visualize(Pair<Integer, String> data) {
         switch (actualEvent) {
-            case BUY_PROPERTY -> JOptionPane.showOptionDialog(mainView.getMainFrame(), y, null, 0, 0, null, null, y)
+            case BUY_PROPERTY -> JOptionPane.showOptionDialog(mainView.getMainFrame(), "Vuoi comprare la proprietà " + data.getRight() + "al costo di " + data.getLeft(), null, 0, 0, null, null, y)
             default -> throw new IllegalArgumentException("Nothing to visualize in this state");
         }
     }
