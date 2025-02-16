@@ -23,8 +23,7 @@ public class MainControllerImpl implements MainController {
     //private final MainView mainView;
     private final Turn model;
     private ControllerState actualState;
-    private DataBuilderInput inputData;
-    private DataBuilderOutput outputData;
+    private DataInput inputData;
 
     /**
      * Constructor that creates the model (TurnImpl) and the main view.
@@ -90,14 +89,7 @@ public class MainControllerImpl implements MainController {
     }
 
     @Override
-    public DataBuilderInput getInputData() {
+    public DataInput getDataInput() {
         return this.inputData;
     }
-
-    @Override
-    public DataBuilderOutput getOutputData() {
-        return this.outputData;
-    }
-
-    
 }
