@@ -17,10 +17,12 @@ public interface MainController {
      * @return the actual {@link ModelState}
      */
     ModelState getModelState();
+    ModelState getModelState();
 
     /**
      * @return the actual {@link ViewStatus}
      */
+    ViewState getViewState();
     ViewState getViewState();
 
     /* */

@@ -1,17 +1,14 @@
 package it.unibo.monoopoly.controller.impl;
 
-import java.util.List;
-import java.util.Optional;
-
 import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.view.api.ViewState;
 
-public class ControllerUnmortgageState implements ControllerState<Optional<Integer>>{
+public class ControllerUnmortgageState implements ControllerState {
     MainController mainController;
-    ModelState<Optional<Integer>, Optional<List<Integer>>> actualModelState;
-    ViewState<Boolean, Optional<List<Integer>>> actualViewState;
+    ModelState actualModelState;
+    ViewState actualViewState;
 
     public ControllerUnmortgageState(MainController mainController) {
         this.mainController = mainController;
@@ -22,12 +19,12 @@ public class ControllerUnmortgageState implements ControllerState<Optional<Integ
     @Override
     public void startState() {
         this.actualViewState.setMode(this.actualModelState.verify());
-        this.actualViewState.visualize(this.actualModelState.getData());
+        this.actualViewState.visualize();
     }
 
     @Override
-    public void continueState(Optional<Integer> selectedCell) {
-        this.actualModelState.doAction(selectedCell);
+    public void continueState() {
+        this.actualModelState.doAction(this.mainController.getOutputData());
         this.actualModelState.closeState();
     }
 
