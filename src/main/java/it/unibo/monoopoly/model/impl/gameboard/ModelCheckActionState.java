@@ -54,7 +54,7 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     }
 
     /*
-     * Da spostare su Controller
+     * TODO Da spostare su Controller
      */
     @Override
     public Optional<Triple<Event, Integer, String>> getData() {
@@ -78,7 +78,7 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
                     case TAX_PAYMENT -> new ModelBankerState(mainModel, ((Functional)getActualCell()).getAction().get().data().get());
                     case BUY_PROPERTY -> new ModelBankerState(mainModel, ((Buyable)getActualCell()).getCost());
                     case DRAW -> new ModelCardState(mainModel);
-                    case PRISON -> new ModelMovementState(mainModel, Optional.empty());
+                    case PRISON -> new ModelMovementState(mainModel, Optional.empty() /* TODO Call gameboard.getPrisonCell */);
                     default -> throw new IllegalStateException("Card event or unsupported event was insert");
                 }
             );
@@ -86,7 +86,7 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     }
 
     /*
-     * Da spostare su Controller
+     * TODO Da spostare su Controller
      */
     private Optional<Triple<Event, Integer, String>> handleFunctionalData() {
         final Functional cell = (Functional) getActualCell();
@@ -99,7 +99,7 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     }
 
     /*
-     * Da spostare su Controller
+     * TODO Da spostare su Controller
      */
     private Optional<Triple<Event, Integer, String>> handleBuyableData() {
         final Buyable cell = (Buyable) getActualCell();
