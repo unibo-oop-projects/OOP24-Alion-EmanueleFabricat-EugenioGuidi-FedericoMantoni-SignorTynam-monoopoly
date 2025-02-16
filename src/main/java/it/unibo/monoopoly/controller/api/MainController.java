@@ -1,7 +1,6 @@
 package it.unibo.monoopoly.controller.api;
 
 import java.io.DataInput;
-import java.io.DataOutput;
 
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.view.api.ViewState;
