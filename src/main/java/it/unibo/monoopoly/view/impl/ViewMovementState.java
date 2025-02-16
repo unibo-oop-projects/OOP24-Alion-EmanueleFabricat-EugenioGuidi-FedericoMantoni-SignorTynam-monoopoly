@@ -1,6 +1,9 @@
 package it.unibo.monoopoly.view.impl;
 
 import it.unibo.monoopoly.view.api.ViewState;
+
+import javax.swing.JOptionPane;
+
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 public class ViewMovementState implements ViewState<Boolean, Pair> {
@@ -19,9 +22,10 @@ public class ViewMovementState implements ViewState<Boolean, Pair> {
     }
 
     @Override
-    public void visualize(Pair y) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'visualize'");
+    public void visualize(Pair dices) {
+        String string = "Primo dado: " + dices.getFirstRoll() + " Secondo dado: " + dices.getSecondRoll();
+        JOptionPane.showMessageDialog(this.mainVIew.getMainFrame(), string, "Lancio dei dadi", JOptionPane.INFORMATION_MESSAGE);
+        this.mainVIew.getMainController().getControllerState().continueState(null);
     }
 
 }
