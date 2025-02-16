@@ -9,7 +9,7 @@ import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 
-public class BuildHouseModelState implements ModelState<Integer, String> {
+public class BuildHouseModelState implements ModelState {
     private List<Buildable> buildableProperties;
     private String message;
     private final Turn mainmodel;
