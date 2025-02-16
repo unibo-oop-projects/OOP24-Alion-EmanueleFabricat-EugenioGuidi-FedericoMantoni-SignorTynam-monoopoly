@@ -42,7 +42,7 @@
         "type": "Functional",
         "name": "Tassa patrimoniale",
         "effect": {
-            "action": "PAY",
+            "action": "TAX_PAYEMENT",
             "data": 200
         }
     },
@@ -396,7 +396,7 @@
         "type": "Functional",
         "name": "Tassa di lusso",
         "effect": {
-            "action": "PAY",
+            "action": "TAX_PAYEMENT",
             "data": 100
         }
     },
