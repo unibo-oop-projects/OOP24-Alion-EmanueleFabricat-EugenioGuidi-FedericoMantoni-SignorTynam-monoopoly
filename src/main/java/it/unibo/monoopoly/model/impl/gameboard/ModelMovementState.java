@@ -115,7 +115,7 @@ public class ModelMovementState implements ModelState<Void, Pair>{
         if(getPlayer().isPrisoned()) {
             this.turn.setState(new PrisonModelState(this.turn.getGameBoard().getNextPlayer()));
         }else {
-            this.turn.setState(this.turn.getCheckActionState());
+            this.turn.setState(new ModelCheckActionState(this.turn));
         }
     }
 

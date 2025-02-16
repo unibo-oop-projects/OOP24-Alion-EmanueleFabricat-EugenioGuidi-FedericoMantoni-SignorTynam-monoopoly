@@ -43,7 +43,7 @@ public class BuildHouseModelState implements ModelState<Integer, String> {
             message = sb.toString();
             return true;
         }
-        return false;
+        //return false;
     }
 
     @Override
