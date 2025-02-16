@@ -1,6 +1,6 @@
 package it.unibo.monoopoly.controller.api;
 
-import java.io.DataOutput;
+import it.unibo.monoopoly.controller.impl.DataOutput;
 
 /**
  * The model of the pattern State for the controller.
