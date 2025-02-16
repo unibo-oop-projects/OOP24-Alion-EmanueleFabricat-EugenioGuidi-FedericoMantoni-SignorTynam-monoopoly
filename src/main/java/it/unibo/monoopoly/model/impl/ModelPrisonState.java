@@ -4,7 +4,7 @@ import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 
-public class ModelPrisonState implements ModelState<Boolean, String> {   
+public class ModelPrisonState implements ModelState {   
 
     private final Turn mainModel;
     private String message;
