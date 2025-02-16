@@ -7,7 +7,6 @@ import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.impl.gameboard.ModelMovementState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
-import it.unibo.monoopoly.utils.Message;
 
 import java.util.Optional;
 
