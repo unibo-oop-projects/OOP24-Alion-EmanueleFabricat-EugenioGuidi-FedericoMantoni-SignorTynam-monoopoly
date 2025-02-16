@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.model.api;
 
+import java.util.Optional;
+
 import it.unibo.monoopoly.controller.impl.DataOutput;
 
 /**
@@ -15,7 +17,7 @@ public interface ModelState {
     /**
      * Execute the state.
      */
-    void doAction(DataOutput data);
+    void doAction(Optional<DataOutput> data);
     /**
      * ends the state and sets the next one.
      */
