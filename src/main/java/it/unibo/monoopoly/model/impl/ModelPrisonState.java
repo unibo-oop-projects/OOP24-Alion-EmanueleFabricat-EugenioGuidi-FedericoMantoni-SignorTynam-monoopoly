@@ -2,14 +2,16 @@ package it.unibo.monoopoly.model.impl;
 
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.api.player.Turn;
 
-public class PrisonModelState implements ModelState<Boolean, String> {   
+public class ModelPrisonState implements ModelState<Boolean, String> {   
 
-    private final Player player;
+    private final Turn mainModel;
     private String message;
 
-    public PrisonModelState(Player player) {
-        this.player = player;
+    public ModelPrisonState(Turn mainModel, boolean goToPrison) {
+        this.mainModel = mainModel;
+
     }
 
     @Override

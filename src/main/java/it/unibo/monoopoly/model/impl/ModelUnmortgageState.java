@@ -102,7 +102,7 @@ public class ModelUnmortgageState implements ModelState<Optional<Integer>, Optio
         if (makeState) {
             this.turn.setState(new ModelUnmortgageState(turn));
         } else {
-            this.turn.setState(new PrisonModelState(this.turn.getActualPlayer()));
+            this.turn.setState(new ModelPrisonState(this.turn.getActualPlayer()));
         }
     }
 
