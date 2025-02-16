@@ -3,6 +3,8 @@ package it.unibo.monoopoly.controller.impl;
 import java.util.List;
 
 import it.unibo.monoopoly.controller.api.ControllerState;
+import it.unibo.monoopoly.controller.api.DataBuilderInput;
+import it.unibo.monoopoly.controller.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Turn;
@@ -21,6 +23,8 @@ public class MainControllerImpl implements MainController {
     //private final MainView mainView;
     private final Turn model;
     private ControllerState actualState;
+    private DataBuilderInput inputData;
+    private DataBuilderOutput outputData;
 
     /**
      * Constructor that creates the model (TurnImpl) and the main view.
@@ -69,20 +73,30 @@ public class MainControllerImpl implements MainController {
     }
 
     @Override
-    public <X, Y> ModelState<X, Y> getModelState() {
+    public ModelState getModelState() {
         return this.model.getState();
     }
 
     @Override
-    public <X, Y>ViewState<X, Y> getViewState() {
+    public ViewState getViewState() {
         //return this.mainView.getState();
         return null;
     }
 
-    @SuppressWarnings("unchecked")
+    
     @Override
-    public <X>ControllerState<X> getControllerState() {
+    public ControllerState getControllerState() {
         return this.actualState;
+    }
+
+    @Override
+    public DataBuilderInput getInputData() {
+        return this.inputData;
+    }
+
+    @Override
+    public DataBuilderOutput getOutputData() {
+        return this.outputData;
     }
 
     
