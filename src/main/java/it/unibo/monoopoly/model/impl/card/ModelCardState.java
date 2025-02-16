@@ -62,7 +62,7 @@ public class ModelCardState implements ModelState {
         switch (getCard().getMessage().typeOfAction()) {
             case Event.FREE_CARD:
                 this.turn.getActualPlayer().addGetOutOfJailCard();
-                nextState = new BuildHouseModelState(turn);
+                nextState = new ModelBankerState(turn, 0);//da cambiare
                 break;
             case Event.MOVE_CARD:
                 nextState = new ModelMovementState(turn, getCard().getMessage().data());

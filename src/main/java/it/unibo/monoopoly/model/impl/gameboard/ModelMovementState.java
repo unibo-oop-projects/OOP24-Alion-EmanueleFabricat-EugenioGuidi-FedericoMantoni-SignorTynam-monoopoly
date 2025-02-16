@@ -8,6 +8,7 @@ import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.ModelPrisonState;
+import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 /**
@@ -114,7 +115,7 @@ public class ModelMovementState implements ModelState {
     @Override
     public void closeState() {
         if(getPlayer().isPrisoned()) {
-            this.turn.setState(new ModelPrisonState(turn, false));
+            this.turn.setState(new ModelBankerState(turn, PASS_GO_REWARD));//new ModelPrisonState(turn, false)
         }else {
             this.turn.setState(new ModelCheckActionState(this.turn));
         }

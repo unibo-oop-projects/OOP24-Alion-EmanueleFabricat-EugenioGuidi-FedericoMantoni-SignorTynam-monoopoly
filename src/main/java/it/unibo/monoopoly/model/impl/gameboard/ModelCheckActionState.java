@@ -70,7 +70,7 @@ public class ModelCheckActionState implements ModelState {
     @Override
     public void closeState() {
         if(actualEvent.equals(Optional.empty())) {
-            this.mainModel.setState(new BuildHouseModelState(mainModel));
+            this.mainModel.setState(new ModelBankerState(mainModel, 0));//(new BuildHouseModelState(mainModel)
         } else {
             this.mainModel.setState(
                 switch (this.actualEvent.get()) {

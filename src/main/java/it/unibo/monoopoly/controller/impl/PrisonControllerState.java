@@ -4,8 +4,20 @@ import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.view.api.ViewState;
 
-public class PrisonControllerState implements ControllerState<Boolean> {
+public class PrisonControllerState implements ControllerState {
 
+    @Override
+    public void startState() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'startState'");
+    }
+
+    @Override
+    public void continueState(DataOutput dataOutput) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'continueState'");
+    }
+/*
     private final ModelState<Boolean, String> modelState;
     private final ViewState<String, String> viewState;
 
@@ -27,5 +39,5 @@ public class PrisonControllerState implements ControllerState<Boolean> {
         modelState.closeState();
         viewState.visualize(modelState.getData());
     }
-    
+*/
 }

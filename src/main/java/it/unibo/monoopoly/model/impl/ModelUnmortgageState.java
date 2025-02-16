@@ -9,6 +9,7 @@ import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
+import it.unibo.monoopoly.model.impl.card.ModelCardState;
 
 /**
  * Implementation of {@link ModelState} for the unmortgage state,
@@ -102,7 +103,7 @@ public class ModelUnmortgageState implements ModelState {
         if (makeState) {
             this.turn.setState(new ModelUnmortgageState(turn));
         } else {
-            this.turn.setState(new ModelPrisonState(turn, true));
+            this.turn.setState(new ModelCardState(turn));//da cambiare
         }
     }
 

@@ -1,11 +1,32 @@
 package it.unibo.monoopoly.model.impl;
 
+import java.util.Optional;
+
+import it.unibo.monoopoly.controller.impl.DataOutput;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 
-public class ModelPrisonState implements ModelState {   
+public class ModelPrisonState implements ModelState {
 
+    @Override
+    public boolean verify() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'verify'");
+    }
+
+    @Override
+    public void doAction(Optional<DataOutput> data) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'doAction'");
+    }
+
+    @Override
+    public void closeState() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'closeState'");
+    }   
+/*
     private final Turn mainModel;
     private String message;
 
@@ -62,4 +83,5 @@ public class ModelPrisonState implements ModelState {
     public void closeState() {
         
     }
+*/
 }
