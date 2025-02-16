@@ -20,7 +20,7 @@ public class ControllerUnmortgageState implements ControllerState {
 
     @Override
     public void startState() {
-        this.actualViewState.setMode(this.actualModelState.verify());
+        this.actualViewState.setMode(new DataInput(null, null, null, null, null, null, null, null, null));
         this.actualViewState.visualize();
     }
 

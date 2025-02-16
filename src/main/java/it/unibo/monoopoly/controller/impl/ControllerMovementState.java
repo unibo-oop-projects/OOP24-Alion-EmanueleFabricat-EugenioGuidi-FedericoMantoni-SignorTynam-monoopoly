@@ -21,7 +21,7 @@ public class ControllerMovementState implements ControllerState {
 
     @Override
     public void startState() {
-        this.actualViewState.setMode(this.actualModelState.verify());//ritorna se è con dadi o no
+        this.actualViewState.setMode(new DataInput(null, null, null, null, null, null, null, null, null));//ritorna se è con dadi o no
         this.actualModelState.doAction(Optional.empty());
         this.actualViewState.visualize();
     }
