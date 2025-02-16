@@ -16,6 +16,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
     Optional<Boolean> setMode1;
     Optional<Boolean> setMode2;
     Optional<List<Integer>> cellList;
+    Optional<String> cardText;
 
     @Override
     public DataBuilderInput event(final Event event) {
@@ -66,9 +67,15 @@ public class DataBuilderInputImpl implements DataBuilderInput {
     }
 
     @Override
+    public DataBuilderInput cardText(String text) {
+        this.cardText = Optional.of(text);
+        return this;
+    }
+
+    @Override
     public DataInput build() {
         return new DataInput(this.event, this.nameOfProperty, this.nameOfPlayer, this.valueToPay, this.dices,
-                this.setMode1, this.setMode2, this.cellList);
+                this.setMode1, this.setMode2, this.cellList, this.cardText);
     }
 
 }

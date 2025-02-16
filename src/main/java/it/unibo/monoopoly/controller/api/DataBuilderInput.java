@@ -60,6 +60,12 @@ public interface DataBuilderInput {
     DataBuilderInput cellList(List<Integer> list);
     /**
      * 
+     * @param text
+     * @return
+     */
+    DataBuilderInput cardText(String text);
+    /**
+     * 
      * @return
      */
     DataInput build();

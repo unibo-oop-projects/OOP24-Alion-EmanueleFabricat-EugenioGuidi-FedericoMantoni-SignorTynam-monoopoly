@@ -14,6 +14,7 @@ public record DataInput(
     Optional<Pair> dices,
     Optional<Boolean> setMode1,
     Optional<Boolean> setMode2,
-    Optional<List<Integer>> cellList
+    Optional<List<Integer>> cellList,
+    Optional<String> cardText
 ) {
 }
