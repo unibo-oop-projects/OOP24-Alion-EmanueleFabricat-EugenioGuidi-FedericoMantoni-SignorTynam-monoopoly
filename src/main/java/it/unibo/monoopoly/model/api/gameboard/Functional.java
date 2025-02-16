@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.model.api.gameboard;
 
+import java.util.Optional;
+
 import it.unibo.monoopoly.utils.Message;
 /**
  * Represents the cells of the gameboard not buyable.
@@ -9,7 +11,7 @@ public interface Functional extends Cell {
     /**
      * @return the action triggered by the cell in question.
      */
-    Message getAction();
+    Optional<Message> getAction();
 
     /**
      * 

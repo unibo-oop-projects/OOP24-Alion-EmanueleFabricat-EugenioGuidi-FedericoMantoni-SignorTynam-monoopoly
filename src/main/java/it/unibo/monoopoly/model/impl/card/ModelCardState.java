@@ -8,6 +8,7 @@ import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.impl.gameboard.ModelMovementState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 import it.unibo.monoopoly.utils.Message;
+import it.unibo.monoopoly.common.Event;
 
 /**
  * Implementations of {@link ModelState} for the card's phase:
@@ -65,21 +66,21 @@ public class ModelCardState implements ModelState<Void, String>{
     public void closeState() {
         ModelState<?, ?> nextState  = null;
         switch (getCard().getMessage().typeOfAction()) {
-            case Message.Actions.FREE_CARD:
+            case Event.FREE_CARD:
                 this.turn.getActualPlayer().addGetOutOfJailCard();
-                nextState = new BuildHouseModelState(this.turn.getActualPlayer());
+                nextState = new BuildHouseModelState(turn);
                 break;
-            case Message.Actions.MOVE:
+            case Event.MOVE_CARD:
                 nextState = new ModelMovementState(turn, getCard().getMessage().data());
                 break;
-            case Message.Actions.PRISON:
+            case Event.PRISON:
                 this.turn.getActualPlayer().isPrisoned();
                 nextState = new ModelMovementState(turn, getCard().getMessage().data());
                 break;
-            case Message.Actions.PAY:
+            case Event.CARD_PAYMENT:
                 nextState = new ModelBankerState(turn, getCard().getMessage().data().get());
                 break;
-            case Message.Actions.RECEIVE:
+            case Event.RECEIVE_CARD:
                 this.turn.getActualPlayer().receive(getCard().getMessage().data().get());
                 break;
             default:

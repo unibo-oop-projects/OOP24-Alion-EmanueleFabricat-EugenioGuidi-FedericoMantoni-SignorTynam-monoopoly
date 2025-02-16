@@ -6,9 +6,12 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.monoopoly.view.api.View;
@@ -28,6 +31,20 @@ public abstract class AbstractView implements View {
      */
     public AbstractView() {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent k) {
+                if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    showConfirmToExit();
+                }
+            }
+        });
+    }
+
+    private void showConfirmToExit() {
+        if(JOptionPane.showConfirmDialog(this.mainFrame, "Siete sicuri di voler chiudere l'applicazione?", "Chiudere applicazione", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }
 
     /**

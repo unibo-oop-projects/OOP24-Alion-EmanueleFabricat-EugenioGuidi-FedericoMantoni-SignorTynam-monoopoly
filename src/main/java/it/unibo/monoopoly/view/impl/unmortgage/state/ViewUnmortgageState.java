@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.impl.banker.state;
+package it.unibo.monoopoly.view.impl.unmortgage.state;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,35 +11,28 @@ import javax.swing.JPanel;
 import it.unibo.monoopoly.view.api.ViewState;
 import it.unibo.monoopoly.view.impl.MainView;
 
-public class ViewBankerState implements ViewState<Boolean, Optional<List<Integer>>> {
+public class ViewUnmortgageState implements ViewState<Boolean, Optional<List<Integer>>> {
     private final MainView mainView;
-    private boolean payOrHouse;
+    private boolean doState;
     private JPanel panel;
-
-    public ViewBankerState(MainView mainView) {
+    
+    public ViewUnmortgageState(MainView mainView) {
         this.mainView = mainView;
     }
 
+
     @Override
-    public void setMode(Boolean mode) {
-        this.payOrHouse = mode;
+    public void setMode(Boolean doState) {
+        this.doState = doState;
     }
 
     @Override
     public void visualize(Optional<List<Integer>> cellList) {
-        if (cellList.isPresent()) {
-            if (payOrHouse) {
-                this.panel = new SellHouseView(new CellGiver(), intToTextCell(cellList.get()));
-            } else {
-                this.panel = new MortgageView(new CellGiver(), intToTextCell(cellList.get()));
-            }
+        if (doState) {
+            this.panel = new UnmortgageView(new CellGiver(), intToTextCell(cellList.get()));
         } else {
-            if (payOrHouse) {
-                this.panel = new SuccessfulPaymentView(new SimpleExit());
-            } else {
-                this.panel = new BankruptcyView(new SimpleExit());
-            }
-        }
+            this.panel = new NothingUnmortgageableView(new SimpleExit());
+        } 
         this.mainView.getMainFrame().add(panel);
     }
 

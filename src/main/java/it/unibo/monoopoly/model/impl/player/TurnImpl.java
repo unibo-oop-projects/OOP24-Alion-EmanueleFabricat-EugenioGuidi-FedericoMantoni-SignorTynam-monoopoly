@@ -30,6 +30,7 @@ public class TurnImpl implements Turn {
     private Player actualPlayer;
     private final GameBoard gameBoard;
     private final Deck deck;
+    private ModelState actualState;
 
     /**
      * Initialize the model and set the correct state of the game to start the first turn.
@@ -41,6 +42,7 @@ public class TurnImpl implements Turn {
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         this.deck = new DeckImpl();
         this.actualPlayer = gameBoard.getCurrentPlayer();
+        this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT);
         //TODO initialize state
     }
 
@@ -66,18 +68,6 @@ public class TurnImpl implements Turn {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Event> checkAction() {
-        if (this.actualCell.isBuyable()) {
-            return this.notary.checkProperty(this.actualPlayer, (Buyable) this.actualCell);
-        } else {
-            return Optional.empty(); // TODO manage others cases
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public int rollDice() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'rollDice'");
@@ -86,10 +76,10 @@ public class TurnImpl implements Turn {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public <X, Y>ModelState<X, Y> getState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPhase'");
+        return this.actualState;
     }
     /**
      * {@inheritDoc}
@@ -120,12 +110,6 @@ public class TurnImpl implements Turn {
     @Override
     public GameBoard getGameBoard() {
         return this.gameBoard;
-    }
-
-    @Override
-    public ModelState<?, ?> getCheckActionState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCheckActionState'");
     }
 
     @Override

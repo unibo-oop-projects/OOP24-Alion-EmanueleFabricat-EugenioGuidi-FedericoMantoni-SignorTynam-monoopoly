@@ -14,7 +14,7 @@ public interface Player {
      * Retrieves the name of the player.
      * @return the name of the player.
      */
-    public Optional<String> getName();
+    public String getName();
 
     /**
      * Retrieves the amount of money the player has.

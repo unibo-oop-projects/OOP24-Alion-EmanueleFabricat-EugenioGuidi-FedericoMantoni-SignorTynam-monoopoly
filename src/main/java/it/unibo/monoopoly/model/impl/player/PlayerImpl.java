@@ -13,7 +13,7 @@ import it.unibo.monoopoly.model.api.player.Player;
 
 public class PlayerImpl implements Player {
 
-    private final Optional<String> name;
+    private final String name;
     private int moneyAmount;
     private int actualPosition;
     private boolean prisoned;
@@ -29,7 +29,7 @@ public class PlayerImpl implements Player {
      * @param prisoned          true if the player is in prison, false otherwise.
      */
     public PlayerImpl(String name, int moneyAmount, int actualPosition) {
-        this.name = Optional.ofNullable(Optional.ofNullable(name).orElseThrow(() -> new IllegalArgumentException("Name cannot be null")));
+        this.name = name;
         this.moneyAmount = validatePositive(moneyAmount, "Money amount cannot be negative");
         this.actualPosition = validatePositive(actualPosition, "Position cannot be negative");
         this.prisoned = false;
@@ -54,7 +54,7 @@ public class PlayerImpl implements Player {
      *{@inheritDoc}
      */
     @Override
-    public Optional<String> getName() {
+    public String getName() {
         return this.name;
     }
 

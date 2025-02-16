@@ -27,6 +27,7 @@ dependencies {
     implementation("org.jooq:jool:0.9.15")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.2")
+    implementation("org.apache.commons:commons-lang3:3.17.0")
 
     /*
      * Simple Logging Facade for Java (SLF4J) with Apache Log4j

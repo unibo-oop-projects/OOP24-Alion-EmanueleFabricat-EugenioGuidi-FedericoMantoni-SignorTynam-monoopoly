@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.view.impl;
 
+import java.util.List;
+
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.controller.api.MenuController;
 
@@ -36,6 +38,11 @@ public class MenuView extends AbstractView {
 
     @Override
     public MainController getMainController() {
+        return null;
+    }
+
+    @Override
+    public List<String> getNameCells() {
         return null;
     }
 

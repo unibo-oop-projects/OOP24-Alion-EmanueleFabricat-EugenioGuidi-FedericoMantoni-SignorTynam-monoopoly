@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.card.Card;
 import it.unibo.monoopoly.model.api.card.CardsFactory;
 import it.unibo.monoopoly.model.api.card.Deck;
 import it.unibo.monoopoly.utils.Message;
-import it.unibo.monoopoly.utils.Message.Actions;
 
 /**
  * Implementation of {@link Deck}.
@@ -39,7 +39,7 @@ public class DeckImpl implements Deck {
             this.shuffleDeck();
         }
         this.actualCard = this.deck.removeFirst();
-        if (this.actualCard.getMessage().typeOfAction() != Actions.FREE_CARD) {
+        if (this.actualCard.getMessage().typeOfAction() != Event.FREE_CARD) {
             this.discardPile.add(actualCard);
         }
     }
@@ -68,7 +68,7 @@ public class DeckImpl implements Deck {
     public void addPrisonCard() {
         final Card card = new CardImpl(
                 "Uscite gratis di prigione, se non ci siete: potete conservare questo cartoncino sino al momento di servirvene",
-                new Message(Actions.FREE_CARD, Optional.of(0)));
+                new Message(Event.FREE_CARD, Optional.of(0)));
         this.discardPile.add(card);
     }
 

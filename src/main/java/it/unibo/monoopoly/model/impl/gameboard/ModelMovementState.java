@@ -6,6 +6,7 @@ import it.unibo.monoopoly.model.api.gameboard.Dices;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
+import it.unibo.monoopoly.model.impl.PrisonModelState;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 /**
@@ -111,7 +112,11 @@ public class ModelMovementState implements ModelState<Void, Pair>{
 
     @Override
     public void closeState() {
-        this.turn.setState(this.turn.getCheckActionState());
+        if(getPlayer().isPrisoned()) {
+            this.turn.setState(new PrisonModelState(this.turn.getGameBoard().getNextPlayer()));
+        }else {
+            this.turn.setState(new ModelCheckActionState(this.turn));
+        }
     }
 
 }
