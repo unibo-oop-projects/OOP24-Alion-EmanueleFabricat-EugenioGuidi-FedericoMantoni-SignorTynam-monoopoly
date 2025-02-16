@@ -29,10 +29,17 @@ public class ViewUnmortgageState implements ViewState<Boolean, Optional<List<Int
     @Override
     public void visualize(Optional<List<Integer>> cellList) {
         if (doState) {
-            
+            this.panel = new UnmortgageView(new CellGiver(), intToTextCell(cellList.get()));
         } else {
-            
-        }  
+
+        } 
+        this.mainView.getMainFrame().add(panel);
+    }
+
+    private List<String> intToTextCell(List<Integer> cellList) {
+        return cellList.stream()
+                .map(this.mainView.getNameCells()::get)
+                .toList();
     }
 
     public class CellGiver implements ActionListener {
