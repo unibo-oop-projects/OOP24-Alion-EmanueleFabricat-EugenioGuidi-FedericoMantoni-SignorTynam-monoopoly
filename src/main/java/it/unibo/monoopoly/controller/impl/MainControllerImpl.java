@@ -6,7 +6,7 @@ import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Turn;
-import it.unibo.monoopoly.model.impl.PrisonModelState;
+import it.unibo.monoopoly.model.impl.ModelPrisonState;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.view.api.ViewState;
 import it.unibo.monoopoly.view.impl.GameViewState;
