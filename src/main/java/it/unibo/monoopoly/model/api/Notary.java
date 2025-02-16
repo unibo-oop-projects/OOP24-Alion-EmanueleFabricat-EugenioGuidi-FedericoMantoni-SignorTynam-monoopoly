@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
+import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.player.Player;
 
 /**
@@ -17,7 +18,7 @@ public interface Notary {
      * @param cell the cell of the property to check
      * @return the type of event if this occurs
      */
-    Optional<Event> checkProperty(Player player, Buyable cell);
+    Optional<Event> checkBuyedProperty(Player player, Cell cell);
 
     /**
      * Set the given player as owner of the property.
@@ -25,5 +26,7 @@ public interface Notary {
      * @param cell the property to buy
      */
     void buyProperty(Player player, Buyable cell);
+
+    boolean isActionBuy(Cell cell, Player actualPlayer);
 
 }
