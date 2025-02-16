@@ -141,9 +141,6 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     private void checkFunctionalCell() {
         final Functional functionalCell = (Functional) getActualCell();
         this.actualEvent = functionalCell.getAction().map(m -> m.typeOfAction());
-        if (actualEvent.equals(Optional.of(Event.PRISON))) {
-            getActualPlayer().setPrisoned();
-        }
     }
 
     private Cell getActualCell() {
