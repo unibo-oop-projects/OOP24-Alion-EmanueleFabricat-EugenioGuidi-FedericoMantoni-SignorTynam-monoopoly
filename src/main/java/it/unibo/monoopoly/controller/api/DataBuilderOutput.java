@@ -14,5 +14,10 @@ public interface DataBuilderOutput {
      * @param cell
      * @return
      */
-    DataBuilderOutput  cellChoose(int cell);
+    DataBuilderOutput cellChoose(int cell);
+    /**
+     * 
+     * @return
+     */
+    DataBuilderOutput build(); 
 }
