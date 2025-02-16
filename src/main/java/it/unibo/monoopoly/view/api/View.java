@@ -6,7 +6,6 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import it.unibo.monoopoly.controller.api.MainController;
-import it.unibo.monoopoly.controller.impl.DataOutput;
 
 /**
  * Interface for the View component of the application.
