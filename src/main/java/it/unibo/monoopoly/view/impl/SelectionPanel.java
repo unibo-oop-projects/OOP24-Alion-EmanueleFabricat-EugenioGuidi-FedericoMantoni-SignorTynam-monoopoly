@@ -95,6 +95,7 @@ public class SelectionPanel extends PanelAdapter {
     }
 
     private void generateNamesPanel(final int nPlayers) {
+        this.players.clear();
         this.remove(numberPanel);
         this.namesPanel = new JPanel(new GridBagLayout());
         for (int i = 0; i < nPlayers; i++) {
