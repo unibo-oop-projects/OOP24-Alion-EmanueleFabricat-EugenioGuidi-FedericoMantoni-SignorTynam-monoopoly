@@ -2,8 +2,8 @@ package it.unibo.monoopoly.model.impl.card;
 
 import java.util.List;
 
-import it.unibo.monoopoly.model.api.card.Card;
-import it.unibo.monoopoly.model.api.card.CardsFactory;
+import it.unibo.monoopoly.model.card.Card;
+import it.unibo.monoopoly.model.card.CardsFactory;
 import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 

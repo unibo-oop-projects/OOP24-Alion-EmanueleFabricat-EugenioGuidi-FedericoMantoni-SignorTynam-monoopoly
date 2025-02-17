@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.api.card;
+package it.unibo.monoopoly.model.card;
 
 /**
  * The interface that implemented the deck of cards,
