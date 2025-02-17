@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.text.View;
 
 import it.unibo.monoopoly.controller.api.MainController;
@@ -39,21 +40,20 @@ public class MainView extends AbstractView {
      * @param nameCells the list of names of the cells
      */
     public MainView(final MainController controller, final List<String> namePlayers, final List<String> nameCells) {
+        this.controller = controller;
+
         Dimension screeDimension = Toolkit.getDefaultToolkit().getScreenSize();
         mainFrame().setSize(screeDimension);
         mainFrame().setResizable(false);
         mainFrame().setUndecorated(true);
         
-        this.controller = controller;
         this.colors = super.getColors();
         this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth());
         // this.viewState = new ViewPrisonState();
-        mainFrame().getContentPane().add(gamePanel);
 
-        mainFrame().setVisible(true);
 
         //bisogna aggiungere che premendo esc ti permette di uscire dal gioco
     }
@@ -75,7 +75,7 @@ public class MainView extends AbstractView {
      * 
      * @return the actual {@link ViewState}.
      */
-    public <X, Y> ViewState<X, Y> getViewState() {
+    public ViewState getViewState() {
         //return this.viewState;
         return null;
     }

@@ -2,6 +2,11 @@ package it.unibo.monoopoly.view.impl;
 
 import java.util.List;
 
+import javax.swing.JFrame;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.controller.api.MenuController;
 
@@ -18,6 +23,9 @@ public class MenuView extends AbstractView {
      */
     public MenuView(final MenuController menuController) {
         super();
+        final Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        this.getMainFrame().setSize((int) screenDimension.getWidth() / 2, (int) screenDimension.getHeight() / 2);
+        this.getMainFrame().setExtendedState(JFrame.MAXIMIZED_BOTH);
         menuPanel = new MenuPanel(menuController, super.getColors());
     }
 

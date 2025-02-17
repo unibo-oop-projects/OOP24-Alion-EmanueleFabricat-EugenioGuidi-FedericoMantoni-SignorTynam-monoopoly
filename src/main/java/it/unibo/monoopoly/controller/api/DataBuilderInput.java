@@ -3,57 +3,70 @@ package it.unibo.monoopoly.controller.api;
 import java.util.List;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.controller.impl.DataInput;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 /**
  * The builder of a class that contains all information for the gui. 
  */
-public interface DataBuilder {
+public interface DataBuilderInput {
     /**
      * 
      * @param event
      * @return
      */
-    DataBuilder event(Event event);
+    DataBuilderInput event(Event event);
     /**
      * 
      * @param name
      * @return
      */
-    DataBuilder nameOfProperty(String name);
+    DataBuilderInput nameOfProperty(String name);
     /**
      * 
      * @param name
      * @return
      */
-    DataBuilder nameOfPlayer(String name);
+    DataBuilderInput nameOfPlayer(String name);
+    /**
+     * 
+     * @param value
+     * @return
+     */
+    DataBuilderInput valueToPay(Integer value);
     /**
      * 
      * @param dices
      * @return
      */
-    DataBuilder dices(Pair dices);
+    DataBuilderInput dices(Pair dices);
     /**
      * 
      * @param mode
      * @return
      */
-    DataBuilder setMode1(boolean mode);
+    DataBuilderInput setMode1(boolean mode);
     /**
      * 
      * @param mode
      * @return
      */
-    DataBuilder setMode2(boolean mode);
+    DataBuilderInput setMode2(boolean mode);
     /**
      * 
      * @param list
      * @return
      */
-    DataBuilder cellList(List<Integer> list);
+    DataBuilderInput cellList(List<Integer> list);
+    /**
+     * 
+     * @param text
+     * @return
+     */
+    DataBuilderInput cardText(String text);
     /**
      * 
      * @return
      */
-    DataBuilder build();
+    DataInput build();
 }

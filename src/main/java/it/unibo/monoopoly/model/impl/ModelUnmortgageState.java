@@ -3,18 +3,20 @@ package it.unibo.monoopoly.model.impl;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import it.unibo.monoopoly.controller.impl.DataOutput;
 
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
+import it.unibo.monoopoly.model.impl.card.ModelCardState;
 
 /**
  * Implementation of {@link ModelState} for the unmortgage state,
  * used to to release a mortgage on a property of the actual {@link Player},
  * if it has any.
  */
-public class ModelUnmortgageState implements ModelState<Optional<Integer>, Optional<List<Integer>>> {
+public class ModelUnmortgageState implements ModelState {
     private boolean makeState;
     private final Turn turn;
 
@@ -53,9 +55,9 @@ public class ModelUnmortgageState implements ModelState<Optional<Integer>, Optio
      * the method release a mortgage to the selected property.
      */
     @Override
-    public void doAction(Optional<Integer> selectedCell) {
-        if (selectedCell.isPresent()) {
-            unmortgageByIndex(selectedCell);
+    public void doAction(Optional<DataOutput> data) {
+        if (data.isPresent()) {
+            unmortgageByIndex(data.get().cellChoose());
         }
     }
 
@@ -75,7 +77,6 @@ public class ModelUnmortgageState implements ModelState<Optional<Integer>, Optio
      * {@link Player},
      * by index.
      */
-    @Override
     public Optional<List<Integer>> getData() {
         return Optional.of(this.turn.getActualPlayer().getProperties().stream()
                 .filter(c -> c.isMortgaged())
@@ -102,7 +103,7 @@ public class ModelUnmortgageState implements ModelState<Optional<Integer>, Optio
         if (makeState) {
             this.turn.setState(new ModelUnmortgageState(turn));
         } else {
-            this.turn.setState(new ModelPrisonState(this.turn.getActualPlayer()));
+            this.turn.setState(new ModelCardState(turn));//da cambiare
         }
     }
 

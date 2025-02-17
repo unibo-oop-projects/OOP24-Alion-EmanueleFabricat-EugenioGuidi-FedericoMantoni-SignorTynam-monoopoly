@@ -34,7 +34,7 @@ public interface Turn {
      * 
      * @return the current {@link ModelState}.
      */
-    <X, Y>ModelState<X, Y> getState();
+    ModelState getState();
     /**
      * Gets the actual {@link Player}
      * 
@@ -52,7 +52,7 @@ public interface Turn {
      * 
      * @param state to set.
      */
-    void setState(ModelState<?, ?> state);
+    void setState(ModelState state);
     /**
      * Gets the {@link GameBoard}.
      * 

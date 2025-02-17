@@ -1,19 +1,17 @@
 package it.unibo.monoopoly.controller.impl;
 
-import java.util.List;
 import java.util.Optional;
 
-import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.view.api.ViewState;
 
-public class ControllerMovementState implements ControllerState<Void>{
+public class ControllerMovementState implements ControllerState {
 
     private final MainController mainController;
-    private final ModelState<Void, Pair> actualModelState;
-    private final ViewState<Boolean, Pair> actualViewState;
+    private final ModelState actualModelState;
+    private final ViewState actualViewState;
 
     public ControllerMovementState(final MainController mainController) {
         this.mainController = mainController;
@@ -23,13 +21,13 @@ public class ControllerMovementState implements ControllerState<Void>{
 
     @Override
     public void startState() {
-        this.actualViewState.setMode(this.actualModelState.verify());//ritorna se è con dadi o no
-        this.actualModelState.doAction(null);
-        this.actualViewState.visualize(this.actualModelState.getData());
+        this.actualViewState.setMode(new DataInput(null, null, null, null, null, null, null, null, null));//ritorna se è con dadi o no
+        this.actualModelState.doAction(Optional.empty());
+        this.actualViewState.visualize();
     }
 
     @Override
-    public void continueState(Void empty) {
+    public void continueState(DataOutput dataOutput) {
         this.actualModelState.closeState();
     }
 

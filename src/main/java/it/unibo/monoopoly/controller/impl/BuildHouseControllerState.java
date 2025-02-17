@@ -4,8 +4,20 @@ import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.view.api.ViewState;
 
-public class BuildHouseControllerState implements ControllerState<Integer> {
-    private final ModelState<Integer, String> modelState;
+public class BuildHouseControllerState implements ControllerState {
+
+    @Override
+    public void startState() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'startState'");
+    }
+
+    @Override
+    public void continueState(DataOutput dataOutput) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'continueState'");
+    }
+/*    private final ModelState<Integer, String> modelState;
     private final ViewState<String, String> viewState;
 
 
@@ -27,4 +39,5 @@ public class BuildHouseControllerState implements ControllerState<Integer> {
         viewState.setMode("Build Hourse State");
         viewState.visualize(modelState.getData());
     }
+*/
 }
