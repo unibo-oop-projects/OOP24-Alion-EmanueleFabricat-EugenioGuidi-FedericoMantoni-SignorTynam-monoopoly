@@ -13,9 +13,9 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
+import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
+import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
 /**
  * This class test the class BuildableImpl.

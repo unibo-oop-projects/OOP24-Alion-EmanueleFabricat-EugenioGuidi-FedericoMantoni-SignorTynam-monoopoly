@@ -12,12 +12,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.model.api.Notary;
-import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.gameboard.Buyable;
-import it.unibo.monoopoly.model.impl.NotaryImpl;
-import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
+import it.unibo.monoopoly.model.notary.api.Notary;
+import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
+import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
 
 public class TestNotary {

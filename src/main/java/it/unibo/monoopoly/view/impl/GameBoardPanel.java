@@ -13,7 +13,8 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import it.unibo.monoopoly.controller.api.MainController;
+import it.unibo.monoopoly.controller.main.api.MainController;
+import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
 
 public class GameBoardPanel extends PanelAdapter{
 

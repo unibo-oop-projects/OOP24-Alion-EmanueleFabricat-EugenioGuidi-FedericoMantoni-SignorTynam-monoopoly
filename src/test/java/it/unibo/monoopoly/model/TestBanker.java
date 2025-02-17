@@ -5,15 +5,15 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.api.Banker;
-import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.gameboard.Buyable;
-import it.unibo.monoopoly.model.gameboard.Cell;
-import it.unibo.monoopoly.model.gameboard.CellFactory;
-import it.unibo.monoopoly.model.gameboard.GameBoard;
-import it.unibo.monoopoly.model.impl.gameboard.CellFactoryImpl;
-import it.unibo.monoopoly.model.impl.gameboard.GameBoardImpl;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
+import it.unibo.monoopoly.model.banker.api.Banker;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.gameboard.api.CellFactory;
+import it.unibo.monoopoly.model.gameboard.api.GameBoard;
+import it.unibo.monoopoly.model.gameboard.impl.CellFactoryImpl;
+import it.unibo.monoopoly.model.gameboard.impl.GameBoardImpl;
+import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
 /**
  * Tester of {@link Banker}

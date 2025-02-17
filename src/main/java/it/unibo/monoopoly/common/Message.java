@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.unibo.monoopoly.model.api.player.Turn;
+import it.unibo.monoopoly.model.turn.api.Turn;
 
 /**
  * Record of utility, it represents the message directed to {@link Turn}.

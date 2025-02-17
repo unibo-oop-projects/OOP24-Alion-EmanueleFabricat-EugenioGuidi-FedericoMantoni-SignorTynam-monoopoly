@@ -8,9 +8,9 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.gameboard.Cell;
-import it.unibo.monoopoly.model.gameboard.CellFactory;
-import it.unibo.monoopoly.model.impl.gameboard.CellFactoryImpl;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.gameboard.api.CellFactory;
+import it.unibo.monoopoly.model.gameboard.impl.CellFactoryImpl;
 
 /**
  * Test for the correct creation of all the cells of the game.

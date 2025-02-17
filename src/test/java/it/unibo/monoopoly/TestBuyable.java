@@ -10,15 +10,15 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.api.Notary;
-import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.gameboard.Buyable;
-import it.unibo.monoopoly.model.gameboard.Company;
-import it.unibo.monoopoly.model.gameboard.Railroad;
-import it.unibo.monoopoly.model.impl.NotaryImpl;
-import it.unibo.monoopoly.model.impl.gameboard.CompanyImpl;
-import it.unibo.monoopoly.model.impl.gameboard.RailroadImpl;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.api.Company;
+import it.unibo.monoopoly.model.gameboard.api.Railroad;
+import it.unibo.monoopoly.model.gameboard.impl.CompanyImpl;
+import it.unibo.monoopoly.model.gameboard.impl.RailroadImpl;
+import it.unibo.monoopoly.model.notary.api.Notary;
+import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
+import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
 public class TestBuyable {
 
