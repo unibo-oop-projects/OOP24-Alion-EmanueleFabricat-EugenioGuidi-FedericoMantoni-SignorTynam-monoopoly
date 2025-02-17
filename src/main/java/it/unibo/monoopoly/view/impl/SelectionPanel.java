@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 
 import it.unibo.monoopoly.controller.api.MenuController;
@@ -144,6 +146,7 @@ public class SelectionPanel extends PanelAdapter {
         confirm.addActionListener(e -> {
             if (legalNames()) {
                 this.menuController.goGame(getPlayersNames());
+                ((JFrame) SwingUtilities.getWindowAncestor(this)).dispose();
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Ogni giocatore deve avere un nome di lunghezza minore di 25 caratteri", "Warning",

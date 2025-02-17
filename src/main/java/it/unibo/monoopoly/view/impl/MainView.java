@@ -53,9 +53,6 @@ public class MainView extends AbstractView {
         this.nameCells = nameCells;
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth());
         // this.viewState = new ViewPrisonState();
-        mainFrame().getContentPane().add(gamePanel);
-
-        mainFrame().setVisible(true);
 
 
         //bisogna aggiungere che premendo esc ti permette di uscire dal gioco

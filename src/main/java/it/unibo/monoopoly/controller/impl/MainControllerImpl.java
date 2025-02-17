@@ -20,7 +20,7 @@ import it.unibo.monoopoly.view.impl.MainView;
  */
 public class MainControllerImpl implements MainController {
 
-    //private final MainView mainView;
+    private final MainView mainView;
     private final Turn model;
     private ControllerState actualState;
     private DataInput inputData;
@@ -34,8 +34,8 @@ public class MainControllerImpl implements MainController {
         this.model = model;
         final List<String> cellsNames = model.getGameBoard().getCellsNames();
         // Create the main view passing this controller, players' names, and the cells' names
-        /*this.mainView = new MainView(this, playersName, cellsNames);
-        this.mainView.display();*/
+        this.mainView = new MainView(this, playersName, cellsNames);
+        this.mainView.display();
         this.actualState =  new ControllerBankerState(this);
     }
 
