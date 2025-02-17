@@ -2,14 +2,14 @@ package it.unibo.monoopoly.model.impl.gameboard;
 
 import java.util.Optional;
 
-import it.unibo.monoopoly.model.api.gameboard.Dices;
 import it.unibo.monoopoly.controller.impl.DataOutput;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
+import it.unibo.monoopoly.model.gameboard.Dices;
+import it.unibo.monoopoly.model.gameboard.Dices.Pair;
 import it.unibo.monoopoly.model.impl.ModelPrisonState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
-import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 /**
  * Implementation of {@link ModelState} for the Dices state,

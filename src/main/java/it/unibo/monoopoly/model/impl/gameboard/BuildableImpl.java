@@ -6,7 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import it.unibo.monoopoly.model.api.gameboard.Buildable;
+import it.unibo.monoopoly.model.gameboard.Buildable;
 
 /**
  * Represents a buildable property in the game.

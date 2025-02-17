@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.api.gameboard;
+package it.unibo.monoopoly.model.gameboard;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;

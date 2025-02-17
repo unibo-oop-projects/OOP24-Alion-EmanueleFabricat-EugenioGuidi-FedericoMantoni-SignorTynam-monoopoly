@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import it.unibo.monoopoly.model.api.gameboard.Cell;
-import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.Cell;
+import it.unibo.monoopoly.model.gameboard.GameBoard;
 
 /**
  * This class implement the {@link GameBoard} interface to simulate the game board of Monopoly game.

@@ -6,10 +6,10 @@ import java.util.Optional;
 import it.unibo.monoopoly.controller.impl.DataOutput;
 
 import it.unibo.monoopoly.model.api.ModelState;
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.card.impl.ModelCardState;
+import it.unibo.monoopoly.model.gameboard.Buyable;
 
 /**
  * Implementation of {@link ModelState} for the unmortgage state,

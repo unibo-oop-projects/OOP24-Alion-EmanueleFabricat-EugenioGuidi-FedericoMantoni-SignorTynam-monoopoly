@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.Notary;
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.Buyable;
 import it.unibo.monoopoly.model.impl.NotaryImpl;
 import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
 import it.unibo.monoopoly.model.impl.player.PlayerImpl;

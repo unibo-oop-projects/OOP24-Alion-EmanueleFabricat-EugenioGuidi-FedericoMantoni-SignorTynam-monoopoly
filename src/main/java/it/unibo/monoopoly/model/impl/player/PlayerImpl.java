@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.Buyable;
 
 /**
  * Represents the player of the game.

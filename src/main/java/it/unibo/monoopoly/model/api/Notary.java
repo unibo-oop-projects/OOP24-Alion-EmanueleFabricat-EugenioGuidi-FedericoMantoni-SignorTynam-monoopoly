@@ -3,9 +3,9 @@ package it.unibo.monoopoly.model.api;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
-import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.Buyable;
+import it.unibo.monoopoly.model.gameboard.Cell;
 
 /**
  * Manage the operations of buying properties and pay.

@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.api.gameboard;
+package it.unibo.monoopoly.model.gameboard;
 
 /**
  * Represents a company cell.

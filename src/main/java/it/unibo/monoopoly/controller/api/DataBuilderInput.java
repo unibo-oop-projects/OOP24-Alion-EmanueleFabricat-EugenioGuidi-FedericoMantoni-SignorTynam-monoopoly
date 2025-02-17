@@ -4,7 +4,7 @@ import java.util.List;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.impl.DataInput;
-import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
+import it.unibo.monoopoly.model.gameboard.Dices.Pair;
 
 /**
  * The builder of a class that contains all information for the gui. 

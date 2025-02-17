@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import it.unibo.monoopoly.common.Message;
-import it.unibo.monoopoly.model.api.gameboard.Functional;
+import it.unibo.monoopoly.model.gameboard.Functional;
 
 /**
  * Implementation of {@link Functional} interface.

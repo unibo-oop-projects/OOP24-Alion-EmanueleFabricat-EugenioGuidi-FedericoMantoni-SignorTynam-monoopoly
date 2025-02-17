@@ -2,8 +2,8 @@ package it.unibo.monoopoly.model.impl.gameboard;
 
 import java.util.List;
 
-import it.unibo.monoopoly.model.api.gameboard.Cell;
-import it.unibo.monoopoly.model.api.gameboard.CellFactory;
+import it.unibo.monoopoly.model.gameboard.Cell;
+import it.unibo.monoopoly.model.gameboard.CellFactory;
 import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 

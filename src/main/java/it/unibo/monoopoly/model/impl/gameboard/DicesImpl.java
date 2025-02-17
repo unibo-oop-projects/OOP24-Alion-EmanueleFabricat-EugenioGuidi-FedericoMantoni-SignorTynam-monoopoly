@@ -2,7 +2,7 @@ package it.unibo.monoopoly.model.impl.gameboard;
 
 import java.util.Random;
 
-import it.unibo.monoopoly.model.api.gameboard.Dices;
+import it.unibo.monoopoly.model.gameboard.Dices;
 
 /**
  * This class implement the {@link Dices} interface to simulate dice rolling in the game.

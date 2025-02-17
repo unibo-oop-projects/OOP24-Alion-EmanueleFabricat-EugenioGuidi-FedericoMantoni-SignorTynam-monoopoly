@@ -5,9 +5,9 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import it.unibo.monoopoly.model.api.gameboard.Cell;
-import it.unibo.monoopoly.model.api.gameboard.Company;
-import it.unibo.monoopoly.model.api.gameboard.Dices;
+import it.unibo.monoopoly.model.gameboard.Cell;
+import it.unibo.monoopoly.model.gameboard.Company;
+import it.unibo.monoopoly.model.gameboard.Dices;
 
 /**
  * Implements the {@link Company} interface.

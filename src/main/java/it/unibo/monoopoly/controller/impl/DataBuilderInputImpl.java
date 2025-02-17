@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.api.DataBuilderInput;
-import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
+import it.unibo.monoopoly.model.gameboard.Dices.Pair;
 
 public class DataBuilderInputImpl implements DataBuilderInput {
     Optional<Event> event;

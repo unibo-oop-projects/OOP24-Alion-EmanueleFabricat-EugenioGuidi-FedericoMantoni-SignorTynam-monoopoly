@@ -3,8 +3,8 @@ package it.unibo.monoopoly.model.impl.gameboard;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import it.unibo.monoopoly.model.api.gameboard.Cell;
-import it.unibo.monoopoly.model.api.gameboard.Railroad;
+import it.unibo.monoopoly.model.gameboard.Cell;
+import it.unibo.monoopoly.model.gameboard.Railroad;
 
 /**
  * Implementation of {@link Railroad} interface.

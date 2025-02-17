@@ -2,8 +2,8 @@ package it.unibo.monoopoly.model.impl.gameboard;
 
 import java.util.Optional;
 
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.Buyable;
 
 /**
  * Abstract class implementing methods common to all {@link Buyable} cells.

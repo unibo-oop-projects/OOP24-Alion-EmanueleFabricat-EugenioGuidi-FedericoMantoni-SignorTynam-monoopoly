@@ -2,7 +2,7 @@ package it.unibo.monoopoly.model.utils;
 
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.api.gameboard.Cell;
+import it.unibo.monoopoly.model.gameboard.Cell;
 import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 

@@ -1,10 +1,10 @@
 package it.unibo.monoopoly.model.impl.gameboard;
 
-import it.unibo.monoopoly.model.api.gameboard.Buildable;
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
-import it.unibo.monoopoly.model.api.gameboard.Cell;
-import it.unibo.monoopoly.model.api.gameboard.Company;
-import it.unibo.monoopoly.model.api.gameboard.Railroad;
+import it.unibo.monoopoly.model.gameboard.Buildable;
+import it.unibo.monoopoly.model.gameboard.Buyable;
+import it.unibo.monoopoly.model.gameboard.Cell;
+import it.unibo.monoopoly.model.gameboard.Company;
+import it.unibo.monoopoly.model.gameboard.Railroad;
 
 /**
  * Abstract class implementing common methods of a generic {@link Cell}.

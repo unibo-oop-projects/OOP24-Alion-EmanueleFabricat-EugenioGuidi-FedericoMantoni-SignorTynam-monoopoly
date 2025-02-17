@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.api.gameboard;
+package it.unibo.monoopoly.model.gameboard;
 
 /**
  * This interface rapresents dices to be used from the player in the game.

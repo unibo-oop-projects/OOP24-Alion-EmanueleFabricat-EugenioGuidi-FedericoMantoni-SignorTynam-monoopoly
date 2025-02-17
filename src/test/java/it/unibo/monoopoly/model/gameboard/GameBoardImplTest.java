@@ -12,9 +12,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.api.gameboard.Cell;
-import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.Cell;
+import it.unibo.monoopoly.model.gameboard.GameBoard;
 import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
 import it.unibo.monoopoly.model.impl.gameboard.GameBoardImpl;
 import it.unibo.monoopoly.model.impl.player.PlayerImpl;

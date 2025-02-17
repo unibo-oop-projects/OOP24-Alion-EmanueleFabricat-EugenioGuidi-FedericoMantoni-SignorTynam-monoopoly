@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.unibo.monoopoly.model.gameboard.Dices.Pair;
 import it.unibo.monoopoly.model.impl.gameboard.DicesImpl;
-import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 /**
  * This class test the correct functioning of class DicesImpl.

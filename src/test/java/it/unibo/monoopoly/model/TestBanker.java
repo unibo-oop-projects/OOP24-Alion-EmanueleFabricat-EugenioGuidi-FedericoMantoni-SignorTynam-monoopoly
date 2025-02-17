@@ -6,11 +6,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.model.api.Banker;
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
-import it.unibo.monoopoly.model.api.gameboard.Cell;
-import it.unibo.monoopoly.model.api.gameboard.CellFactory;
-import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.Buyable;
+import it.unibo.monoopoly.model.gameboard.Cell;
+import it.unibo.monoopoly.model.gameboard.CellFactory;
+import it.unibo.monoopoly.model.gameboard.GameBoard;
 import it.unibo.monoopoly.model.impl.gameboard.CellFactoryImpl;
 import it.unibo.monoopoly.model.impl.gameboard.GameBoardImpl;
 import it.unibo.monoopoly.model.impl.player.PlayerImpl;

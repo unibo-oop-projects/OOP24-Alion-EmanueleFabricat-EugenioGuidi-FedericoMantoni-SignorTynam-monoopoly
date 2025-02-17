@@ -1,8 +1,8 @@
 package it.unibo.monoopoly.common;
 
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
-import it.unibo.monoopoly.model.api.gameboard.Functional;
 import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.Buyable;
+import it.unibo.monoopoly.model.gameboard.Functional;
 
 /**
  * Represents the various events triggered by a cell or a card.

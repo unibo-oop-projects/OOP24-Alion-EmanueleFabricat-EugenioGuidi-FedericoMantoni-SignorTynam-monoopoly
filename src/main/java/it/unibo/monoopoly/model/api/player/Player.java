@@ -3,7 +3,7 @@ package it.unibo.monoopoly.model.api.player;
 import java.util.Optional;
 import java.util.Set;
 
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
+import it.unibo.monoopoly.model.gameboard.Buyable;
 
 /**
  * Represents the player of the game.
