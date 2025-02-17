@@ -61,13 +61,13 @@ public class DataBuilderInputImpl implements DataBuilderInput {
     }
 
     @Override
-    public DataBuilderInput valueToPay(Integer value) {
+    public DataBuilderInput valueToPay(final Integer value) {
         this.valueToPay = Optional.of(value);
         return this;
     }
 
     @Override
-    public DataBuilderInput cardText(String text) {
+    public DataBuilderInput cardText(final String text) {
         this.cardText = Optional.of(text);
         return this;
     }

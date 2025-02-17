@@ -14,7 +14,7 @@ public class ControllerCardState implements ControllerState {
     ModelState actualModelState;
     ViewState actualViewState;
 
-    public ControllerCardState(MainController mainController) {
+    public ControllerCardState(final MainController mainController) {
         this.mainController = mainController;
         this.actualModelState = this.mainController.getModelState();
         this.actualViewState = this.mainController.getViewState();
@@ -28,7 +28,7 @@ public class ControllerCardState implements ControllerState {
     }
 
     @Override
-    public void continueState(DataOutput dataOutput) {
+    public void continueState(final DataOutput dataOutput) {
         this.actualModelState.closeState();
     }
 

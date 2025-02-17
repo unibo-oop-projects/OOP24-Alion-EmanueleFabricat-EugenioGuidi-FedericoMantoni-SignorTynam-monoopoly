@@ -14,7 +14,7 @@ public class ControllerUnmortgageState implements ControllerState {
     ModelState actualModelState;
     ViewState actualViewState;
 
-    public ControllerUnmortgageState(MainController mainController) {
+    public ControllerUnmortgageState(final MainController mainController) {
         this.mainController = mainController;
         this.actualModelState = this.mainController.getModelState();
         this.actualViewState = this.mainController.getViewState();
@@ -27,7 +27,7 @@ public class ControllerUnmortgageState implements ControllerState {
     }
 
     @Override
-    public void continueState(DataOutput dataOutput) {
+    public void continueState(final DataOutput dataOutput) {
         this.actualModelState.doAction(Optional.of(dataOutput));
         this.actualModelState.closeState();
     }

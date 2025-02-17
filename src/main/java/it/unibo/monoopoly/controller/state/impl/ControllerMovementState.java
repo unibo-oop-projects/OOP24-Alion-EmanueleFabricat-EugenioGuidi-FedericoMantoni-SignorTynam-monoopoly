@@ -29,7 +29,7 @@ public class ControllerMovementState implements ControllerState {
     }
 
     @Override
-    public void continueState(DataOutput dataOutput) {
+    public void continueState(final DataOutput dataOutput) {
         this.actualModelState.closeState();
     }
 

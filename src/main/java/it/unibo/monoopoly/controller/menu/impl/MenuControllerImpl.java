@@ -14,7 +14,8 @@ import it.unibo.monoopoly.view.main.impl.MenuView;
 public class MenuControllerImpl implements MenuController {
 
     /**
-     * Constructor of {@link MenuControllerImpl}; start and display the {@link MenuView}.
+     * Constructor of {@link MenuControllerImpl}; start and display the
+     * {@link MenuView}.
      */
     public MenuControllerImpl() {
         new MenuView(this).display();

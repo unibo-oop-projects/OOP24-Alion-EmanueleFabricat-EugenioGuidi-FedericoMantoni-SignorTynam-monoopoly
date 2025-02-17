@@ -1,6 +1,5 @@
 package it.unibo.monoopoly.controller.state.impl;
 
-
 import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.impl.DataInput;
@@ -15,7 +14,7 @@ public class ControllerBankerState implements ControllerState {
     ModelState actualModelState;
     ViewState actualViewState;
 
-    public ControllerBankerState(MainController mainController) {
+    public ControllerBankerState(final MainController mainController) {
         this.mainController = mainController;
         this.actualModelState = this.mainController.getModelState();
         this.actualViewState = this.mainController.getViewState();
@@ -28,7 +27,7 @@ public class ControllerBankerState implements ControllerState {
     }
 
     @Override
-    public void continueState(DataOutput dataOutput) {
+    public void continueState(final DataOutput dataOutput) {
         this.actualModelState.doAction(Optional.of(dataOutput));
         this.actualModelState.closeState();
     }

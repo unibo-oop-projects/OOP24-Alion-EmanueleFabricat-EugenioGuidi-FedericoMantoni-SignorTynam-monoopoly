@@ -4,18 +4,18 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 
-public class DataBuilderOutputImpl implements DataBuilderOutput{
+public class DataBuilderOutputImpl implements DataBuilderOutput {
     Optional<Boolean> buyProperty;
     Optional<Integer> cellChoose;
 
     @Override
-    public DataBuilderOutput buyProperty(boolean buy) {
+    public DataBuilderOutput buyProperty(final boolean buy) {
         this.buyProperty = Optional.of(buy);
         return this;
     }
 
     @Override
-    public DataBuilderOutput cellChoose(int cell) {
+    public DataBuilderOutput cellChoose(final int cell) {
         this.cellChoose = Optional.of(cell);
         return this;
     }

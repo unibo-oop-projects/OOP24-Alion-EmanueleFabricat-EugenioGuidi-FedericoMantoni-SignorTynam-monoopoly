@@ -24,25 +24,28 @@ public class MainControllerImpl implements MainController {
 
     private final MainView mainView;
     private final Turn model;
-    private ControllerState actualState;
+    private final ControllerState actualState;
     private DataInput inputData;
 
     /**
      * Constructor that creates the model (TurnImpl) and the main view.
-     * @param model the game model (Turn)
+     * 
+     * @param model       the game model (Turn)
      * @param playersName list of players' names
      */
     public MainControllerImpl(final Turn model, final List<String> playersName) {
         this.model = model;
         final List<String> cellsNames = model.getGameBoard().getCellsNames();
-        // Create the main view passing this controller, players' names, and the cells' names
+        // Create the main view passing this controller, players' names, and the cells'
+        // names
         this.mainView = new MainView(this, playersName, cellsNames);
         this.mainView.display();
-        this.actualState =  new ControllerBankerState(this);
+        this.actualState = new ControllerBankerState(this);
     }
 
     /**
-     * Starts the turn; as an example, if the current player is in prison the prison state is activated,
+     * Starts the turn; as an example, if the current player is in prison the prison
+     * state is activated,
      * otherwise the house building state is activated.
      */
 
@@ -51,26 +54,32 @@ public class MainControllerImpl implements MainController {
      */
     @Override
     public void startTurn() {
-        /*// Get the MainPanel from the view and create the GameViewState
-        MainPanel mainPanel = (MainPanel) mainView.getMainPanel();
-        GameViewState viewState = new GameViewState(mainPanel);
-        
-        // If the current player is in prison
-        if (model.getActualPlayer().isPrisoned()) {
-            // Create and start the prison state
-            PrisonModelState prisonState = new PrisonModelState(model.getActualPlayer());
-            PrisonControllerState prisonController = new PrisonControllerState(prisonState, viewState);
-            prisonController.startState();
-            // Here input might come from the UI; for example, we simulate that the player chooses NOT to use the card (false)
-            prisonController.continueState(false);
-        } else {
-            // Otherwise, proceed to the house building state
-            BuildHouseModelState buildState = new BuildHouseModelState(model.getActualPlayer());
-            BuildHouseControllerState buildController = new BuildHouseControllerState(buildState, viewState);
-            buildController.startState();
-            // Simulate input: for example, select index 0 (the first property)
-            buildController.continueState(0);
-        }*/
+        /*
+         * // Get the MainPanel from the view and create the GameViewState
+         * MainPanel mainPanel = (MainPanel) mainView.getMainPanel();
+         * GameViewState viewState = new GameViewState(mainPanel);
+         * 
+         * // If the current player is in prison
+         * if (model.getActualPlayer().isPrisoned()) {
+         * // Create and start the prison state
+         * PrisonModelState prisonState = new PrisonModelState(model.getActualPlayer());
+         * PrisonControllerState prisonController = new
+         * PrisonControllerState(prisonState, viewState);
+         * prisonController.startState();
+         * // Here input might come from the UI; for example, we simulate that the
+         * player chooses NOT to use the card (false)
+         * prisonController.continueState(false);
+         * } else {
+         * // Otherwise, proceed to the house building state
+         * BuildHouseModelState buildState = new
+         * BuildHouseModelState(model.getActualPlayer());
+         * BuildHouseControllerState buildController = new
+         * BuildHouseControllerState(buildState, viewState);
+         * buildController.startState();
+         * // Simulate input: for example, select index 0 (the first property)
+         * buildController.continueState(0);
+         * }
+         */
     }
 
     @Override
@@ -80,11 +89,10 @@ public class MainControllerImpl implements MainController {
 
     @Override
     public ViewState getViewState() {
-        //return this.mainView.getState();
+        // return this.mainView.getState();
         return null;
     }
 
-    
     @Override
     public ControllerState getControllerState() {
         return this.actualState;
