@@ -1,11 +1,9 @@
 package it.unibo.monoopoly.view.impl;
 
+import java.util.Optional;
+
 import javax.swing.JOptionPane;
 
-import org.apache.commons.lang3.tuple.Pair;
-
-import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.controller.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.impl.DataInput;
 import it.unibo.monoopoly.controller.impl.DataOutput;
 import it.unibo.monoopoly.view.api.View;
@@ -15,7 +13,6 @@ public class ViewCheckActionState implements ViewState {
 
     private static final String[] YES_NO = {"Sì", "No"};
     private final View mainView;
-    private DataBuilderOutput dataBuilderOutput;
     private DataInput dataInput;
 
     public ViewCheckActionState(final View mainView) {
@@ -46,9 +43,9 @@ public class ViewCheckActionState implements ViewState {
             JOptionPane.QUESTION_MESSAGE, null,
             YES_NO, 1);
             if(choice == 0) {
-                mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
+                mainView.getMainController().getControllerState().continueState(new DataOutput(Optional.of(true), Optional.empty()));
             } else {
-                mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
+                mainView.getMainController().getControllerState().continueState(new DataOutput(Optional.of(false), Optional.empty()));
             }
         }
             default -> throw new IllegalArgumentException("Nothing to visualize in this state");
