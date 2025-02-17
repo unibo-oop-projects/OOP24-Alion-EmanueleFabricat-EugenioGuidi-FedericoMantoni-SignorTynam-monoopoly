@@ -2,13 +2,13 @@ package it.unibo.monoopoly.controller.impl;
 
 import java.util.List;
 
-import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.impl.ModelPrisonState;
+import it.unibo.monoopoly.state.api.ControllerState;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.view.api.ViewState;
 import it.unibo.monoopoly.view.impl.GameViewState;

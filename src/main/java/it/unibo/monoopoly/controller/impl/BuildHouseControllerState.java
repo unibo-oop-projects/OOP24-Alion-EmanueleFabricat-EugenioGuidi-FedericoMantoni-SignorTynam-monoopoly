@@ -1,7 +1,7 @@
 package it.unibo.monoopoly.controller.impl;
 
-import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.model.api.ModelState;
+import it.unibo.monoopoly.state.api.ControllerState;
 import it.unibo.monoopoly.view.api.ViewState;
 
 public class BuildHouseControllerState implements ControllerState {

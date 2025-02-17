@@ -2,9 +2,9 @@ package it.unibo.monoopoly.controller.impl;
 
 import java.util.Optional;
 
-import it.unibo.monoopoly.controller.api.ControllerState;
 import it.unibo.monoopoly.controller.api.MainController;
 import it.unibo.monoopoly.model.api.ModelState;
+import it.unibo.monoopoly.state.api.ControllerState;
 import it.unibo.monoopoly.view.api.ViewState;
 
 public class ControllerMovementState implements ControllerState {
