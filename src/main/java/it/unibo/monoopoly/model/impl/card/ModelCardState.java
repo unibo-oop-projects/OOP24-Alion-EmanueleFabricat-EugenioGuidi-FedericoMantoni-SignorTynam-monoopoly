@@ -2,8 +2,8 @@ package it.unibo.monoopoly.model.impl.card;
 
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Turn;
-import it.unibo.monoopoly.model.card.Card;
-import it.unibo.monoopoly.model.card.Deck;
+import it.unibo.monoopoly.model.card.api.Card;
+import it.unibo.monoopoly.model.card.api.Deck;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.impl.gameboard.ModelMovementState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;

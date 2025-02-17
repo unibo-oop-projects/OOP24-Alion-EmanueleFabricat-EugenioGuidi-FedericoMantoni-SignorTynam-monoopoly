@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.card;
+package it.unibo.monoopoly.model.card.api;
 
 import java.util.List;
 

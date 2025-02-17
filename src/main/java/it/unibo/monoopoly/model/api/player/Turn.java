@@ -7,7 +7,7 @@ import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.GameBoard;
-import it.unibo.monoopoly.model.card.Deck;
+import it.unibo.monoopoly.model.card.api.Deck;
 
 /**
  * Interface representing the turn of a player.

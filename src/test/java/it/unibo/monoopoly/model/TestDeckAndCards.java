@@ -10,8 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.model.card.Card;
-import it.unibo.monoopoly.model.card.Deck;
+import it.unibo.monoopoly.model.card.api.Card;
+import it.unibo.monoopoly.model.card.api.Deck;
 import it.unibo.monoopoly.model.impl.card.DeckImpl;
 /**
  * Tester of {@link Deck} and {@link Card}

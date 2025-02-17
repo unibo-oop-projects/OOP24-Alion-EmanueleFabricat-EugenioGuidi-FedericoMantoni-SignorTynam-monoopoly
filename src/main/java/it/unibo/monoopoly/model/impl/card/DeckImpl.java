@@ -9,9 +9,9 @@ import java.util.Set;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.common.Message;
-import it.unibo.monoopoly.model.card.Card;
-import it.unibo.monoopoly.model.card.CardsFactory;
-import it.unibo.monoopoly.model.card.Deck;
+import it.unibo.monoopoly.model.card.api.Card;
+import it.unibo.monoopoly.model.card.api.CardsFactory;
+import it.unibo.monoopoly.model.card.api.Deck;
 
 /**
  * Implementation of {@link Deck}.
