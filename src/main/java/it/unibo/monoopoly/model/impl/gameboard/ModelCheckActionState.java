@@ -21,7 +21,7 @@ import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 /**
  * State that represent the control of what action will be performed depending on the {@link Cell}.
  */
-public class ModelCheckActionState implements ModelState<Optional<Boolean>, Optional<Triple<Event, Integer, String>>> {
+public class ModelCheckActionState implements ModelState {
 
     private static final String BANK = "Banca";
     private final Turn mainModel;
@@ -92,7 +92,7 @@ public class ModelCheckActionState implements ModelState<Optional<Boolean>, Opti
     @Override
     public void closeState() {
         if (actualEvent.equals(Optional.empty())) {
-            this.mainModel.setState(new BuildHouseModelState(mainModel));
+            this.mainModel.setState(new ModelBankerState(mainModel, 0) /* TODO new ModelBuildHouseState */);
         } else {
             this.mainModel.setState(
                 switch (this.actualEvent.get()) {
