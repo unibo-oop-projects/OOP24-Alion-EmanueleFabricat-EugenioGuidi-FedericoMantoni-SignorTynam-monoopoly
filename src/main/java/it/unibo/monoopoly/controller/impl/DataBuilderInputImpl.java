@@ -8,15 +8,15 @@ import it.unibo.monoopoly.controller.api.DataBuilderInput;
 import it.unibo.monoopoly.model.api.gameboard.Dices.Pair;
 
 public class DataBuilderInputImpl implements DataBuilderInput {
-    Optional<Event> event;
-    Optional<String> nameOfProperty;
-    Optional<String> nameOfPlayer;
-    Optional<Integer> valueToPay;
-    Optional<Pair> dices;
-    Optional<Boolean> setMode1;
-    Optional<Boolean> setMode2;
-    Optional<List<Integer>> cellList;
-    Optional<String> cardText;
+    private Optional<Event> event;
+    private Optional<String> nameOfProperty;
+    private Optional<String> nameOfPlayer;
+    private Optional<Integer> valueToPay;
+    private Optional<Pair> dices;
+    private Optional<Boolean> setMode1;
+    private Optional<Boolean> setMode2;
+    private Optional<List<Integer>> cellList;
+    private Optional<String> cardText;
 
     @Override
     public DataBuilderInput event(final Event event) {
