@@ -67,6 +67,12 @@ public interface Turn {
      */
     Deck getDeck();
 
+    /**
+     * 
+     * @return the actual event occurring.
+     */
+    Optional<Event> getEvent();
+
 
 
 }
