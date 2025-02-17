@@ -4,11 +4,11 @@ package it.unibo.monoopoly.model.api;
 import java.util.List;
 import java.util.Optional;
 
+import it.unibo.monoopoly.common.Message;
 import it.unibo.monoopoly.model.api.gameboard.Buildable;
 import it.unibo.monoopoly.model.api.gameboard.Buyable;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
-import it.unibo.monoopoly.utils.Message;
 
 /**
  * Interface that implements a banker who help the player decide witch house sell or properties mortagage.

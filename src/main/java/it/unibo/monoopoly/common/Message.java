@@ -1,10 +1,9 @@
-package it.unibo.monoopoly.utils;
+package it.unibo.monoopoly.common;
 
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.api.player.Turn;
 
 /**

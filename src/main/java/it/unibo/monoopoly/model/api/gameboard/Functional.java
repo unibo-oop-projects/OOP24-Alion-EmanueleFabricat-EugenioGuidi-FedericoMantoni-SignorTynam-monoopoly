@@ -2,7 +2,7 @@ package it.unibo.monoopoly.model.api.gameboard;
 
 import java.util.Optional;
 
-import it.unibo.monoopoly.utils.Message;
+import it.unibo.monoopoly.common.Message;
 /**
  * Represents the cells of the gameboard not buyable.
  */

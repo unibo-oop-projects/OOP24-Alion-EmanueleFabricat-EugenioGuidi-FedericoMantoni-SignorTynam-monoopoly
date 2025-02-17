@@ -2,8 +2,8 @@ package it.unibo.monoopoly.model.api.card;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import it.unibo.monoopoly.common.Message;
 import it.unibo.monoopoly.model.impl.card.CardImpl;
-import it.unibo.monoopoly.utils.Message;
 
 /**
  * The interface that implement the resolution of draw a card.
