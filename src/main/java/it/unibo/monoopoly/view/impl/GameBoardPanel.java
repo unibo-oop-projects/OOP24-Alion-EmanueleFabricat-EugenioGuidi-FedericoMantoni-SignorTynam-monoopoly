@@ -46,15 +46,38 @@ public class GameBoardPanel extends PanelAdapter{
 
         g.drawImage(backgroundImage, 0, 0, this.mainFrameHeight, this.mainFrameHeight, this);
 
-        int circleDiameter = (int)((this.mainFrameHeight * 1.6) / 100);
+        int circleDiameter = (int)((this.mainFrameHeight * 2.5) / 100);
 
-        int centerX = 22;
-        int centerY = 22;
+        int centerX = (int)(0.96 * this.mainFrameHeight);
+        int centerY = (int)(0.96 * this.mainFrameHeight);
+        g.setColor(Color.BLUE);
+        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+
+        centerX = (int)(0.88 * this.mainFrameHeight);
+        centerY = (int)(0.96 * this.mainFrameHeight);
         g.setColor(Color.GREEN);
+        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
 
+        centerX = (int)(0.96 * this.mainFrameHeight);
+        centerY = (int)(0.91 * this.mainFrameHeight);
+        g.setColor(Color.RED);
+        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+
+        centerX = (int)(0.88 * this.mainFrameHeight);
+        centerY = (int)(0.91 * this.mainFrameHeight);
+        g.setColor(Color.YELLOW);
+        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+
+        centerX = (int)(0.814 * this.mainFrameHeight);
+        centerY = (int)(0.84 * this.mainFrameHeight);
+        g.setColor(Color.RED);
+        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+
+        centerX = (int)(0.819 * this.mainFrameHeight);
+        centerY = (int)(0.891 * this.mainFrameHeight);
+        g.setColor(Color.GREEN);
         g.setFont(new Font("Arial", Font.BOLD, 22));
-
-        g.drawString("3", centerX , centerY);
+        g.drawString("5", centerX , centerY);
 
     }
 
