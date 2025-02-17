@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.impl.card;
+package it.unibo.monoopoly.model.card.impl;
 
 import it.unibo.monoopoly.model.api.ModelState;
 import it.unibo.monoopoly.model.api.player.Turn;

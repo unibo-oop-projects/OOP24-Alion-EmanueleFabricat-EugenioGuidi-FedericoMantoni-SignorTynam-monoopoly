@@ -13,8 +13,8 @@ import it.unibo.monoopoly.model.api.gameboard.GameBoard;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
 import it.unibo.monoopoly.model.card.api.Deck;
+import it.unibo.monoopoly.model.card.impl.DeckImpl;
 import it.unibo.monoopoly.model.impl.NotaryImpl;
-import it.unibo.monoopoly.model.impl.card.DeckImpl;
 import it.unibo.monoopoly.model.impl.gameboard.CellFactoryImpl;
 import it.unibo.monoopoly.model.impl.gameboard.GameBoardImpl;
 

@@ -13,9 +13,9 @@ import it.unibo.monoopoly.model.api.gameboard.Cell;
 import it.unibo.monoopoly.model.api.gameboard.Functional;
 import it.unibo.monoopoly.model.api.player.Player;
 import it.unibo.monoopoly.model.api.player.Turn;
+import it.unibo.monoopoly.model.card.impl.ModelCardState;
 import it.unibo.monoopoly.model.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.impl.NotaryImpl;
-import it.unibo.monoopoly.model.impl.card.ModelCardState;
 import it.unibo.monoopoly.model.impl.player.ModelBankerState;
 
 public class ModelCheckActionState implements ModelState {

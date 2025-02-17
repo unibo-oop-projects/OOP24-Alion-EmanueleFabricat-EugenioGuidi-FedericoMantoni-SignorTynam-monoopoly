@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model.impl.card;
+package it.unibo.monoopoly.model.card.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
