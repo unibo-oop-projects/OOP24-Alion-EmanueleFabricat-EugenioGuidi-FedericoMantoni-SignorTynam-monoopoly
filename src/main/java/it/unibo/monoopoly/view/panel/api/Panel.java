@@ -1,8 +1,5 @@
 package it.unibo.monoopoly.view.panel.api;
 
-import java.awt.Dimension;
-
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 /**
