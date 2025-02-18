@@ -13,9 +13,9 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
+import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
+import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
 /**
  * This class test the class BuildableImpl.
@@ -39,8 +39,8 @@ class BuildableImplTest {
     static final int COST = 550;
     static final int HOUSE_COST = 100;
     static final String PROPERTY_NAME = "Corso Magellano";
-    static final Optional<Player> FIRSTOWNER = Optional.of(new PlayerImpl("Mario", 1500, 0));
-    static final Optional<Player> SECONDOWNER = Optional.of(new PlayerImpl("Franco", 1500, 0));
+    static final Optional<Player> FIRSTOWNER = Optional.of(new PlayerImpl("Mario", 1500, 0, false));
+    static final Optional<Player> SECONDOWNER = Optional.of(new PlayerImpl("Franco", 1500, 0, false));
     static final Map<Integer, Integer> RENTAL_MAP = initializeRentalMap();
 
     private BuildableImpl property;

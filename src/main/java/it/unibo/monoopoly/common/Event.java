@@ -1,8 +1,8 @@
 package it.unibo.monoopoly.common;
 
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
-import it.unibo.monoopoly.model.api.gameboard.Functional;
-import it.unibo.monoopoly.model.api.player.Player;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.api.Functional;
+import it.unibo.monoopoly.model.player.api.Player;
 
 /**
  * Represents the various events triggered by a cell or a card.
@@ -10,12 +10,14 @@ import it.unibo.monoopoly.model.api.player.Player;
 public enum Event {
 
     /**
-     * Event triggered by finishing in a {@link Buyable} cell owned by another {@link Player}.
+     * Event triggered by finishing in a {@link Buyable} cell owned by another
+     * {@link Player}.
      * Involves in the payment to the player owner
      */
     RENT_PAYMENT,
     /**
-     * Event triggered by some {@link Functional} cell, involving the payment of a fixed tax.
+     * Event triggered by some {@link Functional} cell, involving the payment of a
+     * fixed tax.
      */
     TAX_PAYMENT,
     /**
@@ -40,7 +42,7 @@ public enum Event {
      */
     CARD_PAYMENT,
     /**
-     * Actions represents having to go to prison the actual {@link Player}. 
+     * Actions represents having to go to prison the actual {@link Player}.
      */
     PRISON,
     /**

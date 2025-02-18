@@ -12,12 +12,12 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.api.gameboard.Cell;
-import it.unibo.monoopoly.model.api.gameboard.GameBoard;
-import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
-import it.unibo.monoopoly.model.impl.gameboard.GameBoardImpl;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.gameboard.api.GameBoard;
+import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
+import it.unibo.monoopoly.model.gameboard.impl.GameBoardImpl;
+import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
 /**
  * This class test the GameBoardImpl class.
@@ -44,9 +44,10 @@ class GameBoardImplTest {
 
     private static List<Player> initializePlayersList() {
         final List<Player> playersList = new LinkedList<>();
-        playersList.add(new PlayerImpl("Mario", INITIAL_AMOUNT, 0));
-        playersList.add(new PlayerImpl("Franco", INITIAL_AMOUNT, 0));
-        playersList.add(new PlayerImpl("Luigi", INITIAL_AMOUNT, 0));
+        playersList.add(new PlayerImpl("Mario", INITIAL_AMOUNT, 0, false));
+        playersList.add(new PlayerImpl("Franco", INITIAL_AMOUNT, 0, false));
+        playersList.add(new PlayerImpl("Franco", INITIAL_AMOUNT, 0, false));
+        playersList.add(new PlayerImpl("Luigi", INITIAL_AMOUNT, 0, false));
         return playersList;
     }
 

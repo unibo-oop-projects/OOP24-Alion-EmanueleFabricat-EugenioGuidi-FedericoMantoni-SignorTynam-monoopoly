@@ -10,15 +10,15 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.api.Notary;
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
-import it.unibo.monoopoly.model.api.gameboard.Company;
-import it.unibo.monoopoly.model.api.gameboard.Railroad;
-import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.impl.NotaryImpl;
-import it.unibo.monoopoly.model.impl.gameboard.CompanyImpl;
-import it.unibo.monoopoly.model.impl.gameboard.RailroadImpl;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.api.Company;
+import it.unibo.monoopoly.model.gameboard.api.Railroad;
+import it.unibo.monoopoly.model.gameboard.impl.CompanyImpl;
+import it.unibo.monoopoly.model.gameboard.impl.RailroadImpl;
+import it.unibo.monoopoly.model.notary.api.Notary;
+import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
+import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
 public class TestBuyable {
 
@@ -42,7 +42,7 @@ public class TestBuyable {
         this.railroads = Set.of(RAILROAD_E, RAILROAD_N, RAILROAD_O, RAILROAD_S);
         this.company1 = new CompanyImpl("Società idrica", 150);
         this.company2 = new CompanyImpl("Società Elettrica", 150);
-        this.owner = new PlayerImpl("Franco", START_MONEY, 0);
+        this.owner = new PlayerImpl("Franco", START_MONEY, 0, false);
         this.notary = new NotaryImpl();
     }
 

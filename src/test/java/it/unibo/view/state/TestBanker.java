@@ -7,11 +7,11 @@ import java.util.Optional;
 
 import javax.swing.JFrame;
 
-import it.unibo.monoopoly.controller.api.MainController;
-import it.unibo.monoopoly.controller.impl.MainControllerImpl;
-import it.unibo.monoopoly.model.impl.player.TurnImpl;
-import it.unibo.monoopoly.view.impl.MainView;
-import it.unibo.monoopoly.view.impl.banker.state.ViewBankerState;
+import it.unibo.monoopoly.controller.main.api.MainController;
+import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
+import it.unibo.monoopoly.model.turn.impl.TurnImpl;
+import it.unibo.monoopoly.view.main.impl.MainView;
+import it.unibo.monoopoly.view.state.impl.ViewBankerState;
 
 public class TestBanker extends JFrame{
 

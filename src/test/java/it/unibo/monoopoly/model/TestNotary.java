@@ -12,12 +12,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.model.api.Notary;
-import it.unibo.monoopoly.model.api.gameboard.Buyable;
-import it.unibo.monoopoly.model.api.player.Player;
-import it.unibo.monoopoly.model.impl.NotaryImpl;
-import it.unibo.monoopoly.model.impl.gameboard.BuildableImpl;
-import it.unibo.monoopoly.model.impl.player.PlayerImpl;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
+import it.unibo.monoopoly.model.notary.api.Notary;
+import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
+import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
 
 public class TestNotary {
@@ -32,8 +32,8 @@ public class TestNotary {
 
     @BeforeEach
     void init() {
-        this.player1 = new PlayerImpl("Marco", START_MONEY, 0);
-        this.player2 = new PlayerImpl("Franco", START_MONEY, 0);
+        this.player1 = new PlayerImpl("Marco", START_MONEY, 0, false);
+        this.player2 = new PlayerImpl("Franco", START_MONEY, 0, false);
         this.buildableProperty = new BuildableImpl(Map.of(), "Prova", 150, 50);
     }
 
