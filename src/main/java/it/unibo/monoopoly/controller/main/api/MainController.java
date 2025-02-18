@@ -1,6 +1,5 @@
 package it.unibo.monoopoly.controller.main.api;
 
-
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.state.api.ModelState;
@@ -26,9 +25,15 @@ public interface MainController {
      */
     ViewState getViewState();
 
-    /* */
+    /**
+     * 
+     * @return comment.
+     */
     ControllerState getControllerState();
 
-    /* */
+    /**
+     * 
+     * @return comment.
+     */
     DataInput getDataInput();
 }

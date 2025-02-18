@@ -29,7 +29,7 @@ public class TestBanker {
      */
     @BeforeEach
     void init() {
-        this.player = new PlayerImpl("Genoveffo", 1500, 0);
+        this.player = new PlayerImpl("Genoveffo", 1500, 0, false);
         this.cellFactory = new CellFactoryImpl();
         this.gameBoard = new GameBoardImpl(this.cellFactory.createCells(), List.of(this.player));
         this.vC = this.gameBoard.getCell(1);

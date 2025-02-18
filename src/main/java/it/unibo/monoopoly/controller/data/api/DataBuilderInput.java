@@ -7,66 +7,54 @@ import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 
 /**
- * The builder of a class that contains all information for the gui. 
+ * The builder of a class that contains all information for the gui.
  */
 public interface DataBuilderInput {
     /**
      * 
-     * @param event
-     * @return
+     * @param list
+     * @return this.
      */
-    DataBuilderInput event(Event event);
-    /**
-     * 
-     * @param name
-     * @return
-     */
-    DataBuilderInput nameOfProperty(String name);
-    /**
-     * 
-     * @param name
-     * @return
-     */
-    DataBuilderInput nameOfPlayer(String name);
-    /**
-     * 
-     * @param value
-     * @return
-     */
-    DataBuilderInput valueToPay(Integer value);
+    DataBuilderInput cellList(List<Integer> list);
+
     /**
      * 
      * @param dices
-     * @return
+     * @return this.
      */
     DataBuilderInput dices(Pair dices);
+
+    /**
+     * 
+     * @param event
+     * @return this.
+     */
+    DataBuilderInput event(Event event);
+
     /**
      * 
      * @param mode
-     * @return
+     * @return this.
      */
-    DataBuilderInput setMode1(boolean mode);
+    DataBuilderInput setMode(boolean mode);
+
     /**
      * 
-     * @param mode
-     * @return
+     * @param name
+     * @return this.
      */
-    DataBuilderInput setMode2(boolean mode);
+    DataBuilderInput text(String text);
+
     /**
      * 
-     * @param list
-     * @return
+     * @param value
+     * @return this.
      */
-    DataBuilderInput cellList(List<Integer> list);
+    DataBuilderInput valueToPay(Integer value);
+
     /**
      * 
-     * @param text
-     * @return
-     */
-    DataBuilderInput cardText(String text);
-    /**
-     * 
-     * @return
+     * @return product.
      */
     DataInput build();
 }

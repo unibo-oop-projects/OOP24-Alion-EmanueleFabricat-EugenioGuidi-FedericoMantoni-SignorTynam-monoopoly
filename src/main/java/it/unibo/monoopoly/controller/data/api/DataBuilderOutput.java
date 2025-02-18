@@ -3,24 +3,26 @@ package it.unibo.monoopoly.controller.data.api;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 
 /**
- * The builder of a class that contains all information for the model. 
+ * The builder of a class that contains all information for the model.
  */
 public interface DataBuilderOutput {
     /**
      * 
      * @param buy
-     * @return
+     * @return this.
      */
-    DataBuilderOutput buyProperty(boolean buy);   
+    DataBuilderOutput buyProperty(boolean buy);
+
     /**
      * 
      * @param cell
-     * @return
+     * @return this.
      */
     DataBuilderOutput cellChoose(int cell);
+
     /**
      * 
-     * @return
+     * @return product.
      */
-    DataOutput build(); 
+    DataOutput build();
 }

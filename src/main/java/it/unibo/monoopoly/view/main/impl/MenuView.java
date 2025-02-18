@@ -21,6 +21,7 @@ public class MenuView extends AbstractView {
 
     /**
      * Construct and initialize thr frame and panels of {@link MenuView}.
+     * 
      * @param menuController the controller of the application
      */
     public MenuView(final MenuController menuController) {
@@ -33,10 +34,11 @@ public class MenuView extends AbstractView {
 
     /**
      * MAIN ONLY FOR TEST.
-
-    public static void main(final String[] args) {
-        new MenuView().display();
-    } */
+     * 
+     * public static void main(final String[] args) {
+     * new MenuView().display();
+     * }
+     */
 
     /**
      * {@inheritDoc}
@@ -46,11 +48,19 @@ public class MenuView extends AbstractView {
         return this.menuPanel;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public MainController getMainController() {
         return null;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public List<String> getNameCells() {
         return null;

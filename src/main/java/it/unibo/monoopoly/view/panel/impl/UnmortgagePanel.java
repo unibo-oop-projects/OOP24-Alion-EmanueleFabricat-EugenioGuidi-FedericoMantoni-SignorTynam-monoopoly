@@ -9,25 +9,38 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class UnmortgagePanel extends PanelAdapter{
-    ActionListener closeMethod;
-    List<String> cellList;
-    JPanel innerPanel;
+/**
+ * comment.
+ */
+public class UnmortgagePanel extends PanelAdapter {
+    private ActionListener closeMethod;
+    private List<String> cellList;
+    private JPanel innerPanel;
 
-    public UnmortgagePanel(ActionListener closeMethod, List<String> cellList) {
+    /**
+     * comment.
+     * 
+     * @param closeMethod
+     * @param cellList
+     */
+    public UnmortgagePanel(final ActionListener closeMethod, final List<String> cellList) {
         super();
         this.closeMethod = closeMethod;
         this.cellList = cellList;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
         this.innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
         this.innerPanel.setLayout(new GridLayout(0, cellList.size()));
         this.add(new JTextArea("Scegli una proprietà su cui vendere una casa"), BorderLayout.NORTH);
-        for (String string : cellList) {
-            JButton j = new JButton(string);
+        for (final String string : cellList) {
+            final JButton j = new JButton(string);
             this.innerPanel.add(j, BorderLayout.CENTER);
             j.addActionListener(closeMethod);
         }

@@ -7,18 +7,32 @@ import javax.swing.JLabel;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
 
-public class PlayerPanel extends PanelAdapter{
+/**
+ * comment.
+ */
+public class PlayerPanel extends PanelAdapter {
 
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
 
+    /**
+     * comment.
+     * 
+     * @param mainController
+     * @param mainFrameHeight
+     * @param mainFrameWidth
+     */
     public PlayerPanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth) {
         this.mainController = mainController;
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
         setBackground(Color.BLUE);

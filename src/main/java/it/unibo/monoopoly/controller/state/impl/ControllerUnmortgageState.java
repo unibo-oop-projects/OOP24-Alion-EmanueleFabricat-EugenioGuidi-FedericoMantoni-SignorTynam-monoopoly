@@ -2,6 +2,8 @@ package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.Optional;
 
+import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
+import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
@@ -9,25 +11,43 @@ import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
+/**
+ * comment.
+ */
 public class ControllerUnmortgageState implements ControllerState {
-    MainController mainController;
-    ModelState actualModelState;
-    ViewState actualViewState;
+    private final MainController mainController;
+    private final ModelState actualModelState;
+    private final ViewState actualViewState;
+    private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl(); 
 
-    public ControllerUnmortgageState(MainController mainController) {
+    /**
+     * comment.
+     * 
+     * @param mainController
+     */
+    public ControllerUnmortgageState(final MainController mainController, final ModelState actualModelState,
+            final ViewState actualViewState) {
         this.mainController = mainController;
-        this.actualModelState = this.mainController.getModelState();
-        this.actualViewState = this.mainController.getViewState();
+        this.actualModelState = actualModelState;
+        this.actualViewState = actualViewState;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void startState() {
-        this.actualViewState.setMode(new DataInput(null, null, null, null, null, null, null, null, null));
-        this.actualViewState.visualize();
+        this.actualViewState.setMode(this.actualModelState.verify());
+        this.actualViewState.visualize(new DataInput(null, null, null, null, null, null));
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
-    public void continueState(DataOutput dataOutput) {
+    public void continueState(final DataOutput dataOutput) {
         this.actualModelState.doAction(Optional.of(dataOutput));
         this.actualModelState.closeState();
     }

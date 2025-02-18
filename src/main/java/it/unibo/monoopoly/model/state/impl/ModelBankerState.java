@@ -11,25 +11,26 @@ import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * Implementation of {@link ModelState} for the banker state,
  * used to pay an amount to the actual {@link Player}.
  */
 public class ModelBankerState implements ModelState {
-    private final Turn turn;
+    private final MainModel turn;
     private final Banker banker = new BankerImpl();
     private boolean isIndebted;
     private final int amountToPay;
     /**
      * Constructor of the class,
-     * that takes the {@link Turn} reference to perform all necessary state operations,
+     * that takes the {@link MainModel} reference to perform all necessary state operations,
      * according to the State pattern.
      * 
      * @param turn the reference to perform the operations.
+     * @param amountToPay
      */
-    public ModelBankerState(final Turn turn, final int amountToPay) {
+    public ModelBankerState(final MainModel turn, final int amountToPay) {
         this.turn = turn;
         this.amountToPay = amountToPay;
     }
@@ -58,7 +59,7 @@ public class ModelBankerState implements ModelState {
      * pay the {@link Player} depending on the property chosen by the player.
      */
     @Override
-    public void doAction(Optional<DataOutput> data) {
+    public void doAction(final Optional<DataOutput> data) {
         final Cell chosen = this.turn.getGameBoard().getCell(data.get().cellChoose().get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             getPlayer().receive(((Buildable) chosen).sellHouse());

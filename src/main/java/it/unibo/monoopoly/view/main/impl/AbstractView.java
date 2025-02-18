@@ -34,8 +34,8 @@ public abstract class AbstractView implements View {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent k) {
-                if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            public void keyPressed(final KeyEvent k) {
+                if (k.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     showConfirmToExit();
                 }
             }
@@ -43,7 +43,8 @@ public abstract class AbstractView implements View {
     }
 
     private void showConfirmToExit() {
-        if(JOptionPane.showConfirmDialog(this.mainFrame, "Siete sicuri di voler chiudere l'applicazione?", "Chiudere applicazione", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(this.mainFrame, "Siete sicuri di voler chiudere l'applicazione?",
+                "Chiudere applicazione", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }
@@ -78,6 +79,5 @@ public abstract class AbstractView implements View {
      * @return all {@link JPanel}s contained in the main frame of the view
      */
     abstract PanelAdapter getMainPanel();
-
 
 }

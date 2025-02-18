@@ -6,26 +6,46 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * comment.
+ */
 public class MainPanel extends PanelAdapter {
-    
+
     private final JTextArea textArea;
 
+    /**
+     * comment.
+     */
     public MainPanel() {
         setLayout(new BorderLayout());
         textArea = new JTextArea();
         textArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(textArea);
+        final JScrollPane scrollPane = new JScrollPane(textArea);
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    public void appendText(String text) {
+    /**
+     * comment.
+     * 
+     * @param text
+     */
+    public void appendText(final String text) {
         textArea.append(text + "\n");
     }
 
-    public void setText(String text) {
+    /**
+     * comment.
+     * 
+     * @param text
+     */
+    public void setText(final String text) {
         textArea.setText(text);
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
         // TODO Auto-generated method stub

@@ -43,7 +43,6 @@ public class DeckImpl implements Deck {
             this.discardPile.add(actualCard);
         }
     }
-        
 
     private void shuffleDeck() {
         if (this.deck.isEmpty()) {

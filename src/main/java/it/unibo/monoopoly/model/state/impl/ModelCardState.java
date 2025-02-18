@@ -3,7 +3,7 @@ package it.unibo.monoopoly.model.state.impl;
 import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 import java.util.Optional;
 
@@ -17,9 +17,13 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
  * it changes the state.
  */
 public class ModelCardState implements ModelState {
-    private final Turn turn;
+    private final MainModel turn;
 
-    public ModelCardState(final Turn turn) {
+    /**
+     * 
+     * @param turn
+     */
+    public ModelCardState(final MainModel turn) {
         this.turn = turn;
     }
 
@@ -30,6 +34,7 @@ public class ModelCardState implements ModelState {
     private Card getCard() {
         return getDeck().getActualCard();
     }
+
     /**
      * {@inheritDoc}
      * In this specific case,
@@ -39,15 +44,17 @@ public class ModelCardState implements ModelState {
     public boolean verify() {
         return true;
     }
+
     /**
      * {@inheritDoc}
      * In this specific case,
      * the method draw the next {@link Card}.
      */
     @Override
-    public void doAction(Optional<DataOutput> data) {
+    public void doAction(final Optional<DataOutput> data) {
         getDeck().draw();
     }
+
     /**
      * {@inheritDoc}
      * In this case,
@@ -55,11 +62,11 @@ public class ModelCardState implements ModelState {
      */
     @Override
     public void closeState() {
-        ModelState nextState  = null;
+        ModelState nextState = null;
         switch (getCard().getMessage().typeOfAction()) {
             case Event.FREE_CARD:
                 this.turn.getActualPlayer().addGetOutOfJailCard();
-                nextState = new ModelBankerState(turn, 0);//da cambiare
+                nextState = new ModelBankerState(turn, 0); // da cambiare
                 break;
             case Event.MOVE_CARD:
                 nextState = new ModelMovementState(turn, getCard().getMessage().data());

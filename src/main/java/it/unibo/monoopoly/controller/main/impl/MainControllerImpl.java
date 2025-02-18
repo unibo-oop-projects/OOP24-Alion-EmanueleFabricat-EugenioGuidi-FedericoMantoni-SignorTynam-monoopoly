@@ -11,7 +11,7 @@ import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 import it.unibo.monoopoly.view.main.impl.MainView;
 import it.unibo.monoopoly.view.panel.impl.MainPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -23,26 +23,29 @@ import it.unibo.monoopoly.view.state.impl.GameViewState;
 public class MainControllerImpl implements MainController {
 
     private final MainView mainView;
-    private final Turn model;
-    private ControllerState actualState;
+    private final MainModel model;
+    private final ControllerState actualState;
     private DataInput inputData;
 
     /**
      * Constructor that creates the model (TurnImpl) and the main view.
-     * @param model the game model (Turn)
+     * 
+     * @param model       the game model (Turn)
      * @param playersName list of players' names
      */
-    public MainControllerImpl(final Turn model, final List<String> playersName) {
+    public MainControllerImpl(final MainModel model, final List<String> playersName) {
         this.model = model;
         final List<String> cellsNames = model.getGameBoard().getCellsNames();
-        // Create the main view passing this controller, players' names, and the cells' names
+        // Create the main view passing this controller, players' names, and the cells'
+        // names
         this.mainView = new MainView(this, playersName, cellsNames);
         this.mainView.display();
-        this.actualState =  new ControllerBankerState(this);
+        this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState());
     }
 
     /**
-     * Starts the turn; as an example, if the current player is in prison the prison state is activated,
+     * Starts the turn; as an example, if the current player is in prison the prison
+     * state is activated,
      * otherwise the house building state is activated.
      */
 
@@ -51,45 +54,66 @@ public class MainControllerImpl implements MainController {
      */
     @Override
     public void startTurn() {
-        /*// Get the MainPanel from the view and create the GameViewState
-        MainPanel mainPanel = (MainPanel) mainView.getMainPanel();
-        GameViewState viewState = new GameViewState(mainPanel);
-        
-        // If the current player is in prison
-        if (model.getActualPlayer().isPrisoned()) {
-            // Create and start the prison state
-            PrisonModelState prisonState = new PrisonModelState(model.getActualPlayer());
-            PrisonControllerState prisonController = new PrisonControllerState(prisonState, viewState);
-            prisonController.startState();
-            // Here input might come from the UI; for example, we simulate that the player chooses NOT to use the card (false)
-            prisonController.continueState(false);
-        } else {
-            // Otherwise, proceed to the house building state
-            BuildHouseModelState buildState = new BuildHouseModelState(model.getActualPlayer());
-            BuildHouseControllerState buildController = new BuildHouseControllerState(buildState, viewState);
-            buildController.startState();
-            // Simulate input: for example, select index 0 (the first property)
-            buildController.continueState(0);
-        }*/
+        /*
+         * // Get the MainPanel from the view and create the GameViewState
+         * MainPanel mainPanel = (MainPanel) mainView.getMainPanel();
+         * GameViewState viewState = new GameViewState(mainPanel);
+         * 
+         * // If the current player is in prison
+         * if (model.getActualPlayer().isPrisoned()) {
+         * // Create and start the prison state
+         * PrisonModelState prisonState = new PrisonModelState(model.getActualPlayer());
+         * PrisonControllerState prisonController = new
+         * PrisonControllerState(prisonState, viewState);
+         * prisonController.startState();
+         * // Here input might come from the UI; for example, we simulate that the
+         * player chooses NOT to use the card (false)
+         * prisonController.continueState(false);
+         * } else {
+         * // Otherwise, proceed to the house building state
+         * BuildHouseModelState buildState = new
+         * BuildHouseModelState(model.getActualPlayer());
+         * BuildHouseControllerState buildController = new
+         * BuildHouseControllerState(buildState, viewState);
+         * buildController.startState();
+         * // Simulate input: for example, select index 0 (the first property)
+         * buildController.continueState(0);
+         * }
+         */
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public ModelState getModelState() {
         return this.model.getState();
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public ViewState getViewState() {
-        //return this.mainView.getState();
+        // return this.mainView.getState();
         return null;
     }
 
-    
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public ControllerState getControllerState() {
         return this.actualState;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public DataInput getDataInput() {
         return this.inputData;

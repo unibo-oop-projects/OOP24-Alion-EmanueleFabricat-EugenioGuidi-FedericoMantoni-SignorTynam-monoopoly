@@ -14,7 +14,6 @@ import it.unibo.monoopoly.model.player.api.Player;
  */
 public class NotaryImpl implements Notary {
 
-
     /**
      * {@inheritDoc}
      */
@@ -28,10 +27,14 @@ public class NotaryImpl implements Notary {
         } else {
             throw new IllegalStateException("Property must be owned by the bank to be buyable");
         }
-
     }
-        @Override
-        public boolean isActionBuy(Cell cell, Player actualPlayer) {
+
+    /**
+     *
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isActionBuy(final Cell cell, final Player actualPlayer) {
         if (cell.isBuyable()) {
             final Buyable buyableCell = (Buyable) cell;
             return buyableCell.isAvailable() && actualPlayer.isPayable(buyableCell.getCost());
@@ -40,6 +43,11 @@ public class NotaryImpl implements Notary {
         }
     }
 
+    /**
+     * @param player
+     * @param cell
+     * @return comment.
+     */
     public Optional<Event> checkBuyedProperty(final Player player, final Cell cell) {
         final Buyable buyableCell = (Buyable) cell;
         if (checkRentPayment(player, buyableCell)) {
@@ -50,7 +58,7 @@ public class NotaryImpl implements Notary {
         }
     }
 
-    private boolean checkRentPayment(Player player, Buyable cell) {
+    private boolean checkRentPayment(final Player player, final Buyable cell) {
         return !cell.isMortgaged() && !cell.getOwner().get().equals(player);
     }
 

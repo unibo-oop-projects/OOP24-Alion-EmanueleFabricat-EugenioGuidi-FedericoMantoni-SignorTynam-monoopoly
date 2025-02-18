@@ -53,8 +53,7 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
     /**
      * Add a house to the property.
      * 
-     * @return the houses
-     * @throws IllegalStateException if the property is mortgaged or there are already 5 houses on the property
+     * @throws IllegalStateException if the property is mortgaged or there are already 5 houses on the property.
      */
     @Override
     public void buildHouse() {
@@ -80,7 +79,7 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
      * @param isBuilding true if the operation is building a house, false if it is selling a house
      * @throws IllegalStateException if the property is mortgaged or there are already 5 houses on the property
      */
-    private void checkMortgageAndHouseLimit(boolean isBuilding) {
+    private void checkMortgageAndHouseLimit(final boolean isBuilding) {
         if (this.isMortgaged()) {
             throw new IllegalStateException("Cannot " + (isBuilding ? "build" : "sell") + " a house on a mortgaged property");
         }

@@ -14,51 +14,51 @@ public interface Player {
      * Retrieves the name of the player.
      * @return the name of the player.
      */
-    public String getName();
+    String getName();
 
     /**
      * Retrieves the amount of money the player has.
      * @return the amount of money the player has.
      */
-    public int getMoneyAmount();
+    int getMoneyAmount();
 
     /**
      * Retrieves the current position of the player.
      * @return the current position of the player.
      */
-    public int getActualPosition();
+    int getActualPosition();
 
     /**
      * Checks if the player is in prison.
      * @return true if the player is in prison, false otherwise.
      */
-    public boolean isPrisoned();
+    boolean isPrisoned();
 
     /**
      * Change the position of the player.
      * @param position the new position of the player.
      * @throws IllegalArgumentException if the position isn't applicable.
      */
-    public void changePosition(int position);
+    void changePosition(int position);
 
     /**
      * Checks if the player can pay a specified amount.
      * @param amount the amount to be paid.
      * @return true if the player can pay, false otherwise.
      */
-    public boolean isPayable(int amount);
+    boolean isPayable(int amount);
 
     /**
      * Deducts the specified amount from the player's money.
      * @param amount the amount to be deducted.
      */
-    public void pay(int amount);
+    void pay(int amount);
 
     /**
      * Adds the specified amount to the player's money.
      * @param amount the amount to be added.
      */
-    public void receive(int amount);
+    void receive(int amount);
 
     /**
      * Adds a property to the player's list of owned properties.

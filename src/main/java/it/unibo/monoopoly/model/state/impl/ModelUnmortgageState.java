@@ -8,7 +8,7 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * Implementation of {@link ModelState} for the unmortgage state,
@@ -17,17 +17,17 @@ import it.unibo.monoopoly.model.turn.api.Turn;
  */
 public class ModelUnmortgageState implements ModelState {
     private boolean makeState;
-    private final Turn turn;
+    private final MainModel turn;
 
     /**
      * Constructor of the class,
-     * that takes the {@link Turn} reference to perform all necessary state
+     * that takes the {@link MainModel} reference to perform all necessary state
      * operations,
      * according to the State pattern.
      * 
      * @param turn the reference to perform the operations.
      */
-    public ModelUnmortgageState(Turn turn) {
+    public ModelUnmortgageState(final MainModel turn) {
         this.turn = turn;
     }
 
@@ -39,7 +39,8 @@ public class ModelUnmortgageState implements ModelState {
      */
     @Override
     public boolean verify() {
-        return this.makeState = havePropertyToUnmortgage();
+        this.makeState = havePropertyToUnmortgage();
+        return this.makeState;
     }
 
     private boolean havePropertyToUnmortgage() {
@@ -54,13 +55,13 @@ public class ModelUnmortgageState implements ModelState {
      * the method release a mortgage to the selected property.
      */
     @Override
-    public void doAction(Optional<DataOutput> data) {
+    public void doAction(final Optional<DataOutput> data) {
         if (data.isPresent()) {
             unmortgageByIndex(data.get().cellChoose());
         }
     }
 
-    private void unmortgageByIndex(Optional<Integer> selectedCell) {
+    private void unmortgageByIndex(final Optional<Integer> selectedCell) {
         this.turn.getCellsList().stream()
                 .filter(c -> c instanceof Buyable)
                 .map(c -> (Buyable) c)
@@ -84,9 +85,9 @@ public class ModelUnmortgageState implements ModelState {
                 .toList());
     }
 
-    private boolean isPayable(Buyable property) {
-        BigDecimal multiFactor = new BigDecimal(1.10);
-        int toPay = multiFactor.multiply(new BigDecimal(property.getMortgageValue())).intValue();
+    private boolean isPayable(final Buyable property) {
+        final BigDecimal multiFactor = new BigDecimal(1.10);
+        final int toPay = multiFactor.multiply(new BigDecimal(property.getMortgageValue())).intValue();
         return this.turn.getActualPlayer().isPayable(toPay);
     }
 
@@ -94,15 +95,17 @@ public class ModelUnmortgageState implements ModelState {
      * {@inheritDoc}
      * In this specific case,
      * set the new {@link ModelState}:
-     * {@link PrisonModelState} if the actual {@link Player} does not want or cannot unmortgage houses,
-     * {@link ModelUnmortgageState} otherwise to select a new property or stop operation.
+     * {@link PrisonModelState} if the actual {@link Player} does not want or cannot
+     * unmortgage houses,
+     * {@link ModelUnmortgageState} otherwise to select a new property or stop
+     * operation.
      */
     @Override
     public void closeState() {
         if (makeState) {
             this.turn.setState(new ModelUnmortgageState(turn));
         } else {
-            this.turn.setState(new ModelCardState(turn));//da cambiare
+            this.turn.setState(new ModelCardState(turn)); // da cambiare
         }
     }
 

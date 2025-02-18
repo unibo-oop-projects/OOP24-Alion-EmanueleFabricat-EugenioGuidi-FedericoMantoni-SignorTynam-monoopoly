@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.state.impl;
+package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -9,27 +9,37 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
+/**
+ * comment.
+ */
+public class MortgagePanel extends PanelAdapter {
+    private final ActionListener closeMethod;
+    private final List<String> cellList;
+    private JPanel innerPanel;
 
-public class MortgagePanel extends PanelAdapter{
-    ActionListener closeMethod;
-    List<String> cellList;
-    JPanel innerPanel;
-
-    public MortgagePanel(ActionListener closeMethod, List<String> cellList) {
+    /**
+     * 
+     * @param closeMethod
+     * @param cellList
+     */
+    public MortgagePanel(final ActionListener closeMethod, final List<String> cellList) {
         super();
         this.closeMethod = closeMethod;
         this.cellList = cellList;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
         this.innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
         this.innerPanel.setLayout(new GridLayout(0, cellList.size()));
         this.add(new JTextArea("Scegli una proprietà da ipotecare"), BorderLayout.NORTH);
-        for (String string : cellList) {
-            JButton j = new JButton(string);
+        for (final String string : cellList) {
+            final JButton j = new JButton(string);
             this.innerPanel.add(j, BorderLayout.CENTER);
             j.addActionListener(closeMethod);
         }

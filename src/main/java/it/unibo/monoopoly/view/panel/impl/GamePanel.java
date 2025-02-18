@@ -15,30 +15,45 @@ import javax.swing.JPanel;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
 
-public class GamePanel extends PanelAdapter{
+/**
+ * comment.
+ */
+public class GamePanel extends PanelAdapter {
 
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
 
+    /**
+     * comment.
+     * 
+     * @param mainController
+     * @param mainFrameHeight
+     * @param mainFrameWidth
+     */
     public GamePanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth) {
         this.mainController = mainController;
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
-        GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainController, this.mainFrameHeight, this.mainFrameWidth);
-        PlayerPanel playerPanel = new PlayerPanel(this.mainController, this.mainFrameHeight, this.mainFrameWidth);
-        JPanel eastPanel = new JPanel();
-        JPanel westPanel = new JPanel();
-        JPanel centerPanel = new JPanel();
+        final GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainController, this.mainFrameHeight,
+                this.mainFrameWidth);
+        final PlayerPanel playerPanel = new PlayerPanel(this.mainController, this.mainFrameHeight, this.mainFrameWidth);
+        final JPanel eastPanel = new JPanel();
+        final JPanel westPanel = new JPanel();
+        final JPanel centerPanel = new JPanel();
 
-        int centerHeight = this.mainFrameHeight;
-        int centerWidth = centerHeight + (centerHeight / 2);
-        int eastWestHeight = this.mainFrameHeight;
-        int eastWestWidth = (this.mainFrameWidth - centerWidth) / 2;
+        final int centerHeight = this.mainFrameHeight;
+        final int centerWidth = centerHeight + (centerHeight / 2);
+        final int eastWestHeight = this.mainFrameHeight;
+        final int eastWestWidth = (this.mainFrameWidth - centerWidth) / 2;
 
         eastPanel.setPreferredSize(new Dimension(eastWestWidth, eastWestHeight));
         westPanel.setPreferredSize(new Dimension(eastWestWidth, eastWestHeight));
