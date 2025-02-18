@@ -28,8 +28,8 @@ public class MainModelImpl implements MainModel {
     private static final int START_MONEY_AMOUNT = 1500;
 
     private Cell actualCell;
-    private final Notary notary = new NotaryImpl();
-    private final Player actualPlayer;
+    private Optional<Event> actualEvent = Optional.empty();
+    private Player actualPlayer;
     private final GameBoard gameBoard;
     private final Deck deck;
     private final ModelState actualState;
@@ -48,6 +48,33 @@ public class MainModelImpl implements MainModel {
         this.actualPlayer = gameBoard.getCurrentPlayer();
         this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT);
         // TODO initialize state
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void movePhase() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'movePhase'");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void constructPhase() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'constructPhase'");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int rollDice() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'rollDice'");
     }
 
     /**
@@ -100,6 +127,11 @@ public class MainModelImpl implements MainModel {
     public Deck getDeck() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getDeck'");
+    }
+
+    @Override
+    public Optional<Event> getEvent() {
+        return this.actualEvent;
     }
 
 }
