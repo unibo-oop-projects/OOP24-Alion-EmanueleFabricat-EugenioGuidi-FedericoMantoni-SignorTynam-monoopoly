@@ -26,6 +26,7 @@ public class ModelCheckActionState implements ModelState {
     private static final String BANK = "Banca";
     private final Turn mainModel;
     private final Notary notary = new NotaryImpl();
+
     private boolean needInput;
     private boolean isBuyableCell;
     private Optional<Event> actualEvent;
@@ -71,19 +72,6 @@ public class ModelCheckActionState implements ModelState {
         }
     }
 
-    /*
-     * TODO Da spostare su Controller
-     */
-    public Optional<Triple<Event, Integer, String>> getData() {
-        if (actualEvent.isEmpty()) {
-            return Optional.empty();
-        } else if (isBuyableCell) {
-            return handleBuyableData();
-        } else {
-            return handleFunctionalData();
-        }
-    }
-
     /**
      * {@inheritDoc}
      * 
@@ -108,34 +96,6 @@ public class ModelCheckActionState implements ModelState {
                 }
             );
         }
-    }
-
-    /*
-     * TODO Da spostare su Controller
-     */
-    private Optional<Triple<Event, Integer, String>> handleFunctionalData() {
-        final Functional cell = (Functional) getActualCell();
-        return switch (this.actualEvent.get()) {
-            case TAX_PAYMENT -> Optional.of(Triple.of(this.actualEvent.get(),
-                cell.getAction().get().data().get(), BANK));
-            case DRAW -> Optional.empty();
-            case PRISON -> Optional.empty();
-            default -> throw new IllegalStateException("A Functional cell cannot trigger this type of event");
-        };
-    }
-
-    /*
-     * TODO Da spostare su Controller
-     */
-    private Optional<Triple<Event, Integer, String>> handleBuyableData() {
-        final Buyable cell = (Buyable) getActualCell();
-        return switch (this.actualEvent.get()) {
-            case RENT_PAYMENT ->
-                Optional.of(Triple.of(this.actualEvent.get(),
-                    cell.getRentalValue(), cell.getOwner().get().getName()));
-            case BUY_PROPERTY -> Optional.of(Triple.of(Event.BUY_PROPERTY, cell.getCost(), cell.getName()));
-            default -> throw new IllegalStateException("A Buyable cell cannot trigger this type of event");
-        };
     }
 
     private void checkFunctionalCell() {
