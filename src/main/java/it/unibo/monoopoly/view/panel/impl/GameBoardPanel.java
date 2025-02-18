@@ -73,10 +73,12 @@ public class GameBoardPanel extends PanelAdapter{
         g.setColor(Color.RED);
         g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
 
+        int numberSize = (int)(this.mainFrameHeight * 0.022);
+
         centerX = (int)(0.819 * this.mainFrameHeight);
         centerY = (int)(0.891 * this.mainFrameHeight);
         g.setColor(Color.GREEN);
-        g.setFont(new Font("Arial", Font.BOLD, 22));
+        g.setFont(new Font("Arial", Font.BOLD, numberSize));
         g.drawString("5", centerX , centerY);
 
     }
