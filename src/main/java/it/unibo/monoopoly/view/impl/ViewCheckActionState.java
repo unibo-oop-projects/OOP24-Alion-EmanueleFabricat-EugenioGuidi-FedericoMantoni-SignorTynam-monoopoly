@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import javax.swing.JOptionPane;
 
-import it.unibo.monoopoly.controller.impl.DataInput;
-import it.unibo.monoopoly.controller.impl.DataOutput;
-import it.unibo.monoopoly.view.api.View;
-import it.unibo.monoopoly.view.api.ViewState;
+import it.unibo.monoopoly.controller.data.impl.DataInput;
+import it.unibo.monoopoly.controller.data.impl.DataOutput;
+import it.unibo.monoopoly.view.main.api.View;
+import it.unibo.monoopoly.view.state.api.ViewState;
 
 public class ViewCheckActionState implements ViewState {
 
