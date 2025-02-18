@@ -54,33 +54,6 @@ public class MainModelImpl implements MainModel {
      * {@inheritDoc}
      */
     @Override
-    public void movePhase() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'movePhase'");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void constructPhase() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'constructPhase'");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int rollDice() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'rollDice'");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public ModelState getState() {
         return this.actualState;
     }
