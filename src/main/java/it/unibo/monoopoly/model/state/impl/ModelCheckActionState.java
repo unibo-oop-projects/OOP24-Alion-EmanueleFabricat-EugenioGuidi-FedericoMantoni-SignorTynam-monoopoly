@@ -13,7 +13,7 @@ import it.unibo.monoopoly.model.notary.api.Notary;
 import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * comment.
@@ -21,7 +21,7 @@ import it.unibo.monoopoly.model.turn.api.Turn;
 public class ModelCheckActionState implements ModelState {
 
     private static final String BANK = "Banca";
-    private final Turn mainModel;
+    private final MainModel mainModel;
     private final Notary notary = new NotaryImpl();
     private boolean needInput;
     private boolean isBuyableCell;
@@ -32,7 +32,7 @@ public class ModelCheckActionState implements ModelState {
      * 
      * @param mainModel
      */
-    public ModelCheckActionState(final Turn mainModel) {
+    public ModelCheckActionState(final MainModel mainModel) {
         this.mainModel = mainModel;
     }
 

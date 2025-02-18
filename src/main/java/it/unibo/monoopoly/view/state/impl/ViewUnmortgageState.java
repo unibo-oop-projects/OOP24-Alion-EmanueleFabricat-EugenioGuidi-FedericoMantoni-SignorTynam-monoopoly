@@ -21,6 +21,7 @@ public class ViewUnmortgageState implements ViewState {
     private final MainView mainView;
     private JPanel panel;
     private DataInput dataInput;
+    private boolean makeState;
 
     /**
      * comment.
@@ -37,8 +38,8 @@ public class ViewUnmortgageState implements ViewState {
      */
 
     @Override
-    public void setMode(final DataInput dataInput) {
-        this.dataInput = dataInput;
+    public void setMode(Boolean setter) {
+        this.makeState = setter;
     }
 
     /**
@@ -46,8 +47,9 @@ public class ViewUnmortgageState implements ViewState {
      * {@inheritDoc}
      */
     @Override
-    public void visualize() {
-        if (this.dataInput.setMode1().get()) {
+    public void visualize(final DataInput dataInput) {
+        this.dataInput = dataInput;
+        if (this.makeState) {
             this.panel = new UnmortgagePanel(new CellGiver(), intToTextCell(this.dataInput.cellList().get()));
         } else {
             this.panel = new NothingUnmortgageablePanel(new SimpleExit());

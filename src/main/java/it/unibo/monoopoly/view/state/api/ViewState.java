@@ -11,11 +11,11 @@ public interface ViewState {
      * 
      * @param dataInput a possible data to help the setup.
      */
-    void setMode(DataInput dataInput);
+    void setMode(Boolean setter);
 
     /**
      * Display all the views necessary for the state.
      */
-    void visualize();
+    void visualize(DataInput data);
 
 }

@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.state.impl;
+package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -8,8 +8,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
-import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
 
 /**
  * comment.

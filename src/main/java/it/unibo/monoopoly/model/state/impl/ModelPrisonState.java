@@ -5,7 +5,7 @@ import java.util.Optional;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * comment.

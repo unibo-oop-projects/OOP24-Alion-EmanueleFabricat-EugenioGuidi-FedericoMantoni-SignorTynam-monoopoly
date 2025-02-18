@@ -5,7 +5,7 @@ import java.util.List;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.controller.menu.api.MenuController;
-import it.unibo.monoopoly.model.turn.impl.TurnImpl;
+import it.unibo.monoopoly.model.turn.impl.MainModelImpl;
 import it.unibo.monoopoly.view.main.impl.MenuView;
 
 /**
@@ -26,7 +26,7 @@ public class MenuControllerImpl implements MenuController {
      */
     @Override
     public void goGame(final List<String> namePlayers) {
-        final MainController mainController = new MainControllerImpl(new TurnImpl(namePlayers), namePlayers);
+        final MainController mainController = new MainControllerImpl(new MainModelImpl(namePlayers), namePlayers);
         mainController.startTurn();
     }
 

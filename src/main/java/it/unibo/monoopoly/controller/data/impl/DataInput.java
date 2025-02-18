@@ -9,24 +9,18 @@ import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 /**
  * comment.
  * 
- * @param event
- * @param nameOfProperty
- * @param nameOfPlayer
- * @param valueToPay
- * @param dices
- * @param setMode1
- * @param setMode2
  * @param cellList
- * @param cardText
+ * @param dices
+ * @param event
+ * @param setMode
+ * @param text
+ * @param valueToPay
  */
 public record DataInput(
-        Optional<Event> event,
-        Optional<String> nameOfProperty,
-        Optional<String> nameOfPlayer,
-        Optional<Integer> valueToPay,
-        Optional<Pair> dices,
-        Optional<Boolean> setMode1,
-        Optional<Boolean> setMode2,
         Optional<List<Integer>> cellList,
-        Optional<String> cardText) {
+        Optional<Pair> dices,
+        Optional<Event> event,
+        Optional<Boolean> setMode,
+        Optional<String> text,
+        Optional<Integer> valueToPay) {
 }

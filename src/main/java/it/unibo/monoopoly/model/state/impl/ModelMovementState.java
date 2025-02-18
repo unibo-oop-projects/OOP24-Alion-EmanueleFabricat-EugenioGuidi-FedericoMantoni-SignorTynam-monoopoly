@@ -8,7 +8,7 @@ import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 import it.unibo.monoopoly.model.gameboard.impl.DicesImpl;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * Implementation of {@link ModelState} for the Dices state,
@@ -18,7 +18,7 @@ public class ModelMovementState implements ModelState {
 
     private static final int PASS_GO_REWARD = 200;
 
-    private final Turn turn;
+    private final MainModel turn;
     private final Dices dices = new DicesImpl();
     private final Optional<Integer> cellIndex;
 
@@ -31,7 +31,7 @@ public class ModelMovementState implements ModelState {
      *                  next state to execute.
      * @param cellIndex
      */
-    public ModelMovementState(final Turn turn, final Optional<Integer> cellIndex) {
+    public ModelMovementState(final MainModel turn, final Optional<Integer> cellIndex) {
         this.turn = turn;
         this.cellIndex = cellIndex;
     }

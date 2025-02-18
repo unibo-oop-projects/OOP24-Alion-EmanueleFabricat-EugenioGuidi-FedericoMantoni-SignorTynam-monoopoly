@@ -18,12 +18,12 @@ import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.ModelBankerState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
- * Implements the {@link Turn} interface.
+ * Implements the {@link MainModel} interface.
  */
-public class TurnImpl implements Turn {
+public class MainModelImpl implements MainModel {
 
     private static final int START_MONEY_AMOUNT = 1500;
 
@@ -40,7 +40,7 @@ public class TurnImpl implements Turn {
      * 
      * @param playersName the list of the name of the players
      */
-    public TurnImpl(final List<String> playersName) {
+    public MainModelImpl(final List<String> playersName) {
         final List<Player> players = playersName.stream()
                 .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 0, false)).collect(Collectors.toList());
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
@@ -53,34 +53,6 @@ public class TurnImpl implements Turn {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public void movePhase() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'movePhase'");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void constructPhase() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'constructPhase'");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int rollDice() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'rollDice'");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("unchecked")
     @Override
     public ModelState getState() {
         return this.actualState;

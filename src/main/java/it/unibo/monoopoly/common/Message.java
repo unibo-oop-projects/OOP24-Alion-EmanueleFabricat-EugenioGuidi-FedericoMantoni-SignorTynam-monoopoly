@@ -4,13 +4,13 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
- * Record of utility, it represents the message directed to {@link Turn}.
+ * Record of utility, it represents the message directed to {@link MainModel}.
  * 
- * @param typeOfAction that {@link Turn} have to do.
- * @param data         that {@link Turn} have to use to do the operation.
+ * @param typeOfAction that {@link MainModel} have to do.
+ * @param data         that {@link MainModel} have to use to do the operation.
  */
 public record Message(
                 @JsonProperty("action") Event typeOfAction,

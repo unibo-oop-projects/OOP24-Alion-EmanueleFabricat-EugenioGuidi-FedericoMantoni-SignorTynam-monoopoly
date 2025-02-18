@@ -3,7 +3,7 @@ package it.unibo.monoopoly.model.state.impl;
 import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 import java.util.Optional;
 
@@ -17,13 +17,13 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
  * it changes the state.
  */
 public class ModelCardState implements ModelState {
-    private final Turn turn;
+    private final MainModel turn;
 
     /**
      * 
      * @param turn
      */
-    public ModelCardState(final Turn turn) {
+    public ModelCardState(final MainModel turn) {
         this.turn = turn;
     }
 

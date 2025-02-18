@@ -7,7 +7,7 @@ import it.unibo.monoopoly.common.Message;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.player.api.Player;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * Interface that implements a banker who help the player decide witch house
@@ -18,7 +18,7 @@ public interface Banker {
      * Select the right Operations to pay the amount.
      * 
      * @param player on which to perform the operation.
-     * @return the {@link Message} to {@link Turn}.
+     * @return the {@link Message} to {@link MainModel}.
      */
     Optional<List<Buyable>> selectOperations(Player player);
 

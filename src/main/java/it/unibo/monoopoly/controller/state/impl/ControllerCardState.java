@@ -2,6 +2,8 @@ package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.Optional;
 
+import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
+import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
@@ -13,19 +15,21 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  * manca comment.
  */
 public class ControllerCardState implements ControllerState {
-    private MainController mainController;
-    private ModelState actualModelState;
-    private ViewState actualViewState;
+    private final MainController mainController;
+    private final ModelState actualModelState;
+    private final ViewState actualViewState;
+    private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl(); 
 
     /**
      * comment.
      * 
      * @param mainController
      */
-    public ControllerCardState(final MainController mainController) {
+    public ControllerCardState(final MainController mainController, final ModelState actualModelState,
+            final ViewState actualViewState) {
         this.mainController = mainController;
-        this.actualModelState = this.mainController.getModelState();
-        this.actualViewState = this.mainController.getViewState();
+        this.actualModelState = actualModelState;
+        this.actualViewState = actualViewState;
     }
 
     /**
@@ -34,9 +38,9 @@ public class ControllerCardState implements ControllerState {
      */
     @Override
     public void startState() {
-        this.actualViewState.setMode(new DataInput(null, null, null, null, null, null, null, null, null));
+        this.actualViewState.setMode(this.actualModelState.verify());
         this.actualModelState.doAction(Optional.empty());
-        this.actualViewState.visualize();
+        this.actualViewState.visualize(new DataInput(null, null, null, null, null, null));
     }
 
     /**

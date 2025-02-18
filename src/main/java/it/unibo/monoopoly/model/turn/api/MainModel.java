@@ -13,25 +13,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 /**
  * Interface representing the turn of a player.
  */
-public interface Turn {
-
-    /**
-     * Executes the move phase of the player's turn.
-     */
-    void movePhase();
-
-    /**
-     * Executes the construction phase of the player's turn.
-     */
-    void constructPhase();
-
-    /**
-     * Rolls the dice for the player's turn.
-     * 
-     * @return the result of the dice roll.
-     */
-    int rollDice();
-
+public interface MainModel {
     /**
      * Gets the current {@link ModelState}.
      * 

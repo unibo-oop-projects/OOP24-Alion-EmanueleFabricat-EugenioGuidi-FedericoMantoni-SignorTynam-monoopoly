@@ -27,8 +27,7 @@ public class ViewCardState implements ViewState {
      * {@inheritDoc}
      */
     @Override
-    public void setMode(final DataInput dataInput) {
-        this.dataInput = dataInput;
+    public void setMode(Boolean setter) {
     }
 
     /**
@@ -36,8 +35,9 @@ public class ViewCardState implements ViewState {
      * {@inheritDoc}
      */
     @Override
-    public void visualize() {
-        JOptionPane.showMessageDialog(this.mainView.getMainPanel(), this.dataInput.cardText().get(), "Card",
+    public void visualize(final DataInput data) {
+        this.dataInput = data;
+        JOptionPane.showMessageDialog(this.mainView.getMainPanel(), this.dataInput.text().get(), "Card",
                 JOptionPane.PLAIN_MESSAGE);
     }
 

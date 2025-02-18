@@ -8,7 +8,7 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.Turn;
+import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * Implementation of {@link ModelState} for the unmortgage state,
@@ -17,17 +17,17 @@ import it.unibo.monoopoly.model.turn.api.Turn;
  */
 public class ModelUnmortgageState implements ModelState {
     private boolean makeState;
-    private final Turn turn;
+    private final MainModel turn;
 
     /**
      * Constructor of the class,
-     * that takes the {@link Turn} reference to perform all necessary state
+     * that takes the {@link MainModel} reference to perform all necessary state
      * operations,
      * according to the State pattern.
      * 
      * @param turn the reference to perform the operations.
      */
-    public ModelUnmortgageState(final Turn turn) {
+    public ModelUnmortgageState(final MainModel turn) {
         this.turn = turn;
     }
 

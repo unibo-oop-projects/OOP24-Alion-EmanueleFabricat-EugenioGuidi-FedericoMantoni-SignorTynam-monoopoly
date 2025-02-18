@@ -12,31 +12,10 @@ import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 public interface DataBuilderInput {
     /**
      * 
-     * @param event
+     * @param list
      * @return this.
      */
-    DataBuilderInput event(Event event);
-
-    /**
-     * 
-     * @param name
-     * @return this.
-     */
-    DataBuilderInput nameOfProperty(String name);
-
-    /**
-     * 
-     * @param name
-     * @return this.
-     */
-    DataBuilderInput nameOfPlayer(String name);
-
-    /**
-     * 
-     * @param value
-     * @return this.
-     */
-    DataBuilderInput valueToPay(Integer value);
+    DataBuilderInput cellList(List<Integer> list);
 
     /**
      * 
@@ -47,31 +26,31 @@ public interface DataBuilderInput {
 
     /**
      * 
-     * @param mode
+     * @param event
      * @return this.
      */
-    DataBuilderInput setMode1(boolean mode);
+    DataBuilderInput event(Event event);
 
     /**
      * 
      * @param mode
      * @return this.
      */
-    DataBuilderInput setMode2(boolean mode);
+    DataBuilderInput setMode(boolean mode);
 
     /**
      * 
-     * @param list
+     * @param name
      * @return this.
      */
-    DataBuilderInput cellList(List<Integer> list);
+    DataBuilderInput text(String text);
 
     /**
      * 
-     * @param text
+     * @param value
      * @return this.
      */
-    DataBuilderInput cardText(String text);
+    DataBuilderInput valueToPay(Integer value);
 
     /**
      * 
