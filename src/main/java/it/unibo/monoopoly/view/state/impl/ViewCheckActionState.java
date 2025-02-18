@@ -1,6 +1,5 @@
 package it.unibo.monoopoly.view.state.impl;
 
-import java.lang.foreign.Linker.Option;
 import java.util.Optional;
 
 import javax.swing.JOptionPane;
@@ -22,38 +21,36 @@ public class ViewCheckActionState implements ViewState {
     }
 
     @Override
-    public void setMode(DataInput dataInput) {
-        this.dataInput = Optional.of(dataInput);
+    public void setMode(final Boolean mode) {
+        
     }
 
     @Override
-    public void visualize() {
-        if(dataInput.isPresent()) {
-            final DataInput input = this.dataInput.get();
-            switch (input.event().get()) {
-                case RENT_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
-                "Devi pagare " + input.valueToPay().get() + "€ a " + input.nameOfPlayer().get(),
-                "Pagamento affitto", JOptionPane.PLAIN_MESSAGE);
-    
-                case TAX_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
-                "Devi pagare " + input.valueToPay().get() + "€ a " + input.nameOfPlayer().get(), "Pagamento tassa",
-                JOptionPane.PLAIN_MESSAGE);
-    
-                case BUY_PROPERTY -> {
-                final int choice = JOptionPane.showOptionDialog(mainView.getMainFrame(),
-                "Vuoi comprare la proprietà " + input.nameOfProperty().get() + "al costo di " + input.valueToPay().get() + "€",
-                "Compra proprietà",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null,
-                YES_NO, 1);
-                if(choice == 0) {
-                    mainView.getMainController().getControllerState().continueState(new DataOutput(Optional.of(true), Optional.empty()));
-                } else {
-                    mainView.getMainController().getControllerState().continueState(new DataOutput(Optional.of(false), Optional.empty()));
-                }
+    public void visualize(DataInput dataInput) {
+        final DataInput input = this.dataInput.get();
+        switch (input.event().get()) {
+            case RENT_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
+            "Devi pagare " + input.valueToPay().get() + "€ a " + input.text().get(),
+            "Pagamento affitto", JOptionPane.PLAIN_MESSAGE);
+
+            case TAX_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
+            "Devi pagare " + input.valueToPay().get() + "€ a " + input.text().get(), "Pagamento tassa",
+            JOptionPane.PLAIN_MESSAGE);
+
+            case BUY_PROPERTY -> {
+            final int choice = JOptionPane.showOptionDialog(mainView.getMainFrame(),
+            "Vuoi comprare la proprietà " + input.text().get() + "al costo di " + input.valueToPay().get() + "€",
+            "Compra proprietà",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE, null,
+            YES_NO, 1);
+            if(choice == 0) {
+                mainView.getMainController().getControllerState().continueState(new DataOutput(Optional.of(true), Optional.empty()));
+            } else {
+                mainView.getMainController().getControllerState().continueState(new DataOutput(Optional.of(false), Optional.empty()));
             }
-                default -> throw new IllegalArgumentException("Nothing to visualize in this state");
-            }
+        }
+            default -> throw new IllegalArgumentException("Nothing to visualize in this state");
         }
         
     }
