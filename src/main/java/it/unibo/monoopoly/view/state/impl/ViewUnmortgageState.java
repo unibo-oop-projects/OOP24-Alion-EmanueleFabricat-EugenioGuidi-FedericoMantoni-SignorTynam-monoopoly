@@ -61,6 +61,9 @@ public class ViewUnmortgageState implements ViewState {
                 .toList();
     }
 
+    /**
+     * comment.
+     */
     public class CellGiver implements ActionListener {
         /**
          *
@@ -77,6 +80,9 @@ public class ViewUnmortgageState implements ViewState {
 
     }
 
+    /**
+     * comment.
+     */
     public class SimpleExit implements ActionListener {
         /**
          *

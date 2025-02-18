@@ -28,7 +28,7 @@ public interface Turn {
     /**
      * Rolls the dice for the player's turn.
      * 
-     * @return the result of the dice roll
+     * @return the result of the dice roll.
      */
     int rollDice();
 
@@ -40,7 +40,7 @@ public interface Turn {
     ModelState getState();
 
     /**
-     * Gets the actual {@link Player}
+     * Gets the actual {@link Player}.
      * 
      * @return the actual {@link Player}.
      */

@@ -31,7 +31,7 @@ public interface Notary {
      * comment.
      * @param cell
      * @param actualPlayer
-     * @return
+     * @return comment.
      */
     boolean isActionBuy(Cell cell, Player actualPlayer);
 

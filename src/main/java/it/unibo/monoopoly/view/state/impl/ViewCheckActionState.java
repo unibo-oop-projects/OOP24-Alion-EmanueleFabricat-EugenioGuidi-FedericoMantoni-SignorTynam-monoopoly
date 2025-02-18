@@ -16,7 +16,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  */
 public class ViewCheckActionState implements ViewState {
 
-    private final static String[] YES_NO = { "Sì", "No" };
+    private static final String[] YES_NO = { "Sì", "No" };
     private final View mainView;
     private DataBuilderOutput dataBuilderOutput;
     private DataInput dataInput;

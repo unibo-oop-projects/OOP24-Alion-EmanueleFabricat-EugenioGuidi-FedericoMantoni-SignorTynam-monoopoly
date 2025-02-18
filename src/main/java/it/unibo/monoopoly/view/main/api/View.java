@@ -24,13 +24,13 @@ public interface View {
 
     /**
      * 
-     * @return
+     * @return comment.
      */
     MainController getMainController();
 
     /**
      * 
-     * @return
+     * @return comment.
      */
     List<String> getNameCells();
 }

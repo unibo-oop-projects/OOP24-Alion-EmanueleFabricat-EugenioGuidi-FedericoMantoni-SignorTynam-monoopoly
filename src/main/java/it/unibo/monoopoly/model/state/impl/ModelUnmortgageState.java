@@ -39,7 +39,8 @@ public class ModelUnmortgageState implements ModelState {
      */
     @Override
     public boolean verify() {
-        return this.makeState = havePropertyToUnmortgage();
+        this.makeState = havePropertyToUnmortgage();
+        return this.makeState;
     }
 
     private boolean havePropertyToUnmortgage() {
@@ -104,7 +105,7 @@ public class ModelUnmortgageState implements ModelState {
         if (makeState) {
             this.turn.setState(new ModelUnmortgageState(turn));
         } else {
-            this.turn.setState(new ModelCardState(turn));// da cambiare
+            this.turn.setState(new ModelCardState(turn)); // da cambiare
         }
     }
 

@@ -51,7 +51,7 @@ public class ModelCardState implements ModelState {
      * the method draw the next {@link Card}.
      */
     @Override
-    public void doAction(Optional<DataOutput> data) {
+    public void doAction(final Optional<DataOutput> data) {
         getDeck().draw();
     }
 

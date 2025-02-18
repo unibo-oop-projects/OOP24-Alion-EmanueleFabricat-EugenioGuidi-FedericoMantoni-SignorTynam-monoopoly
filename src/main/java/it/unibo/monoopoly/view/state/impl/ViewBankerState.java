@@ -69,6 +69,9 @@ public class ViewBankerState implements ViewState {
                 .toList();
     }
 
+    /**
+     * comment.
+     */
     public class CellGiver implements ActionListener {
         /**
          *
@@ -85,6 +88,9 @@ public class ViewBankerState implements ViewState {
 
     }
 
+    /**
+     * comment.
+     */
     public class SimpleExit implements ActionListener {
         /**
          *

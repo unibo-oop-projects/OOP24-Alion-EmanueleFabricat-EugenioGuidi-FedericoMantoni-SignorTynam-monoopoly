@@ -27,8 +27,8 @@ public class ModelMovementState implements ModelState {
      * This state is used to move the current {@link Player} based on the dice
      * result.
      * 
-     * @param turn used to associate the dices roll state with the specific
-     *             next state to execute.
+     * @param turn      used to associate the dices roll state with the specific
+     *                  next state to execute.
      * @param cellIndex
      */
     public ModelMovementState(final Turn turn, final Optional<Integer> cellIndex) {
@@ -113,6 +113,11 @@ public class ModelMovementState implements ModelState {
         return getPlayerPosition() + diceResult() >= numberOfCells();
     }
 
+    /**
+     * comment.
+     * 
+     * @return comment.
+     */
     public Pair getData() {
         return this.dices.getDices();
     }
@@ -124,7 +129,7 @@ public class ModelMovementState implements ModelState {
     @Override
     public void closeState() {
         if (getPlayer().isPrisoned()) {
-            this.turn.setState(new ModelBankerState(turn, PASS_GO_REWARD));// new ModelPrisonState(turn, false)
+            this.turn.setState(new ModelBankerState(turn, PASS_GO_REWARD)); // new ModelPrisonState(turn, false)
         } else {
             this.turn.setState(new ModelCheckActionState(this.turn));
         }

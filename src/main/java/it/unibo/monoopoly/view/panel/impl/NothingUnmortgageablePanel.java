@@ -10,9 +10,9 @@ import javax.swing.JTextArea;
  * comment.
  */
 public class NothingUnmortgageablePanel extends PanelAdapter {
-    JTextArea message;
-    ActionListener closeMethod;
-    JButton closeButton;
+    private JTextArea message;
+    private ActionListener closeMethod;
+    private JButton closeButton;
 
     /**
      * comment.

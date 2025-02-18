@@ -42,8 +42,11 @@ public class NotaryImpl implements Notary {
             return false;
         }
     }
+
     /**
-     * comment.
+     * @param player
+     * @param cell
+     * @return comment.
      */
     public Optional<Event> checkBuyedProperty(final Player player, final Cell cell) {
         final Buyable buyableCell = (Buyable) cell;

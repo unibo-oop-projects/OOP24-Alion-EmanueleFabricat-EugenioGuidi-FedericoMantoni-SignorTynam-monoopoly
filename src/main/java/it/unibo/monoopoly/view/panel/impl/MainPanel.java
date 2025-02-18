@@ -33,6 +33,11 @@ public class MainPanel extends PanelAdapter {
         textArea.append(text + "\n");
     }
 
+    /**
+     * comment.
+     * 
+     * @param text
+     */
     public void setText(final String text) {
         textArea.setText(text);
     }
