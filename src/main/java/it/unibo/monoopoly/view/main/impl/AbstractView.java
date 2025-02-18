@@ -34,7 +34,7 @@ public abstract class AbstractView implements View {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent k) {
+            public void keyPressed(final KeyEvent k) {
                 if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     showConfirmToExit();
                 }

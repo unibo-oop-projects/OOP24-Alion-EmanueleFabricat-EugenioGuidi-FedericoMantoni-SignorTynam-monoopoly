@@ -15,71 +15,89 @@ import javax.swing.JLabel;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
 
-public class GameBoardPanel extends PanelAdapter{
+/**
+ * mettere commento qui, tutti i numeri molotiplicativi vengono percepiti come
+ * magic number.
+ */
+public class GameBoardPanel extends PanelAdapter {
 
-    //List<Point> listaPunti = new ArrayList<>();
+    // List<Point> listaPunti = new ArrayList<>();
 
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
     private final Image backgroundImage;
 
+    /**
+     * 
+     * @param mainController
+     * @param mainFrameHeight
+     * @param mainFrameWidth
+     */
     public GameBoardPanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth) {
         this.mainController = mainController;
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
 
         final URL imgURL = ClassLoader.getSystemResource("images/MONOOPOLY_GAMEBOARD_IMAGE.jpg");
-        ImageIcon icon = new ImageIcon(imgURL);
+        final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
         setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
         setLayout(new BorderLayout());
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
         g.drawImage(backgroundImage, 0, 0, this.mainFrameHeight, this.mainFrameHeight, this);
 
-        int circleDiameter = (int)((this.mainFrameHeight * 2.5) / 100);
+        final int circleDiameter = (int) ((this.mainFrameHeight * 2.5) / 100);
 
-        int centerX = (int)(0.96 * this.mainFrameHeight);
-        int centerY = (int)(0.96 * this.mainFrameHeight);
+        int centerX = (int) (0.96 * this.mainFrameHeight);
+        int centerY = (int) (0.96 * this.mainFrameHeight);
         g.setColor(Color.BLUE);
-        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+        g.fillOval(centerX, centerY, circleDiameter, circleDiameter);
 
-        centerX = (int)(0.88 * this.mainFrameHeight);
-        centerY = (int)(0.96 * this.mainFrameHeight);
+        centerX = (int) (0.88 * this.mainFrameHeight);
+        centerY = (int) (0.96 * this.mainFrameHeight);
         g.setColor(Color.GREEN);
-        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+        g.fillOval(centerX, centerY, circleDiameter, circleDiameter);
 
-        centerX = (int)(0.96 * this.mainFrameHeight);
-        centerY = (int)(0.91 * this.mainFrameHeight);
+        centerX = (int) (0.96 * this.mainFrameHeight);
+        centerY = (int) (0.91 * this.mainFrameHeight);
         g.setColor(Color.RED);
-        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+        g.fillOval(centerX, centerY, circleDiameter, circleDiameter);
 
-        centerX = (int)(0.88 * this.mainFrameHeight);
-        centerY = (int)(0.91 * this.mainFrameHeight);
+        centerX = (int) (0.88 * this.mainFrameHeight);
+        centerY = (int) (0.91 * this.mainFrameHeight);
         g.setColor(Color.YELLOW);
-        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+        g.fillOval(centerX, centerY, circleDiameter, circleDiameter);
 
-        centerX = (int)(0.814 * this.mainFrameHeight);
-        centerY = (int)(0.84 * this.mainFrameHeight);
+        centerX = (int) (0.814 * this.mainFrameHeight);
+        centerY = (int) (0.84 * this.mainFrameHeight);
         g.setColor(Color.RED);
-        g.fillOval(centerX, centerY, circleDiameter,circleDiameter);
+        g.fillOval(centerX, centerY, circleDiameter, circleDiameter);
 
-        int numberSize = (int)(this.mainFrameHeight * 0.022);
+        final int numberSize = (int) (this.mainFrameHeight * 0.022);
 
-        centerX = (int)(0.819 * this.mainFrameHeight);
-        centerY = (int)(0.891 * this.mainFrameHeight);
+        centerX = (int) (0.819 * this.mainFrameHeight);
+        centerY = (int) (0.891 * this.mainFrameHeight);
         g.setColor(Color.GREEN);
         g.setFont(new Font("Arial", Font.BOLD, numberSize));
-        g.drawString("5", centerX , centerY);
+        g.drawString("5", centerX, centerY);
 
     }
 

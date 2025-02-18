@@ -15,20 +15,36 @@ import it.unibo.monoopoly.view.panel.impl.SellHousePanel;
 import it.unibo.monoopoly.view.panel.impl.SuccessfulPaymentPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
+/**
+ * comment.
+ */
 public class ViewBankerState implements ViewState {
     private final MainView mainView;
     private DataInput dataInput;
     private JPanel panel;
 
-    public ViewBankerState(MainView mainView) {
+    /**
+     * comment.
+     * 
+     * @param mainView
+     */
+    public ViewBankerState(final MainView mainView) {
         this.mainView = mainView;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
-    public void setMode(DataInput dataInput) {
+    public void setMode(final DataInput dataInput) {
         this.dataInput = dataInput;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void visualize() {
         if (this.dataInput.setMode1().get()) {
@@ -47,19 +63,22 @@ public class ViewBankerState implements ViewState {
         this.mainView.getMainFrame().add(panel);
     }
 
-    private List<String> intToTextCell(List<Integer> cellList) {
+    private List<String> intToTextCell(final List<Integer> cellList) {
         return cellList.stream()
                 .map(this.mainView.getNameCells()::get)
                 .toList();
     }
 
     public class CellGiver implements ActionListener {
-
+        /**
+         *
+         * {@inheritDoc}
+         */
         @Override
-        public void actionPerformed(ActionEvent e) {
-            var button = (JButton) e.getSource();
-            String cellName = button.getText();
-            int cell = mainView.getNameCells().indexOf(cellName);
+        public void actionPerformed(final ActionEvent e) {
+            final var button = (JButton) e.getSource();
+            final String cellName = button.getText();
+            final int cell = mainView.getNameCells().indexOf(cellName);
             mainView.getMainFrame().remove(panel);
             mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
         }
@@ -67,9 +86,12 @@ public class ViewBankerState implements ViewState {
     }
 
     public class SimpleExit implements ActionListener {
-
+        /**
+         *
+         * {@inheritDoc}
+         */
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(final ActionEvent e) {
             mainView.getMainFrame().remove(panel);
             mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
         }

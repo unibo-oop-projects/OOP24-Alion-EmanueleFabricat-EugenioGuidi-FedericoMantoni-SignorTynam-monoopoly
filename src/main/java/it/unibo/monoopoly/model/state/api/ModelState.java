@@ -14,10 +14,14 @@ public interface ModelState {
      * @return a boolean the result of check.
      */
     boolean verify();
+
     /**
      * Execute the state.
+     * 
+     * @param data
      */
     void doAction(Optional<DataOutput> data);
+
     /**
      * ends the state and sets the next one.
      */

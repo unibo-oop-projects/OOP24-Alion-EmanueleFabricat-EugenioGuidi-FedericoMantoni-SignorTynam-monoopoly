@@ -4,14 +4,24 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.state.api.ModelState;
 
+/**
+ * manca comment.
+ */
 public class BuildHouseControllerState implements ControllerState {
-
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void startState() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'startState'");
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void continueState(final DataOutput dataOutput) {
         // TODO Auto-generated method stub

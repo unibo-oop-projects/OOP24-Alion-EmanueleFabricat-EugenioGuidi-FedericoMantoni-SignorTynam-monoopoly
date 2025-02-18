@@ -9,20 +9,20 @@ public interface DataBuilderOutput {
     /**
      * 
      * @param buy
-     * @return
+     * @return this.
      */
     DataBuilderOutput buyProperty(boolean buy);
 
     /**
      * 
      * @param cell
-     * @return
+     * @return this.
      */
     DataBuilderOutput cellChoose(int cell);
 
     /**
      * 
-     * @return
+     * @return product.
      */
     DataOutput build();
 }

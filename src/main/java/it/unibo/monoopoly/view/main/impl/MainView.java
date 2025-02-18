@@ -39,16 +39,16 @@ public class MainView extends AbstractView {
      * 
      * @param controller  the main controller of the application
      * @param namePlayers the names of the players
-     * @param nameCells the list of names of the cells
+     * @param nameCells   the list of names of the cells
      */
     public MainView(final MainController controller, final List<String> namePlayers, final List<String> nameCells) {
         this.controller = controller;
 
-        Dimension screeDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        final Dimension screeDimension = Toolkit.getDefaultToolkit().getScreenSize();
         mainFrame().setSize(screeDimension);
         mainFrame().setResizable(false);
         mainFrame().setUndecorated(true);
-        
+
         this.colors = super.getColors();
         this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
@@ -56,8 +56,7 @@ public class MainView extends AbstractView {
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth());
         // this.viewState = new ViewPrisonState();
 
-
-        //bisogna aggiungere che premendo esc ti permette di uscire dal gioco
+        // bisogna aggiungere che premendo esc ti permette di uscire dal gioco
     }
 
     private JFrame mainFrame() {
@@ -78,15 +77,23 @@ public class MainView extends AbstractView {
      * @return the actual {@link ViewState}.
      */
     public ViewState getViewState() {
-        //return this.viewState;
+        // return this.viewState;
         return null;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public MainController getMainController() {
         return this.controller;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public List<String> getNameCells() {
         return this.nameCells;

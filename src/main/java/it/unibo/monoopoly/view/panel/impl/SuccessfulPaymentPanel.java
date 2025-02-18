@@ -6,16 +6,28 @@ import javax.swing.JTextArea;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 
-public class SuccessfulPaymentPanel extends PanelAdapter{
-    JTextArea message;
-    ActionListener closeMethod;
-    JButton closeButton;
+/**
+ * comment.
+ */
+public class SuccessfulPaymentPanel extends PanelAdapter {
+    private JTextArea message;
+    private final ActionListener closeMethod;
+    private JButton closeButton;
 
-    public SuccessfulPaymentPanel(ActionListener closeMethod) {
+    /**
+     * comment.
+     * 
+     * @param closeMethod
+     */
+    public SuccessfulPaymentPanel(final ActionListener closeMethod) {
         super();
         this.closeMethod = closeMethod;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
         this.setLayout(new BorderLayout());

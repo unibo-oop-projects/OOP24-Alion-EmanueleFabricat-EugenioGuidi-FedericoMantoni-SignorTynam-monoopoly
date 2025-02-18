@@ -82,22 +82,38 @@ public class MainControllerImpl implements MainController {
          */
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public ModelState getModelState() {
         return this.model.getState();
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public ViewState getViewState() {
         // return this.mainView.getState();
         return null;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public ControllerState getControllerState() {
         return this.actualState;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public DataInput getDataInput() {
         return this.inputData;

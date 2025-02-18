@@ -24,9 +24,12 @@ public class ModelMovementState implements ModelState {
 
     /**
      * Creates a new instance of {@link ModelMovementState}.
-     * This state is used to move the current {@link Player} based on the dice result.
-     * @param turn used to associate the dices roll state with the specific 
-     * next state to execute.
+     * This state is used to move the current {@link Player} based on the dice
+     * result.
+     * 
+     * @param turn used to associate the dices roll state with the specific
+     *             next state to execute.
+     * @param cellIndex
      */
     public ModelMovementState(final Turn turn, final Optional<Integer> cellIndex) {
         this.turn = turn;
@@ -38,15 +41,19 @@ public class ModelMovementState implements ModelState {
      */
     @Override
     public boolean verify() {
-        if(this.cellIndex.isEmpty()) {
+        if (this.cellIndex.isEmpty()) {
             return true;
         }
         return false;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
-    public void doAction(Optional<DataOutput> data) {
-        if(verify()) {
+    public void doAction(final Optional<DataOutput> data) {
+        if (verify()) {
             moveWithDices();
         } else {
             moveWithCards(cellIndex());
@@ -55,7 +62,7 @@ public class ModelMovementState implements ModelState {
 
     private void moveWithDices() {
         this.dices.rollDices();
-        if(hasPassedGo()) {
+        if (hasPassedGo()) {
             getPlayer().receive(PASS_GO_REWARD);
             movePlayer((getPlayerPosition() + diceResult()) % numberOfCells());
         } else {
@@ -63,14 +70,14 @@ public class ModelMovementState implements ModelState {
         }
     }
 
-    private void moveWithCards(int cellIndex) {
-        if(cellIndex() >= 0){
-            if(!getPlayer().isPrisoned() && cellIndex() < getPlayer().getActualPosition()) {
+    private void moveWithCards(final int cellIndex) {
+        if (cellIndex() >= 0) {
+            if (!getPlayer().isPrisoned() && cellIndex() < getPlayer().getActualPosition()) {
                 getPlayer().receive(PASS_GO_REWARD);
             }
             movePlayer(cellIndex());
         } else {
-            if(getPlayerPosition() + cellIndex() < 0) {
+            if (getPlayerPosition() + cellIndex() < 0) {
                 movePlayer(getPlayerPosition() + cellIndex() + numberOfCells());
             } else {
                 movePlayer(getPlayerPosition() + cellIndex());
@@ -106,16 +113,19 @@ public class ModelMovementState implements ModelState {
         return getPlayerPosition() + diceResult() >= numberOfCells();
     }
 
-
     public Pair getData() {
         return this.dices.getDices();
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void closeState() {
-        if(getPlayer().isPrisoned()) {
-            this.turn.setState(new ModelBankerState(turn, PASS_GO_REWARD));//new ModelPrisonState(turn, false)
-        }else {
+        if (getPlayer().isPrisoned()) {
+            this.turn.setState(new ModelBankerState(turn, PASS_GO_REWARD));// new ModelPrisonState(turn, false)
+        } else {
             this.turn.setState(new ModelCheckActionState(this.turn));
         }
     }

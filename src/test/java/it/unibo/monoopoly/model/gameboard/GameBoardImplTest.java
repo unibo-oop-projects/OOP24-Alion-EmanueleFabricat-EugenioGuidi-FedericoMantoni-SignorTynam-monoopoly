@@ -44,9 +44,10 @@ class GameBoardImplTest {
 
     private static List<Player> initializePlayersList() {
         final List<Player> playersList = new LinkedList<>();
-        playersList.add(new PlayerImpl("Mario", INITIAL_AMOUNT, 0));
-        playersList.add(new PlayerImpl("Franco", INITIAL_AMOUNT, 0));
-        playersList.add(new PlayerImpl("Luigi", INITIAL_AMOUNT, 0));
+        playersList.add(new PlayerImpl("Mario", INITIAL_AMOUNT, 0, false));
+        playersList.add(new PlayerImpl("Franco", INITIAL_AMOUNT, 0, false));
+        playersList.add(new PlayerImpl("Franco", INITIAL_AMOUNT, 0, false));
+        playersList.add(new PlayerImpl("Luigi", INITIAL_AMOUNT, 0, false));
         return playersList;
     }
 

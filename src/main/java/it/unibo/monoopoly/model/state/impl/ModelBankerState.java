@@ -28,6 +28,7 @@ public class ModelBankerState implements ModelState {
      * according to the State pattern.
      * 
      * @param turn the reference to perform the operations.
+     * @param amountToPay
      */
     public ModelBankerState(final Turn turn, final int amountToPay) {
         this.turn = turn;
@@ -58,7 +59,7 @@ public class ModelBankerState implements ModelState {
      * pay the {@link Player} depending on the property chosen by the player.
      */
     @Override
-    public void doAction(Optional<DataOutput> data) {
+    public void doAction(final Optional<DataOutput> data) {
         final Cell chosen = this.turn.getGameBoard().getCell(data.get().cellChoose().get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             getPlayer().receive(((Buildable) chosen).sellHouse());

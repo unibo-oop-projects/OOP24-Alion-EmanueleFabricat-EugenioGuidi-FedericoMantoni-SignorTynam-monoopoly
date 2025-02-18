@@ -9,23 +9,39 @@ import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
+/**
+ * comment.
+ */
 public class ControllerUnmortgageState implements ControllerState {
-    MainController mainController;
-    ModelState actualModelState;
-    ViewState actualViewState;
+    private MainController mainController;
+    private ModelState actualModelState;
+    private ViewState actualViewState;
 
+    /**
+     * comment.
+     * 
+     * @param mainController
+     */
     public ControllerUnmortgageState(final MainController mainController) {
         this.mainController = mainController;
         this.actualModelState = this.mainController.getModelState();
         this.actualViewState = this.mainController.getViewState();
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void startState() {
         this.actualViewState.setMode(new DataInput(null, null, null, null, null, null, null, null, null));
         this.actualViewState.visualize();
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void continueState(final DataOutput dataOutput) {
         this.actualModelState.doAction(Optional.of(dataOutput));

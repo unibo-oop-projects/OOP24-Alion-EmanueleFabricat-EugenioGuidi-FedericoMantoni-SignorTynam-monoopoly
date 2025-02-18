@@ -27,6 +27,12 @@ public interface Notary {
      */
     void buyProperty(Player player, Buyable cell);
 
+    /**
+     * comment.
+     * @param cell
+     * @param actualPlayer
+     * @return
+     */
     boolean isActionBuy(Cell cell, Player actualPlayer);
 
 }

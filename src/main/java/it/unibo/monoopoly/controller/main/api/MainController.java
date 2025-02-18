@@ -25,9 +25,15 @@ public interface MainController {
      */
     ViewState getViewState();
 
-    /* */
+    /**
+     * 
+     * @return comment.
+     */
     ControllerState getControllerState();
 
-    /* */
+    /**
+     * 
+     * @return comment.
+     */
     DataInput getDataInput();
 }

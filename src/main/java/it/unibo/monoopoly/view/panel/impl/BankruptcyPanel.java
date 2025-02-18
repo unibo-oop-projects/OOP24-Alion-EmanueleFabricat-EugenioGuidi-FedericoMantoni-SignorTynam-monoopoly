@@ -6,16 +6,28 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-public class BankruptcyPanel extends PanelAdapter{
-    JTextArea message;
-    ActionListener closeMethod;
-    JButton closeButton;
+/**
+ * comment.
+ */
+public class BankruptcyPanel extends PanelAdapter {
+    private JTextArea message;
+    private final ActionListener closeMethod;
+    private JButton closeButton;
 
-    public BankruptcyPanel(ActionListener closeMethod) {
+    /**
+     * comment.
+     * 
+     * @param closeMethod
+     */
+    public BankruptcyPanel(final ActionListener closeMethod) {
         super();
         this.closeMethod = closeMethod;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
         this.setLayout(new BorderLayout());

@@ -22,9 +22,15 @@ public interface View {
      */
     JFrame getMainFrame();
 
-    /* */
+    /**
+     * 
+     * @return
+     */
     MainController getMainController();
 
-    /* */
+    /**
+     * 
+     * @return
+     */
     List<String> getNameCells();
 }

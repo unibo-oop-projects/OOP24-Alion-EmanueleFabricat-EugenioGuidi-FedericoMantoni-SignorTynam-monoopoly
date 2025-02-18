@@ -13,69 +13,69 @@ public interface DataBuilderInput {
     /**
      * 
      * @param event
-     * @return
+     * @return this.
      */
     DataBuilderInput event(Event event);
 
     /**
      * 
      * @param name
-     * @return
+     * @return this.
      */
     DataBuilderInput nameOfProperty(String name);
 
     /**
      * 
      * @param name
-     * @return
+     * @return this.
      */
     DataBuilderInput nameOfPlayer(String name);
 
     /**
      * 
      * @param value
-     * @return
+     * @return this.
      */
     DataBuilderInput valueToPay(Integer value);
 
     /**
      * 
      * @param dices
-     * @return
+     * @return this.
      */
     DataBuilderInput dices(Pair dices);
 
     /**
      * 
      * @param mode
-     * @return
+     * @return this.
      */
     DataBuilderInput setMode1(boolean mode);
 
     /**
      * 
      * @param mode
-     * @return
+     * @return this.
      */
     DataBuilderInput setMode2(boolean mode);
 
     /**
      * 
      * @param list
-     * @return
+     * @return this.
      */
     DataBuilderInput cellList(List<Integer> list);
 
     /**
      * 
      * @param text
-     * @return
+     * @return this.
      */
     DataBuilderInput cardText(String text);
 
     /**
      * 
-     * @return
+     * @return product.
      */
     DataInput build();
 }

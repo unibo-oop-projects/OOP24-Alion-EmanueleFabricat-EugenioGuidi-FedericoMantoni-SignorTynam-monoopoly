@@ -19,6 +19,10 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 public class ModelCardState implements ModelState {
     private final Turn turn;
 
+    /**
+     * 
+     * @param turn
+     */
     public ModelCardState(final Turn turn) {
         this.turn = turn;
     }
@@ -30,6 +34,7 @@ public class ModelCardState implements ModelState {
     private Card getCard() {
         return getDeck().getActualCard();
     }
+
     /**
      * {@inheritDoc}
      * In this specific case,
@@ -39,6 +44,7 @@ public class ModelCardState implements ModelState {
     public boolean verify() {
         return true;
     }
+
     /**
      * {@inheritDoc}
      * In this specific case,
@@ -48,6 +54,7 @@ public class ModelCardState implements ModelState {
     public void doAction(Optional<DataOutput> data) {
         getDeck().draw();
     }
+
     /**
      * {@inheritDoc}
      * In this case,
@@ -55,11 +62,11 @@ public class ModelCardState implements ModelState {
      */
     @Override
     public void closeState() {
-        ModelState nextState  = null;
+        ModelState nextState = null;
         switch (getCard().getMessage().typeOfAction()) {
             case Event.FREE_CARD:
                 this.turn.getActualPlayer().addGetOutOfJailCard();
-                nextState = new ModelBankerState(turn, 0);//da cambiare
+                nextState = new ModelBankerState(turn, 0); // da cambiare
                 break;
             case Event.MOVE_CARD:
                 nextState = new ModelMovementState(turn, getCard().getMessage().data());

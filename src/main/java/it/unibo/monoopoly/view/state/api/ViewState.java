@@ -8,9 +8,11 @@ import it.unibo.monoopoly.controller.data.impl.DataInput;
 public interface ViewState {
     /**
      * Set the state ready to be execute.
-     * @param set a possible data to help the setup.
+     * 
+     * @param dataInput a possible data to help the setup.
      */
     void setMode(DataInput dataInput);
+
     /**
      * Display all the views necessary for the state.
      */

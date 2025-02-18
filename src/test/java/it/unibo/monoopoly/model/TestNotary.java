@@ -32,8 +32,8 @@ public class TestNotary {
 
     @BeforeEach
     void init() {
-        this.player1 = new PlayerImpl("Marco", START_MONEY, 0);
-        this.player2 = new PlayerImpl("Franco", START_MONEY, 0);
+        this.player1 = new PlayerImpl("Marco", START_MONEY, 0, false);
+        this.player2 = new PlayerImpl("Franco", START_MONEY, 0, false);
         this.buildableProperty = new BuildableImpl(Map.of(), "Prova", 150, 50);
     }
 

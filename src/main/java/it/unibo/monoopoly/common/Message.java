@@ -13,7 +13,7 @@ import it.unibo.monoopoly.model.turn.api.Turn;
  * @param data         that {@link Turn} have to use to do the operation.
  */
 public record Message(
-        @JsonProperty("action") Event typeOfAction,
-        @JsonProperty("data") Optional<Integer> data) {
+                @JsonProperty("action") Event typeOfAction,
+                @JsonProperty("data") Optional<Integer> data) {
 
 }
