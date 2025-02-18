@@ -34,23 +34,22 @@ public class ControllerCheckActionState implements ControllerState {
     @Override
     public void startState() {
         if (modelState.verify()) {
-            viewState.setMode(new DataBuilderInputImpl()
+            viewState.visualize(new DataBuilderInputImpl()
                     .event(Event.BUY_PROPERTY)
                     .valueToPay(((Buyable) actualCell).getCost())
-                    .nameOfProperty(actualCell.getName()).build());
+                    .text(actualCell.getName()).build());
         } else if (actualEvent.isPresent()) {
             modelState.doAction(Optional.empty());
             if (actualEvent.get().equals(Event.RENT_PAYMENT)) {
-                viewState.setMode(new DataBuilderInputImpl().event(actualEvent.get())
+                viewState.visualize(new DataBuilderInputImpl().event(actualEvent.get())
                         .valueToPay(((Buyable) actualCell).getRentalValue())
-                        .nameOfPlayer(((Buyable) actualCell).getOwner().get().getName()).build());
+                        .text(((Buyable) actualCell).getOwner().get().getName()).build());
             } else if (actualEvent.get().equals(Event.TAX_PAYMENT)) {
-                viewState.setMode(new DataBuilderInputImpl()
+                viewState.visualize(new DataBuilderInputImpl()
                         .event(actualEvent.get())
                         .valueToPay(((Functional) actualCell).getAction().get().data().get()).build());
             }
         }
-        viewState.visualize();
         this.continueState(new DataBuilderOutputImpl().build());
     }
 
