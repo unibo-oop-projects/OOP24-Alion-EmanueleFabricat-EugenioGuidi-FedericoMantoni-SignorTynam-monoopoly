@@ -28,10 +28,10 @@ public interface Notary {
     void buyProperty(Player player, Buyable cell);
 
     /**
-     * comment.
-     * @param cell
-     * @param actualPlayer
-     * @return comment.
+     * Check if the cell is buyable by the actual {@link Player}.
+     * @param cell the cell where the player happened
+     * @param actualPlayer the actual player in this {@link Turn}
+     * @return if the player can buy the cell
      */
     boolean isActionBuy(Cell cell, Player actualPlayer);
 

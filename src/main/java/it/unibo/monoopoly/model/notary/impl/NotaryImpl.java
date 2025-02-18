@@ -44,9 +44,7 @@ public class NotaryImpl implements Notary {
     }
 
     /**
-     * @param player
-     * @param cell
-     * @return comment.
+     * {@inheritDoc}
      */
     @Override
     public Optional<Event> checkBuyedProperty(final Player player, final Cell cell) {
