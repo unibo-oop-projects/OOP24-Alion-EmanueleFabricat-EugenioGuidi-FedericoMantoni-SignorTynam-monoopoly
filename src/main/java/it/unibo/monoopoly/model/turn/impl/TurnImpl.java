@@ -28,8 +28,8 @@ public class TurnImpl implements Turn {
     private static final int START_MONEY_AMOUNT = 1500;
 
     private Cell actualCell;
-    private final Notary notary = new NotaryImpl();
-    private final Player actualPlayer;
+    private Optional<Event> actualEvent = Optional.empty();
+    private Player actualPlayer;
     private final GameBoard gameBoard;
     private final Deck deck;
     private final ModelState actualState;
@@ -80,7 +80,6 @@ public class TurnImpl implements Turn {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
     @Override
     public ModelState getState() {
         return this.actualState;
@@ -128,6 +127,11 @@ public class TurnImpl implements Turn {
     public Deck getDeck() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getDeck'");
+    }
+
+    @Override
+    public Optional<Event> getEvent() {
+        return this.actualEvent;
     }
 
 }
