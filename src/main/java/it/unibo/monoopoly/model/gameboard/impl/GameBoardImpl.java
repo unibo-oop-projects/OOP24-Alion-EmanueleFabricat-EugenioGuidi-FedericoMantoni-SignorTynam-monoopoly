@@ -1,9 +1,10 @@
 package it.unibo.monoopoly.model.gameboard.impl;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import it.unibo.monoopoly.model.deck.api.Deck;
+import it.unibo.monoopoly.model.deck.impl.DeckImpl;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
@@ -17,6 +18,7 @@ public class GameBoardImpl implements GameBoard {
     private final List<Cell> cellsList;
     private final List<Player> playersList;
     private final Dices dices;
+    private final Deck deck;
     private int currentPlayerIndex;
 
     /**
@@ -28,6 +30,7 @@ public class GameBoardImpl implements GameBoard {
         this.cellsList = cellsList;
         this.playersList = playersList;
         this.dices = new DicesImpl();
+        this.deck = new DeckImpl();
     }
 
     /**
@@ -111,6 +114,11 @@ public class GameBoardImpl implements GameBoard {
     @Override
     public Dices getDices() {
         return this.dices;
+    }
+
+    @Override
+    public Deck getDeck() {
+        return this.deck;
     }
 
 }
