@@ -23,9 +23,8 @@ public class GameBoardImpl implements GameBoard {
      * @param playersList is the list of players in the current game.
      */
     public GameBoardImpl(final List<Cell> cellsList, final List<Player> playersList) {
-        this.cellsList = new LinkedList<>(cellsList);
-        this.playersList = new LinkedList<>(playersList);
-        this.currentPlayerIndex = 0;
+        this.cellsList = cellsList;
+        this.playersList = playersList;
     }
 
     /**
@@ -93,6 +92,11 @@ public class GameBoardImpl implements GameBoard {
         return this.cellsList.stream()
                             .map(Cell::getName)
                             .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Cell> getCellsList() {
+        return this.cellsList;
     }
 
 }
