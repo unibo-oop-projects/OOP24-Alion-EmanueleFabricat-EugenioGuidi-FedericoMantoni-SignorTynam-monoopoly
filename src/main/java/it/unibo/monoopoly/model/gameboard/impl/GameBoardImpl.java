@@ -1,10 +1,12 @@
 package it.unibo.monoopoly.model.gameboard.impl;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import it.unibo.monoopoly.model.deck.api.Deck;
+import it.unibo.monoopoly.model.deck.impl.DeckImpl;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.player.api.Player;
 
@@ -15,6 +17,8 @@ public class GameBoardImpl implements GameBoard {
 
     private final List<Cell> cellsList;
     private final List<Player> playersList;
+    private final Dices dices;
+    private final Deck deck;
     private int currentPlayerIndex;
 
     /**
@@ -23,9 +27,10 @@ public class GameBoardImpl implements GameBoard {
      * @param playersList is the list of players in the current game.
      */
     public GameBoardImpl(final List<Cell> cellsList, final List<Player> playersList) {
-        this.cellsList = new LinkedList<>(cellsList);
-        this.playersList = new LinkedList<>(playersList);
-        this.currentPlayerIndex = 0;
+        this.cellsList = cellsList;
+        this.playersList = playersList;
+        this.dices = new DicesImpl();
+        this.deck = new DeckImpl();
     }
 
     /**
@@ -93,6 +98,27 @@ public class GameBoardImpl implements GameBoard {
         return this.cellsList.stream()
                             .map(Cell::getName)
                             .collect(Collectors.toList());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Cell> getCellsList() {
+        return this.cellsList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Dices getDices() {
+        return this.dices;
+    }
+
+    @Override
+    public Deck getDeck() {
+        return this.deck;
     }
 
 }
