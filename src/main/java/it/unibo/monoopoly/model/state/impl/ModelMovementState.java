@@ -94,7 +94,7 @@ public class ModelMovementState implements ModelState {
     }
 
     private int numberOfCells() {
-        return this.turn.getCellsList().size();
+        return this.turn.getGameBoard().getCellsList().size();
     }
 
     private int getPlayerPosition() {
@@ -102,7 +102,7 @@ public class ModelMovementState implements ModelState {
     }
 
     private Player getPlayer() {
-        return this.turn.getActualPlayer();
+        return this.turn.getGameBoard().getCurrentPlayer();
     }
 
     private void movePlayer(final int cellIndex) {
