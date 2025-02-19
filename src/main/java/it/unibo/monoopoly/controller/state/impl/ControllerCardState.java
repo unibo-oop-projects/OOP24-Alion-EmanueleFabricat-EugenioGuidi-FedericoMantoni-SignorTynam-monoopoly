@@ -8,6 +8,7 @@ import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
+import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -18,7 +19,8 @@ public class ControllerCardState implements ControllerState {
     private final MainController mainController;
     private final ModelState actualModelState;
     private final ViewState actualViewState;
-    private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl(); 
+    private final GameBoard gameBoard;
+    private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
 
     /**
      * comment.
@@ -26,10 +28,11 @@ public class ControllerCardState implements ControllerState {
      * @param mainController
      */
     public ControllerCardState(final MainController mainController, final ModelState actualModelState,
-            final ViewState actualViewState) {
+            final ViewState actualViewState, final GameBoard gameBoard) {
         this.mainController = mainController;
         this.actualModelState = actualModelState;
         this.actualViewState = actualViewState;
+        this.gameBoard = gameBoard;
     }
 
     /**
@@ -40,7 +43,9 @@ public class ControllerCardState implements ControllerState {
     public void startState() {
         this.actualViewState.setMode(this.actualModelState.verify());
         this.actualModelState.doAction(Optional.empty());
-        this.actualViewState.visualize(new DataInput(null, null, null, null, null, null));
+        this.actualViewState.visualize(this.dataBuilderInput.text(
+                this.gameBoard.getDeck().getActualCard().getEffectText() // aspetto implementazione
+        ).build());
     }
 
     /**

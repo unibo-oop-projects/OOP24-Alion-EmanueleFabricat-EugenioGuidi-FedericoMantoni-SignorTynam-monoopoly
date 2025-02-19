@@ -48,6 +48,19 @@ public enum Event {
     /**
      * Actions represents having to receive an amount.
      */
-    RECEIVE_CARD
+    RECEIVE_CARD,
+    /**
+     * Actions represents having to sell house in an property.
+     */
+    SELL_HOUSE,
+    /**
+     * Actions represents having to mortgage a property.
+     */
+    MORTGAGE_PROPERTY,
+    /**
+     * Actions represents that the current player is in bankrupt.
+     */
+    BANKRUPT
+
 
 }

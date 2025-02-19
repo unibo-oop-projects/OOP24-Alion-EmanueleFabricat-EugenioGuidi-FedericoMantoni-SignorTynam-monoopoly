@@ -1,10 +1,9 @@
 package it.unibo.monoopoly.model.banker.impl;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.banker.api.Banker;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
@@ -17,14 +16,14 @@ public class BankerImpl implements Banker {
      * {@inheritDoc}
      */
     @Override
-    public Optional<List<Buyable>> selectOperations(final Player player) {
+    public Event selectOperations(final Player player) {
         if (haveHouse(player.getProperties())) {
-            return Optional.of(getPropertiesWithHome(player));
+            return Event.SELL_HOUSE;
         } else if (haveProperties(player.getProperties())) {
-            return Optional.of(getPropertiesMortgageable(player));
+            return Event.MORTGAGE_PROPERTY;
         }
         player.inBankrupt(); 
-        return Optional.empty();
+        return Event.BANKRUPT;
     }
 
     private Stream<Buyable> unmortgagedList(final Set<Buyable> properties) {
@@ -46,18 +45,18 @@ public class BankerImpl implements Banker {
     /**
      * {@inheritDoc}
      */
-    @Override
+    /*@Override
     public List<Buyable> getPropertiesWithHome(final Player player) {
         return unmortgagedList(player.getProperties())
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
                 .map(p -> (Buyable) p)
                 .toList();
-    }
+    }*/
     /**
      * {@inheritDoc}
      */
-    @Override
+    /*@Override
     public List<Buyable> getPropertiesMortgageable(final Player player) {
         return Stream.concat(unmortgagedList(player.getProperties())
                     .filter(p -> !(p instanceof Buildable)),
@@ -67,7 +66,7 @@ public class BankerImpl implements Banker {
                     .filter(p -> p.getHousesNumber() == 0)
                     .map(p -> (Buyable) p))
                 .toList();
-    }
+    }*/
     /**
      * {@inheritDoc}
      */

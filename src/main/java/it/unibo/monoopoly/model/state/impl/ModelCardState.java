@@ -2,8 +2,8 @@ package it.unibo.monoopoly.model.state.impl;
 
 import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
+import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.MainModel;
 
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ public class ModelCardState implements ModelState {
     }
 
     private Deck getDeck() {
-        return this.turn.getDeck();
+        return this.turn.getGameBoard().getDeck(); //aspettando la implementazione nella gameboarda
     }
 
     private Card getCard() {
@@ -65,21 +65,21 @@ public class ModelCardState implements ModelState {
         ModelState nextState = null;
         switch (getCard().getMessage().typeOfAction()) {
             case Event.FREE_CARD:
-                this.turn.getActualPlayer().addGetOutOfJailCard();
+            this.turn.getGameBoard().getCellList().addGetOutOfJailCard(); //aspettando la cell list nella gameboarda
                 nextState = new ModelBankerState(turn, 0); // da cambiare
                 break;
             case Event.MOVE_CARD:
                 nextState = new ModelMovementState(turn, getCard().getMessage().data());
                 break;
             case Event.PRISON:
-                this.turn.getActualPlayer().isPrisoned();
+                this.turn.getGameBoard().getCurrentPlayer().isPrisoned();
                 nextState = new ModelMovementState(turn, getCard().getMessage().data());
                 break;
             case Event.CARD_PAYMENT:
                 nextState = new ModelBankerState(turn, getCard().getMessage().data().get());
                 break;
             case Event.RECEIVE_CARD:
-                this.turn.getActualPlayer().receive(getCard().getMessage().data().get());
+                this.turn.getGameBoard().getCurrentPlayer().receive(getCard().getMessage().data().get());
                 break;
             default:
                 break;

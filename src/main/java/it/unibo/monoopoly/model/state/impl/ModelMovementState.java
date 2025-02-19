@@ -6,9 +6,9 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 import it.unibo.monoopoly.model.gameboard.impl.DicesImpl;
+import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * Implementation of {@link ModelState} for the Dices state,

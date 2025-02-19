@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
-import it.unibo.monoopoly.model.turn.impl.MainModelImpl;
+import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.main.impl.MainView;
 import it.unibo.monoopoly.view.state.impl.ViewCardState;
 

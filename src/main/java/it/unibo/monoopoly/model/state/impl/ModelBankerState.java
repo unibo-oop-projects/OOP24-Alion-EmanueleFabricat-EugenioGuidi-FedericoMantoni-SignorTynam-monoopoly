@@ -1,6 +1,5 @@
 package it.unibo.monoopoly.model.state.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
@@ -9,9 +8,9 @@ import it.unibo.monoopoly.model.banker.impl.BankerImpl;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * Implementation of {@link ModelState} for the banker state,
@@ -27,16 +26,16 @@ public class ModelBankerState implements ModelState {
      * that takes the {@link MainModel} reference to perform all necessary state operations,
      * according to the State pattern.
      * 
-     * @param turn the reference to perform the operations.
+     * @param mainModel the reference to perform the operations.
      * @param amountToPay
      */
-    public ModelBankerState(final MainModel turn, final int amountToPay) {
-        this.turn = turn;
+    public ModelBankerState(final MainModel mainModel, final int amountToPay) {
+        this.turn = mainModel;
         this.amountToPay = amountToPay;
     }
 
     private Player getPlayer() {
-        return getPlayer();
+        return this.turn.getGameBoard().getCurrentPlayer();
     }
     /**
      * {@inheritDoc}
@@ -49,6 +48,7 @@ public class ModelBankerState implements ModelState {
         if (getPlayer().getMoneyAmount() - this.amountToPay >= 0) {
             getPlayer().pay(amountToPay);
         } else {
+            this.turn.setEvent(this.banker.selectOperations(getPlayer()));
             this.isIndebted = true;
         }
         return this.isIndebted;
@@ -69,26 +69,13 @@ public class ModelBankerState implements ModelState {
         }
         this.verify();
     }
-    /**
-     * {@inheritDoc}
-     * In this specific case,
-     * return the {@link List} of {@link Integer} that which correspond to the index of the cell that the player must select,
-     * depending on whether houses need to be sold or properties need to be mortgaged.
-     */
-    public Optional<List<Integer>> getData() {
-        if (isIndebted) {
-            return cellToIndex(this.banker.selectOperations(getPlayer()));
-        } else {
-            return Optional.empty();
-        }
-    }
 
-    private Optional<List<Integer>> cellToIndex(final Optional<List<Buyable>> propertyList) {
+    /*private Optional<List<Integer>> cellToIndex(final Optional<List<Buyable>> propertyList) {
         return Optional.of(
                 propertyList.get().stream()
                 .map(this.turn.getCellsList()::indexOf)
                 .toList());
-    }
+    }*/
     /**
      * {@inheritDoc}
      * In this specific case,

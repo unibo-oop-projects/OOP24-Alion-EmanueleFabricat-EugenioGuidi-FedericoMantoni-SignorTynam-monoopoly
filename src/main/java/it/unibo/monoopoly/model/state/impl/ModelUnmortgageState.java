@@ -6,9 +6,9 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * Implementation of {@link ModelState} for the unmortgage state,
@@ -44,7 +44,7 @@ public class ModelUnmortgageState implements ModelState {
     }
 
     private boolean havePropertyToUnmortgage() {
-        return this.turn.getActualPlayer().getProperties().stream()
+        return this.turn.getGameBoard().getCurrentPlayer().getProperties().stream()
                 .filter(this::isPayable)
                 .anyMatch(c -> c.isMortgaged());
     }
@@ -62,7 +62,7 @@ public class ModelUnmortgageState implements ModelState {
     }
 
     private void unmortgageByIndex(final Optional<Integer> selectedCell) {
-        this.turn.getCellsList().stream()
+        this.turn.getGameBoard().getCellList().stream() //aspettando la cell list nella gameboarda
                 .filter(c -> c instanceof Buyable)
                 .map(c -> (Buyable) c)
                 .toList()
@@ -77,18 +77,17 @@ public class ModelUnmortgageState implements ModelState {
      * {@link Player},
      * by index.
      */
-    public Optional<List<Integer>> getData() {
+    /*public Optional<List<Integer>> getData() {
         return Optional.of(this.turn.getActualPlayer().getProperties().stream()
                 .filter(c -> c.isMortgaged())
                 .filter(this::isPayable)
                 .map(this.turn.getCellsList()::indexOf)
                 .toList());
-    }
+    }*/
 
     private boolean isPayable(final Buyable property) {
-        final BigDecimal multiFactor = new BigDecimal(1.10);
-        final int toPay = multiFactor.multiply(new BigDecimal(property.getMortgageValue())).intValue();
-        return this.turn.getActualPlayer().isPayable(toPay);
+        int toPay = property.getMortgageValue()*110/100;
+        return this.turn.getGameBoard().getCurrentPlayer().isPayable(toPay);
     }
 
     /**
