@@ -16,7 +16,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
  * Implementation of {@link ControllerState} that retrieve data from model
- * according to the {@link Event} and pass it to the view
+ * according to the {@link Event} and pass it to the view.
  */
 public class ControllerCheckActionState implements ControllerState {
 
@@ -73,7 +73,7 @@ public class ControllerCheckActionState implements ControllerState {
 
     /**
      * If needed perform the action of buy a property given the input of the player,
-     * and next ends the state
+     * and next ends the state.
      * {@inheritDoc}
      */
     @Override

@@ -17,11 +17,13 @@ public class ViewCheckActionState implements ViewState {
 
     private static final String[] YES_NO = { "Sì", "No" };
     private final View mainView;
-    private final Optional<DataInput> dataInput;
 
+    /**
+     * Constructor of {@link ViewCheckActionState}.
+     * @param mainView the main view of the application
+     */
     public ViewCheckActionState(final View mainView) {
         this.mainView = mainView;
-        this.dataInput = Optional.empty();
     }
 
     /**
@@ -38,19 +40,18 @@ public class ViewCheckActionState implements ViewState {
      */
     @Override
     public void visualize(final DataInput dataInput) {
-        final DataInput input = this.dataInput.get();
-        switch (input.event().get()) {
+        switch (dataInput.event().get()) {
             case RENT_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
-                    "Devi pagare " + input.valueToPay().get() + "€ a " + input.text().get(),
+                    "Devi pagare " + dataInput.valueToPay().get() + "€ a " + dataInput.text().get(),
                     "Pagamento affitto", JOptionPane.PLAIN_MESSAGE);
 
             case TAX_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
-                    "Devi pagare " + input.valueToPay().get() + "€ a " + input.text().get(), "Pagamento tassa",
+                    "Devi pagare " + dataInput.valueToPay().get() + "€ a " + dataInput.text().get(), "Pagamento tassa",
                     JOptionPane.PLAIN_MESSAGE);
 
             case BUY_PROPERTY -> {
                 final int choice = JOptionPane.showOptionDialog(mainView.getMainFrame(),
-                        "Vuoi comprare la proprietà " + input.text().get() + "al costo di " + input.valueToPay().get()
+                        "Vuoi comprare la proprietà " + dataInput.text().get() + "al costo di " + dataInput.valueToPay().get()
                                 + "€",
                         "Compra proprietà",
                         JOptionPane.YES_NO_OPTION,

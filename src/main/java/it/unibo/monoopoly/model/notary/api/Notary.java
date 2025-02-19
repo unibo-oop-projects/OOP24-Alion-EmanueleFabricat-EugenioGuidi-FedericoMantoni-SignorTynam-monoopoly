@@ -8,28 +8,33 @@ import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.player.api.Player;
 
 /**
- * Manage the operations of buying properties and check actions caused by {@link Buyable} cells
+ * Manage the operations of buying properties and check actions caused by
+ * {@link Buyable} cells.
  */
 public interface Notary {
 
     /**
-     * Tells how the active {@link Player} is going to interacte with the {@link Buyable} property is on.
+     * Tells how the active {@link Player} is going to interacte with the
+     * {@link Buyable} property is on.
+     * 
      * @param player the player to check
-     * @param cell the cell of the property to check
+     * @param cell   the cell of the property to check
      * @return the type of event if this occurs
      */
     Optional<Event> checkBuyedProperty(Player player, Cell cell);
 
     /**
      * Set the given player as owner of the property.
+     * 
      * @param player the player who buys
-     * @param cell the property to buy
+     * @param cell   the property to buy
      */
     void buyProperty(Player player, Buyable cell);
 
     /**
      * Check if the cell is buyable by the actual {@link Player}.
-     * @param cell the cell where the player happened
+     * 
+     * @param cell         the cell where the player happened
      * @param actualPlayer the actual player in this {@link Turn}
      * @return if the player can buy the cell
      */

@@ -23,7 +23,6 @@ public class ModelCheckActionState implements ModelState {
     private final MainModel mainModel;
     private final Notary notary = new NotaryImpl();
 
-    private boolean needInput;
     private Optional<Event> actualEvent;
 
     /**
@@ -41,11 +40,11 @@ public class ModelCheckActionState implements ModelState {
      */
     @Override
     public boolean verify() {
-        this.needInput = notary.isActionBuy(getActualCell(), getActualPlayer());
+        final boolean needInput = notary.isActionBuy(getActualCell(), getActualPlayer());
         if (needInput) {
             this.actualEvent = Optional.of(Event.BUY_PROPERTY);
         }
-        return this.needInput;
+        return needInput;
     }
 
     /**

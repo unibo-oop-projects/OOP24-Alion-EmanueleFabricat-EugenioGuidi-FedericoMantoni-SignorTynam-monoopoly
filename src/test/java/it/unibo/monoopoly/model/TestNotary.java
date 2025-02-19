@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -16,14 +15,16 @@ import org.junit.jupiter.api.Test;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
-import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
 import it.unibo.monoopoly.model.gameboard.impl.CellFactoryImpl;
 import it.unibo.monoopoly.model.notary.api.Notary;
 import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 
-public class TestNotary {
+/**
+ * Test class for {@link NotaryImpl} class.
+ */
+class TestNotary {
 
     private static final int START_MONEY = 1500;
     private final Notary notary = new NotaryImpl();
@@ -33,7 +34,7 @@ public class TestNotary {
 
     private Buyable buildableProperty;
     private Cell notBuyableProperty;
-    private List<Cell> cells = new CellFactoryImpl().createCells();
+    private final List<Cell> cells = new CellFactoryImpl().createCells();
 
     @BeforeEach
     void init() {
