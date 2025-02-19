@@ -8,7 +8,7 @@ import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.player.api.Player;
 
 /**
- * Manage the operations of buying properties and pay.
+ * Manage the operations of buying properties and check actions caused by {@link Buyable} cells
  */
 public interface Notary {
 
