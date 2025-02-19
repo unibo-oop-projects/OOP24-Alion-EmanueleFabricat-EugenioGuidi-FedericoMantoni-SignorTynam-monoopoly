@@ -62,7 +62,7 @@ public class ModelUnmortgageState implements ModelState {
     }
 
     private void unmortgageByIndex(final Optional<Integer> selectedCell) {
-        this.turn.getGameBoard().getCellList().stream() //aspettando la cell list nella gameboarda
+        this.turn.getGameBoard().getCellsList().stream()
                 .filter(c -> c instanceof Buyable)
                 .map(c -> (Buyable) c)
                 .toList()

@@ -45,9 +45,9 @@ public class ControllerUnmortgageState implements ControllerState {
      */
     @Override
     public void startState() {
-        this.runState = this.actualModelState.verify()
+        this.runState = this.actualModelState.verify();
         this.actualViewState.setMode(this.runState);
-        this.actualViewState.visualize();
+        this.actualViewState.visualize(buildData());
     }
 
     /**
@@ -72,8 +72,8 @@ public class ControllerUnmortgageState implements ControllerState {
         return Optional.of(this.gameBoard.getCurrentPlayer().getProperties().stream()
                 .filter(c -> c.isMortgaged())
                 .filter(this::isPayable)
-                .map(this.gameBoard.getCellsList()::indexOf) //aspetto implementazione
-                .toList());
+                .map(this.gameBoard.getCellsList()::indexOf)
+                .toList()).get();
     }
 
     private boolean isPayable(final Buyable property) {

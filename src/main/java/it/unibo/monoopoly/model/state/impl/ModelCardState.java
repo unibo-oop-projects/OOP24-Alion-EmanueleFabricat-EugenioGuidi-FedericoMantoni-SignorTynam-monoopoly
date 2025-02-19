@@ -65,7 +65,7 @@ public class ModelCardState implements ModelState {
         ModelState nextState = null;
         switch (getCard().getMessage().typeOfAction()) {
             case Event.FREE_CARD:
-            this.turn.getGameBoard().getCellList().addGetOutOfJailCard(); //aspettando la cell list nella gameboarda
+            this.turn.getGameBoard().getCurrentPlayer().addGetOutOfJailCard(); //aspettando la cell list nella gameboarda
                 nextState = new ModelBankerState(turn, 0); // da cambiare
                 break;
             case Event.MOVE_CARD:

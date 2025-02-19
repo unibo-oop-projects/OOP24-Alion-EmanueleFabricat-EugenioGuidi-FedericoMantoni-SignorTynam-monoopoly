@@ -40,7 +40,7 @@ public class MainControllerImpl implements MainController {
         // names
         this.mainView = new MainView(this, playersName, cellsNames);
         this.mainView.display();
-        this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState());
+        this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState(), null, null);
     }
 
     /**

@@ -51,7 +51,7 @@ public class ControllerBankerState implements ControllerState {
      */
     @Override
     public void startState() {
-        this.payable = this.actualModelState.verify()
+        this.payable = this.actualModelState.verify();
         this.actualViewState.setMode(this.payable);
         this.actualViewState.visualize(buildData());
     }
@@ -88,7 +88,7 @@ public class ControllerBankerState implements ControllerState {
             case Event.SELL_HOUSE -> sellHouseList();
             case Event.MORTGAGE_PROPERTY -> propertiesMortgageableList();
             default -> List.of();
-        }
+        };
     }
 
     /*
@@ -112,7 +112,7 @@ public class ControllerBankerState implements ControllerState {
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
                 .map(p -> (Buyable) p)
-                .map(this.gameBoard.getCellList()::indexOf) //aspetto implementazione
+                .map(this.gameBoard.getCellsList()::indexOf) //aspetto implementazione
                 .toList();
     }
 
@@ -124,7 +124,7 @@ public class ControllerBankerState implements ControllerState {
                     .map(p -> (Buildable) p)
                     .filter(p -> p.getHousesNumber() == 0)
                     .map(p -> (Buyable) p))
-                .map(this.gameBoard.getCellList()::indexOf) //aspetto implementazione
+                .map(this.gameBoard.getCellsList()::indexOf) //aspetto implementazione
                 .toList();
     }
 
