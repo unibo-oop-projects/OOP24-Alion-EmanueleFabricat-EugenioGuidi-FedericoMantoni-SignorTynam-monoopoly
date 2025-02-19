@@ -59,8 +59,8 @@ public class GamePanel extends PanelAdapter {
         westPanel.setPreferredSize(new Dimension(eastWestWidth, eastWestHeight));
         centerPanel.setPreferredSize(new Dimension(centerWidth, centerHeight));
 
-        eastPanel.setBackground(Color.GREEN);
-        westPanel.setBackground(Color.GREEN);
+        eastPanel.setBackground(Color.BLACK);
+        westPanel.setBackground(Color.BLACK);
 
         this.setLayout(new BorderLayout());
 

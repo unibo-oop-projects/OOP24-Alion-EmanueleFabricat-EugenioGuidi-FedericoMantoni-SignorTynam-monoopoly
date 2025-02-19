@@ -14,6 +14,10 @@ import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
+/**
+ * Implementation of {@link ControllerState} that retrieve data from model
+ * according to the {@link Event} and pass it to the view.
+ */
 public class ControllerCheckActionState implements ControllerState {
 
     private final MainController mainController;
@@ -22,8 +26,17 @@ public class ControllerCheckActionState implements ControllerState {
     private final Optional<Event> actualEvent;
     private final Cell actualCell;
 
-    public ControllerCheckActionState(MainController mainController, ModelState modelState,
-            ViewState viewState, Optional<Event> event, Cell actualCell) {
+    /**
+     * Construct the {@link ControllerCheckActionState}.
+     * 
+     * @param mainController the main controller
+     * @param modelState     the actual model state
+     * @param viewState      the view state
+     * @param event          the actual event triggered by the cell
+     * @param actualCell     the actual cell where the player is right now
+     */
+    public ControllerCheckActionState(final MainController mainController, final ModelState modelState,
+            final ViewState viewState, final Optional<Event> event, final Cell actualCell) {
         this.mainController = mainController;
         this.modelState = modelState;
         this.viewState = viewState;
@@ -31,6 +44,11 @@ public class ControllerCheckActionState implements ControllerState {
         this.actualCell = actualCell;
     }
 
+    /**
+     * {@inheritDoc}
+     * Call the model and the view in the right order to perform and visualize the
+     * right action.
+     */
     @Override
     public void startState() {
         if (modelState.verify()) {
@@ -53,8 +71,13 @@ public class ControllerCheckActionState implements ControllerState {
         this.continueState(new DataBuilderOutputImpl().build());
     }
 
+    /**
+     * If needed perform the action of buy a property given the input of the player,
+     * and next ends the state.
+     * {@inheritDoc}
+     */
     @Override
-    public void continueState(DataOutput dataOutput) {
+    public void continueState(final DataOutput dataOutput) {
         if (dataOutput.buyProperty().isPresent()) {
             modelState.doAction(Optional.of(dataOutput));
         }

@@ -2,9 +2,8 @@ package it.unibo.monoopoly.model.state.impl;
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.tuple.Triple;
-
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.common.Message;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
@@ -20,12 +19,10 @@ import it.unibo.monoopoly.model.state.api.ModelState;
  */
 public class ModelCheckActionState implements ModelState {
 
-    private static final String BANK = "Banca";
+
     private final MainModel mainModel;
     private final Notary notary = new NotaryImpl();
 
-    private boolean needInput;
-    private boolean isBuyableCell;
     private Optional<Event> actualEvent;
 
     /**
@@ -43,12 +40,11 @@ public class ModelCheckActionState implements ModelState {
      */
     @Override
     public boolean verify() {
-        this.needInput = notary.isActionBuy(getActualCell(), getActualPlayer());
-        this.isBuyableCell = getActualCell().isBuyable();
+        final boolean needInput = notary.isActionBuy(getActualCell(), getActualPlayer());
         if (needInput) {
             this.actualEvent = Optional.of(Event.BUY_PROPERTY);
         }
-        return this.needInput;
+        return needInput;
     }
 
     /**
@@ -97,7 +93,7 @@ public class ModelCheckActionState implements ModelState {
 
     private void checkFunctionalCell() {
         final Functional functionalCell = (Functional) getActualCell();
-        this.actualEvent = functionalCell.getAction().map(m -> m.typeOfAction());
+        this.actualEvent = functionalCell.getAction().map(Message::typeOfAction);
     }
 
     private Cell getActualCell() {
