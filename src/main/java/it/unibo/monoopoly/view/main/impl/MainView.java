@@ -3,11 +3,13 @@ package it.unibo.monoopoly.view.main.impl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -53,7 +55,7 @@ public class MainView extends AbstractView {
         this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
-        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth());
+        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), startPlayersCredit(), this.players);
         // this.viewState = new ViewPrisonState();
 
         // bisogna aggiungere che premendo esc ti permette di uscire dal gioco
@@ -97,5 +99,12 @@ public class MainView extends AbstractView {
     @Override
     public List<String> getNameCells() {
         return this.nameCells;
+    }
+
+    private Map<String, Integer> startPlayersCredit() {
+        Map<String, Integer> startMap = new HashMap<>();
+        this.players.entrySet().stream()
+                .forEach(s -> startMap.put(s.getValue(), 1500));
+        return startMap;
     }
 }
