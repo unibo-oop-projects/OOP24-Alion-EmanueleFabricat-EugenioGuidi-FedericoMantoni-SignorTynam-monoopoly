@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.player.api.Player;
 
@@ -15,6 +16,7 @@ public class GameBoardImpl implements GameBoard {
 
     private final List<Cell> cellsList;
     private final List<Player> playersList;
+    private final Dices dices;
     private int currentPlayerIndex;
 
     /**
@@ -25,6 +27,7 @@ public class GameBoardImpl implements GameBoard {
     public GameBoardImpl(final List<Cell> cellsList, final List<Player> playersList) {
         this.cellsList = cellsList;
         this.playersList = playersList;
+        this.dices = new DicesImpl();
     }
 
     /**
@@ -94,9 +97,20 @@ public class GameBoardImpl implements GameBoard {
                             .collect(Collectors.toList());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Cell> getCellsList() {
         return this.cellsList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Dices getDices() {
+        return this.dices;
     }
 
 }

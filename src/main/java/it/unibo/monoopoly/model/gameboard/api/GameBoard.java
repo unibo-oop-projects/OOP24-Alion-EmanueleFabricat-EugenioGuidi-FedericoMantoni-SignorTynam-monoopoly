@@ -52,4 +52,9 @@ public interface GameBoard {
      */
     List<Cell> getCellsList();
 
+    /**
+     * @return dices
+     */
+    Dices getDices();
+
 }
