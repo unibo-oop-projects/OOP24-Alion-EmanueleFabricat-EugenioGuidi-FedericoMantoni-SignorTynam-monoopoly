@@ -50,6 +50,8 @@ public class TestNotary {
         assertEquals("Expected a buyable cell in input", exception.getMessage());
         notary.buyProperty(player2, buildableProperty);
         assertEquals(Optional.of(Event.RENT_PAYMENT), notary.checkBuyedProperty(player1, this.buildableProperty));
+        this.buildableProperty.setMortgage();
+        assertEquals(Optional.empty(), notary.checkBuyedProperty(player1, this.buildableProperty));
         assertEquals(Optional.empty(), notary.checkBuyedProperty(player2, this.buildableProperty));
     }
 
