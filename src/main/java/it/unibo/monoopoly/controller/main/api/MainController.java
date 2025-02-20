@@ -36,4 +36,10 @@ public interface MainController {
      * @return comment.
      */
     DataInput getDataInput();
+
+    /**
+     * Initialize nextPhase of the game creating the {@link ControllerState}
+     * according to the actual {@link ModelState}.
+     */
+    void nextPhase();
 }

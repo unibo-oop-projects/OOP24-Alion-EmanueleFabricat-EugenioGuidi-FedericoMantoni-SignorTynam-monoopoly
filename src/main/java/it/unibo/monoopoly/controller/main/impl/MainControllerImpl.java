@@ -8,8 +8,12 @@ import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
+import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
+import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
+import it.unibo.monoopoly.model.state.impl.ModelMovementState;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.BuildHouseModelState;
+import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 import it.unibo.monoopoly.model.turn.api.MainModel;
 import it.unibo.monoopoly.view.main.impl.MainView;
@@ -24,7 +28,7 @@ public class MainControllerImpl implements MainController {
 
     private final MainView mainView;
     private final MainModel model;
-    private final ControllerState actualState;
+    private ControllerState actualState;
     private DataInput inputData;
 
     /**
@@ -48,6 +52,24 @@ public class MainControllerImpl implements MainController {
      * state is activated,
      * otherwise the house building state is activated.
      */
+
+     /**
+      * {@inheritDoc}
+      */
+    @Override
+    public void nextPhase() {
+        /*this.actualState = switch (this.model.getState()) {
+            //case ModelPrisontState p -> new ControllerPrisonState(this, getModelState(), getViewState(), this.model.getGameboard());
+            //case ModelMovementState m -> new ControllerMovementState(this, getModelState(), getViewState(), this.model.getGameboard().getDices());
+            //case ModelCheckActionState ca -> new ControllerCheckActionState(this, getModelState(), getViewState(), model.getGameBoard().getCurrentPlayer());
+            //case ModelCardState c -> new ControllerCardState(this, getModelState(), getViewState(), this.model.getGameboard().getDeck());
+            //case ModelBankerState b -> new ControllerBankerState(this, getModelState(), getViewState(), this.model.getGameboard());
+            //case ModelBuildHouseState bh -> new ControllerBuildHouseState(this, getModelState(), getViewState(), this.model.getGameboard());
+            //case ModelUnmortgageTest u -> new ControllerUnmortgageState(this, getModelState(), getViewState(), this.model.getGameboard());
+            default -> throw new IllegalArgumentException();
+        };*/
+
+    }
 
     /**
      * {@inheritDoc}
