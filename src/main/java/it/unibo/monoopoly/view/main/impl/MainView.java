@@ -110,7 +110,7 @@ public class MainView extends AbstractView {
         return startMap;
     }
 
-    public PlayerPanel get() {
-        return ((GamePanel) this.gamePanel).getPlayerPanel(); //il cast serve per non mettere il netodo in PanelAdapter
+    public void setInteractivePanel(JPanel panel) {
+        ((GamePanel) this.gamePanel).setInteractivePanel(panel); //cast per non creare il metodo nella classe astratta
     }
 }

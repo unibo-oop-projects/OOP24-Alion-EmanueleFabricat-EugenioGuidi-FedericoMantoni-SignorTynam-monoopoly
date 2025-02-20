@@ -50,4 +50,8 @@ public class PlayerPanel extends PanelAdapter {
         add(interactivePanel);
         setBorder(new LineBorder(Color.BLACK));
     }
+
+    public void setInteractivePanel(JPanel panel) {
+        this.interactivePanel.setInteractivePanel(panel);
+    }
 }

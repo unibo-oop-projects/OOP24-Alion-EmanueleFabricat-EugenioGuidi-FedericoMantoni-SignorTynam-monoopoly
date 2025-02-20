@@ -2,6 +2,7 @@ package it.unibo.monoopoly.controller.main.impl;
 
 import java.util.List;
 
+import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
@@ -40,7 +41,7 @@ public class MainControllerImpl implements MainController {
         // names
         this.mainView = new MainView(this, playersName, cellsNames);
         this.mainView.display();
-        this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState(), null, null);
+        this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
     }
 
     /**

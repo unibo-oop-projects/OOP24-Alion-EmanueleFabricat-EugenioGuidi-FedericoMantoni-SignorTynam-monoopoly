@@ -87,8 +87,8 @@ public class GamePanel extends PanelAdapter {
 
     }
 
-    public PlayerPanel getPlayerPanel() {
-        return this.playerPanel;
+    public void setInteractivePanel(JPanel panel) {
+        this.playerPanel.setInteractivePanel(panel);
     }
 
     
