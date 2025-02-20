@@ -16,13 +16,15 @@ import it.unibo.monoopoly.view.main.impl.MainView;
 public class TestGUI extends JFrame{
 
     public static void main(String[] strg) {
-        List<String> lista = new ArrayList<>();
-        lista.add("ciao");
-        lista.add("lol");
-        List<String> lis = new ArrayList<>();
-        lis.add("Franco");
-        lis.add("Luca");
-        final MainController controller = new MainControllerImpl(new MainModelImpl(lista), lis);
-        new MainView(controller, lista, lis);
+        List<String> listaCelle = new ArrayList<>();
+        listaCelle.add("Vicolo corto");
+        listaCelle.add("Vicolo stretto");
+        List<String> listaPlayer = new ArrayList<>();
+        listaPlayer.add("Franco");
+        listaPlayer.add("Luca");
+        listaPlayer.add("Gennaro");
+        listaPlayer.add("Luigi");
+        final MainController controller = new MainControllerImpl(new MainModelImpl(listaPlayer), listaPlayer);
+        new MainView(controller, listaCelle, listaPlayer);
     }
 }
