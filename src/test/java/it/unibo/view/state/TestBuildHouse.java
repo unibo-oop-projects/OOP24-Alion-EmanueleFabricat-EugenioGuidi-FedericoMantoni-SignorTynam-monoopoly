@@ -25,13 +25,9 @@ public class TestBuildHouse extends JFrame {
         playerList.add("Player 2");
 
         MainController controller = new MainControllerImpl(new MainModelImpl(propertyList), playerList);
-
         MainView view = new MainView(controller, propertyList, playerList);
-
         ViewBuildHouseState viewState = new ViewBuildHouseState(view);
-
         ModelBuildHouseState modelState = new ModelBuildHouseState(new MainModelImpl(propertyList));
-
         ControllerBuildHouseState controllerState = new ControllerBuildHouseState(modelState, viewState);
 
         controllerState.startState();
