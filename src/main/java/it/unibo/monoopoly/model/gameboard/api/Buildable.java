@@ -4,7 +4,7 @@ package it.unibo.monoopoly.model.gameboard.api;
  * This interface rapresents a buildable property in the game.
  * I allows to construct and sell haouses.
  */
-public interface Buildable {
+public interface Buildable extends Buyable {
 
     /**
      * 
