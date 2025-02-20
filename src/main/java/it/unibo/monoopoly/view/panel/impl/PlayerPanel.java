@@ -34,7 +34,7 @@ public class PlayerPanel extends PanelAdapter {
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
         this.interactivePanel = new InteractivePanel();
-        this.visualizePlayerPanel = new VisualizePlayerPanel(playersCredit, playersColors);
+        this.visualizePlayerPanel = new VisualizePlayerPanel(mainFrameHeight, mainFrameWidth, playersCredit, playersColors);
     }
 
     /**
@@ -48,7 +48,6 @@ public class PlayerPanel extends PanelAdapter {
         setLayout(new GridLayout(2,1));
         add(visualizePlayerPanel);
         add(interactivePanel);
-        setBorder(new LineBorder(Color.BLACK));
     }
 
     public void setInteractivePanel(JPanel panel) {
