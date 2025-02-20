@@ -16,9 +16,9 @@ public class ViewCardState implements ViewState {
     private DataInput dataInput;
 
     /**
+     * Constructor of the class that sets the field.
      * 
-     * 
-     * @param mainView
+     * @param mainView to set.
      */
     public ViewCardState(final MainView mainView) {
         this.mainView = mainView;

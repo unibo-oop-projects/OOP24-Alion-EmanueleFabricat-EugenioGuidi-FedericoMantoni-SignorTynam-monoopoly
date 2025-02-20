@@ -15,7 +15,9 @@ import it.unibo.monoopoly.view.panel.impl.UnmortgagePanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * comment.
+ * Implementations of {@link ViewState} for the card's phase:
+ * that visualize in the PlayerPanel the {@link JPanel},
+ * to allow the player to decide which property to release the mortgage on.
  */
 public class ViewUnmortgageState implements ViewState {
     private final MainView mainView;
@@ -24,9 +26,9 @@ public class ViewUnmortgageState implements ViewState {
     private boolean makeState;
 
     /**
-     * comment.
+     * Constructor of the class that sets the field.
      * 
-     * @param mainView
+     * @param mainView to set.
      */
     public ViewUnmortgageState(final MainView mainView) {
         this.mainView = mainView;

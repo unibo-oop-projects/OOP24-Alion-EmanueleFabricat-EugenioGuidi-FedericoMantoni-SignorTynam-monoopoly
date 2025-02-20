@@ -1,7 +1,5 @@
 package it.unibo.monoopoly.model.state.impl;
 
-import java.math.BigDecimal;
-import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
@@ -11,13 +9,15 @@ import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
 
 /**
- * Implementation of {@link ModelState} for the unmortgage state,
+ * Implementation of {@link ModelState} for the unmortgage property,
  * used to to release a mortgage on a property of the actual {@link Player},
- * if it has any.
+ * if it has any,
+ * for simplicity, one can only release the mortgage if they have liquid funds.
  */
 public class ModelUnmortgageState implements ModelState {
     private boolean makeState;
-    private final MainModel turn;
+    private final MainModel mainModel;
+    private DataOutput dataOutput;
 
     /**
      * Constructor of the class,
@@ -25,10 +25,10 @@ public class ModelUnmortgageState implements ModelState {
      * operations,
      * according to the State pattern.
      * 
-     * @param turn the reference to perform the operations.
+     * @param mainModel the reference to perform the operations.
      */
-    public ModelUnmortgageState(final MainModel turn) {
-        this.turn = turn;
+    public ModelUnmortgageState(final MainModel mainModel) {
+        this.mainModel = mainModel;
     }
 
     /**
@@ -44,7 +44,7 @@ public class ModelUnmortgageState implements ModelState {
     }
 
     private boolean havePropertyToUnmortgage() {
-        return this.turn.getGameBoard().getCurrentPlayer().getProperties().stream()
+        return this.mainModel.getGameBoard().getCurrentPlayer().getProperties().stream()
                 .filter(this::isPayable)
                 .anyMatch(c -> c.isMortgaged());
     }
@@ -56,55 +56,46 @@ public class ModelUnmortgageState implements ModelState {
      */
     @Override
     public void doAction(final DataOutput data) {
+        this.dataOutput = data;
         if (data.cellChoose().isPresent()) {
             unmortgageByIndex(data.cellChoose());
+            this.mainModel.getGameBoard().getCurrentPlayer().pay(
+                    indexToBuyable(data.cellChoose()).getMortgageValue() * 110 / 100);
         }
     }
 
     private void unmortgageByIndex(final Optional<Integer> selectedCell) {
-        this.turn.getGameBoard().getCellsList().stream()
+        indexToBuyable(selectedCell).removeMortgage();
+    }
+
+    private Buyable indexToBuyable(final Optional<Integer> selectedCell) {
+        return this.mainModel.getGameBoard().getCellsList().stream()
                 .filter(c -> c instanceof Buyable)
                 .map(c -> (Buyable) c)
                 .toList()
-                .get(selectedCell.get())
-                .removeMortgage();
+                .get(selectedCell.get());
     }
 
-    /**
-     * {@inheritDoc}
-     * In this specific case,
-     * return if exist the {@link List} of cell mortgageable of the actual
-     * {@link Player},
-     * by index.
-     */
-    /*public Optional<List<Integer>> getData() {
-        return Optional.of(this.turn.getActualPlayer().getProperties().stream()
-                .filter(c -> c.isMortgaged())
-                .filter(this::isPayable)
-                .map(this.turn.getCellsList()::indexOf)
-                .toList());
-    }*/
-
     private boolean isPayable(final Buyable property) {
-        int toPay = property.getMortgageValue()*110/100;
-        return this.turn.getGameBoard().getCurrentPlayer().isPayable(toPay);
+        final int toPay = property.getMortgageValue() * 110 / 100;
+        return this.mainModel.getGameBoard().getCurrentPlayer().isPayable(toPay);
     }
 
     /**
      * {@inheritDoc}
      * In this specific case,
      * set the new {@link ModelState}:
-     * {@link PrisonModelState} if the actual {@link Player} does not want or cannot
-     * unmortgage houses,
-     * {@link ModelUnmortgageState} otherwise to select a new property or stop
-     * operation.
+     * {@link ModelUnmortgageState} if the actual {@link Player} have properties to
+     * unmortgage,
+     * or wouldn't unmortgage
+     * {@link BuildHouseModelState} otherwise.
      */
     @Override
     public void closeState() {
-        if (makeState) {
-            this.turn.setState(new ModelUnmortgageState(turn));
+        if (makeState && dataOutput.cellChoose().isPresent()) {
+            this.mainModel.setState(new ModelUnmortgageState(mainModel));
         } else {
-            this.turn.setState(new ModelCardState(turn)); // da cambiare
+            this.mainModel.setState(new BuildHouseModelState());
         }
     }
 
