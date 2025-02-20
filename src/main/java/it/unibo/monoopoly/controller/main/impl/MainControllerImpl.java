@@ -60,6 +60,7 @@ public class MainControllerImpl implements MainController {
       */
     @Override
     public void nextPhase() {
+        //TODO add call to update view
         /*this.actualState = switch (this.model.getState()) {
             //case ModelPrisontState p -> new ControllerPrisonState(this, getModelState(), getViewState(), this.model.getGameboard());
             //case ModelMovementState m -> new ControllerMovementState(this, getModelState(), getViewState(), this.model.getGameboard().getDices());
@@ -70,7 +71,7 @@ public class MainControllerImpl implements MainController {
             //case ModelUnmortgageTest u -> new ControllerUnmortgageState(this, getModelState(), getViewState(), this.model.getGameboard());
             default -> throw new IllegalArgumentException();
         };*/
-
+        //TODO add call to startState 
     }
 
     /**
