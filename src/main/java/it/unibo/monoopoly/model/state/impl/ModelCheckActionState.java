@@ -53,14 +53,14 @@ public class ModelCheckActionState implements ModelState {
      * Perform the action or do nothing if the action it is duty of another state.
      */
     @Override
-    public void doAction(final Optional<DataOutput> data) {
-        if (data.get().buyProperty().isEmpty()) {
+    public void doAction(final DataOutput data) {
+        if (data.buyProperty().isEmpty()) {
             if (getActualCell().isBuyable()) {
                 notary.checkBuyedProperty(getActualPlayer(), getActualCell());
             } else {
                 checkFunctionalCell();
             }
-        } else if (data.get().buyProperty().get()) {
+        } else if (data.buyProperty().get()) {
             notary.buyProperty(getActualPlayer(), (Buyable) getActualCell());
         }
     }

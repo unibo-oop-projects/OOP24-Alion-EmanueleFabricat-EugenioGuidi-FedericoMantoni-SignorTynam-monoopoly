@@ -8,6 +8,7 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 public interface ControllerState {
     /**
      * Launch the state, calling all the other state method in the right order.
+     * In this method is built the {@link DataInput}.
      */
     void startState();
 

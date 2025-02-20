@@ -59,8 +59,8 @@ public class ModelBankerState implements ModelState {
      * pay the {@link Player} depending on the property chosen by the player.
      */
     @Override
-    public void doAction(final Optional<DataOutput> data) {
-        final Cell chosen = this.turn.getGameBoard().getCell(data.get().cellChoose().get());
+    public void doAction(final DataOutput data) {
+        final Cell chosen = this.turn.getGameBoard().getCell(data.cellChoose().get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             getPlayer().receive(((Buildable) chosen).sellHouse());
         } else {

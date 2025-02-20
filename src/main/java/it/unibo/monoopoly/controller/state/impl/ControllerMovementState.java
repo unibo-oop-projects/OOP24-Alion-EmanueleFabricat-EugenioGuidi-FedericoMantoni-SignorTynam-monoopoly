@@ -2,6 +2,7 @@ package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.Optional;
 
+import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
@@ -37,7 +38,7 @@ public class ControllerMovementState implements ControllerState {
     public void startState() {
         // ritorna se è con dadi o no.
         this.actualViewState.setMode(this.actualModelState.verify());
-        this.actualModelState.doAction(Optional.empty());
+        this.actualModelState.doAction(new DataBuilderOutputImpl().build());
         this.actualViewState.visualize(new DataInput(null, null, null, null, null, null));
     }
 

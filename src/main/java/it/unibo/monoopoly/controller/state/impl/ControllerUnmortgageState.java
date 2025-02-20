@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
+import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
@@ -56,7 +57,7 @@ public class ControllerUnmortgageState implements ControllerState {
      */
     @Override
     public void continueState(final DataOutput dataOutput) {
-        this.actualModelState.doAction(Optional.of(dataOutput));
+        this.actualModelState.doAction(new DataBuilderOutputImpl().build());
         this.actualModelState.closeState();
     }
 

@@ -59,7 +59,7 @@ public class ControllerCheckActionState implements ControllerState {
                     .valueToPay(((Buyable) actualCell).getCost())
                     .text(actualCell.getName()).build());
         } else if (actualEvent.isPresent()) {
-            modelState.doAction(Optional.empty());
+            modelState.doAction(new DataBuilderOutputImpl().build());
             if (actualEvent.get().equals(Event.RENT_PAYMENT)) {
                 viewState.visualize(new DataBuilderInputImpl().event(actualEvent.get())
                         .valueToPay(((Buyable) actualCell).getRentalValue())
@@ -81,7 +81,7 @@ public class ControllerCheckActionState implements ControllerState {
     @Override
     public void continueState(final DataOutput dataOutput) {
         if (dataOutput.buyProperty().isPresent()) {
-            modelState.doAction(Optional.of(dataOutput));
+            modelState.doAction(dataOutput);
         }
         modelState.closeState();
     }
