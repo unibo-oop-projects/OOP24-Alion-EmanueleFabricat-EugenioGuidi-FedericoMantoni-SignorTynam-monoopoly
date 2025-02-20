@@ -8,11 +8,11 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
+import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.notary.api.Notary;
 import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.turn.api.MainModel;
 
 /**
  * State that represent the control of what action will be performed depending on the {@link Cell}.

@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
+import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
 import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
 import it.unibo.monoopoly.model.state.impl.ModelMovementState;
@@ -17,7 +19,6 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
-import it.unibo.monoopoly.model.turn.api.MainModel;
 import it.unibo.monoopoly.view.main.impl.MainView;
 import it.unibo.monoopoly.view.panel.impl.MainPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -46,7 +47,7 @@ public class MainControllerImpl implements MainController {
         // names
         this.mainView = new MainView(this, playersName, cellsNames);
         this.mainView.display();
-        this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState());
+        this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
     }
 
     /**

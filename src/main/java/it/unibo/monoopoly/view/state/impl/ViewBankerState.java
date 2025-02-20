@@ -63,7 +63,7 @@ public class ViewBankerState implements ViewState {
                 this.panel = new BankruptcyPanel(new SimpleExit());
             }
         }
-        this.mainView.getMainFrame().add(panel);
+        this.mainView.setInteractivePanel(panel);
     }
 
     private List<String> intToTextCell(final List<Integer> cellList) {

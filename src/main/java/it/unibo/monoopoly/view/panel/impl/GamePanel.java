@@ -5,6 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -14,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
+import it.unibo.monoopoly.model.player.api.Player;
 
 /**
  * comment.
@@ -23,6 +30,9 @@ public class GamePanel extends PanelAdapter {
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
+    private Map<String, Integer> players;
+    private Map<Color, String> playersColors;
+    private PlayerPanel playerPanel; 
 
     /**
      * comment.
@@ -31,10 +41,13 @@ public class GamePanel extends PanelAdapter {
      * @param mainFrameHeight
      * @param mainFrameWidth
      */
-    public GamePanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth) {
+    public GamePanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth,
+            Map<String, Integer> players, Map<Color, String> playersColors) {
         this.mainController = mainController;
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
+        this.players = players;
+        this.playersColors = playersColors;
     }
 
     /**
@@ -45,7 +58,7 @@ public class GamePanel extends PanelAdapter {
     protected void panelInit() {
         final GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainController, this.mainFrameHeight,
                 this.mainFrameWidth);
-        final PlayerPanel playerPanel = new PlayerPanel(this.mainController, this.mainFrameHeight, this.mainFrameWidth);
+        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.mainFrameWidth, this.players, this.playersColors);
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
         final JPanel centerPanel = new JPanel();
@@ -74,4 +87,17 @@ public class GamePanel extends PanelAdapter {
 
     }
 
+    public void setInteractivePanel(JPanel panel) {
+        this.playerPanel.setInteractivePanel(panel);
+    }
+
+    
+
+    /*private Color getColorPlayer(String name) {
+        return this.playersColors.entrySet().stream()
+                .filter(e -> e.getValue().equals(name))
+                .map(e -> e.getKey())
+                .findFirst()
+                .get();
+    }*/
 }

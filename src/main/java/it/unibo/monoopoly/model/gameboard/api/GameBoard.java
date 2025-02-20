@@ -2,6 +2,7 @@ package it.unibo.monoopoly.model.gameboard.api;
 
 import java.util.List;
 
+import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.player.api.Player;
 
 /**
@@ -46,5 +47,20 @@ public interface GameBoard {
      * @return list of names of cells
      */
     List<String> getCellsNames();
+
+    /**
+     * @return list of cells.
+     */
+    List<Cell> getCellsList();
+
+    /**
+     * @return dices.
+     */
+    Dices getDices();
+
+    /**
+     * @return deck.
+     */
+    Deck getDeck();
 
 }

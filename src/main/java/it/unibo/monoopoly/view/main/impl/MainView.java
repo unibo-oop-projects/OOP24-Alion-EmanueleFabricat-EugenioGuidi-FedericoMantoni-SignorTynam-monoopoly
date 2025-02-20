@@ -3,21 +3,25 @@ package it.unibo.monoopoly.view.main.impl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.text.View;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
-import it.unibo.monoopoly.model.turn.impl.MainModelImpl;
+import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.panel.impl.GamePanel;
 import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
+import it.unibo.monoopoly.view.panel.impl.PlayerPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -53,7 +57,7 @@ public class MainView extends AbstractView {
         this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
-        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth());
+        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), startPlayersCredit(), this.players);
         // this.viewState = new ViewPrisonState();
 
         // bisogna aggiungere che premendo esc ti permette di uscire dal gioco
@@ -97,5 +101,16 @@ public class MainView extends AbstractView {
     @Override
     public List<String> getNameCells() {
         return this.nameCells;
+    }
+
+    private Map<String, Integer> startPlayersCredit() {
+        Map<String, Integer> startMap = new HashMap<>();
+        this.players.entrySet().stream()
+                .forEach(s -> startMap.put(s.getValue(), 1500));
+        return startMap;
+    }
+
+    public void setInteractivePanel(JPanel panel) {
+        ((GamePanel) this.gamePanel).setInteractivePanel(panel); //cast per non creare il metodo nella classe astratta
     }
 }

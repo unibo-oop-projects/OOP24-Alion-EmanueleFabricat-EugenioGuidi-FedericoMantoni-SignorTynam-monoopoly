@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.unibo.monoopoly.model.turn.api.MainModel;
+import it.unibo.monoopoly.model.main.api.MainModel;
 
 /**
  * Record of utility, it represents the message directed to {@link MainModel}.
