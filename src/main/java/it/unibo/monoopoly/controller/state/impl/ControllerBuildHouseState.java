@@ -11,7 +11,7 @@ import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
-import it.unibo.monoopoly.model.main.api.MainModel;  // Assuming MainModel is the concrete class
+import it.unibo.monoopoly.model.main.api.MainModel;
 
 /**
  * Implementation of the controller for the house building state.
@@ -43,18 +43,17 @@ public class ControllerBuildHouseState implements ControllerState {
         canBuild = modelState.verify();
         viewState.setMode(canBuild);
 
-        // Assuming ModelState is actually a MainModel, so we cast it
         GameBoard gameBoard = null;
         
-        if (modelState instanceof MainModel) {  // Checks if modelState is of type MainModel
-            gameBoard = ((MainModel) modelState).getGameBoard();  // Get the GameBoard from MainModel
+        if (modelState instanceof MainModel) { 
+            gameBoard = ((MainModel) modelState).getGameBoard();
         }
 
         if (gameBoard != null) {
             List<Integer> buildableCells = canBuild ? gameBoard.getCurrentPlayer().getProperties().stream()
-                    .filter(p -> p instanceof Buildable) // Ensures it's a buildable property
-                    .map(p -> (Buildable) p) // Cast to Buildable
-                    .filter(p -> p.getHousesNumber() < 5 && !p.isMortgaged()) // Use getHousesNumber() and isMortgaged()
+                    .filter(p -> p instanceof Buildable)
+                    .map(p -> (Buildable) p)
+                    .filter(p -> p.getHousesNumber() < 5 && !p.isMortgaged())
                     .map(gameBoard.getCellsList()::indexOf)
                     .collect(Collectors.toList()) : List.of();
 
