@@ -34,7 +34,7 @@ public class PlayerPanel extends PanelAdapter {
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
         this.interactivePanel = new InteractivePanel();
-        this.visualizePlayerPanel = new VisualizePlayerPanel(this.mainFrameHeight, this.mainFrameWidth, playersCredit, playersColors);
+        this.visualizePlayerPanel = new VisualizePlayerPanel(playersCredit, playersColors);
     }
 
     /**

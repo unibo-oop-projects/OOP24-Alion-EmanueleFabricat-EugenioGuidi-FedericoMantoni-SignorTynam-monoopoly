@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.text.View;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
@@ -20,6 +21,7 @@ import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.panel.impl.GamePanel;
 import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
+import it.unibo.monoopoly.view.panel.impl.PlayerPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -106,5 +108,9 @@ public class MainView extends AbstractView {
         this.players.entrySet().stream()
                 .forEach(s -> startMap.put(s.getValue(), 1500));
         return startMap;
+    }
+
+    public PlayerPanel get() {
+        return ((GamePanel) this.gamePanel).getPlayerPanel(); //il cast serve per non mettere il netodo in PanelAdapter
     }
 }

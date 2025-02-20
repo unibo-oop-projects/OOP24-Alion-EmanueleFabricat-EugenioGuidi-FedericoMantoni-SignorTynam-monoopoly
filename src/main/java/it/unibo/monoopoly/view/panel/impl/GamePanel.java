@@ -32,6 +32,7 @@ public class GamePanel extends PanelAdapter {
     private final int mainFrameWidth;
     private Map<String, Integer> players;
     private Map<Color, String> playersColors;
+    private PlayerPanel playerPanel; 
 
     /**
      * comment.
@@ -57,7 +58,7 @@ public class GamePanel extends PanelAdapter {
     protected void panelInit() {
         final GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainController, this.mainFrameHeight,
                 this.mainFrameWidth);
-        final PlayerPanel playerPanel = new PlayerPanel(this.mainFrameHeight, this.mainFrameWidth, this.players, this.playersColors);
+        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.mainFrameWidth, this.players, this.playersColors);
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
         final JPanel centerPanel = new JPanel();
@@ -84,6 +85,10 @@ public class GamePanel extends PanelAdapter {
         centerPanel.add(gameBoardPanel, BorderLayout.WEST);
         centerPanel.add(playerPanel, BorderLayout.CENTER);
 
+    }
+
+    public PlayerPanel getPlayerPanel() {
+        return this.playerPanel;
     }
 
     
