@@ -52,7 +52,7 @@ public class ModelMovementState implements ModelState {
      * {@inheritDoc}
      */
     @Override
-    public void doAction(final Optional<DataOutput> data) {
+    public void doAction(final DataOutput data) {
         if (verify()) {
             moveWithDices();
         } else {

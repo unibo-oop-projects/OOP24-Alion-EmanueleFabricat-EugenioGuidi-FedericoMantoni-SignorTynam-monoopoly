@@ -26,7 +26,7 @@ public class ModelPrisonState implements ModelState {
      * {@inheritDoc}
      */
     @Override
-    public void doAction(final Optional<DataOutput> data) {
+    public void doAction(final DataOutput data) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'doAction'");
     }

@@ -55,9 +55,9 @@ public class ModelUnmortgageState implements ModelState {
      * the method release a mortgage to the selected property.
      */
     @Override
-    public void doAction(final Optional<DataOutput> data) {
-        if (data.isPresent()) {
-            unmortgageByIndex(data.get().cellChoose());
+    public void doAction(final DataOutput data) {
+        if (data.cellChoose().isPresent()) {
+            unmortgageByIndex(data.cellChoose());
         }
     }
 

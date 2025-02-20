@@ -1,10 +1,9 @@
 package it.unibo.monoopoly.controller.state.impl;
 
-import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
-import it.unibo.monoopoly.controller.data.impl.DataInput;
+import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
@@ -13,7 +12,11 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * manca comment.
+ * Implementations of {@link ControllerState} for the card's phase:
+ * that call the {@link ModelState} and {@link ViewState} methods, 
+ * in the right order,
+ * with the right input.
+ * Build with {@link DataBuilderInput} all the data that need the view
  */
 public class ControllerCardState implements ControllerState {
     private final MainController mainController;
@@ -22,11 +25,13 @@ public class ControllerCardState implements ControllerState {
     private final GameBoard gameBoard;
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
 
-    /**
-     * comment.
-     * 
-     * @param mainController
-     */
+   /**
+    * Constructor of the class that sets the fields.
+    * @param mainController to set.
+    * @param actualModelState to set.
+    * @param actualViewState to set.
+    * @param gameBoard to set.
+    */
     public ControllerCardState(final MainController mainController, final ModelState actualModelState,
             final ViewState actualViewState, final GameBoard gameBoard) {
         this.mainController = mainController;
@@ -42,9 +47,9 @@ public class ControllerCardState implements ControllerState {
     @Override
     public void startState() {
         this.actualViewState.setMode(this.actualModelState.verify());
-        this.actualModelState.doAction(Optional.empty());
+        this.actualModelState.doAction(new DataBuilderOutputImpl().build());
         this.actualViewState.visualize(this.dataBuilderInput.text(
-                this.gameBoard.getDeck().getActualCard().getEffectText() // aspetto implementazione
+                this.gameBoard.getDeck().getActualCard().getEffectText() 
         ).build());
     }
 
@@ -55,6 +60,7 @@ public class ControllerCardState implements ControllerState {
     @Override
     public void continueState(final DataOutput dataOutput) {
         this.actualModelState.closeState();
+        this.mainController.nextPhase();
     }
 
 }

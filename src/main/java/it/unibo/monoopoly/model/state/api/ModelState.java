@@ -20,7 +20,7 @@ public interface ModelState {
      * 
      * @param data
      */
-    void doAction(Optional<DataOutput> data);
+    void doAction(DataOutput data);
 
     /**
      * ends the state and sets the next one.
