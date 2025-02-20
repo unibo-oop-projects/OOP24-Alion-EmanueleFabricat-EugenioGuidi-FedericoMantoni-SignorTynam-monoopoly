@@ -33,14 +33,6 @@ public class MenuView extends AbstractView {
     }
 
     /**
-     * MAIN ONLY FOR TEST.
-     * 
-     * public static void main(final String[] args) {
-     * new MenuView().display();
-     * }
-     */
-
-    /**
      * {@inheritDoc}
      */
     @Override

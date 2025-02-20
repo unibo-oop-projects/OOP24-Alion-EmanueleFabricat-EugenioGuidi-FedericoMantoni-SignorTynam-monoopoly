@@ -12,6 +12,8 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
+import it.unibo.monoopoly.model.gameboard.api.GameBoard;
+import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -23,8 +25,7 @@ public class ControllerCheckActionState implements ControllerState {
     private final MainController mainController;
     private final ModelState modelState;
     private final ViewState viewState;
-    private final Optional<Event> actualEvent;
-    private final Cell actualCell;
+    private final GameBoard gameBoard;
 
     /**
      * Construct the {@link ControllerCheckActionState}.
@@ -36,12 +37,11 @@ public class ControllerCheckActionState implements ControllerState {
      * @param actualCell     the actual cell where the player is right now
      */
     public ControllerCheckActionState(final MainController mainController, final ModelState modelState,
-            final ViewState viewState, final Optional<Event> event, final Cell actualCell) {
+            final ViewState viewState, final GameBoard gameBoard) {
         this.mainController = mainController;
         this.modelState = modelState;
         this.viewState = viewState;
-        this.actualEvent = event;
-        this.actualCell = actualCell;
+        this.gameBoard = gameBoard;
     }
 
     /**
@@ -51,6 +51,8 @@ public class ControllerCheckActionState implements ControllerState {
      */
     @Override
     public void startState() {
+        final Cell actualCell = this.gameBoard.getCell(this.gameBoard.getCurrentPlayer().getActualPosition());
+        final Optional<Event> actualEvent = this.mainController.getActualEvent();
         if (modelState.verify()) {
             viewState.visualize(new DataBuilderInputImpl()
                     .event(Event.BUY_PROPERTY)

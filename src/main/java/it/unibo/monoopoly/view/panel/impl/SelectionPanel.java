@@ -76,7 +76,7 @@ public class SelectionPanel extends PanelAdapter {
         this.setLayout(new GridBagLayout());
         final JLabel nPlayerTextSelection = new JLabel("Scegli il numero di giocatori");
         nPlayerTextSelection.setFont(this.font);
-        final JSpinner spinnerSelection = new JSpinner(new SpinnerNumberModel(4, 2, 6, 1));
+        final JSpinner spinnerSelection = new JSpinner(new SpinnerNumberModel(4, 2, 4, 1));
         final JButton confirmSelection = new JButton("OK");
         confirmSelection.addActionListener(ev -> {
             try {
