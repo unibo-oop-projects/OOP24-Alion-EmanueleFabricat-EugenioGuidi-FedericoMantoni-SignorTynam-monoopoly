@@ -1,7 +1,9 @@
 package it.unibo.monoopoly.controller.main.impl;
 
 import java.util.List;
+import java.util.Optional;
 
+import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
@@ -121,6 +123,14 @@ public class MainControllerImpl implements MainController {
     public ViewState getViewState() {
         // return this.mainView.getState();
         return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Optional<Event> getActualEvent() {
+        return this.model.getEvent();
     }
 
     /**

@@ -1,5 +1,8 @@
 package it.unibo.monoopoly.controller.main.api;
 
+import java.util.Optional;
+
+import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.state.api.ModelState;
@@ -36,6 +39,12 @@ public interface MainController {
      * @return comment.
      */
     DataInput getDataInput();
+
+    /**
+     * 
+     * @return the actual {@link Event} from the {@link MainModel}.
+     */
+    Optional<Event> getActualEvent();
 
     /**
      * Initialize nextPhase of the game creating the {@link ControllerState}
