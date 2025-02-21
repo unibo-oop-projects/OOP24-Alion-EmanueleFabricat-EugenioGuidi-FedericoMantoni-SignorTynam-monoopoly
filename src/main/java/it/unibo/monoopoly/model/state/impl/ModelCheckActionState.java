@@ -101,7 +101,7 @@ public class ModelCheckActionState implements ModelState {
     }
 
     private Player getActualPlayer() {
-        return getActualPlayer();
+        return mainModel.getGameBoard().getCurrentPlayer();
     }
 
 }
