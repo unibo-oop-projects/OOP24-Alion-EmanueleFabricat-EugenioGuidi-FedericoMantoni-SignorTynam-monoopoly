@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.deck.impl.DeckImpl;
@@ -85,6 +87,12 @@ public class MainModelImpl implements MainModel {
     @Override
     public void setEvent(Event selectOperations) {
         this.actualEvent = Optional.of(selectOperations);
+    }
+
+    @Override
+    public void nextTurn() {
+        gameBoard.getNextPlayer(); //TODO Valore di ritorno non usato, si può togliere?
+        //this.actualState = new ModelPrisonState(this, false) 
     }
 
 }

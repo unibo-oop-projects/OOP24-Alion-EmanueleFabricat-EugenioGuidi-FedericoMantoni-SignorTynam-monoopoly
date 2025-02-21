@@ -43,4 +43,9 @@ public interface MainModel {
      */
     void setEvent(Event selectOperations);
 
+    /**
+     * Correctly finish a turn and set the {@link ModelState}
+     */
+    void nextTurn();
+
 }
