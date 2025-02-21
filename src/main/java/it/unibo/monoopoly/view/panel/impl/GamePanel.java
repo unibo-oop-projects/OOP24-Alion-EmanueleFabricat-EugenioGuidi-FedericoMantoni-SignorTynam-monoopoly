@@ -27,6 +27,8 @@ import it.unibo.monoopoly.model.player.api.Player;
  */
 public class GamePanel extends PanelAdapter {
 
+    private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
+
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
@@ -72,8 +74,8 @@ public class GamePanel extends PanelAdapter {
         westPanel.setPreferredSize(new Dimension(eastWestWidth, eastWestHeight));
         centerPanel.setPreferredSize(new Dimension(centerWidth, centerHeight));
 
-        eastPanel.setBackground(Color.BLACK);
-        westPanel.setBackground(Color.BLACK);
+        eastPanel.setBackground(GREEN_MONOPOLY);
+        westPanel.setBackground(GREEN_MONOPOLY);
 
         this.setLayout(new BorderLayout());
 

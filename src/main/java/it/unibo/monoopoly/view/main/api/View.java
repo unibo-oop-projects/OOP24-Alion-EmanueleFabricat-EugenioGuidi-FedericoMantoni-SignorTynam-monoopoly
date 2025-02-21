@@ -21,21 +21,5 @@ public interface View {
      * @return the main {@link JFrame} of the view
      */
     JFrame getMainFrame();
-
-    /**
-     * 
-     * @return comment.
-     */
-    MainController getMainController();
-
-    /**
-     * 
-     * @return comment.
-     */
-    List<String> getNameCells();
-
-    /**
-     * change the actual state of the view.
-     */
-    void setState();
+    
 }

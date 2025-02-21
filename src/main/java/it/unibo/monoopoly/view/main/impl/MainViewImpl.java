@@ -25,6 +25,7 @@ import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
 import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
 import it.unibo.monoopoly.controller.state.impl.ControllerUnmortgageState;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
+import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.GamePanel;
 import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
 import it.unibo.monoopoly.view.panel.impl.PlayerPanel;
@@ -39,7 +40,7 @@ import it.unibo.monoopoly.view.state.impl.ViewUnmortgageState;
 /**
  * Represents the main view component of the application when game starts.
  */
-public class MainView extends AbstractView {
+public class MainViewImpl extends AbstractView implements MainView {
 
     private final PanelAdapter gamePanel;
     private final MainController controller;
@@ -57,7 +58,7 @@ public class MainView extends AbstractView {
      * @param namePlayers the names of the players
      * @param nameCells   the list of names of the cells
      */
-    public MainView(final MainController controller, final List<String> namePlayers, final List<String> nameCells) {
+    public MainViewImpl(final MainController controller, final List<String> namePlayers, final List<String> nameCells) {
         this.controller = controller;
 
         final Dimension screeDimension = Toolkit.getDefaultToolkit().getScreenSize();

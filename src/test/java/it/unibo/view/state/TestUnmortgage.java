@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
-import it.unibo.monoopoly.view.main.impl.MainView;
+import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.state.impl.ViewUnmortgageState;
 
 public class TestUnmortgage extends JFrame{
@@ -26,7 +26,7 @@ public class TestUnmortgage extends JFrame{
         cells.add(1);
         cells.add(0);
         final MainController controller = new MainControllerImpl(new MainModelImpl(lista), lis);        
-        state = new ViewUnmortgageState(new MainView(controller, lista, lis));
+        state = new ViewUnmortgageState(new MainViewImpl(controller, lista, lis));
     }
 
 }

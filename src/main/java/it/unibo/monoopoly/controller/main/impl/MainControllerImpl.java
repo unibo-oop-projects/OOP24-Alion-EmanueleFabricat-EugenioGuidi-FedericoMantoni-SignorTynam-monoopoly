@@ -19,7 +19,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
-import it.unibo.monoopoly.view.main.impl.MainView;
+import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.panel.impl.MainPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 import it.unibo.monoopoly.view.state.impl.GameViewState;
@@ -29,7 +29,7 @@ import it.unibo.monoopoly.view.state.impl.GameViewState;
  */
 public class MainControllerImpl implements MainController {
 
-    private final MainView mainView;
+    private final MainViewImpl mainView;
     private final MainModel model;
     private ControllerState actualState;
     private DataInput inputData;
@@ -45,9 +45,12 @@ public class MainControllerImpl implements MainController {
         final List<String> cellsNames = model.getGameBoard().getCellsNames();
         // Create the main view passing this controller, players' names, and the cells'
         // names
-        this.mainView = new MainView(this, playersName, cellsNames);
+        this.mainView = new MainViewImpl(this, playersName, cellsNames);
         this.mainView.display();
-        this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
+        //this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
+        this.actualState = new ControllerCheckActionState(this, this.model.getState(), this.mainView.getViewState(), this.model.getGameBoard());
+        this.actualState.startState();
+        //this.nextPhase();
     }
 
     /**

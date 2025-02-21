@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
-import it.unibo.monoopoly.view.main.impl.MainView;
+import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.panel.impl.BankruptcyPanel;
 import it.unibo.monoopoly.view.panel.impl.MortgagePanel;
 import it.unibo.monoopoly.view.panel.impl.SellHousePanel;
@@ -20,7 +20,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  * comment.
  */
 public class ViewBankerState implements ViewState {
-    private final MainView mainView;
+    private final MainViewImpl mainView;
     private DataInput dataInput;
     private JPanel panel;
     private boolean payable;
@@ -30,7 +30,7 @@ public class ViewBankerState implements ViewState {
      * 
      * @param mainView
      */
-    public ViewBankerState(final MainView mainView) {
+    public ViewBankerState(final MainViewImpl mainView) {
         this.mainView = mainView;
     }
 

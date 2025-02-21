@@ -21,6 +21,7 @@ import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.ModelBankerState;
+import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 
 /**
  * Implements the {@link MainModel} interface.
@@ -41,12 +42,13 @@ public class MainModelImpl implements MainModel {
      */
     public MainModelImpl(final List<String> playersName) {
         final List<Player> players = playersName.stream()
-                .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 0, false)).collect(Collectors.toList());
+                .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 1, false)).collect(Collectors.toList());
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
-        // this.deck = new DeckImpl();
+        //this.deck = new DeckImpl();
         // this.actualPlayer = gameBoard.getCurrentPlayer();
         this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT);
         // TODO initialize state : new ModelPrisonState(this, false);
+        this.setState(new ModelCheckActionState(this));
     }
 
     /**

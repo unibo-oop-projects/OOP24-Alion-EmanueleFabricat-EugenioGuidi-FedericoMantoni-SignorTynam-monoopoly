@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
+import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.api.View;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -16,13 +17,13 @@ import it.unibo.monoopoly.view.state.api.ViewState;
 public class ViewCheckActionState implements ViewState {
 
     private static final String[] YES_NO = { "Sì", "No" };
-    private final View mainView;
+    private final MainView mainView;
 
     /**
      * Constructor of {@link ViewCheckActionState}.
      * @param mainView the main view of the application
      */
-    public ViewCheckActionState(final View mainView) {
+    public ViewCheckActionState(final MainView mainView) {
         this.mainView = mainView;
     }
 

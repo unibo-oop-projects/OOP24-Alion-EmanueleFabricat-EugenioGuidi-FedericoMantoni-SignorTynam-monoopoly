@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
-import it.unibo.monoopoly.view.main.impl.MainView;
+import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 
 public class TestGUI extends JFrame{
 
@@ -25,6 +25,6 @@ public class TestGUI extends JFrame{
         listaPlayer.add("Gennaro");
         listaPlayer.add("Luigi");
         final MainController controller = new MainControllerImpl(new MainModelImpl(listaPlayer), listaPlayer);
-        new MainView(controller, listaCelle, listaPlayer);
+        new MainViewImpl(controller, listaCelle, listaPlayer);
     }
 }

@@ -40,22 +40,4 @@ public class MenuView extends AbstractView {
         return this.menuPanel;
     }
 
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public MainController getMainController() {
-        return null;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public List<String> getNameCells() {
-        return null;
-    }
-
 }
