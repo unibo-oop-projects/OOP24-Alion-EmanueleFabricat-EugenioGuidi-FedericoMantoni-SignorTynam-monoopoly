@@ -33,4 +33,9 @@ public interface View {
      * @return comment.
      */
     List<String> getNameCells();
+
+    /**
+     * change the actual state of the view.
+     */
+    void setState();
 }
