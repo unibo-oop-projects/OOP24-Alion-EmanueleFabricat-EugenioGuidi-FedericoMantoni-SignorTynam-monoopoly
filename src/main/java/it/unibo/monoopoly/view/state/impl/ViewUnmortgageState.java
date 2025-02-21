@@ -7,6 +7,8 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
+import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.view.main.impl.MainView;
@@ -22,7 +24,6 @@ import it.unibo.monoopoly.view.state.api.ViewState;
 public class ViewUnmortgageState implements ViewState {
     private final MainView mainView;
     private JPanel panel;
-    private DataInput dataInput;
     private boolean makeState;
 
     /**
@@ -50,9 +51,8 @@ public class ViewUnmortgageState implements ViewState {
      */
     @Override
     public void visualize(final DataInput dataInput) {
-        this.dataInput = dataInput;
         if (this.makeState) {
-            this.panel = new UnmortgagePanel(new CellGiver(), intToTextCell(this.dataInput.cellList().get()));
+            this.panel = new UnmortgagePanel(new CellGiver(), intToTextCell(dataInput.cellList().get()));
         } else {
             this.panel = new NothingUnmortgageablePanel(new SimpleExit());
         }
@@ -79,7 +79,9 @@ public class ViewUnmortgageState implements ViewState {
             final String cellName = button.getText();
             final int cell = mainView.getNameCells().indexOf(cellName);
             mainView.getMainFrame().remove(panel);
-            mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
+            mainView.getMainController().getControllerState().continueState(
+                new DataBuilderOutputImpl().cellChoose(cell).build()
+            );
         }
 
     }
