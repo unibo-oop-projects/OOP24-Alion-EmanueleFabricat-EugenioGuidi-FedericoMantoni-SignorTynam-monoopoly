@@ -23,6 +23,7 @@ import it.unibo.monoopoly.view.panel.impl.GamePanel;
 import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
 import it.unibo.monoopoly.view.panel.impl.PlayerPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
+import it.unibo.monoopoly.view.state.impl.ViewCheckActionState;
 
 /**
  * Represents the main view component of the application when game starts.
@@ -31,7 +32,7 @@ public class MainView extends AbstractView {
 
     private final PanelAdapter gamePanel;
     private final MainController controller;
-    // private final ViewState<?,?> viewState;
+    private final ViewState viewState;
     private final List<Color> colors;
     private final Map<Color, String> players;
     private final List<String> nameCells;
@@ -58,9 +59,7 @@ public class MainView extends AbstractView {
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), startPlayersCredit(), this.players);
-        // this.viewState = new ViewPrisonState();
-
-        // bisogna aggiungere che premendo esc ti permette di uscire dal gioco
+        this.viewState = new ViewCheckActionState(this); //TODO change to ViewPrisonState
     }
 
     private JFrame mainFrame() {
@@ -81,8 +80,7 @@ public class MainView extends AbstractView {
      * @return the actual {@link ViewState}.
      */
     public ViewState getViewState() {
-        // return this.viewState;
-        return null;
+        return this.viewState;
     }
 
     /**
