@@ -11,6 +11,7 @@ import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
+import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.panel.impl.NothingUnmortgageablePanel;
 import it.unibo.monoopoly.view.panel.impl.UnmortgagePanel;
@@ -22,7 +23,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  * to allow the player to decide which property to release the mortgage on.
  */
 public class ViewUnmortgageState implements ViewState {
-    private final MainViewImpl mainView;
+    private final MainView mainView;
     private JPanel panel;
     private boolean makeState;
 
@@ -31,7 +32,7 @@ public class ViewUnmortgageState implements ViewState {
      * 
      * @param mainView to set.
      */
-    public ViewUnmortgageState(final MainViewImpl mainView) {
+    public ViewUnmortgageState(final MainView mainView) {
         this.mainView = mainView;
     }
 

@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
+import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -14,7 +15,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  */
 public class ViewBuildHouseState implements ViewState {
 
-    private final MainViewImpl mainView;
+    private final MainView mainView;
     private boolean canBuild;
     private final DataBuilderOutput dataBuilder;
 
@@ -23,7 +24,7 @@ public class ViewBuildHouseState implements ViewState {
      * 
      * @param mainView the main view
      */
-    public ViewBuildHouseState(MainViewImpl mainView) {
+    public ViewBuildHouseState(MainView mainView) {
         this.mainView = mainView;
         this.dataBuilder = new DataBuilderOutputImpl();
     }

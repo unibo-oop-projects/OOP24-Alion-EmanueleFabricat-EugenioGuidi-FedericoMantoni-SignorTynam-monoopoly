@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
+import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.state.impl.ViewBuildHouseState;
 import it.unibo.monoopoly.controller.state.impl.ControllerBuildHouseState;
@@ -25,7 +26,7 @@ public class TestBuildHouse extends JFrame {
         playerList.add("Player 2");
 
         MainController controller = new MainControllerImpl(new MainModelImpl(propertyList), playerList);
-        MainViewImpl view = new MainViewImpl(controller, propertyList, playerList);
+        MainView view = new MainViewImpl(controller, propertyList, playerList);
         ViewBuildHouseState viewState = new ViewBuildHouseState(view);
         ModelBuildHouseState modelState = new ModelBuildHouseState(new MainModelImpl(propertyList));
         ControllerBuildHouseState controllerState = new ControllerBuildHouseState(modelState, viewState);

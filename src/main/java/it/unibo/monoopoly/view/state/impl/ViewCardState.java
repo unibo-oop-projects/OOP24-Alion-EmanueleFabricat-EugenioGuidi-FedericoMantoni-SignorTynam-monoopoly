@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.monoopoly.controller.data.impl.DataInput;
+import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -12,7 +13,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  * that visualize in the PlayerPanel the text of the {@link Card}.
  */
 public class ViewCardState implements ViewState {
-    private final MainViewImpl mainView;
+    private final MainView mainView;
     private DataInput dataInput;
 
     /**
@@ -20,7 +21,7 @@ public class ViewCardState implements ViewState {
      * 
      * @param mainView to set.
      */
-    public ViewCardState(final MainViewImpl mainView) {
+    public ViewCardState(final MainView mainView) {
         this.mainView = mainView;
     }
 

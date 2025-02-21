@@ -91,6 +91,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      * 
      * @return the actual {@link ViewState}.
      */
+    @Override
     public ViewState getViewState() {
         return this.viewState;
     }
@@ -120,6 +121,10 @@ public class MainViewImpl extends AbstractView implements MainView {
         return startMap;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setInteractivePanel(JPanel panel) {
         ((GamePanel) this.gamePanel).setInteractivePanel(panel); //cast per non creare il metodo nella classe astratta
     }

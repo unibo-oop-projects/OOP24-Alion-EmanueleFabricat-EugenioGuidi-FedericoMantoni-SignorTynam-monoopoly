@@ -19,6 +19,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.BuildHouseModelState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
+import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.panel.impl.MainPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -29,7 +30,7 @@ import it.unibo.monoopoly.view.state.impl.GameViewState;
  */
 public class MainControllerImpl implements MainController {
 
-    private final MainViewImpl mainView;
+    private final MainView mainView;
     private final MainModel model;
     private ControllerState actualState;
     private DataInput inputData;

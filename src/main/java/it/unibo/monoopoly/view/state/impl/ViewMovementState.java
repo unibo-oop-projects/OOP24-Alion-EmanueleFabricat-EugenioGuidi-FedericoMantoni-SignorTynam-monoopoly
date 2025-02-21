@@ -1,7 +1,7 @@
 package it.unibo.monoopoly.view.state.impl;
 
 import it.unibo.monoopoly.controller.data.impl.DataInput;
-import it.unibo.monoopoly.view.main.impl.MainViewImpl;
+import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 import javax.swing.JOptionPane;
@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class ViewMovementState implements ViewState {
 
-    private final MainViewImpl mainVIew;
+    private final MainView mainVIew;
     private DataInput dataInput;
 
     /**
@@ -19,7 +19,7 @@ public class ViewMovementState implements ViewState {
      * 
      * @param mainView
      */
-    public ViewMovementState(final MainViewImpl mainView) {
+    public ViewMovementState(final MainView mainView) {
         this.mainVIew = mainView;
     }
 
