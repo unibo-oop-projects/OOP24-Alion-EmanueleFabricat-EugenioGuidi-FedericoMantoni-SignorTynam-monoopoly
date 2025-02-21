@@ -17,8 +17,7 @@ import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
  */
 public abstract class AbstractView implements View {
 
-    private static final List<Color> COLORS = List.of(Color.BLUE, Color.GREEN, Color.RED, Color.ORANGE, Color.YELLOW,
-            Color.PINK);
+    private static final List<Color> COLORS = List.of(Color.BLUE, Color.GREEN, Color.RED, Color.ORANGE);
 
     private final JFrame mainFrame = new JFrame("MONOOPOLY");
 
