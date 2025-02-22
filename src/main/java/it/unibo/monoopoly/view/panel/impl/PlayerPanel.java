@@ -3,7 +3,6 @@ package it.unibo.monoopoly.view.panel.impl;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JPanel;
 
@@ -13,7 +12,6 @@ import org.apache.commons.lang3.tuple.Triple;
  * comment.
  */
 public class PlayerPanel extends PanelAdapter {
-    private final int mainFrameHeight;
     private InteractivePanel interactivePanel;
     private VisualizePlayerPanel visualizePlayerPanel;
 
@@ -25,7 +23,6 @@ public class PlayerPanel extends PanelAdapter {
      * @param mainFrameWidth
      */
     public PlayerPanel(final int mainFrameHeight,final String firstPlayer, final List<Triple<String, Integer, Color>> initializedList) {
-        this.mainFrameHeight = mainFrameHeight;
         this.interactivePanel = new InteractivePanel();
         this.visualizePlayerPanel = new VisualizePlayerPanel(mainFrameHeight, firstPlayer, initializedList);
     }

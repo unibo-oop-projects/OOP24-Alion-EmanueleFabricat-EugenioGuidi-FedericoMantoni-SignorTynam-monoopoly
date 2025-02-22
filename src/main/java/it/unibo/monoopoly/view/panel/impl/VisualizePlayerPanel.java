@@ -2,16 +2,11 @@ package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import javax.swing.JLabel;
 import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
 
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -45,7 +40,7 @@ public class VisualizePlayerPanel extends PanelAdapter {
         }
         for (var text : this.textList) {
             text.setEnabled(false);
-            text.setFont(new Font("Arial", Font.PLAIN, (int) (0.035 * this.mainFrameHeight)));
+            text.setFont(new Font("Arial", Font.PLAIN, (int) (PERC_RESIZE * this.mainFrameHeight)));
             add(text);
         }
     }
