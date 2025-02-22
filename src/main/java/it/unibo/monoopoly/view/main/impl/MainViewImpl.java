@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.View;
 
+import org.apache.commons.lang3.tuple.Triple;
+
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
@@ -70,8 +72,17 @@ public class MainViewImpl extends AbstractView implements MainView {
         this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
-        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), startPlayersCredit(), this.players);
+        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), "1", initPlayerView());
         this.viewState = new ViewCheckActionState(this); //TODO change to ViewPrisonState
+    }
+
+    private List<Triple<String, Integer, Color>> initPlayerView() {
+        List<Triple<String, Integer, Color>> l = new LinkedList<>();
+        for (var entry: this.players.entrySet()) {
+            l.add(Triple.of(entry.getValue(), 1500, entry.getKey()));
+        }
+        return l;
+        
     }
 
     private JFrame mainFrame() {
@@ -112,13 +123,6 @@ public class MainViewImpl extends AbstractView implements MainView {
     @Override
     public List<String> getNameCells() {
         return this.nameCells;
-    }
-
-    private Map<String, Integer> startPlayersCredit() {
-        Map<String, Integer> startMap = new HashMap<>();
-        this.players.entrySet().stream()
-                .forEach(s -> startMap.put(s.getValue(), 1500));
-        return startMap;
     }
 
     /**
