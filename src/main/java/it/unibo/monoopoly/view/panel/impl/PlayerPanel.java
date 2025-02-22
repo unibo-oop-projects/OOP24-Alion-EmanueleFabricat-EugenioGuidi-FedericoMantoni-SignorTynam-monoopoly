@@ -1,25 +1,16 @@
 package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.List;
 import java.util.Map;
 
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
-
-import it.unibo.monoopoly.controller.main.api.MainController;
-import it.unibo.monoopoly.model.player.api.Player;
 
 /**
  * comment.
  */
 public class PlayerPanel extends PanelAdapter {
     private final int mainFrameHeight;
-    private final int mainFrameWidth;
     private InteractivePanel interactivePanel;
     private VisualizePlayerPanel visualizePlayerPanel;
 
@@ -30,11 +21,10 @@ public class PlayerPanel extends PanelAdapter {
      * @param mainFrameHeight
      * @param mainFrameWidth
      */
-    public PlayerPanel(final int mainFrameHeight, final int mainFrameWidth, Map<String, Integer> playersCredit, Map<Color, String> playersColors) {
+    public PlayerPanel(final int mainFrameHeight, Map<String, Integer> playersCredit, Map<Color, String> playersColors) {
         this.mainFrameHeight = mainFrameHeight;
-        this.mainFrameWidth = mainFrameWidth;
         this.interactivePanel = new InteractivePanel();
-        this.visualizePlayerPanel = new VisualizePlayerPanel(mainFrameHeight, mainFrameWidth, playersCredit, playersColors);
+        this.visualizePlayerPanel = new VisualizePlayerPanel(mainFrameHeight, playersCredit, playersColors);
     }
 
     /**

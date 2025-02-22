@@ -6,25 +6,20 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
-import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
-import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.main.impl.MainViewImpl;
-import it.unibo.monoopoly.view.panel.impl.NothingUnmortgageablePanel;
 import it.unibo.monoopoly.view.panel.impl.UnmortgagePanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
  * Implementations of {@link ViewState} for the card's phase:
- * that visualize in the PlayerPanel the {@link JPanel},
  * to allow the player to decide which property to release the mortgage on.
  */
 public class ViewUnmortgageState implements ViewState {
     private final MainView mainView;
-    private JPanel panel;
     private boolean makeState;
 
     /**
@@ -53,11 +48,13 @@ public class ViewUnmortgageState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         if (this.makeState) {
-            this.panel = new UnmortgagePanel(new CellGiver(), intToTextCell(dataInput.cellList().get()));
+            JPanel panel = new UnmortgagePanel(new CellGiver(), intToTextCell(dataInput.cellList().get()));
+            this.mainView.getMainFrame().add(panel);
         } else {
-            this.panel = new NothingUnmortgageablePanel(new SimpleExit());
+            JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
+                    "Mi spiace non hai proprietà da disipotecare", "Disipoteca", JOptionPane.PLAIN_MESSAGE);
+            this.mainView.getMainController().getControllerState().continueState(new DataBuilderOutputImpl().build());
         }
-        this.mainView.getMainFrame().add(panel);
     }
 
     private List<String> intToTextCell(final List<Integer> cellList) {
@@ -79,26 +76,14 @@ public class ViewUnmortgageState implements ViewState {
             final var button = (JButton) e.getSource();
             final String cellName = button.getText();
             final int cell = mainView.getNameCells().indexOf(cellName);
-            mainView.getMainFrame().remove(panel);
-            mainView.getMainController().getControllerState().continueState(
-                new DataBuilderOutputImpl().cellChoose(cell).build()
-            );
-        }
-
-    }
-
-    /**
-     * comment.
-     */
-    public class SimpleExit implements ActionListener {
-        /**
-         *
-         * {@inheritDoc}
-         */
-        @Override
-        public void actionPerformed(final ActionEvent e) {
-            mainView.getMainFrame().remove(panel);
-            mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
+            if (cellName.equals(UnmortgagePanel.NO_CHOICE)) {
+                mainView.getMainController().getControllerState().continueState(
+                    new DataBuilderOutputImpl().build());
+            } else {
+                mainView.getMainController().getControllerState().continueState(
+                        new DataBuilderOutputImpl().cellChoose(cell).build());
+            }
+            //mainView.getMainFrame().remove(panel);
         }
 
     }
