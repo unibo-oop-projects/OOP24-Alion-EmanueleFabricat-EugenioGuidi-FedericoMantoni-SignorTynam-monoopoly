@@ -46,7 +46,7 @@ public class MainModelImpl implements MainModel {
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         //this.deck = new DeckImpl();
         // this.actualPlayer = gameBoard.getCurrentPlayer();
-        this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT);
+        this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT, false);
         // TODO initialize state : new ModelPrisonState(this, false);
         this.setState(new ModelCheckActionState(this));
     }

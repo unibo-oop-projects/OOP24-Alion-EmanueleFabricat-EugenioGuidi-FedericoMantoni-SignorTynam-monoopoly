@@ -129,7 +129,7 @@ public class ModelMovementState implements ModelState {
     @Override
     public void closeState() {
         if (getPlayer().isPrisoned()) {
-            this.turn.setState(new ModelBankerState(turn, PASS_GO_REWARD)); // new ModelPrisonState(turn, false)
+            //this.turn.setState(new ModelBankerState(turn, PASS_GO_REWARD)); // new ModelPrisonState(turn, false)
         } else {
             this.turn.setState(new ModelCheckActionState(this.turn));
         }
