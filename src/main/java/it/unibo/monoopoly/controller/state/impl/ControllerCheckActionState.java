@@ -13,7 +13,6 @@ import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
-import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -33,8 +32,7 @@ public class ControllerCheckActionState implements ControllerState {
      * @param mainController the main controller
      * @param modelState     the actual model state
      * @param viewState      the view state
-     * @param event          the actual event triggered by the cell
-     * @param actualCell     the actual cell where the player is right now
+     * @param gameBoard      the {@link GameBoard}
      */
     public ControllerCheckActionState(final MainController mainController, final ModelState modelState,
             final ViewState viewState, final GameBoard gameBoard) {

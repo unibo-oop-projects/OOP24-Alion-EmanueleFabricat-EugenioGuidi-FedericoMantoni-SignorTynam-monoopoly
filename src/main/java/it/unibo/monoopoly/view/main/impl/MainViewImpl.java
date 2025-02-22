@@ -70,8 +70,9 @@ public class MainViewImpl extends AbstractView implements MainView {
         this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
-        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), startPlayersCredit(), this.players);
-        this.viewState = new ViewCheckActionState(this); //TODO change to ViewPrisonState
+        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(),
+                startPlayersCredit(), this.players);
+        this.viewState = new ViewCheckActionState(this); // TODO change to ViewPrisonState
     }
 
     private JFrame mainFrame() {
@@ -115,7 +116,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     }
 
     private Map<String, Integer> startPlayersCredit() {
-        Map<String, Integer> startMap = new HashMap<>();
+        final Map<String, Integer> startMap = new HashMap<>();
         this.players.entrySet().stream()
                 .forEach(s -> startMap.put(s.getValue(), 1500));
         return startMap;
@@ -125,20 +126,23 @@ public class MainViewImpl extends AbstractView implements MainView {
      * {@inheritDoc}
      */
     @Override
-    public void setInteractivePanel(JPanel panel) {
-        ((GamePanel) this.gamePanel).setInteractivePanel(panel); //cast per non creare il metodo nella classe astratta
+    public void setInteractivePanel(final JPanel panel) {
+        ((GamePanel) this.gamePanel).setInteractivePanel(panel); // cast per non creare il metodo nella classe astratta
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setState() {
         this.viewState = switch (this.getMainController().getControllerState()) {
-            //case ControllerPrisonState p -> new ViewPrisonState(this);
-            case ControllerMovementState m -> new ViewMovementState(this);
-            case ControllerCheckActionState ca -> new ViewCheckActionState(this);
-            case ControllerCardState c -> new ViewCardState(this);
-            case ControllerBankerState b -> new ViewBankerState(this);
-            case ControllerBuildHouseState bh -> new ViewBuildHouseState(this);
-            case ControllerUnmortgageState u -> new ViewUnmortgageState(this);
+            // case ControllerPrisonState p -> new ViewPrisonState(this);
+            case final ControllerMovementState m -> new ViewMovementState(this);
+            case final ControllerCheckActionState ca -> new ViewCheckActionState(this);
+            case final ControllerCardState c -> new ViewCardState(this);
+            case final ControllerBankerState b -> new ViewBankerState(this);
+            case final ControllerBuildHouseState bh -> new ViewBuildHouseState(this);
+            case final ControllerUnmortgageState u -> new ViewUnmortgageState(this);
             default -> throw new IllegalArgumentException();
         };
     }

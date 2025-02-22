@@ -1,11 +1,6 @@
 package it.unibo.monoopoly.view.main.api;
 
-
-import java.util.List;
-
 import javax.swing.JFrame;
-
-import it.unibo.monoopoly.controller.main.api.MainController;
 
 /**
  * Interface for the View component of the application.
@@ -21,5 +16,5 @@ public interface View {
      * @return the main {@link JFrame} of the view
      */
     JFrame getMainFrame();
-    
+
 }

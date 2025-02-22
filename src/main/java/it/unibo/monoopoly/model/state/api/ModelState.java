@@ -1,7 +1,5 @@
 package it.unibo.monoopoly.model.state.api;
 
-import java.util.Optional;
-
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 
 /**

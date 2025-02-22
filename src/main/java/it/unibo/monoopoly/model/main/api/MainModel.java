@@ -39,12 +39,12 @@ public interface MainModel {
 
     /**
      * 
-     * @param selectOperations
+     * @param selectOperations the new event setted.
      */
     void setEvent(Event selectOperations);
 
     /**
-     * Correctly finish a turn and set the {@link ModelState}
+     * Correctly finish a turn and set the {@link ModelState}.
      */
     void nextTurn();
 

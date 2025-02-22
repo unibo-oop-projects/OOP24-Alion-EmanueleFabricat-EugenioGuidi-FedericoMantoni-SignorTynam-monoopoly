@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
+/**
+ * Represents the main view, contains the frame of the entire game.
+ */
 public interface MainView extends View{
 
     /**
@@ -28,6 +31,10 @@ public interface MainView extends View{
 
     void setInteractivePanel(JPanel panel);
 
+    /**
+     * 
+     * @return the actual {@link ViewState}
+     */
     ViewState getViewState();
 
 }

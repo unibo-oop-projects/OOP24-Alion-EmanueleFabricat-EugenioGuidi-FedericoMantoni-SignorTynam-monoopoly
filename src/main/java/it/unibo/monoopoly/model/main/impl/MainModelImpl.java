@@ -22,6 +22,7 @@ import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.ModelBankerState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
+import it.unibo.monoopoly.model.state.impl.ModelMovementState;
 
 /**
  * Implements the {@link MainModel} interface.
@@ -48,7 +49,7 @@ public class MainModelImpl implements MainModel {
         // this.actualPlayer = gameBoard.getCurrentPlayer();
         this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT, false);
         // TODO initialize state : new ModelPrisonState(this, false);
-        this.setState(new ModelCheckActionState(this));
+        this.actualState = new ModelMovementState(this, Optional.empty());
     }
 
     /**
@@ -87,10 +88,13 @@ public class MainModelImpl implements MainModel {
      * {@inheritDoc}
      */
     @Override
-    public void setEvent(Event selectOperations) {
+    public void setEvent(final Event selectOperations) {
         this.actualEvent = Optional.of(selectOperations);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void nextTurn() {
         gameBoard.getNextPlayer(); //TODO Valore di ritorno non usato, si può togliere?

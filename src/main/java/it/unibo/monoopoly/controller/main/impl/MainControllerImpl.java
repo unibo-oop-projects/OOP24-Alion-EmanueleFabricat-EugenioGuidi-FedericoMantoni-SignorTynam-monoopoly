@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
@@ -62,10 +61,12 @@ public class MainControllerImpl implements MainController {
         // names
         this.mainView = new MainViewImpl(this, playersName, cellsNames);
         this.mainView.display();
-        //this.actualState = new ControllerBankerState(this, this.model.getState(), this.mainView.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
-        this.actualState = new ControllerCheckActionState(this, this.model.getState(), this.mainView.getViewState(), this.model.getGameBoard());
+        // this.actualState = new ControllerBankerState(this, this.model.getState(),
+        // this.mainView.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
+        this.actualState = new ControllerCheckActionState(this, this.model.getState(), this.mainView.getViewState(),
+                this.model.getGameBoard());
         this.actualState.startState();
-        //this.nextPhase();
+        // this.nextPhase();
     }
 
     /**
@@ -74,20 +75,28 @@ public class MainControllerImpl implements MainController {
      * otherwise the house building state is activated.
      */
 
-     /**
-      * {@inheritDoc}
-      */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void nextPhase() {
-        //TODO add call to update view
+        // TODO add call to update view
         this.actualState = switch (this.model.getState()) {
-            //case ModelPrisontState p -> new ControllerPrisonState(this, model.getState(), mainView.getViewState(), this.model.getGameboard());
-            //case ModelMovementState m -> new ControllerMovementState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard().getDices());
-            case ModelCheckActionState ca -> new ControllerCheckActionState(this, model.getState(), mainView.getViewState(), model.getGameBoard());
-            //case ModelCardState c -> new ControllerCardState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard().getDeck());
-            //case ModelBankerState b -> new ControllerBankerState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard());
-            //case ModelBuildHouseState bh -> new ControllerBuildHouseState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard());
-            case ModelUnmortgageState u -> new ControllerUnmortgageState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard());
+            // case ModelPrisontState p -> new ControllerPrisonState(this, model.getState(),
+            // mainView.getViewState(), this.model.getGameboard());
+            // case ModelMovementState m -> new ControllerMovementState(this,
+            // model.getState(), mainView.getViewState(),
+            // this.model.getGameBoard().getDices());
+            case final ModelCheckActionState ca ->
+                new ControllerCheckActionState(this, model.getState(), mainView.getViewState(), model.getGameBoard());
+            // case ModelCardState c -> new ControllerCardState(this, model.getState(),
+            // mainView.getViewState(), this.model.getGameBoard().getDeck());
+            // case ModelBankerState b -> new ControllerBankerState(this, model.getState(),
+            // mainView.getViewState(), this.model.getGameBoard());
+            // case ModelBuildHouseState bh -> new ControllerBuildHouseState(this,
+            // model.getState(), mainView.getViewState(), this.model.getGameBoard());
+            case final ModelUnmortgageState u -> new ControllerUnmortgageState(this, model.getState(),
+                    mainView.getViewState(), this.model.getGameBoard());
             default -> throw new IllegalArgumentException("Implementation of ModelState not supported");
         };
         this.actualState.startState();
@@ -152,23 +161,26 @@ public class MainControllerImpl implements MainController {
         return this.inputData;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ViewUpdateDTO getViewUpdateData() {
         return new ViewUpdateDTO(
-            model.getGameBoard().getPlayersList().stream()
-            .collect(Collectors.toMap(Player::getName, Player::getActualPosition)),
-            model.getGameBoard().getCellsList().stream().filter(Cell::isBuyable)
-            .collect(Collectors.toMap(this::cellToIndex, c -> ((Buyable) c).getOwner().map(Player::getName))),
-            model.getGameBoard().getCellsList().stream().filter(Cell::isBuildable)
-            .collect(Collectors.toMap(this::cellToIndex, c -> ((Buildable) c).getHousesNumber())),
-            model.getGameBoard().getPlayersList().stream().filter(Player::isPrisoned).map(Player::getName).toList(),
-            model.getGameBoard().getPlayersList().stream()
-            .collect(Collectors.toMap(Player::getName, Player::getMoneyAmount)),
-            model.getGameBoard().getCurrentPlayer().getName()
-        );
+                model.getGameBoard().getPlayersList().stream()
+                        .collect(Collectors.toMap(Player::getName, Player::getActualPosition)),
+                model.getGameBoard().getCellsList().stream().filter(Cell::isBuyable)
+                        .collect(Collectors.toMap(this::cellToIndex,
+                                c -> ((Buyable) c).getOwner().map(Player::getName))),
+                model.getGameBoard().getCellsList().stream().filter(Cell::isBuildable)
+                        .collect(Collectors.toMap(this::cellToIndex, c -> ((Buildable) c).getHousesNumber())),
+                model.getGameBoard().getPlayersList().stream().filter(Player::isPrisoned).map(Player::getName).toList(),
+                model.getGameBoard().getPlayersList().stream()
+                        .collect(Collectors.toMap(Player::getName, Player::getMoneyAmount)),
+                model.getGameBoard().getCurrentPlayer().getName());
     }
 
-    private int cellToIndex(Cell cell) {
+    private int cellToIndex(final Cell cell) {
         return this.model.getGameBoard().getCellsList().indexOf(cell);
     }
 }
