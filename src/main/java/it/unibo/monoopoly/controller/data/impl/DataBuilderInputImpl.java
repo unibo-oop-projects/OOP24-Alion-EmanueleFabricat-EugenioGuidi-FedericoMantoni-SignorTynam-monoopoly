@@ -11,12 +11,12 @@ import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
  * manca commento qui.
  */
 public class DataBuilderInputImpl implements DataBuilderInput {
-    private Optional<Event> event;
-    private Optional<Integer> valueToPAy;
-    private Optional<Pair> dices;
-    private Optional<Boolean> setMode;
-    private Optional<List<Integer>> cellList;
-    private Optional<String> text;
+    private Optional<Event> event = Optional.empty();
+    private Optional<Integer> valueToPAy = Optional.empty();
+    private Optional<Pair> dices = Optional.empty();
+    private Optional<Boolean> setMode = Optional.empty();
+    private Optional<List<Integer>> cellList = Optional.empty();
+    private Optional<String> text = Optional.empty();
 
     /**
      *
