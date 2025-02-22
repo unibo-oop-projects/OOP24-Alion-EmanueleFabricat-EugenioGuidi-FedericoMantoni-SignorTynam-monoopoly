@@ -15,7 +15,11 @@ import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
 import it.unibo.monoopoly.controller.state.impl.ControllerBuildHouseState;
 import it.unibo.monoopoly.controller.state.impl.ControllerCardState;
+import it.unibo.monoopoly.model.gameboard.api.Buildable;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.main.api.MainModel;
+import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
 import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
 import it.unibo.monoopoly.controller.state.impl.ControllerUnmortgageState;
@@ -151,6 +155,20 @@ public class MainControllerImpl implements MainController {
     @Override
     public ViewUpdateDTO getViewUpdateData() {
         return new ViewUpdateDTO(
-            IntStream.range(
+            model.getGameBoard().getPlayersList().stream()
+            .collect(Collectors.toMap(Player::getName, Player::getActualPosition)),
+            model.getGameBoard().getCellsList().stream().filter(Cell::isBuyable)
+            .collect(Collectors.toMap(this::cellToIndex, c -> ((Buyable) c).getOwner().map(Player::getName))),
+            model.getGameBoard().getCellsList().stream().filter(Cell::isBuildable)
+            .collect(Collectors.toMap(this::cellToIndex, c -> ((Buildable) c).getHousesNumber())),
+            model.getGameBoard().getPlayersList().stream().filter(Player::isPrisoned).map(Player::getName).toList(),
+            model.getGameBoard().getPlayersList().stream()
+            .collect(Collectors.toMap(Player::getName, Player::getMoneyAmount)),
+            model.getGameBoard().getCurrentPlayer().getName()
+        );
+    }
+
+    private int cellToIndex(Cell cell) {
+        return this.model.getGameBoard().getCellsList().indexOf(cell);
     }
 }
