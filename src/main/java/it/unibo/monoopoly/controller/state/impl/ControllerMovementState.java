@@ -24,10 +24,11 @@ public class ControllerMovementState implements ControllerState {
      * 
      * @param mainController
      */
-    public ControllerMovementState(final MainController mainController) {
+    public ControllerMovementState(final MainController mainController, final ModelState modelState,
+    final ViewState viewState) {
         this.mainController = mainController;
-        this.actualModelState = mainController.getModelState();
-        this.actualViewState = this.mainController.getViewState();
+        this.actualModelState = modelState;
+        this.actualViewState = viewState;
     }
 
     /**
