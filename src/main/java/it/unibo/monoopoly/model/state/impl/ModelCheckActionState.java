@@ -73,16 +73,16 @@ public class ModelCheckActionState implements ModelState {
     @Override
     public void closeState() {
         if (actualEvent.equals(Optional.empty())) {
-            this.mainModel.setState(new ModelBankerState(mainModel, 0) /* TODO new ModelBuildHouseState */);
+            this.mainModel.setState(new ModelBankerState(mainModel, 0, false) /* TODO new ModelBuildHouseState */);
         } else {
             this.mainModel.setState(
                 switch (this.actualEvent.get()) {
                     case RENT_PAYMENT -> new ModelBankerState(mainModel,
-                        ((Buyable) getActualCell()).getRentalValue());
+                        ((Buyable) getActualCell()).getRentalValue(), false);
                     case TAX_PAYMENT -> new ModelBankerState(mainModel,
-                        ((Functional) getActualCell()).getAction().get().data().get());
+                        ((Functional) getActualCell()).getAction().get().data().get(), false);
                     case BUY_PROPERTY -> new ModelBankerState(mainModel,
-                        ((Buyable) getActualCell()).getCost());
+                        ((Buyable) getActualCell()).getCost(), false);
                     case DRAW -> new ModelCardState(mainModel);
                     case PRISON -> new ModelMovementState(mainModel, Optional.empty() /* TODO Call gameboard.getPrisonCell */);
                     default -> throw new IllegalStateException("Card event or unsupported event was insert");

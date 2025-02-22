@@ -5,16 +5,15 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
+import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.main.impl.MainViewImpl;
-import it.unibo.monoopoly.view.panel.impl.BankruptcyPanel;
 import it.unibo.monoopoly.view.panel.impl.MortgagePanel;
 import it.unibo.monoopoly.view.panel.impl.SellHousePanel;
-import it.unibo.monoopoly.view.panel.impl.SuccessfulPaymentPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -23,7 +22,6 @@ import it.unibo.monoopoly.view.state.api.ViewState;
 public class ViewBankerState implements ViewState {
     private final MainView mainView;
     private DataInput dataInput;
-    private JPanel panel;
     private boolean payable;
 
     /**
@@ -50,21 +48,30 @@ public class ViewBankerState implements ViewState {
      */
     @Override
     public void visualize(final DataInput data) {
-        this.dataInput = data;
-        if (this.payable) {
-            if (this.dataInput.setMode().get()) {
-                this.panel = new SellHousePanel(new CellGiver(), intToTextCell(this.dataInput.cellList().get()));
-            } else {
-                this.panel = new MortgagePanel(new CellGiver(), intToTextCell(this.dataInput.cellList().get()));
-            }
+        if (payable) {
+            JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
+                    "Mi spiace non hai proprietà da disipotecare", "Disipoteca", JOptionPane.PLAIN_MESSAGE);
+            this.mainView.getMainController().getControllerState().continueState(new DataBuilderOutputImpl().build());
         } else {
-            if (this.dataInput.setMode().get()) {
-                this.panel = new SuccessfulPaymentPanel(new SimpleExit());
-            } else {
-                this.panel = new BankruptcyPanel(new SimpleExit());
+            switch (data.event().get()) {
+                case Event.SELL_HOUSE:
+                    this.mainView.setInteractivePanel(
+                            new SellHousePanel(new CellGiver(), intToTextCell(this.dataInput.cellList().get())));
+                    break;
+                case Event.MORTGAGE_PROPERTY:
+                    this.mainView.setInteractivePanel(
+                            new MortgagePanel(new CellGiver(), intToTextCell(this.dataInput.cellList().get())));
+                    break;
+                case Event.BANKRUPT:
+                    JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
+                            "HAI FINITO I SOLDI E LE PROPRIETA' SEI IN BANCAROTTA, PER TE IL GIOCO E' FINITO",
+                            "Bancarotta", JOptionPane.PLAIN_MESSAGE);
+                    this.mainView.getMainController().getControllerState()
+                            .continueState(new DataBuilderOutputImpl().build());
+                default:
+                    throw new IllegalStateException("ViewBankerState non riconosce lo stato in cui ti trovi");
             }
         }
-        this.mainView.setInteractivePanel(panel);
     }
 
     private List<String> intToTextCell(final List<Integer> cellList) {
@@ -86,26 +93,9 @@ public class ViewBankerState implements ViewState {
             final var button = (JButton) e.getSource();
             final String cellName = button.getText();
             final int cell = mainView.getNameCells().indexOf(cellName);
-            mainView.getMainFrame().remove(panel);
+            //mainView.getMainFrame().remove(panel);
             mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
         }
 
     }
-
-    /**
-     * comment.
-     */
-    public class SimpleExit implements ActionListener {
-        /**
-         *
-         * {@inheritDoc}
-         */
-        @Override
-        public void actionPerformed(final ActionEvent e) {
-            mainView.getMainFrame().remove(panel);
-            mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
-        }
-
-    }
-
 }

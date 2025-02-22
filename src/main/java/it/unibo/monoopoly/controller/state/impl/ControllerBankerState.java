@@ -15,7 +15,6 @@ import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
-import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -91,16 +90,6 @@ public class ControllerBankerState implements ControllerState {
         };
     }
 
-    /*
-     * private Optional<List<Integer>> cellToIndex(final Optional<List<Buyable>>
-     * propertyList) {
-     * return Optional.of(
-     * propertyList.get().stream()
-     * .map(this.gameBoard.getCellList()::indexOf) //aspetto implementazione
-     * .toList());
-     * }
-     */
-
     private Stream<Buyable> unmortgagedList(final Set<Buyable> properties) {
         return properties.stream()
                 .filter(p -> p instanceof Buildable)
@@ -112,7 +101,7 @@ public class ControllerBankerState implements ControllerState {
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
                 .map(p -> (Buyable) p)
-                .map(this.gameBoard.getCellsList()::indexOf) //aspetto implementazione
+                .map(this.gameBoard.getCellsList()::indexOf)
                 .toList();
     }
 
@@ -124,7 +113,7 @@ public class ControllerBankerState implements ControllerState {
                     .map(p -> (Buildable) p)
                     .filter(p -> p.getHousesNumber() == 0)
                     .map(p -> (Buyable) p))
-                .map(this.gameBoard.getCellsList()::indexOf) //aspetto implementazione
+                .map(this.gameBoard.getCellsList()::indexOf)
                 .toList();
     }
 
