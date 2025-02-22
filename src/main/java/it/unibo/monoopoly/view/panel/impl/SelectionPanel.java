@@ -145,8 +145,8 @@ public class SelectionPanel extends PanelAdapter {
 
         confirm.addActionListener(e -> {
             if (legalNames()) {
-                this.menuController.goGame(getPlayersNames());
                 ((JFrame) SwingUtilities.getWindowAncestor(this)).dispose();
+                this.menuController.goGame(getPlayersNames());
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Ogni giocatore deve avere un nome di lunghezza minore di 25 caratteri", "Warning",
