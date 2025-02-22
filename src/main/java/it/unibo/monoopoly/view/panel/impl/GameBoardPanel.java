@@ -22,7 +22,7 @@ import it.unibo.monoopoly.controller.main.api.MainController;
 public class GameBoardPanel extends PanelAdapter {
 
     /**
-     * This record stores the x and y coordinates of a position.
+     * This record stores the x and y coordinates of a position in the gameBoardPanel.
      */
     public record Position(int x, int y) {}
 
