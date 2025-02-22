@@ -17,10 +17,11 @@ import it.unibo.monoopoly.model.state.api.ModelState;
  * used to pay an amount to the actual {@link Player}.
  */
 public class ModelBankerState implements ModelState {
-    private final MainModel turn;
+    private final MainModel mainModel;
     private final Banker banker = new BankerImpl();
     private boolean isIndebted;
     private final int amountToPay;
+    private final boolean isInPrison;
     /**
      * Constructor of the class,
      * that takes the {@link MainModel} reference to perform all necessary state operations,
@@ -29,13 +30,14 @@ public class ModelBankerState implements ModelState {
      * @param mainModel the reference to perform the operations.
      * @param amountToPay
      */
-    public ModelBankerState(final MainModel mainModel, final int amountToPay) {
-        this.turn = mainModel;
+    public ModelBankerState(final MainModel mainModel, final int amountToPay, final boolean isInPrison) {
+        this.mainModel = mainModel;
         this.amountToPay = amountToPay;
+        this.isInPrison = isInPrison;
     }
 
     private Player getPlayer() {
-        return this.turn.getGameBoard().getCurrentPlayer();
+        return this.mainModel.getGameBoard().getCurrentPlayer();
     }
     /**
      * {@inheritDoc}
@@ -48,7 +50,7 @@ public class ModelBankerState implements ModelState {
         if (getPlayer().getMoneyAmount() - this.amountToPay >= 0) {
             getPlayer().pay(amountToPay);
         } else {
-            this.turn.setEvent(this.banker.selectOperations(getPlayer()));
+            this.mainModel.setEvent(this.banker.selectOperations(getPlayer()));
             this.isIndebted = true;
         }
         return this.isIndebted;
@@ -60,7 +62,7 @@ public class ModelBankerState implements ModelState {
      */
     @Override
     public void doAction(final DataOutput data) {
-        final Cell chosen = this.turn.getGameBoard().getCell(data.cellChoose().get());
+        final Cell chosen = this.mainModel.getGameBoard().getCell(data.cellChoose().get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             getPlayer().receive(((Buildable) chosen).sellHouse());
         } else {
@@ -86,12 +88,15 @@ public class ModelBankerState implements ModelState {
      */
     @Override
     public void closeState() {
+        
         if (getPlayer().isBankrupt()) {
-            this.turn.setState(null);
+            this.mainModel.nextTurn();
         } else if (isIndebted) {
-            this.turn.setState(new ModelBankerState(turn, this.amountToPay));
+            this.mainModel.setState(new ModelBankerState(mainModel, this.amountToPay, this.isInPrison));
+        } else if (isInPrison) {
+            this.mainModel.setState(new ModelMovementState(this.mainModel, Optional.empty()));
         } else {
-            this.turn.setState(null);
+            this.mainModel.setState(new ModelUnmortgageState(this.mainModel));
         }
     }
 }

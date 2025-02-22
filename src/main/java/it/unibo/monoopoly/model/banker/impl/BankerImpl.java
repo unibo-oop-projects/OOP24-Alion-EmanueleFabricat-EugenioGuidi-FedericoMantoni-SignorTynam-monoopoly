@@ -45,31 +45,6 @@ public class BankerImpl implements Banker {
     /**
      * {@inheritDoc}
      */
-    /*@Override
-    public List<Buyable> getPropertiesWithHome(final Player player) {
-        return unmortgagedList(player.getProperties())
-                .map(p -> (Buildable) p)
-                .filter(p -> p.getHousesNumber() > 0)
-                .map(p -> (Buyable) p)
-                .toList();
-    }*/
-    /**
-     * {@inheritDoc}
-     */
-    /*@Override
-    public List<Buyable> getPropertiesMortgageable(final Player player) {
-        return Stream.concat(unmortgagedList(player.getProperties())
-                    .filter(p -> !(p instanceof Buildable)),
-                unmortgagedList(player.getProperties())
-                    .filter(p -> p instanceof Buildable)
-                    .map(p -> (Buildable) p)
-                    .filter(p -> p.getHousesNumber() == 0)
-                    .map(p -> (Buyable) p))
-                .toList();
-    }*/
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void sellHouse(final Buildable property, final Player player) {
         player.receive(property.sellHouse());

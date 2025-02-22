@@ -3,24 +3,11 @@ package it.unibo.monoopoly.view.panel.impl;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
-import java.net.URL;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
-import it.unibo.monoopoly.model.player.api.Player;
 
 /**
  * comment.
@@ -60,7 +47,7 @@ public class GamePanel extends PanelAdapter {
     protected void panelInit() {
         final GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainController, this.mainFrameHeight,
                 this.mainFrameWidth);
-        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.mainFrameWidth, this.players, this.playersColors);
+        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.players, this.playersColors);
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
         final JPanel centerPanel = new JPanel();

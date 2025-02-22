@@ -8,7 +8,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -21,8 +24,19 @@ import it.unibo.monoopoly.controller.main.api.MainController;
  */
 public class GameBoardPanel extends PanelAdapter {
 
-    // List<Point> listaPunti = new ArrayList<>();
+    /**
+     * This record stores the x and y coordinates of a position in the gameBoardPanel.
+     */
+    public record Position(int x, int y) {}
 
+    private static final List<String> FIELS_NAMES = List.of("players_positions.json", 
+                                                            "property_positions.json", 
+                                                            "houses_positions.json");
+
+    private final Map<String, Map<Integer, Position>> playersPositions = new HashMap<>();
+    private final Map<Integer, Position> propertyPositions = new HashMap<>();
+    private final Map<Integer, Position> housesPositions = new HashMap<>();
+    private final Map<String, Position> prisonPositions = new HashMap<>();
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
@@ -39,7 +53,7 @@ public class GameBoardPanel extends PanelAdapter {
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
 
-        final URL imgURL = ClassLoader.getSystemResource("images/MONOOPOLY_GAMEBOARD_IMAGE.jpg");
+        final URL imgURL = ClassLoader.getSystemResource("images/monoopoly_gameboard_image.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
     }
