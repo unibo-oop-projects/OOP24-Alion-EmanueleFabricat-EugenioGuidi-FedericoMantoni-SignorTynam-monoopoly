@@ -2,6 +2,8 @@ package it.unibo.monoopoly.controller.main.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.common.Event;
@@ -11,14 +13,22 @@ import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
+import it.unibo.monoopoly.controller.state.impl.ControllerBuildHouseState;
+import it.unibo.monoopoly.controller.state.impl.ControllerCardState;
 import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
 import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
+import it.unibo.monoopoly.controller.state.impl.ControllerUnmortgageState;
 import it.unibo.monoopoly.model.state.impl.ModelMovementState;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.BuildHouseModelState;
+import it.unibo.monoopoly.model.state.impl.ModelBankerState;
+import it.unibo.monoopoly.model.state.impl.ModelBuildHouseState;
+import it.unibo.monoopoly.model.state.impl.ModelCardState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
+import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
+import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.panel.impl.MainPanel;
@@ -48,7 +58,7 @@ public class MainControllerImpl implements MainController {
         // names
         this.mainView = new MainViewImpl(this, playersName, cellsNames);
         this.mainView.display();
-        //this.actualState = new ControllerBankerState(this, this.getModelState(), this.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
+        //this.actualState = new ControllerBankerState(this, this.model.getState(), this.mainView.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
         this.actualState = new ControllerCheckActionState(this, this.model.getState(), this.mainView.getViewState(), this.model.getGameBoard());
         this.actualState.startState();
         //this.nextPhase();
@@ -67,14 +77,14 @@ public class MainControllerImpl implements MainController {
     public void nextPhase() {
         //TODO add call to update view
         this.actualState = switch (this.model.getState()) {
-            //case ModelPrisontState p -> new ControllerPrisonState(this, getModelState(), getViewState(), this.model.getGameboard());
-            //case ModelMovementState m -> new ControllerMovementState(this, getModelState(), getViewState(), this.model.getGameboard().getDices());
-            case ModelCheckActionState ca -> new ControllerCheckActionState(this, getModelState(), getViewState(), model.getGameBoard());
-            //case ModelCardState c -> new ControllerCardState(this, getModelState(), getViewState(), this.model.getGameboard().getDeck());
-            //case ModelBankerState b -> new ControllerBankerState(this, getModelState(), getViewState(), this.model.getGameboard());
-            //case ModelBuildHouseState bh -> new ControllerBuildHouseState(this, getModelState(), getViewState(), this.model.getGameboard());
-            //case ModelUnmortgageTest u -> new ControllerUnmortgageState(this, getModelState(), getViewState(), this.model.getGameboard());
-            default -> throw new IllegalArgumentException();
+            //case ModelPrisontState p -> new ControllerPrisonState(this, model.getState(), mainView.getViewState(), this.model.getGameboard());
+            //case ModelMovementState m -> new ControllerMovementState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard().getDices());
+            case ModelCheckActionState ca -> new ControllerCheckActionState(this, model.getState(), mainView.getViewState(), model.getGameBoard());
+            //case ModelCardState c -> new ControllerCardState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard().getDeck());
+            //case ModelBankerState b -> new ControllerBankerState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard());
+            //case ModelBuildHouseState bh -> new ControllerBuildHouseState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard());
+            case ModelUnmortgageState u -> new ControllerUnmortgageState(this, model.getState(), mainView.getViewState(), this.model.getGameBoard());
+            default -> throw new IllegalArgumentException("Implementation of ModelState not supported");
         };
         this.actualState.startState();
     }
@@ -113,25 +123,6 @@ public class MainControllerImpl implements MainController {
     }
 
     /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public ModelState getModelState() {
-        return this.model.getState();
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public ViewState getViewState() {
-        // return this.mainView.getState();
-        return null;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -155,5 +146,11 @@ public class MainControllerImpl implements MainController {
     @Override
     public DataInput getDataInput() {
         return this.inputData;
+    }
+
+    @Override
+    public ViewUpdateDTO getViewUpdateData() {
+        return new ViewUpdateDTO(
+            IntStream.range(
     }
 }

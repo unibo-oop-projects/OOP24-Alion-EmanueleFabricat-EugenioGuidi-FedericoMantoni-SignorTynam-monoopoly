@@ -6,6 +6,7 @@ import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.state.api.ModelState;
+import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -17,16 +18,6 @@ public interface MainController {
      * Start a new game turn.
      */
     void startTurn();
-
-    /**
-     * @return the actual {@link ModelState}
-     */
-    ModelState getModelState();
-
-    /**
-     * @return the actual {@link ViewStatus}
-     */
-    ViewState getViewState();
 
     /**
      * 
@@ -51,4 +42,10 @@ public interface MainController {
      * according to the actual {@link ModelState}.
      */
     void nextPhase();
+
+    /**
+     * 
+     * @return the data to update the {@link MainView}.
+     */
+    ViewUpdateDTO getViewUpdateData();
 }
