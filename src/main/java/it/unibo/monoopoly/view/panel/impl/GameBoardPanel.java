@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -26,6 +27,9 @@ public class GameBoardPanel extends PanelAdapter {
      */
     public record Position(int x, int y) {}
 
+    private static final List<String> FIELS_NAMES = List.of("players_positions.json", 
+                                                            "property_positions.json", 
+                                                            "houses_positions.json");
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
