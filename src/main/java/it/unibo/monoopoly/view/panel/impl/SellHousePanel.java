@@ -2,18 +2,19 @@ package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import it.unibo.monoopoly.utils.impl.ViewCellGiver;
+
 /**
  * comment.
  */
 public class SellHousePanel extends PanelAdapter {
-    private ActionListener closeMethod;
+    private ViewCellGiver closeMethod;
     private List<String> cellList;
     private JPanel innerPanel;
 
@@ -23,7 +24,7 @@ public class SellHousePanel extends PanelAdapter {
      * @param closeMethod
      * @param cellList
      */
-    public SellHousePanel(final ActionListener closeMethod, final List<String> cellList) {
+    public SellHousePanel(final ViewCellGiver closeMethod, final List<String> cellList) {
         super();
         this.closeMethod = closeMethod;
         this.cellList = cellList;
@@ -45,6 +46,9 @@ public class SellHousePanel extends PanelAdapter {
             j.addActionListener(closeMethod);
         }
         this.add(innerPanel, BorderLayout.CENTER);
+        JButton noChoiceButton = new JButton(ViewCellGiver.NO_CHOICE);
+        noChoiceButton.addActionListener(closeMethod);
+        this.add(noChoiceButton, BorderLayout.SOUTH);
     }
 
 }
