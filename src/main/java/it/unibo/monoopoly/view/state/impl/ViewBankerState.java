@@ -1,16 +1,13 @@
 package it.unibo.monoopoly.view.state.impl;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
-import it.unibo.monoopoly.controller.data.impl.DataOutput;
+import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.MortgagePanel;
 import it.unibo.monoopoly.view.panel.impl.SellHousePanel;
@@ -56,11 +53,11 @@ public class ViewBankerState implements ViewState {
             switch (data.event().get()) {
                 case Event.SELL_HOUSE:
                     this.mainView.setInteractivePanel(
-                            new SellHousePanel(new CellGiver(), intToTextCell(this.dataInput.cellList().get())));
+                            new SellHousePanel(new ViewCellGiver(this.mainView), intToTextCell(this.dataInput.cellList().get())));
                     break;
                 case Event.MORTGAGE_PROPERTY:
                     this.mainView.setInteractivePanel(
-                            new MortgagePanel(new CellGiver(), intToTextCell(this.dataInput.cellList().get())));
+                            new MortgagePanel(new ViewCellGiver(this.mainView), intToTextCell(this.dataInput.cellList().get())));
                     break;
                 case Event.BANKRUPT:
                     JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
@@ -78,24 +75,5 @@ public class ViewBankerState implements ViewState {
         return cellList.stream()
                 .map(this.mainView.getNameCells()::get)
                 .toList();
-    }
-
-    /**
-     * comment.
-     */
-    public class CellGiver implements ActionListener {
-        /**
-         *
-         * {@inheritDoc}
-         */
-        @Override
-        public void actionPerformed(final ActionEvent e) {
-            final var button = (JButton) e.getSource();
-            final String cellName = button.getText();
-            final int cell = mainView.getNameCells().indexOf(cellName);
-            //mainView.getMainFrame().remove(panel);
-            mainView.getMainController().getControllerState().continueState(new DataOutput(null, null));
-        }
-
     }
 }
