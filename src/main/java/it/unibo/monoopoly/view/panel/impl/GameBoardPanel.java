@@ -21,7 +21,10 @@ import it.unibo.monoopoly.controller.main.api.MainController;
  */
 public class GameBoardPanel extends PanelAdapter {
 
-    // List<Point> listaPunti = new ArrayList<>();
+    /**
+     * This record stores the x and y coordinates of a position.
+     */
+    public record Position(int x, int y) {}
 
     private final MainController mainController;
     private final int mainFrameHeight;
