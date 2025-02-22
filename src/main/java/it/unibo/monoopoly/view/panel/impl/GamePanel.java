@@ -3,9 +3,12 @@ package it.unibo.monoopoly.view.panel.impl;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JPanel;
+
+import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
 
@@ -19,10 +22,9 @@ public class GamePanel extends PanelAdapter {
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
-    private Map<String, Integer> players;
-    private Map<Color, String> playersColors;
     private PlayerPanel playerPanel; 
-
+    private final String firstPlayer;
+    private final List<Triple<String, Integer, Color>> initializedList;
     /**
      * comment.
      * 
@@ -31,12 +33,12 @@ public class GamePanel extends PanelAdapter {
      * @param mainFrameWidth
      */
     public GamePanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth,
-            Map<String, Integer> players, Map<Color, String> playersColors) {
+            final String firstPlayer, final List<Triple<String, Integer, Color>> initializedList) {
         this.mainController = mainController;
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
-        this.players = players;
-        this.playersColors = playersColors;
+        this.firstPlayer = firstPlayer;
+        this.initializedList = initializedList;
     }
 
     /**
@@ -47,7 +49,7 @@ public class GamePanel extends PanelAdapter {
     protected void panelInit() {
         final GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainController, this.mainFrameHeight,
                 this.mainFrameWidth);
-        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.players, this.playersColors);
+        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
         final JPanel centerPanel = new JPanel();
