@@ -56,12 +56,14 @@ public class ModelCheckActionState implements ModelState {
     public void doAction(final DataOutput data) {
         if (data.buyProperty().isEmpty()) {
             if (getActualCell().isBuyable()) {
-                notary.checkBuyedProperty(getActualPlayer(), getActualCell());
+                this.actualEvent = notary.checkBuyedProperty(getActualPlayer(), getActualCell());
             } else {
                 checkFunctionalCell();
             }
         } else if (data.buyProperty().get()) {
             notary.buyProperty(getActualPlayer(), (Buyable) getActualCell());
+        } else {
+            this.actualEvent = Optional.empty();
         }
     }
 
@@ -73,7 +75,7 @@ public class ModelCheckActionState implements ModelState {
     @Override
     public void closeState() {
         if (actualEvent.equals(Optional.empty())) {
-            this.mainModel.setState(new ModelBankerState(mainModel, 0, false) /* TODO new ModelBuildHouseState */);
+            this.mainModel.setState(new ModelBuildHouseState(mainModel));
         } else {
             this.mainModel.setState(
                 switch (this.actualEvent.get()) {
