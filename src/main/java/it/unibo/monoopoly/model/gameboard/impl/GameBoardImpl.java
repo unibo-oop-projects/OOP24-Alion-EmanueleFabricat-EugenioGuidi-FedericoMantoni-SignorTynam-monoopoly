@@ -116,6 +116,9 @@ public class GameBoardImpl implements GameBoard {
         return this.dices;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Deck getDeck() {
         return this.deck;

@@ -12,7 +12,7 @@ public class GameViewState implements ViewState {
      * {@inheritDoc}
      */
     @Override
-    public void setMode(Boolean setter) {
+    public void setMode(final Boolean setter) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setMode'");
     }
@@ -22,7 +22,7 @@ public class GameViewState implements ViewState {
      * {@inheritDoc}
      */
     @Override
-    public void visualize(DataInput data) {
+    public void visualize(final DataInput data) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'visualize'");
     }

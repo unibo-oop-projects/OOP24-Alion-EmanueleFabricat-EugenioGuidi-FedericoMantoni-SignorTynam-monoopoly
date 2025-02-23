@@ -35,7 +35,7 @@ public class ViewUnmortgageState implements ViewState {
      */
 
     @Override
-    public void setMode(Boolean setter) {
+    public void setMode(final Boolean setter) {
         this.makeState = setter;
     }
 
@@ -46,7 +46,7 @@ public class ViewUnmortgageState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         if (this.makeState) {
-            JPanel panel = new UnmortgagePanel(new ViewCellGiver(this.mainView), intToTextCell(dataInput.cellList().get()));
+            final JPanel panel = new UnmortgagePanel(new ViewCellGiver(this.mainView), intToTextCell(dataInput.cellList().get()));
             this.mainView.getMainFrame().add(panel);
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),

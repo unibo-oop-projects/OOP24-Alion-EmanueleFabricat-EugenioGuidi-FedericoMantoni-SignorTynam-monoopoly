@@ -14,7 +14,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
     private Optional<Event> event = Optional.empty();
     private Optional<Integer> valueToPAy = Optional.empty();
     private Optional<Pair> dices = Optional.empty();
-    private Optional<Boolean> setMode = Optional.empty();
+    private Optional<Boolean> mode = Optional.empty();
     private Optional<List<Integer>> cellList = Optional.empty();
     private Optional<String> text = Optional.empty();
 
@@ -23,7 +23,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput cellList(List<Integer> list) {
+    public DataBuilderInput cellList(final List<Integer> list) {
         this.cellList = Optional.of(list);
         return this;
     }
@@ -33,7 +33,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput dices(Pair dices) {
+    public DataBuilderInput dices(final Pair dices) {
         this.dices = Optional.of(dices);
         return this;
     }
@@ -43,7 +43,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput event(Event event) {
+    public DataBuilderInput event(final Event event) {
         this.event = Optional.of(event);
         return this;
     }
@@ -53,8 +53,8 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput setMode(boolean mode) {
-        this.setMode = Optional.of(mode);
+    public DataBuilderInput mode(final boolean mode) {
+        this.mode = Optional.of(mode);
         return this;
     }
 
@@ -63,7 +63,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput text(String text) {
+    public DataBuilderInput text(final String text) {
         this.text = Optional.of(text);
         return this;
     }
@@ -73,7 +73,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput valueToPay(Integer value) {
+    public DataBuilderInput valueToPay(final Integer value) {
         this.valueToPAy = Optional.of(value);
         return this;
     }
@@ -84,7 +84,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      */
     @Override
     public DataInput build() {
-        return new DataInput(this.cellList, this.dices, this.event, this.setMode, this.text, this.valueToPAy);
+        return new DataInput(this.cellList, this.dices, this.event, this.mode, this.text, this.valueToPAy);
     }
 
 }

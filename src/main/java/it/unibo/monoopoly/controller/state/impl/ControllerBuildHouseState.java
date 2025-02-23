@@ -19,6 +19,7 @@ import it.unibo.monoopoly.model.main.api.MainModel;
  */
 public class ControllerBuildHouseState implements ControllerState {
 
+    private static final int MAX_HOUSES = 5;
     private final ModelState modelState;
     private final ViewState viewState;
     private boolean canBuild;
@@ -29,7 +30,7 @@ public class ControllerBuildHouseState implements ControllerState {
      * @param modelState the model state
      * @param viewState the view state
      */
-    public ControllerBuildHouseState(ModelState modelState, ViewState viewState) {
+    public ControllerBuildHouseState(final ModelState modelState, final ViewState viewState) {
         this.modelState = modelState;
         this.viewState = viewState;
     }
@@ -44,20 +45,20 @@ public class ControllerBuildHouseState implements ControllerState {
         viewState.setMode(canBuild);
 
         GameBoard gameBoard = null;
-        
+
         if (modelState instanceof MainModel) { 
             gameBoard = ((MainModel) modelState).getGameBoard();
         }
 
         if (gameBoard != null) {
-            List<Integer> buildableCells = canBuild ? gameBoard.getCurrentPlayer().getProperties().stream()
+            final List<Integer> buildableCells = canBuild ? gameBoard.getCurrentPlayer().getProperties().stream()
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
-                    .filter(p -> p.getHousesNumber() < 5 && !p.isMortgaged())
+                    .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
                     .map(gameBoard.getCellsList()::indexOf)
                     .collect(Collectors.toList()) : List.of();
 
-            DataBuilderInput dataBuilder = new DataBuilderInputImpl();
+            final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
             viewState.visualize(dataBuilder.cellList(buildableCells).build());
         }
     }
@@ -68,7 +69,7 @@ public class ControllerBuildHouseState implements ControllerState {
      * @param data the data related to the cell chosen by the user
      */
     @Override
-    public void continueState(DataOutput data) {
+    public void continueState(final DataOutput data) {
         modelState.doAction(data);
         modelState.closeState();
     }

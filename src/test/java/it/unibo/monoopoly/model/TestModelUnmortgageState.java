@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.List;
 
@@ -14,9 +15,11 @@ import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.model.state.impl.ModelBuildHouseState;
 import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
 
-public class TestModelUnmortgageState {
-    MainModel model;
-    private final static int START_AMOUNT = 1500;
+class TestModelUnmortgageState {
+    private static final int START_AMOUNT = 1500;
+    private static final int AMOUNT_TO_PAY = START_AMOUNT;
+    private static final int BUILDABLE_CELL = 39;
+    private MainModel model;
 
     @BeforeEach
     void init() {
@@ -26,28 +29,28 @@ public class TestModelUnmortgageState {
     /* */
     @Test
     void testNothingToUnmortgage() {
-        ModelUnmortgageState state = new ModelUnmortgageState(model);
+        final ModelUnmortgageState state = new ModelUnmortgageState(model);
         assertEquals(false, state.verify());
         state.closeState();
-        assert (this.model.getState() instanceof ModelBuildHouseState);
+        assertInstanceOf(ModelBuildHouseState.class, this.model.getState());
     }
 
     /* */
     @Test
     void testUnmortgage() {
-        Buildable property = (Buildable) (this.model.getGameBoard().getCell(39));
-        ModelUnmortgageState state = new ModelUnmortgageState(model);
+        final Buildable property = (Buildable) (this.model.getGameBoard().getCell(BUILDABLE_CELL));
+        final ModelUnmortgageState state = new ModelUnmortgageState(model);
         this.model.getGameBoard().getCurrentPlayer().addProperty(property);
         assertEquals(false, state.verify());
         property.setMortgage();
-        this.model.getGameBoard().getCurrentPlayer().pay(1500);
+        this.model.getGameBoard().getCurrentPlayer().pay(AMOUNT_TO_PAY);
         assertEquals(false, state.verify());
-        this.model.getGameBoard().getCurrentPlayer().receive(1500);
+        this.model.getGameBoard().getCurrentPlayer().receive(AMOUNT_TO_PAY);
         assertEquals(true, state.verify());
-        state.doAction(new DataBuilderOutputImpl().cellChoose(39).build());
+        state.doAction(new DataBuilderOutputImpl().cellChoose(BUILDABLE_CELL).build());
         assertEquals(false, property.isMortgaged());
         state.closeState();
-        assert (this.model.getState() instanceof ModelUnmortgageState);
+        assertInstanceOf(ModelUnmortgageState.class, this.model.getState());
         assertEquals(START_AMOUNT - property.getMortgageValue() * 110 / 100,
                 this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
 

@@ -15,7 +15,7 @@ public final class Monoopoly {
     }
 
     /**
-     * comment.
+     * Start of the application.
      * @param args
      */
     public static void main(final String[] args) {

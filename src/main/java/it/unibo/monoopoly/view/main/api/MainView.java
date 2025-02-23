@@ -10,7 +10,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
 /**
  * Represents the main view, contains the frame of the entire game.
  */
-public interface MainView extends View{
+public interface MainView extends View {
 
     /**
      * 
@@ -36,5 +36,10 @@ public interface MainView extends View{
      * @return the actual {@link ViewState}
      */
     ViewState getViewState();
+
+    /**
+     * Update the {@link View}
+     */
+    void update();
 
 }

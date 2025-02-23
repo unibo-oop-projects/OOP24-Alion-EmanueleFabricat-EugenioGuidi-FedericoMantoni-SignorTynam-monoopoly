@@ -28,7 +28,7 @@ public class ViewMovementState implements ViewState {
      * {@inheritDoc}
      */
     @Override
-    public void setMode(Boolean setter) {
+    public void setMode(final Boolean setter) {
     }
 
     /**
@@ -38,7 +38,7 @@ public class ViewMovementState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         this.dataInput = dataInput;
-        if (this.dataInput.setMode().get()) {
+        if (this.dataInput.mode().get()) {
             final String string = "Primo dado: " + this.dataInput.dices().get().getFirstRoll() + "\nSecondo dado: "
                     + this.dataInput.dices().get().getSecondRoll();
             JOptionPane.showMessageDialog(this.mainVIew.getMainFrame(), string, "Lancio dei dadi",

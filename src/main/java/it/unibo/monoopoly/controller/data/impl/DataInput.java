@@ -12,7 +12,7 @@ import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
  * @param cellList
  * @param dices
  * @param event
- * @param setMode
+ * @param mode
  * @param text
  * @param valueToPay
  */
@@ -20,7 +20,7 @@ public record DataInput(
         Optional<List<Integer>> cellList,
         Optional<Pair> dices,
         Optional<Event> event,
-        Optional<Boolean> setMode,
+        Optional<Boolean> mode,
         Optional<String> text,
         Optional<Integer> valueToPay) {
 }

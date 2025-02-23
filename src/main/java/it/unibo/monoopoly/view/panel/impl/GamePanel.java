@@ -11,12 +11,15 @@ import javax.swing.JPanel;
 import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
+import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
+import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 
 /**
  * comment.
  */
-public class GamePanel extends PanelAdapter {
+public class GamePanel extends PanelAdapter implements UpdatablePanel {
 
+    private static final long serialVersionUID = 1L;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
     private final MainController mainController;
@@ -78,11 +81,17 @@ public class GamePanel extends PanelAdapter {
 
     }
 
-    public void setInteractivePanel(JPanel panel) {
+    public void setInteractivePanel(final JPanel panel) {
         this.playerPanel.setInteractivePanel(panel);
     }
 
-    
+    @Override
+    public void update(ViewUpdateDTO updateData) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+
 
     /*private Color getColorPlayer(String name) {
         return this.playersColors.entrySet().stream()

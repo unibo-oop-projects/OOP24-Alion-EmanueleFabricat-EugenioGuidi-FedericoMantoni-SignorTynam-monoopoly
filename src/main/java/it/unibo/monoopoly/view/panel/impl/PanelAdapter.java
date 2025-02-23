@@ -3,12 +3,11 @@ package it.unibo.monoopoly.view.panel.impl;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import it.unibo.monoopoly.view.panel.api.Panel;
 
 /**
  * Pattern Adapter to build a JPanel with personalized methods.
  */
-public abstract class PanelAdapter extends JPanel implements Panel {
+public abstract class PanelAdapter extends JPanel {
 
     private static final long serialVersionUID = 1L;
 

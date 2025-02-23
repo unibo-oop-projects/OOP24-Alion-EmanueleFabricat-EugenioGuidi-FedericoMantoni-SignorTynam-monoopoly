@@ -82,7 +82,6 @@ public class MainViewImpl extends AbstractView implements MainView {
             l.add(Triple.of(entry.getValue(), 1500, entry.getKey()));
         }
         return l;
-        
     }
 
     private JFrame mainFrame() {
@@ -148,5 +147,11 @@ public class MainViewImpl extends AbstractView implements MainView {
             case final ControllerUnmortgageState u -> new ViewUnmortgageState(this);
             default -> throw new IllegalArgumentException();
         };
+    }
+
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }

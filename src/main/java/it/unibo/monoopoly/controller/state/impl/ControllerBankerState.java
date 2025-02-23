@@ -1,7 +1,6 @@
 package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -66,7 +65,7 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private DataInput buildData() {
-        return switch(this.event) {
+        return switch (this.event) {
             case Event.SELL_HOUSE -> this.dataBuilderInput
                     .event(event)
                     .cellList(cellListChoser(event))
@@ -82,8 +81,8 @@ public class ControllerBankerState implements ControllerState {
         };
     }
 
-    private List<Integer> cellListChoser(Event event){
-        return switch(event) {
+    private List<Integer> cellListChoser(final Event event) {
+        return switch (event) {
             case Event.SELL_HOUSE -> sellHouseList();
             case Event.MORTGAGE_PROPERTY -> propertiesMortgageableList();
             default -> List.of();
@@ -100,19 +99,17 @@ public class ControllerBankerState implements ControllerState {
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
-                .map(p -> (Buyable) p)
                 .map(this.gameBoard.getCellsList()::indexOf)
                 .toList();
     }
 
-    public List<Integer> propertiesMortgageableList() {
+    private List<Integer> propertiesMortgageableList() {
         return Stream.concat(unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                     .filter(p -> !(p instanceof Buildable)),
                 unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
-                    .filter(p -> p.getHousesNumber() == 0)
-                    .map(p -> (Buyable) p))
+                    .filter(p -> p.getHousesNumber() == 0))
                 .map(this.gameBoard.getCellsList()::indexOf)
                 .toList();
     }

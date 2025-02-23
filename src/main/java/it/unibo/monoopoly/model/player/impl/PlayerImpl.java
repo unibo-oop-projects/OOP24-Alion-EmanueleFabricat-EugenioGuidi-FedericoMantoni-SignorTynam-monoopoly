@@ -13,6 +13,7 @@ import it.unibo.monoopoly.model.player.api.Player;
 
 public class PlayerImpl implements Player {
 
+    private static final int MAX_CELL = 39;
     private final String name;
     private int moneyAmount;
     private int actualPosition;
@@ -212,7 +213,7 @@ public class PlayerImpl implements Player {
     @Override
     public void changePosition(final int position) {
         this.actualPosition = Optional.of(position)
-                .filter(i -> i >= 0 && i <= 39)// 39 magic number
+                .filter(i -> i >= 0 && i <= MAX_CELL)
                 .orElseThrow(() -> new IllegalArgumentException("Position must be between 0 and 39"));
     }
 }

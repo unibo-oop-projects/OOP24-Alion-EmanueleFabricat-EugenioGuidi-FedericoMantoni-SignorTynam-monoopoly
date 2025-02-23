@@ -8,20 +8,20 @@ import javax.swing.JButton;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.view.main.api.MainView;
 
-public class ViewCellGiver implements ActionListener{
-    private MainView mainView;
+public class ViewCellGiver implements ActionListener {
+    private final MainView mainView;
     public static final String NO_CHOICE = "Nessuna scelta";
 
-    public ViewCellGiver(MainView mainView) {
+    public ViewCellGiver(final MainView mainView) {
         this.mainView = mainView;
     }
-    
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
             final var button = (JButton) e.getSource();
             final String cellName = button.getText();
             final int cell = mainView.getNameCells().indexOf(cellName);
-            if (cellName.equals(NO_CHOICE)) {
+            if (NO_CHOICE.equals(cellName)) {
                 mainView.getMainController().getControllerState().continueState(
                     new DataBuilderOutputImpl().build());
             } else {

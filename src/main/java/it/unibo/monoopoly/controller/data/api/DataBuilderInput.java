@@ -36,11 +36,11 @@ public interface DataBuilderInput {
      * @param mode
      * @return this.
      */
-    DataBuilderInput setMode(boolean mode);
+    DataBuilderInput mode(boolean mode);
 
     /**
      * 
-     * @param name
+     * @param text
      * @return this.
      */
     DataBuilderInput text(String text);

@@ -11,7 +11,7 @@ import it.unibo.monoopoly.view.panel.api.PositionsFactory;
 import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 
-public class PositionsFactoryImpl implements PositionsFactory{
+public class PositionsFactoryImpl implements PositionsFactory {
 
     private static final String PLAYERS_POSITIONS_FILE_NAME = "players_positions.json";
     private static final String PROPERTY_POSITIONS_FILE_NAME = "property_positions.json";

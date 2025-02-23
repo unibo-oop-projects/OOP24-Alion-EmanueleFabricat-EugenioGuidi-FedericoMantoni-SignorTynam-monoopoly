@@ -23,7 +23,7 @@ public class ViewBuildHouseState implements ViewState {
      * 
      * @param mainView the main view
      */
-    public ViewBuildHouseState(MainView mainView) {
+    public ViewBuildHouseState(final MainView mainView) {
         this.mainView = mainView;
         this.dataBuilder = new DataBuilderOutputImpl();
     }
@@ -34,7 +34,7 @@ public class ViewBuildHouseState implements ViewState {
      * @param setter true if the player can build, false otherwise
      */
     @Override
-    public void setMode(Boolean setter) {
+    public void setMode(final Boolean setter) {
         this.canBuild = setter;
     }
 
@@ -44,12 +44,12 @@ public class ViewBuildHouseState implements ViewState {
      * @param data the data related to the user's selection
      */
     @Override
-    public void visualize(DataInput data) {
+    public void visualize(final DataInput data) {
         if (canBuild) {
-            JPanel interactivePanel = new JPanel();
+            final JPanel interactivePanel = new JPanel();
             mainView.setInteractivePanel(interactivePanel);
 
-            int chosenCell = 0;
+            final int chosenCell = 0;
             mainView.getMainController().getControllerState().continueState(dataBuilder.cellChoose(chosenCell).build());
         } else {
             mainView.getMainController().getControllerState().continueState(dataBuilder.build());
