@@ -33,6 +33,11 @@ public class PrisonControllerState implements ControllerState {
     /**
      * Starts the state.
      * 
+     * <p>
+     * If the player must go to jail, the state is visualized and the player is sent
+     * to jail. If the player must exit jail, the state is visualized and the player
+     * is given the option to use a "Get Out of Jail Free" card or pay €50.
+     * </p>
      */
     @Override
     public void startState() {
