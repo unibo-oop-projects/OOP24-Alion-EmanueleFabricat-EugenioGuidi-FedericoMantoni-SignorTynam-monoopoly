@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
+import it.unibo.monoopoly.view.panel.api.PositionsFactory;
 
 /**
  * mettere commento qui, tutti i numeri molotiplicativi vengono percepiti come
@@ -36,13 +37,14 @@ public class GameBoardPanel extends PanelAdapter {
                                                             "property_positions.json", 
                                                             "houses_positions.json");
 
-    private final Map<Color, Map<Integer, Position>> playersPositions = new HashMap<>();
-    private final Map<Integer, Position> propertyPositions = new HashMap<>();
-    private final Map<Integer, Position> housesPositions = new HashMap<>();
-    private final Map<String, Position> prisonPositions = new HashMap<>();
+    private final Map<Color, Map<Integer, Position>> playersPositions;
+    private final Map<Integer, Position> propertyPositions;
+    private final Map<Integer, Position> housesPositions;
+    private final Map<Color, Position> prisonPositions;
     private final int mainFrameHeight;
     private final Map<String, Color> playersColors;
     private final Image backgroundImage;
+    private final PositionsFactory positionsFactory;
 
     /**
      * 
@@ -52,22 +54,22 @@ public class GameBoardPanel extends PanelAdapter {
      */
     public GameBoardPanel(final int mainFrameHeight, final List<Triple<String, Integer, Color>> initializedList) {
         this.mainFrameHeight = mainFrameHeight;
+        this.positionsFactory = new PositionsFactoryImpl(mainFrameHeight);
+        this.playersPositions = this.positionsFactory.createPlayersPositions();
+        this.propertyPositions = this.positionsFactory.createPropertyPositions();
+        this.housesPositions = this.positionsFactory.createHousesPositions();
+        this.prisonPositions = this.positionsFactory.createPrisonPositions();
+
         this.playersColors = initializePlayersColoros(initializedList);
 
         final URL imgURL = ClassLoader.getSystemResource("images/monoopoly_gameboard_image.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
-
-        initializePositionsMaps();
     }
 
     private Map<String, Color> initializePlayersColoros(final List<Triple<String, Integer, Color>> initializedList) {
         return initializedList.stream()
                             .collect(Collectors.toMap(Triple::getLeft, Triple::getRight));
-    }
-
-    private void initializePositionsMaps() {
-
     }
 
     /**
