@@ -2,8 +2,12 @@ package it.unibo.monoopoly.model.state.impl;
 
 import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
+import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.state.api.ModelState;
+
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
@@ -19,6 +23,7 @@ public class ModelCardState implements ModelState {
 
     /**
      * Constructor of the class that sets the mainModel field.
+     * 
      * @param mainModel to set.
      */
     public ModelCardState(final MainModel mainModel) {
@@ -63,22 +68,27 @@ public class ModelCardState implements ModelState {
         ModelState nextState = new ModelUnmortgageState(mainModel);
         switch (getCard().getMessage().typeOfAction()) {
             case Event.FREE_CARD:
-            this.mainModel.getGameBoard().getCurrentPlayer().addGetOutOfJailCard(); 
-                nextState = new ModelUnmortgageState(mainModel); 
+                this.mainModel.getGameBoard().getCurrentPlayer().addGetOutOfJailCard();
+                nextState = new ModelUnmortgageState(mainModel);
                 break;
             case Event.MOVE_CARD:
                 nextState = new ModelMovementState(mainModel, getCard().getMessage().data());
                 break;
             case Event.PRISON:
-                //this.mainModel.getGameBoard().getCurrentPlayer().isPrisoned();
+                // this.mainModel.getGameBoard().getCurrentPlayer().isPrisoned();
                 nextState = new ModelPrisonState();
                 break;
             case Event.CARD_PAYMENT:
-                nextState = new ModelBankerState(mainModel, getCard().getMessage().data().get(), false);
-                break;
+                if (getCard().getMessage().data().isPresent()) {
+                    nextState = new ModelBankerState(mainModel, getCard().getMessage().data().get(), false);
+                    break;
+                } else {
+                    nextState = new ModelBankerState(mainModel, payForHouse(), false);
+                    break;
+                }
             case Event.RECEIVE_CARD:
                 this.mainModel.getGameBoard().getCurrentPlayer().receive(getCard().getMessage().data().get());
-                nextState = new BuildHouseModelState();
+                nextState = new ModelUnmortgageState(mainModel);
                 break;
             default:
                 break;
@@ -86,4 +96,20 @@ public class ModelCardState implements ModelState {
         this.mainModel.setState(nextState);
     }
 
+    private int payForHouse() {
+        Optional<Integer> amount = Stream.iterate(0, n -> n + 40).limit(numberOfHouses()).findFirst();
+        if (amount.isEmpty()) {
+            return 0;
+        }
+        return amount.get();
+
+    }
+
+    private int numberOfHouses() {
+        return this.mainModel.getGameBoard().getCurrentPlayer().getProperties().stream()
+                .filter(c -> c instanceof Buildable)
+                .map(c -> (Buildable) c)
+                .mapToInt(c -> c.getHousesNumber())
+                .sum();
+    }
 }
