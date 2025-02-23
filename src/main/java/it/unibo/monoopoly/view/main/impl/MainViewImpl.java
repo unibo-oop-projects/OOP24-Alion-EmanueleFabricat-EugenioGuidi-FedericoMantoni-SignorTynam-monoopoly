@@ -82,7 +82,6 @@ public class MainViewImpl extends AbstractView implements MainView {
             l.add(Triple.of(entry.getValue(), 1500, entry.getKey()));
         }
         return l;
-        
     }
 
     private JFrame mainFrame() {
