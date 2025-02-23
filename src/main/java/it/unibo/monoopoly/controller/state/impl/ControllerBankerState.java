@@ -99,7 +99,6 @@ public class ControllerBankerState implements ControllerState {
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
-                .map(p -> (Buyable) p)
                 .map(this.gameBoard.getCellsList()::indexOf)
                 .toList();
     }
@@ -110,8 +109,7 @@ public class ControllerBankerState implements ControllerState {
                 unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
-                    .filter(p -> p.getHousesNumber() == 0)
-                    .map(p -> (Buyable) p))
+                    .filter(p -> p.getHousesNumber() == 0))
                 .map(this.gameBoard.getCellsList()::indexOf)
                 .toList();
     }
