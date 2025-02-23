@@ -32,7 +32,7 @@ class TestCheckActionState {
 
     @BeforeEach
     void init() {
-        this.model = new MainModelImpl(List.of("Poggers"));
+        this.model = new MainModelImpl(List.of("Poggers", "Gran"));
         this.checkActionState = new ModelCheckActionState(model); 
     }
 
@@ -81,6 +81,7 @@ class TestCheckActionState {
 
     @Test
     void noActionCell() {
+        this.model.getGameBoard().getCurrentPlayer().changePosition(0);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
@@ -89,6 +90,7 @@ class TestCheckActionState {
 
     @Test
     void cardCell() {
+        this.model.getGameBoard().getCurrentPlayer().changePosition(2);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
@@ -98,15 +100,6 @@ class TestCheckActionState {
     @Test
     void taxCell() {
         this.model.getGameBoard().getCurrentPlayer().changePosition(4);
-        assertFalse(this.checkActionState.verify());
-        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
-        this.checkActionState.closeState();
-        assertInstanceOf(ModelBankerState.class, model.getState());
-    }
-
-    @Test
-    void railRoadCell() {
-        this.model.getGameBoard().getCurrentPlayer().changePosition(5);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();

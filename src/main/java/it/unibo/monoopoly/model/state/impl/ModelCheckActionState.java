@@ -86,7 +86,7 @@ public class ModelCheckActionState implements ModelState {
                     case BUY_PROPERTY -> new ModelBankerState(mainModel,
                         ((Buyable) getActualCell()).getCost(), false);
                     case DRAW -> new ModelCardState(mainModel);
-                    case PRISON -> new ModelMovementState(mainModel, Optional.empty() /* TODO Call gameboard.getPrisonCell */);
+                    case PRISON -> new ModelPrisonState(); //TODO maybe to change
                     default -> throw new IllegalStateException("Card event or unsupported event was insert");
                 }
             );
