@@ -47,8 +47,8 @@ public class GamePanel extends PanelAdapter {
      */
     @Override
     protected void panelInit() {
-        final GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainController, this.mainFrameHeight,
-                this.mainFrameWidth);
+        final GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainFrameHeight,
+                this.initializedList);
         this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();

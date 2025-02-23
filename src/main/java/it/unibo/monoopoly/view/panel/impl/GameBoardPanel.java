@@ -16,6 +16,8 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import org.apache.commons.lang3.tuple.Triple;
+
 import it.unibo.monoopoly.controller.main.api.MainController;
 
 /**
@@ -29,7 +31,7 @@ public class GameBoardPanel extends PanelAdapter {
      */
     public record Position(int x, int y) {}
 
-    private static final List<String> FIELS_NAMES = List.of("players_positions.json", 
+    private static final List<String> FILES_NAMES = List.of("players_positions.json", 
                                                             "property_positions.json", 
                                                             "houses_positions.json");
 
@@ -37,9 +39,8 @@ public class GameBoardPanel extends PanelAdapter {
     private final Map<Integer, Position> propertyPositions = new HashMap<>();
     private final Map<Integer, Position> housesPositions = new HashMap<>();
     private final Map<String, Position> prisonPositions = new HashMap<>();
-    private final MainController mainController;
     private final int mainFrameHeight;
-    private final int mainFrameWidth;
+    private final List<Triple<String, Integer, Color>> playersColors;
     private final Image backgroundImage;
 
     /**
@@ -48,14 +49,19 @@ public class GameBoardPanel extends PanelAdapter {
      * @param mainFrameHeight
      * @param mainFrameWidth
      */
-    public GameBoardPanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth) {
-        this.mainController = mainController;
+    public GameBoardPanel(final int mainFrameHeight, final List<Triple<String, Integer, Color>> playersColoros) {
         this.mainFrameHeight = mainFrameHeight;
-        this.mainFrameWidth = mainFrameWidth;
+        this.playersColors = playersColoros;
 
         final URL imgURL = ClassLoader.getSystemResource("images/monoopoly_gameboard_image.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
+
+        initializeMaps();
+    }
+
+    private void initializeMaps() {
+
     }
 
     /**
