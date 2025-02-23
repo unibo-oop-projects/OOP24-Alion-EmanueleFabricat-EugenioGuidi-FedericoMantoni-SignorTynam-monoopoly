@@ -10,7 +10,9 @@ import javax.swing.JTextArea;
 
 import org.apache.commons.lang3.tuple.Triple;
 
-public class VisualizePlayerPanel extends PanelAdapter {
+import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
+
+public class VisualizePlayerPanel extends PanelAdapter /*implements UpdatablePanel*/ {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,6 +23,12 @@ public class VisualizePlayerPanel extends PanelAdapter {
     private final List<JTextArea> textList = new LinkedList<>();
     private static final double PERC_RESIZE = 0.035;
 
+    /**
+     * comment
+     * @param mainFrameHeight the height of the main frame
+     * @param firstPlayer the name of the player starting the game
+     * @param initializedList
+     */
     public VisualizePlayerPanel(final int mainFrameHeight, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList) {
         super();
@@ -30,6 +38,9 @@ public class VisualizePlayerPanel extends PanelAdapter {
         this.initializedList = initializedList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void panelInit() {
         setLayout(new GridLayout(playersNumber * 2 + 1, 1));
@@ -47,6 +58,10 @@ public class VisualizePlayerPanel extends PanelAdapter {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    //TODO Deve accettare ViewUpdateDTO e overrida metodo dell'interfaccia UpdatablePanel
     public void update(final String actualPlayer, final List<Integer> amounts) {
         this.textList.get(0).setText("E' il turno di " + actualPlayer);
         int i = 1;

@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import org.apache.commons.lang3.tuple.Triple;
 
 /**
- * comment.
+ * 
  */
 public class PlayerPanel extends PanelAdapter {
 
@@ -21,9 +21,9 @@ public class PlayerPanel extends PanelAdapter {
     /**
      * comment.
      * 
-     * @param mainController
-     * @param mainFrameHeight
-     * @param mainFrameWidth
+     * @param mainFrameHeight the height of main frame
+     * @param firstPlayer the name of the player starting the game
+     * @param
      */
     public PlayerPanel(final int mainFrameHeight, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList) {
@@ -44,6 +44,9 @@ public class PlayerPanel extends PanelAdapter {
         add(interactivePanel);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setInteractivePanel(final JPanel panel) {
         this.interactivePanel.setInteractivePanel(panel);
     }
