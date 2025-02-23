@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ class TestModelUnmortgageState {
         final ModelUnmortgageState state = new ModelUnmortgageState(model);
         assertEquals(false, state.verify());
         state.closeState();
-        assert (this.model.getState() instanceof ModelBuildHouseState);
+        assertInstanceOf(ModelBuildHouseState.class, this.model.getState());
     }
 
     /* */
@@ -49,7 +50,7 @@ class TestModelUnmortgageState {
         state.doAction(new DataBuilderOutputImpl().cellChoose(BUILDABLE_CELL).build());
         assertEquals(false, property.isMortgaged());
         state.closeState();
-        assert (this.model.getState() instanceof ModelUnmortgageState);
+        assertInstanceOf(ModelUnmortgageState.class, this.model.getState());
         assertEquals(START_AMOUNT - property.getMortgageValue() * 110 / 100,
                 this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
 
