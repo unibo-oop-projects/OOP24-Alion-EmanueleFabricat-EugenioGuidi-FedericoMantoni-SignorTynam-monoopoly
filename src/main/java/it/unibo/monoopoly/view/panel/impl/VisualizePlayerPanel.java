@@ -5,14 +5,16 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JTextArea;
 
 import org.apache.commons.lang3.tuple.Triple;
 
+import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 
-public class VisualizePlayerPanel extends PanelAdapter /*implements UpdatablePanel*/ {
+public class VisualizePlayerPanel extends PanelAdapter implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,8 +27,9 @@ public class VisualizePlayerPanel extends PanelAdapter /*implements UpdatablePan
 
     /**
      * comment
+     * 
      * @param mainFrameHeight the height of the main frame
-     * @param firstPlayer the name of the player starting the game
+     * @param firstPlayer     the name of the player starting the game
      * @param initializedList
      */
     public VisualizePlayerPanel(final int mainFrameHeight, final String firstPlayer,
@@ -61,20 +64,28 @@ public class VisualizePlayerPanel extends PanelAdapter /*implements UpdatablePan
     /**
      * {@inheritDoc}
      */
-    //TODO Deve accettare ViewUpdateDTO e overrida metodo dell'interfaccia UpdatablePanel
-    public void update(final String actualPlayer, final List<Integer> amounts) {
-        this.textList.get(0).setText("E' il turno di " + actualPlayer);
-        int i = 1;
-        for (; i < amounts.size(); i++) {
-            this.textList.get(i + 1).setText(amounts.get(i) + " €");
+    @Override
+    public void update(ViewUpdateDTO updateData) {
+        this.textList.get(0).setText("E' il turno di " + updateData.actualPlayer());
+        for (var entry : updateData.playersMoney().entrySet()) {
+            this.textList.stream()
+                    .peek(t -> t.getText().equals(entry.getKey()))
+                    .map(t -> this.textList.get(this.textList.indexOf(t) + 1))
+                    .findFirst().get().setText(entry.getValue() + " €");
         }
-        if (this.textList.size() > amounts.size()) {
-            for (; i < this.textList.size(); i++) {
-                this.textList.get(i).setBackground(Color.GRAY);
-                if (i % 2 == 0) {
-                    this.textList.get(i).setText("BANCAROTTA");
-                }
-            }
-        }
+        this.textList.stream()
+                .filter(t -> this.textList.indexOf(t) % 2 == 1 &&  this.textList.indexOf(t) > 0)
+                .filter(t -> !keysList(updateData.playersMoney()).contains(t.getText()))
+                .map(t -> this.textList.get(this.textList.indexOf(t) + 1))
+                .forEach(t -> {
+                    t.setText("BANCAROTTA");
+                    t.setBackground(Color.GRAY);
+                });
+    }
+
+    private List<String> keysList(Map<String, Integer> map) {
+        return map.entrySet().stream()
+                .map(e -> e.getKey())
+                .toList();
     }
 }
