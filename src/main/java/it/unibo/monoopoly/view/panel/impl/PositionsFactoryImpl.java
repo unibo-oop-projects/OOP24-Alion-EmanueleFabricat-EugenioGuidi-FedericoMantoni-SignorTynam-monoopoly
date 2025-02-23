@@ -48,7 +48,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
     private List<Position> portionOfList(final List<Position> newList, final int index) {
         List<Position> tempList = new ArrayList<>();
         final int upperExtreme = (index * newList.size()) / NUMBER_OF_PLAYERS;
-        final int lowerExtreme = ((index + 1) * newList.size()) / NUMBER_OF_PLAYERS;
+        final int lowerExtreme = upperExtreme + NUMBER_OF_PLAYERS;
 
         for(int i = upperExtreme ; i < lowerExtreme ; i++) {
             tempList.add(newList.get(i));
