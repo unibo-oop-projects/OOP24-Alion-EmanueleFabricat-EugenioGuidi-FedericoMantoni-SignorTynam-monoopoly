@@ -11,6 +11,8 @@ import javax.swing.JTextArea;
  */
 public class MainPanel extends PanelAdapter {
 
+    private static final long serialVersionUID = 1L;
+
     private final JTextArea textArea;
 
     /**
@@ -20,10 +22,8 @@ public class MainPanel extends PanelAdapter {
         setLayout(new BorderLayout());
         textArea = new JTextArea();
         textArea.setEditable(false);
-        final JScrollPane scrollPane = new JScrollPane(textArea);
-        add(scrollPane, BorderLayout.CENTER);
     }
-
+    
     /**
      * comment.
      * 
@@ -32,7 +32,7 @@ public class MainPanel extends PanelAdapter {
     public void appendText(final String text) {
         textArea.append(text + "\n");
     }
-
+    
     /**
      * comment.
      * 
@@ -41,15 +41,15 @@ public class MainPanel extends PanelAdapter {
     public void setText(final String text) {
         textArea.setText(text);
     }
-
+    
     /**
      *
      * {@inheritDoc}
      */
     @Override
     protected void panelInit() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'panelInit'");
+        final JScrollPane scrollPane = new JScrollPane(textArea);
+        add(scrollPane, BorderLayout.CENTER);
     }
 
 }

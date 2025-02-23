@@ -82,7 +82,7 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private List<Integer> cellListChoser(final Event event) {
-        return switch(event) {
+        return switch (event) {
             case Event.SELL_HOUSE -> sellHouseList();
             case Event.MORTGAGE_PROPERTY -> propertiesMortgageableList();
             default -> List.of();

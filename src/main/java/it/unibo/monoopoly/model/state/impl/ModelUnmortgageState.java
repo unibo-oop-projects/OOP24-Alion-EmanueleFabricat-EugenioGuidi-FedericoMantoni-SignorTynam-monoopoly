@@ -46,7 +46,7 @@ public class ModelUnmortgageState implements ModelState {
     private boolean havePropertyToUnmortgage() {
         return this.mainModel.getGameBoard().getCurrentPlayer().getProperties().stream()
                 .filter(this::isPayable)
-                .anyMatch(c -> c.isMortgaged());
+                .anyMatch(Buyable::isMortgaged);
     }
 
     /**
@@ -65,7 +65,7 @@ public class ModelUnmortgageState implements ModelState {
     }
 
     private Buyable buyableFromIndex(final Optional<Integer> selectedCell) {
-        return (Buyable)(this.mainModel.getGameBoard().getCell(selectedCell.get()));
+        return (Buyable) this.mainModel.getGameBoard().getCell(selectedCell.get());
     }
 
     private boolean isPayable(final Buyable property) {

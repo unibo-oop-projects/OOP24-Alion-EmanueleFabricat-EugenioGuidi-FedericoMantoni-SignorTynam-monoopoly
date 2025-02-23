@@ -7,7 +7,7 @@ import it.unibo.monoopoly.view.panel.impl.GameBoardPanel.Position;
 import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 
-public class PositionsFactoryImpl implements PositionsFactory{
+public class PositionsFactoryImpl implements PositionsFactory {
 
     private final JsonConverter<Position> converter;
     private final String fileName;

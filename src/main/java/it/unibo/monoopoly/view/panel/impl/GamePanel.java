@@ -17,6 +17,7 @@ import it.unibo.monoopoly.controller.main.api.MainController;
  */
 public class GamePanel extends PanelAdapter {
 
+    private static final long serialVersionUID = 1L;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
     private final MainController mainController;
@@ -78,11 +79,11 @@ public class GamePanel extends PanelAdapter {
 
     }
 
-    public void setInteractivePanel(JPanel panel) {
+    public void setInteractivePanel(final JPanel panel) {
         this.playerPanel.setInteractivePanel(panel);
     }
 
-    
+
 
     /*private Color getColorPlayer(String name) {
         return this.playersColors.entrySet().stream()

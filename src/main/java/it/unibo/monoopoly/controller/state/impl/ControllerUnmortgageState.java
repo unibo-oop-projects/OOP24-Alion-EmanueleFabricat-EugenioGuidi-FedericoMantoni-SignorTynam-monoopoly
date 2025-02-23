@@ -77,7 +77,7 @@ public class ControllerUnmortgageState implements ControllerState {
 
     private List<Integer> unmortgageableList() {
         return Optional.of(this.gameBoard.getCurrentPlayer().getProperties().stream()
-                .filter(c -> c.isMortgaged())
+                .filter(Buyable::isMortgaged)
                 .filter(this::isPayable)
                 .map(this.gameBoard.getCellsList()::indexOf)
                 .toList()).get();

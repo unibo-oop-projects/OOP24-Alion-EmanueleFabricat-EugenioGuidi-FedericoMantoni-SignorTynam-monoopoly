@@ -14,6 +14,9 @@ import it.unibo.monoopoly.utils.impl.ViewCellGiver;
  * comment.
  */
 public class MortgagePanel extends PanelAdapter {
+
+    private static final long serialVersionUID = 1L;
+
     private final ViewCellGiver closeMethod;
     private final List<String> cellList;
     private JPanel innerPanel;
@@ -45,9 +48,9 @@ public class MortgagePanel extends PanelAdapter {
             j.addActionListener(closeMethod);
         }
         this.add(innerPanel, BorderLayout.CENTER);
-        JButton noChoiceButton = new JButton(ViewCellGiver.NO_CHOICE);
+        final JButton noChoiceButton = new JButton(ViewCellGiver.NO_CHOICE);
         noChoiceButton.addActionListener(closeMethod);
         this.add(noChoiceButton, BorderLayout.SOUTH);
-        
+
     }
 }

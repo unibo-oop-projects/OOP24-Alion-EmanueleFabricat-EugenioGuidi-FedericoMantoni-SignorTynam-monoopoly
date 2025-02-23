@@ -15,6 +15,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
  */
 public class ModelBuildHouseState implements ModelState {
 
+    private static final int MAX_HOUSES = 5;
     private final MainModel model;
     private boolean canBuild;
 
@@ -23,7 +24,7 @@ public class ModelBuildHouseState implements ModelState {
      * 
      * @param model the main game model
      */
-    public ModelBuildHouseState(MainModel model) {
+    public ModelBuildHouseState(final MainModel model) {
         this.model = model;
     }
 
@@ -34,11 +35,11 @@ public class ModelBuildHouseState implements ModelState {
      */
     @Override
     public boolean verify() {
-        Player currentPlayer = model.getGameBoard().getCurrentPlayer();
-        Set<Buildable> buildableProperties = currentPlayer.getProperties().stream()
+        final Player currentPlayer = model.getGameBoard().getCurrentPlayer();
+        final Set<Buildable> buildableProperties = currentPlayer.getProperties().stream()
                 .filter(p -> p instanceof Buildable)
                 .map(p -> (Buildable) p)
-                .filter(p -> p.getHousesNumber() < 5 && !p.isMortgaged())
+                .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
                 .collect(Collectors.toSet());
         canBuild = !buildableProperties.isEmpty();
         return canBuild;
@@ -50,11 +51,11 @@ public class ModelBuildHouseState implements ModelState {
      * @param data the data related to the selected cell
      */
     @Override
-    public void doAction(DataOutput data) {
+    public void doAction(final DataOutput data) {
         if (canBuild && data.cellChoose().isPresent()) {
-            int cellIndex = data.cellChoose().get();
-            Buildable property = (Buildable) model.getGameBoard().getCell(cellIndex);
-            if (property.getHousesNumber() < 5 && !property.isMortgaged()) {
+            final int cellIndex = data.cellChoose().get();
+            final Buildable property = (Buildable) model.getGameBoard().getCell(cellIndex);
+            if (property.getHousesNumber() < MAX_HOUSES && !property.isMortgaged()) {
                 property.buildHouse();
             }
         }
@@ -66,7 +67,7 @@ public class ModelBuildHouseState implements ModelState {
     @Override
     public void closeState() {
         if (!canBuild) {
-            // model.nextTurn();    Fai vedere ai ragazzi come si fa
+            model.nextTurn();
         } else {
             model.setState(new ModelBuildHouseState(model));
         }

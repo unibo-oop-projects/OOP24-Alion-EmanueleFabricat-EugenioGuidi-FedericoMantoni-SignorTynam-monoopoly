@@ -12,8 +12,11 @@ import org.apache.commons.lang3.tuple.Triple;
  * comment.
  */
 public class PlayerPanel extends PanelAdapter {
-    private InteractivePanel interactivePanel;
-    private VisualizePlayerPanel visualizePlayerPanel;
+
+    private static final long serialVersionUID = 1L;
+
+    private final InteractivePanel interactivePanel;
+    private final VisualizePlayerPanel visualizePlayerPanel;
 
     /**
      * comment.
@@ -22,7 +25,8 @@ public class PlayerPanel extends PanelAdapter {
      * @param mainFrameHeight
      * @param mainFrameWidth
      */
-    public PlayerPanel(final int mainFrameHeight,final String firstPlayer, final List<Triple<String, Integer, Color>> initializedList) {
+    public PlayerPanel(final int mainFrameHeight, final String firstPlayer,
+            final List<Triple<String, Integer, Color>> initializedList) {
         this.interactivePanel = new InteractivePanel();
         this.visualizePlayerPanel = new VisualizePlayerPanel(mainFrameHeight, firstPlayer, initializedList);
     }
@@ -33,14 +37,14 @@ public class PlayerPanel extends PanelAdapter {
      */
     @Override
     protected void panelInit() {
-        InteractivePanel interactivePanel = new InteractivePanel();
+        final InteractivePanel interactivePanel = new InteractivePanel();
         setBackground(Color.BLUE);
-        setLayout(new GridLayout(2,1));
+        setLayout(new GridLayout(2, 1));
         add(visualizePlayerPanel);
         add(interactivePanel);
     }
 
-    public void setInteractivePanel(JPanel panel) {
+    public void setInteractivePanel(final JPanel panel) {
         this.interactivePanel.setInteractivePanel(panel);
     }
 }

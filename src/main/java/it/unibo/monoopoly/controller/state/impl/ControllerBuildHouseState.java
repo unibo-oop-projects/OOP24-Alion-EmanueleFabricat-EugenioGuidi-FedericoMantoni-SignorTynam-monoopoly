@@ -19,6 +19,7 @@ import it.unibo.monoopoly.model.main.api.MainModel;
  */
 public class ControllerBuildHouseState implements ControllerState {
 
+    private static final int MAX_HOUSES = 5;
     private final ModelState modelState;
     private final ViewState viewState;
     private boolean canBuild;
@@ -53,7 +54,7 @@ public class ControllerBuildHouseState implements ControllerState {
             final List<Integer> buildableCells = canBuild ? gameBoard.getCurrentPlayer().getProperties().stream()
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
-                    .filter(p -> p.getHousesNumber() < 5 && !p.isMortgaged())
+                    .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
                     .map(gameBoard.getCellsList()::indexOf)
                     .collect(Collectors.toList()) : List.of();
 

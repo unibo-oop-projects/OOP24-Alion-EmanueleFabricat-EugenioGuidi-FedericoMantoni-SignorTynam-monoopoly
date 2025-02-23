@@ -5,7 +5,9 @@ import java.awt.Font;
 import javax.swing.BoxLayout;
 import javax.swing.JTextArea;
 
-public class DefaultInteractivePanel extends PanelAdapter{
+public class DefaultInteractivePanel extends PanelAdapter {
+
+    private static final long serialVersionUID = 1L;
 
     @Override
     protected void panelInit() {

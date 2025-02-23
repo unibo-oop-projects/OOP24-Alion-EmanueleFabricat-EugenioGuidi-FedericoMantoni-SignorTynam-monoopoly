@@ -29,6 +29,7 @@ public class GameBoardPanel extends PanelAdapter {
      */
     public record Position(int x, int y) {}
 
+    private static final long serialVersionUID = 1L;
     private static final List<String> FIELS_NAMES = List.of("players_positions.json", 
                                                             "property_positions.json", 
                                                             "houses_positions.json");

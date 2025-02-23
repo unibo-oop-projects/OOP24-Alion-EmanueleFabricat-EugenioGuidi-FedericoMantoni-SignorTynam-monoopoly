@@ -10,17 +10,19 @@ import javax.swing.JTextArea;
 
 import org.apache.commons.lang3.tuple.Triple;
 
-
 public class VisualizePlayerPanel extends PanelAdapter {
+
+    private static final long serialVersionUID = 1L;
+
     private final int playersNumber;
     private final int mainFrameHeight;
     private final String firstPlayer;
     private final List<Triple<String, Integer, Color>> initializedList;
     private final List<JTextArea> textList = new LinkedList<>();
-    private static final double PERC_RESIZE = 0.035; 
+    private static final double PERC_RESIZE = 0.035;
 
-
-    public VisualizePlayerPanel(final int mainFrameHeight,final String firstPlayer, final List<Triple<String, Integer, Color>> initializedList) {
+    public VisualizePlayerPanel(final int mainFrameHeight, final String firstPlayer,
+            final List<Triple<String, Integer, Color>> initializedList) {
         super();
         this.playersNumber = initializedList.size();
         this.mainFrameHeight = mainFrameHeight;
@@ -32,13 +34,13 @@ public class VisualizePlayerPanel extends PanelAdapter {
     protected void panelInit() {
         setLayout(new GridLayout(playersNumber * 2 + 1, 1));
         this.textList.add(new JTextArea("E' il turno di " + this.firstPlayer));
-        for (Triple<String,Integer,Color> triple : initializedList) {
+        for (final Triple<String, Integer, Color> triple : initializedList) {
             this.textList.add(new JTextArea(triple.getLeft()));
             this.textList.getLast().setBackground(triple.getRight());
-            this.textList.add(new JTextArea(String.valueOf(triple.getMiddle()) + " €"));
-            this.textList.getLast().setBackground(triple.getRight());            
+            this.textList.add(new JTextArea(triple.getMiddle() + " €"));
+            this.textList.getLast().setBackground(triple.getRight());
         }
-        for (var text : this.textList) {
+        for (final var text : this.textList) {
             text.setEnabled(false);
             text.setFont(new Font("Arial", Font.PLAIN, (int) (PERC_RESIZE * this.mainFrameHeight)));
             add(text);
@@ -49,7 +51,7 @@ public class VisualizePlayerPanel extends PanelAdapter {
         this.textList.get(0).setText("E' il turno di " + actualPlayer);
         int i = 1;
         for (; i < amounts.size(); i++) {
-            this.textList.get(i + 1).setText(String.valueOf(amounts.get(i)) + " €");
+            this.textList.get(i + 1).setText(amounts.get(i) + " €");
         }
         if (this.textList.size() > amounts.size()) {
             for (; i < this.textList.size(); i++) {
@@ -61,4 +63,3 @@ public class VisualizePlayerPanel extends PanelAdapter {
         }
     }
 }
-

@@ -35,7 +35,7 @@ public class ViewBankerState implements ViewState {
      * {@inheritDoc}
      */
     @Override
-    public void setMode(Boolean setter) {
+    public void setMode(final Boolean setter) {
         this.payable = setter;
     }
 
