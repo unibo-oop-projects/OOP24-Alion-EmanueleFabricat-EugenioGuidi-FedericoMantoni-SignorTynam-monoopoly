@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -47,20 +48,20 @@ public class TestModelCardState {
                 case Event.FREE_CARD:
                     assertTrue(1 == model.getGameBoard().getCurrentPlayer().getFreeJailCards() ||
                     2 == model.getGameBoard().getCurrentPlayer().getFreeJailCards());
-                    assert (model.getState() instanceof ModelUnmortgageState);
+                    assertInstanceOf(ModelUnmortgageState.class, model.getState());
                     break;
                 case Event.MOVE_CARD:
-                    assert (model.getState() instanceof ModelMovementState);
+                    assertInstanceOf(ModelMovementState.class, model.getState());
                     break;
                 case Event.PRISON:
-                    assert (model.getState() instanceof ModelPrisonState);
+                    assertInstanceOf(ModelPrisonState.class, model.getState());
                     break;
                 case Event.CARD_PAYMENT:
-                    assert (model.getState() instanceof ModelBankerState);
+                    assertInstanceOf(ModelBankerState.class, model.getState());
                     break;
                 case Event.RECEIVE_CARD:
-                    assert(startAmount < model.getGameBoard().getCurrentPlayer().getMoneyAmount());
-                    assert (model.getState() instanceof ModelUnmortgageState);
+                    assertTrue(startAmount < model.getGameBoard().getCurrentPlayer().getMoneyAmount());
+                    assertInstanceOf(ModelUnmortgageState.class, model.getState());
                     break;
                 default:
                     throw new IllegalStateException("ModelCardState should not be in a state different from the predetermined ones.");
