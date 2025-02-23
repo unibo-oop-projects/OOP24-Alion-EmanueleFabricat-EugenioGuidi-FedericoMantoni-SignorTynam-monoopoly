@@ -29,7 +29,7 @@ import it.unibo.monoopoly.controller.state.impl.ControllerUnmortgageState;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.GamePanel;
-import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
+import it.unibo.monoopoly.view.panel.impl.AbstractPanel;
 import it.unibo.monoopoly.view.panel.impl.PlayerPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 import it.unibo.monoopoly.view.state.impl.ViewBankerState;
@@ -44,7 +44,7 @@ import it.unibo.monoopoly.view.state.impl.ViewUnmortgageState;
  */
 public class MainViewImpl extends AbstractView implements MainView {
 
-    private final PanelAdapter gamePanel;
+    private final AbstractPanel gamePanel;
     private final MainController controller;
     private ViewState viewState;
     private final List<Color> colors;
@@ -92,7 +92,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      * {@inheritDoc}
      */
     @Override
-    public PanelAdapter getMainPanel() {
+    public AbstractPanel getMainPanel() {
         return this.gamePanel;
     }
 

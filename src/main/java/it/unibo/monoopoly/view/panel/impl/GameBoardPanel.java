@@ -27,7 +27,7 @@ import it.unibo.monoopoly.view.panel.impl.Position;
  * mettere commento qui, tutti i numeri molotiplicativi vengono percepiti come
  * magic number.
  */
-public class GameBoardPanel extends PanelAdapter {
+public class GameBoardPanel extends AbstractPanel {
 
     private final Map<Color, Map<Integer, Position>> playersPositions;
     private final Map<Integer, Position> propertyPositions;

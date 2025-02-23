@@ -14,7 +14,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 
-public class VisualizePlayerPanel extends PanelAdapter implements UpdatablePanel {
+public class VisualizePlayerPanel extends AbstractPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
 

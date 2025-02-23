@@ -27,7 +27,7 @@ import it.unibo.monoopoly.controller.menu.api.MenuController;
  * Panel for handle input of the number and names of players decided by the
  * user.
  */
-public class SelectionPanel extends PanelAdapter {
+public class SelectionPanel extends AbstractPanel {
 
     private static final int MAX_NAME_LENGTH = 25;
     private static final double NUMBER_LABEL_WEIGHT = 0.4;

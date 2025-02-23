@@ -11,7 +11,7 @@ import org.apache.commons.lang3.tuple.Triple;
 /**
  * 
  */
-public class PlayerPanel extends PanelAdapter {
+public class PlayerPanel extends AbstractPanel {
 
     private static final long serialVersionUID = 1L;
 

@@ -18,7 +18,7 @@ import it.unibo.monoopoly.controller.menu.api.MenuController;
 /**
  * Panel showed at the start of the application.
  */
-public class MenuPanel extends PanelAdapter {
+public class MenuPanel extends AbstractPanel {
 
     private static final String ARIAL_FONT = "Arial";
     private static final long serialVersionUID = 1L;

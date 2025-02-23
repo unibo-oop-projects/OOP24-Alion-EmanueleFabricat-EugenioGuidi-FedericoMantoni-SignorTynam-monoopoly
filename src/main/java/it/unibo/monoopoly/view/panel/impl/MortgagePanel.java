@@ -13,7 +13,7 @@ import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 /**
  * comment.
  */
-public class MortgagePanel extends PanelAdapter {
+public class MortgagePanel extends AbstractPanel {
 
     private static final long serialVersionUID = 1L;
 

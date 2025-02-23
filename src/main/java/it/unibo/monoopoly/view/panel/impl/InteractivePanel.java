@@ -2,7 +2,7 @@ package it.unibo.monoopoly.view.panel.impl;
 
 import javax.swing.JPanel;
 
-public class InteractivePanel extends PanelAdapter {
+public class InteractivePanel extends AbstractPanel {
 
     private static final long serialVersionUID = 1L;
 

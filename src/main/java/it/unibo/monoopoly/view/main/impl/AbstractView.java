@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.monoopoly.view.main.api.View;
-import it.unibo.monoopoly.view.panel.impl.PanelAdapter;
+import it.unibo.monoopoly.view.panel.impl.AbstractPanel;
 
 /**
  * Abstract class that represents a {@link View} used by the application.
@@ -72,6 +72,6 @@ public abstract class AbstractView implements View {
      * 
      * @return all {@link JPanel}s contained in the main frame of the view
      */
-    abstract PanelAdapter getMainPanel();
+    abstract AbstractPanel getMainPanel();
 
 }

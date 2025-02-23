@@ -7,14 +7,14 @@ import javax.swing.SwingUtilities;
 /**
  * Pattern Adapter to build a JPanel with personalized methods.
  */
-public abstract class PanelAdapter extends JPanel {
+public abstract class AbstractPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * Constructor in common for all {@link Panel}s used.
      */
-    public PanelAdapter() {
+    public AbstractPanel() {
         super();
         SwingUtilities.invokeLater(this::init); // Posticipo l'inizializzazione dopo la costruzione del JPanel
     }

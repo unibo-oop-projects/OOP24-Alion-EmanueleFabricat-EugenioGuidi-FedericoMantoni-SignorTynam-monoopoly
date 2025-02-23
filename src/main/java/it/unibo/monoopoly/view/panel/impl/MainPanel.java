@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 /**
  * comment.
  */
-public class MainPanel extends PanelAdapter {
+public class MainPanel extends AbstractPanel {
 
     private static final long serialVersionUID = 1L;
 

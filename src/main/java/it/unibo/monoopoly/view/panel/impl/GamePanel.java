@@ -17,7 +17,7 @@ import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 /**
  * comment.
  */
-public class GamePanel extends PanelAdapter implements UpdatablePanel {
+public class GamePanel extends AbstractPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
