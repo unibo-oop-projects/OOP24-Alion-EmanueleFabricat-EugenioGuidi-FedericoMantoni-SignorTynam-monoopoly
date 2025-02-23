@@ -1,19 +1,26 @@
 package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.view.panel.api.PositionsFactory;
-import it.unibo.monoopoly.view.panel.impl.GameBoardPanel.Position;
 import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 
 public class PositionsFactoryImpl implements PositionsFactory{
 
-    private final JsonConverter<Position> converter;
-    private final int mainFrameHeight;
+    private static final String PLAYERS_POSITIONS_FILE_NAME = "players_positions.json";
+    private static final String PROPERTY_POSITIONS_FILE_NAME = "property_positions.json";
+    private static final String HOUSES_POSITIONS_FILE_NAME = "houses_positions.json";
+    private static final String PRISON_POSITIONS_FILE_NAME = "prison_positions.json";
+    private static final int NUMBER_OF_PLAYERS = 4;
 
+    private JsonConverter<Position> converter;
+    private final int mainFrameHeight;
 
     public PositionsFactoryImpl(final int mainFrameHeight) {
         this.mainFrameHeight = mainFrameHeight;
@@ -22,26 +29,64 @@ public class PositionsFactoryImpl implements PositionsFactory{
 
     @Override
     public Map<Color, Map<Integer, Position>> createPlayersPositions() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createPlayersPositions'");
+        List<Position> newList = this.converter.jsonToList(ClassLoader.getSystemResourceAsStream(PLAYERS_POSITIONS_FILE_NAME));
+        Map<Color, Map<Integer, Position>> playersPositions = new HashMap<>();
+        int index = 0;
+        final List<Position> blueList = portionOfList(newList, index++);
+        final List<Position> redList = portionOfList(newList, index++);
+        final List<Position> greenList = portionOfList(newList, index++);
+        final List<Position> orangeList = portionOfList(newList, index++);
+
+        playersPositions.put(Color.BLUE, transformListToMap(blueList)); // al posto di null il metodo che gli do in input un pezzo di lista e mi crea la mappa
+        playersPositions.put(Color.RED, transformListToMap(redList));
+        playersPositions.put(Color.GREEN, transformListToMap(greenList));
+        playersPositions.put(Color.ORANGE, transformListToMap(orangeList));
+
+        return playersPositions;
+    }
+
+    private List<Position> portionOfList(final List<Position> newList, final int index) {
+        List<Position> tempList = new ArrayList<>();
+        final int upperExtreme = (index * newList.size()) / NUMBER_OF_PLAYERS;
+        final int lowerExtreme = ((index + 1) * newList.size()) / NUMBER_OF_PLAYERS;
+
+        for(int i = upperExtreme ; i < lowerExtreme ; i++) {
+            tempList.add(newList.get(i));
+        }
+
+        return tempList;
+    }
+
+    private Map<Integer, Position> transformListToMap(final List<Position> partialList) {
+        List<Position> newPartialListUpdated = updateList(partialList);
+        Map<Integer, Position> positionMap = new HashMap<>();
+
+        for(int i = 0; i < newPartialListUpdated.size() ; i++) {
+            positionMap.put(i, newPartialListUpdated.get(i));
+        }
+
+        return positionMap;
+    }
+
+    private List<Position> updateList(final List<Position> newList) {
+        return newList.stream()
+                    .map(p -> new Position(p.x() * this.mainFrameHeight, p.y() * this.mainFrameHeight))
+                    .collect(Collectors.toList());
     }
 
     @Override
     public Map<Integer, Position> createPropertyPositions() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createPropertyPositions'");
+        return null;
     }
 
     @Override
     public Map<Integer, Position> createHousesPositions() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createHousesPositions'");
+        return null;
     }
 
     @Override
     public Map<Color, Position> createPrisonPositions() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createPrisonPositions'");
+        return null;
     }
 
 }

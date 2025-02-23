@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 
-import it.unibo.monoopoly.view.panel.impl.GameBoardPanel.Position;
+import it.unibo.monoopoly.view.panel.impl.Position;
 
 /**
  * create Position.
