@@ -23,7 +23,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput cellList(List<Integer> list) {
+    public DataBuilderInput cellList(final List<Integer> list) {
         this.cellList = Optional.of(list);
         return this;
     }
@@ -33,7 +33,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput dices(Pair dices) {
+    public DataBuilderInput dices(final Pair dices) {
         this.dices = Optional.of(dices);
         return this;
     }
@@ -43,7 +43,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput event(Event event) {
+    public DataBuilderInput event(final Event event) {
         this.event = Optional.of(event);
         return this;
     }
@@ -53,7 +53,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput setMode(boolean mode) {
+    public DataBuilderInput setMode(final boolean mode) {
         this.setMode = Optional.of(mode);
         return this;
     }
@@ -63,7 +63,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput text(String text) {
+    public DataBuilderInput text(final String text) {
         this.text = Optional.of(text);
         return this;
     }
@@ -73,7 +73,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput valueToPay(Integer value) {
+    public DataBuilderInput valueToPay(final Integer value) {
         this.valueToPAy = Optional.of(value);
         return this;
     }

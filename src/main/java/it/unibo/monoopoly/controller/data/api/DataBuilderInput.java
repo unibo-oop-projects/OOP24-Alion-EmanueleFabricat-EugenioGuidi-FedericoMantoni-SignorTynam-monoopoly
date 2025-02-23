@@ -40,7 +40,7 @@ public interface DataBuilderInput {
 
     /**
      * 
-     * @param name
+     * @param text
      * @return this.
      */
     DataBuilderInput text(String text);
