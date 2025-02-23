@@ -1,54 +1,47 @@
 package it.unibo.monoopoly.controller.state.impl;
 
+import java.util.Optional;
+
+import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
+import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
+import it.unibo.monoopoly.model.main.api.MainModel;
+import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
+import it.unibo.monoopoly.view.state.api.ViewState;
 
-/**
- * comment.
- */
 public class PrisonControllerState implements ControllerState {
-    /**
-     *
-     * {@inheritDoc}
-     */
+
+    private final ModelState modelState;
+    private final ViewState viewState;
+    private final MainModel mainModel;
+
+    public PrisonControllerState(ModelState modelState, ViewState viewState, MainModel mainModel) {
+        this.modelState = modelState;
+        this.viewState = viewState;
+        this.mainModel = mainModel;
+    }
+
     @Override
     public void startState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'startState'");
+        boolean goToJail = modelState.verify();
+        viewState.setMode(goToJail);
+
+        DataBuilderInput dataBuilder = new DataBuilderInputImpl();
+        if (goToJail) {
+            viewState.visualize(dataBuilder.build());
+            modelState.doAction(new DataOutput(Optional.empty(), Optional.empty()));
+        } else {
+            Player currentPlayer = mainModel.getGameBoard().getCurrentPlayer();
+            boolean hasCard = currentPlayer.getFreeJailCards() > 0;
+            viewState.visualize(dataBuilder.mode(hasCard).build());
+            modelState.doAction(new DataOutput(Optional.empty(), Optional.empty()));
+        }
     }
 
-    /**
-     *
-     * {@inheritDoc}
-     */
     @Override
-    public void continueState(final DataOutput dataOutput) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'continueState'");
+    public void continueState(DataOutput data) {
+        modelState.closeState();
     }
-    /*
-     * private final ModelState<Boolean, String> modelState;
-     * private final ViewState<String, String> viewState;
-     * 
-     * public PrisonControllerState(ModelState<Boolean, String> modelState,
-     * ViewState<String, String> viewState) {
-     * this.modelState = modelState;
-     * this.viewState = viewState;
-     * }
-     * 
-     * @Override
-     * public void startState() {
-     * modelState.verify();
-     * viewState.setMode("Prison State");
-     * viewState.visualize(modelState.getData());
-     * }
-     * 
-     * @Override
-     * public void continueState(Boolean input) {
-     * modelState.doAction(input);
-     * modelState.closeState();
-     * viewState.visualize(modelState.getData());
-     * }
-     */
 }
