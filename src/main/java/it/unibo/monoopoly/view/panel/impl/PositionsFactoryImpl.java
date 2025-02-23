@@ -37,7 +37,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
         final List<Position> greenList = portionOfList(newList, index++);
         final List<Position> orangeList = portionOfList(newList, index++);
 
-        playersPositions.put(Color.BLUE, transformListToMap(blueList)); // al posto di null il metodo che gli do in input un pezzo di lista e mi crea la mappa
+        playersPositions.put(Color.BLUE, transformListToMap(blueList));
         playersPositions.put(Color.RED, transformListToMap(redList));
         playersPositions.put(Color.GREEN, transformListToMap(greenList));
         playersPositions.put(Color.ORANGE, transformListToMap(orangeList));
