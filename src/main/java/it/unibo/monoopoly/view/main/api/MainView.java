@@ -37,4 +37,9 @@ public interface MainView extends View {
      */
     ViewState getViewState();
 
+    /**
+     * Update the {@link View}
+     */
+    void update();
+
 }
