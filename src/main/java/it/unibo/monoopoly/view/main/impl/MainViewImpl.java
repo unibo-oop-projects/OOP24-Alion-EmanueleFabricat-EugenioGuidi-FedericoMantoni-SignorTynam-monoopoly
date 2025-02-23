@@ -149,4 +149,10 @@ public class MainViewImpl extends AbstractView implements MainView {
             default -> throw new IllegalArgumentException();
         };
     }
+
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
 }
