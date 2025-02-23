@@ -17,12 +17,23 @@ public class PrisonControllerState implements ControllerState {
     private final ViewState viewState;
     private final MainModel mainModel;
 
+    /**
+     * Constructs the prison controller state.
+     * 
+     * @param modelState
+     * @param viewState
+     * @param mainModel
+     */
     public PrisonControllerState(ModelState modelState, ViewState viewState, MainModel mainModel) {
         this.modelState = modelState;
         this.viewState = viewState;
         this.mainModel = mainModel;
     }
 
+    /**
+     * Starts the state.
+     * 
+     */
     @Override
     public void startState() {
         boolean goToJail = modelState.verify();
@@ -40,6 +51,11 @@ public class PrisonControllerState implements ControllerState {
         }
     }
 
+    /**
+     * Continues the state.
+     * 
+     * @param data
+     */
     @Override
     public void continueState(DataOutput data) {
         modelState.closeState();
