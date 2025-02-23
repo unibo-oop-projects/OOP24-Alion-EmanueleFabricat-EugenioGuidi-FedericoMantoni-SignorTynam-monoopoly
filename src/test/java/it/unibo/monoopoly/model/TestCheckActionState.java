@@ -22,6 +22,9 @@ import it.unibo.monoopoly.model.state.impl.ModelCardState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 
+/**
+ * Test for the {@link ModelCheckActionState}.
+ */
 class TestCheckActionState {
 
     private static final int BUYABLE_CELL = 1;

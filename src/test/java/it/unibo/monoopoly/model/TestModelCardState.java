@@ -22,11 +22,11 @@ import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
 
 /**
- * Tester of {@link Banker}
+ * Tester of {@link Banker}.
  */
-public class TestModelCardState {
-    MainModel model;
-    private final static int NUMBER_OF_CARD = 31;
+class TestModelCardState {
+    private MainModel model;
+    private static final int NUMBER_OF_CARD = 31;
 
     /**
      * Initialization for the test.
@@ -39,16 +39,16 @@ public class TestModelCardState {
     /* */
     @Test
     void testSetNewState() {
-        ModelCardState state = new ModelCardState(model);
+        final ModelCardState state = new ModelCardState(model);
         for (int i = 0; i < NUMBER_OF_CARD; i++) {
-            final int startAmount = model.getGameBoard().getCurrentPlayer().getMoneyAmount(); 
+            final int startAmount = model.getGameBoard().getCurrentPlayer().getMoneyAmount();
             state.doAction(new DataOutput(Optional.empty(), Optional.empty()));
             state.closeState();
             switch (getActualEvent(model)) {
                 case Event.FREE_CARD:
-                    assertTrue(1 == model.getGameBoard().getCurrentPlayer().getFreeJailCards() ||
-                    2 == model.getGameBoard().getCurrentPlayer().getFreeJailCards());
-                    assertInstanceOf(ModelUnmortgageState.class, model.getState());
+                    assertTrue(1 == model.getGameBoard().getCurrentPlayer().getFreeJailCards()
+                            || 2 == model.getGameBoard().getCurrentPlayer().getFreeJailCards());
+                    assert (model.getState() instanceof ModelUnmortgageState);
                     break;
                 case Event.MOVE_CARD:
                     assertInstanceOf(ModelMovementState.class, model.getState());
@@ -64,12 +64,13 @@ public class TestModelCardState {
                     assertInstanceOf(ModelUnmortgageState.class, model.getState());
                     break;
                 default:
-                    throw new IllegalStateException("ModelCardState should not be in a state different from the predetermined ones.");
+                    throw new IllegalStateException(
+                            "ModelCardState should not be in a state different from the predetermined ones.");
             }
         }
     }
 
-    private Event getActualEvent(MainModel model) {
+    private Event getActualEvent(final MainModel model) {
         return model.getGameBoard().getDeck().getActualCard().getMessage().typeOfAction();
     }
 }

@@ -15,21 +15,21 @@ import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.deck.impl.DeckImpl;
 /**
- * Tester of {@link Deck} and {@link Card}
+ * Tester of {@link Deck} and {@link Card}.
  */
 class TestDeckAndCards {
     private Deck deck;
-    private final static int NUMBER_OF_FREE_CARD = 2;
-    private final static int NUMBER_OF_MOVE = 8;
-    private final static int NUMBER_OF_PAY = 9;
-    private final static int NUMBER_OF_PRISON = 2;
-    private final static int NUMBER_OF_RECEIVE = 10;
-    private final static int NUMBER_OF_ALL_CARDS = 31;
+    private static final int NUMBER_OF_FREE_CARD = 2;
+    private static final int NUMBER_OF_MOVE = 8;
+    private static final int NUMBER_OF_PAY = 9;
+    private static final int NUMBER_OF_PRISON = 2;
+    private static final int NUMBER_OF_RECEIVE = 10;
+    private static final int NUMBER_OF_ALL_CARDS = 31;
     /**
      * Initialization for the test.
      */
     @BeforeEach
-    void init(){
+    void init() {
         this.deck = new DeckImpl();
     }
     /**
@@ -62,7 +62,7 @@ class TestDeckAndCards {
         );
         try {
             this.deck.draw();
-        } catch (NoSuchElementException e) {
+        } catch (final NoSuchElementException e) {
             catchIt = true;
         }
         assertEquals(false, catchIt, "exception thrown");
@@ -75,7 +75,7 @@ class TestDeckAndCards {
      * @return the {@link List} composed of each card drawn in 39 draws.
     */
     List<Card> getList(final int times) {
-        List<Card> cards = new LinkedList<>();
+        final List<Card> cards = new LinkedList<>();
         for (int i = 0; i < times; i++) {
             this.deck.draw();
             cards.add(this.deck.getActualCard());
@@ -87,16 +87,16 @@ class TestDeckAndCards {
      * the insertion or removal of the 'Go to Jail' card works.
      */
     @Test
-    void TestJailOperations() {
-        List<Card> cards = new LinkedList<>();
+    void testJailOperations() {
+        final List<Card> cards = new LinkedList<>();
         getList(NUMBER_OF_ALL_CARDS);
-        cards.addAll(getList(NUMBER_OF_ALL_CARDS-2));
+        cards.addAll(getList(NUMBER_OF_ALL_CARDS - 2));
         assertEquals(0, cards.stream()
                 .map(c -> c.getMessage().typeOfAction())
                 .filter(a -> a.equals(Event.FREE_CARD))
                 .count()
         );
-        this.deck.addPrisonCard();        
+        this.deck.addPrisonCard();
         this.deck.addPrisonCard();
         cards.removeAll(cards);
         cards.addAll(getList(NUMBER_OF_ALL_CARDS));

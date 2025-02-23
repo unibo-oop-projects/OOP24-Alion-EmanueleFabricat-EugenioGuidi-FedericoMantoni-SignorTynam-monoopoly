@@ -22,6 +22,7 @@ import it.unibo.monoopoly.model.player.impl.PlayerImpl;
  */
 class BuildableImplTest {
 
+    private static final int MAX_HOUSES = 5;
     static final int ZERO_HOUSE = 0;
     static final int ONE_HOUSE = 1;
     static final int TWO_HOUSE = 2;
@@ -135,7 +136,7 @@ class BuildableImplTest {
     }
 
     @Test
-    public void testBuildHouse() {
+    void testBuildHouse() {
         this.property.setOwner(FIRSTOWNER);
         this.property.buildHouse();
         assertEquals(1, this.property.getHousesNumber());
@@ -145,12 +146,12 @@ class BuildableImplTest {
             this.property.buildHouse();
         }
 
-        assertEquals(5, this.property.getHousesNumber());
-        assertThrows(IllegalStateException.class, () -> this.property.buildHouse());
+        assertEquals(MAX_HOUSES, this.property.getHousesNumber());
+        assertThrows(IllegalStateException.class, this.property::buildHouse);
     }
 
     @Test
-    public void testSellHouse() {
+    void testSellHouse() {
         this.property.setOwner(FIRSTOWNER);
         this.property.buildHouse();
         this.property.buildHouse();
@@ -164,15 +165,15 @@ class BuildableImplTest {
         this.property.sellHouse();
         assertEquals(0, this.property.getHousesNumber());
         assertEquals(RENTAL_MAP.get(0), this.property.getRentalValue());
-        assertThrows(IllegalStateException.class, () -> this.property.sellHouse());
+        assertThrows(IllegalStateException.class, this.property::sellHouse);
     }
 
     @Test
-    public void testBuildAndSellHouseOnMortgagedProperty() {
+    void testBuildAndSellHouseOnMortgagedProperty() {
         this.property.setMortgage();
         assertTrue(this.property.isMortgaged());
 
-        assertThrows(IllegalStateException.class, () -> this.property.buildHouse());
-        assertThrows(IllegalStateException.class, () -> this.property.sellHouse());
+        assertThrows(IllegalStateException.class, this.property::buildHouse);
+        assertThrows(IllegalStateException.class, this.property::sellHouse);
     }
 }
