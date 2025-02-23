@@ -1,11 +1,9 @@
 package it.unibo.monoopoly.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
-import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.model.notary.api.Notary;
@@ -27,6 +24,10 @@ import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 
 class TestCheckActionState {
 
+    private static final int BUYABLE_CELL = 1;
+    private static final int CARD_CELL = 2;
+    private static final int TAX_CELL = 4;
+    private static final int PRISON_CELL = 30;
     private MainModel model;
     private ModelState checkActionState;
 
@@ -38,7 +39,7 @@ class TestCheckActionState {
 
     @Test
     void testBuyProperty() {
-        this.model.getGameBoard().getCurrentPlayer().changePosition(1);
+        this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertTrue(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().buyProperty(true).build());
         this.checkActionState.closeState();
@@ -47,7 +48,7 @@ class TestCheckActionState {
 
     @Test
     void testNoBuyProperty() {
-        this.model.getGameBoard().getCurrentPlayer().changePosition(1);
+        this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertTrue(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().buyProperty(false).build());
         this.checkActionState.closeState();
@@ -57,9 +58,9 @@ class TestCheckActionState {
     @Test
     void testMyPropertyCell() {
         final Notary notary = new NotaryImpl();
-        final Buyable cell = (Buyable) this.model.getGameBoard().getCell(1);
+        final Buyable cell = (Buyable) this.model.getGameBoard().getCell(BUYABLE_CELL);
         notary.buyProperty(this.model.getGameBoard().getCurrentPlayer(), cell);
-        this.model.getGameBoard().getCurrentPlayer().changePosition(1);
+        this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
@@ -69,10 +70,10 @@ class TestCheckActionState {
     @Test
     void testOtherPropertyCell() {
         final Notary notary = new NotaryImpl();
-        final Buyable cell = (Buyable) this.model.getGameBoard().getCell(1);
+        final Buyable cell = (Buyable) this.model.getGameBoard().getCell(BUYABLE_CELL);
         notary.buyProperty(this.model.getGameBoard().getCurrentPlayer(), cell);
         this.model.getGameBoard().getNextPlayer();
-        this.model.getGameBoard().getCurrentPlayer().changePosition(1);
+        this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
@@ -90,7 +91,7 @@ class TestCheckActionState {
 
     @Test
     void cardCell() {
-        this.model.getGameBoard().getCurrentPlayer().changePosition(2);
+        this.model.getGameBoard().getCurrentPlayer().changePosition(CARD_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
@@ -99,7 +100,7 @@ class TestCheckActionState {
 
     @Test
     void taxCell() {
-        this.model.getGameBoard().getCurrentPlayer().changePosition(4);
+        this.model.getGameBoard().getCurrentPlayer().changePosition(TAX_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
@@ -108,7 +109,7 @@ class TestCheckActionState {
 
     @Test
     void goInPrisonCell() {
-        this.model.getGameBoard().getCurrentPlayer().changePosition(30);
+        this.model.getGameBoard().getCurrentPlayer().changePosition(PRISON_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
