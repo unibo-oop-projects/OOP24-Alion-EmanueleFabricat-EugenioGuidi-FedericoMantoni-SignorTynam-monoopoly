@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +47,7 @@ public class TestModelBankerState {
         state.doAction(new DataBuilderOutputImpl().build());
         assertEquals(0, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();
-        assert (this.model.getState() instanceof ModelUnmortgageState);
+        assertInstanceOf(ModelUnmortgageState.class, this.model.getState());
     }
 
     /* */
@@ -87,7 +88,7 @@ public class TestModelBankerState {
         assertEquals(mortgageAmount1 + START_AMOUNT, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         property.removeMortgage();
         state.closeState();
-        assert (this.model.getState() instanceof ModelBankerState);
+        assertInstanceOf(ModelBankerState.class, this.model.getState());
         assertEquals(true, this.model.getState().verify());
         assertEquals(Optional.of(Event.MORTGAGE_PROPERTY), this.model.getEvent());
         state.doAction(new DataBuilderOutputImpl().cellChoose(BUILDABLE_CELL1).build());
@@ -113,6 +114,6 @@ public class TestModelBankerState {
         state.doAction(new DataBuilderOutputImpl().build());
         assertEquals(0, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();
-        assert (this.model.getState() instanceof ModelMovementState);
+        assertInstanceOf(ModelMovementState.class, this.model.getState());
     }
 }

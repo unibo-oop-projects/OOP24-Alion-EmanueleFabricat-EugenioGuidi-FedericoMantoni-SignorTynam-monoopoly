@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -38,24 +39,24 @@ class TestDeckAndCards {
     @Test
     void testNumberOfCardsAndRestoreDeck() {
         boolean catchIt = false;
-        final List<Card> cards = getList(NUMBER_OF_ALL_CARDS);
-        assert (cards.stream()
+        List<Card> cards = getList(NUMBER_OF_ALL_CARDS);
+        assertTrue(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.FREE_CARD)
                 .count() == NUMBER_OF_FREE_CARD
         );
-        assert (cards.stream()
+        assertTrue(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.MOVE_CARD)
                 .count() == NUMBER_OF_MOVE
         );
-        assert (cards.stream()
+        assertTrue(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.CARD_PAYMENT)
                 .count() == NUMBER_OF_PAY
         );
-        assert (cards.stream()
+        assertTrue(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.PRISON)
                 .count() == NUMBER_OF_PRISON
         );
-        assert (cards.stream()
+        assertTrue(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.RECEIVE_CARD)
                 .count() == NUMBER_OF_RECEIVE
         );

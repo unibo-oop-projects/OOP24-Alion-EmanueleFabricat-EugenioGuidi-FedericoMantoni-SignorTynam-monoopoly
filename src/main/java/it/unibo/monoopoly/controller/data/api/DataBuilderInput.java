@@ -36,7 +36,7 @@ public interface DataBuilderInput {
      * @param mode
      * @return this.
      */
-    DataBuilderInput setMode(boolean mode);
+    DataBuilderInput mode(boolean mode);
 
     /**
      * 

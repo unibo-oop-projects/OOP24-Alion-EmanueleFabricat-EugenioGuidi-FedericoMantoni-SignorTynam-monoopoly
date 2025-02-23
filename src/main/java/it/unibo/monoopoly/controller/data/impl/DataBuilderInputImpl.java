@@ -14,7 +14,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
     private Optional<Event> event = Optional.empty();
     private Optional<Integer> valueToPAy = Optional.empty();
     private Optional<Pair> dices = Optional.empty();
-    private Optional<Boolean> setMode = Optional.empty();
+    private Optional<Boolean> mode = Optional.empty();
     private Optional<List<Integer>> cellList = Optional.empty();
     private Optional<String> text = Optional.empty();
 
@@ -53,8 +53,8 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput setMode(final boolean mode) {
-        this.setMode = Optional.of(mode);
+    public DataBuilderInput mode(final boolean mode) {
+        this.mode = Optional.of(mode);
         return this;
     }
 
@@ -84,7 +84,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      */
     @Override
     public DataInput build() {
-        return new DataInput(this.cellList, this.dices, this.event, this.setMode, this.text, this.valueToPAy);
+        return new DataInput(this.cellList, this.dices, this.event, this.mode, this.text, this.valueToPAy);
     }
 
 }
