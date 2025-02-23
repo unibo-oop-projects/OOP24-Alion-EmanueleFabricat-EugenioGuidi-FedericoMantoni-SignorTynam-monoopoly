@@ -62,22 +62,18 @@ public class ModelBankerState implements ModelState {
      */
     @Override
     public void doAction(final DataOutput data) {
+        if (data.cellChoose().isEmpty()) {
+            return;
+        }
         final Cell chosen = this.mainModel.getGameBoard().getCell(data.cellChoose().get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             getPlayer().receive(((Buildable) chosen).sellHouse());
         } else {
             getPlayer().receive(((Buyable) chosen).getMortgageValue());
-            ((Buyable) chosen).isMortgaged();
+            ((Buyable) chosen).setMortgage();
         }
         this.verify();
     }
-
-    /*private Optional<List<Integer>> cellToIndex(final Optional<List<Buyable>> propertyList) {
-        return Optional.of(
-                propertyList.get().stream()
-                .map(this.turn.getCellsList()::indexOf)
-                .toList());
-    }*/
     /**
      * {@inheritDoc}
      * In this specific case,
@@ -88,7 +84,6 @@ public class ModelBankerState implements ModelState {
      */
     @Override
     public void closeState() {
-        
         if (getPlayer().isBankrupt()) {
             this.mainModel.nextTurn();
         } else if (isIndebted) {
