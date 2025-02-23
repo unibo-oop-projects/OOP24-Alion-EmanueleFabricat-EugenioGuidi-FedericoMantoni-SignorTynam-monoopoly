@@ -1,0 +1,125 @@
+package it.unibo.monoopoly.model;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.main.api.MainModel;
+import it.unibo.monoopoly.model.main.impl.MainModelImpl;
+import it.unibo.monoopoly.model.notary.api.Notary;
+import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
+import it.unibo.monoopoly.model.state.api.ModelState;
+import it.unibo.monoopoly.model.state.impl.ModelBankerState;
+import it.unibo.monoopoly.model.state.impl.ModelBuildHouseState;
+import it.unibo.monoopoly.model.state.impl.ModelCardState;
+import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
+import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
+
+class TestCheckActionState {
+
+    private MainModel model;
+    private ModelState checkActionState;
+
+    @BeforeEach
+    void init() {
+        this.model = new MainModelImpl(List.of("Poggers"));
+        this.checkActionState = new ModelCheckActionState(model); 
+    }
+
+    @Test
+    void testBuyProperty() {
+        this.model.getGameBoard().getCurrentPlayer().changePosition(1);
+        assertTrue(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().buyProperty(true).build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelBankerState.class, model.getState());
+    }
+
+    @Test
+    void testNoBuyProperty() {
+        this.model.getGameBoard().getCurrentPlayer().changePosition(1);
+        assertTrue(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().buyProperty(false).build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelBuildHouseState.class, model.getState());
+    }
+
+    @Test
+    void testMyPropertyCell() {
+        final Notary notary = new NotaryImpl();
+        final Buyable cell = (Buyable) this.model.getGameBoard().getCell(1);
+        notary.buyProperty(this.model.getGameBoard().getCurrentPlayer(), cell);
+        this.model.getGameBoard().getCurrentPlayer().changePosition(1);
+        assertFalse(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelBuildHouseState.class, model.getState());
+    }
+
+    @Test
+    void testOtherPropertyCell() {
+        final Notary notary = new NotaryImpl();
+        final Buyable cell = (Buyable) this.model.getGameBoard().getCell(1);
+        notary.buyProperty(this.model.getGameBoard().getCurrentPlayer(), cell);
+        this.model.getGameBoard().getNextPlayer();
+        this.model.getGameBoard().getCurrentPlayer().changePosition(1);
+        assertFalse(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelBankerState.class, model.getState());
+    }
+
+    @Test
+    void noActionCell() {
+        assertFalse(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelBuildHouseState.class, model.getState());
+    }
+
+    @Test
+    void cardCell() {
+        assertFalse(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelCardState.class, model.getState());
+    }
+
+    @Test
+    void taxCell() {
+        this.model.getGameBoard().getCurrentPlayer().changePosition(4);
+        assertFalse(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelBankerState.class, model.getState());
+    }
+
+    @Test
+    void railRoadCell() {
+        this.model.getGameBoard().getCurrentPlayer().changePosition(5);
+        assertFalse(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelBankerState.class, model.getState());
+    }
+
+    @Test
+    void goInPrisonCell() {
+        this.model.getGameBoard().getCurrentPlayer().changePosition(30);
+        assertFalse(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
+        this.checkActionState.closeState();
+        assertInstanceOf(ModelPrisonState.class, model.getState());
+    }
+
+}
