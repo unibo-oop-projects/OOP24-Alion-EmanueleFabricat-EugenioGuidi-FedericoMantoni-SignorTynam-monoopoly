@@ -56,7 +56,7 @@ public class ModelCheckActionState implements ModelState {
     public void doAction(final DataOutput data) {
         if (data.buyProperty().isEmpty()) {
             if (getActualCell().isBuyable()) {
-                this.actualEvent = notary.checkBuyedProperty(getActualPlayer(), getActualCell());
+                this.actualEvent = notary.checkOwnedProperty(getActualPlayer(), getActualCell());
             } else {
                 checkFunctionalCell();
             }

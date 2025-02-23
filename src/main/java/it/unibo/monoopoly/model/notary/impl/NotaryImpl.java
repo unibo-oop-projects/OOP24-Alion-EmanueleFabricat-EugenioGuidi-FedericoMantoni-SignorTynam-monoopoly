@@ -47,7 +47,7 @@ public class NotaryImpl implements Notary {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Event> checkBuyedProperty(final Player player, final Cell cell) {
+    public Optional<Event> checkOwnedProperty(final Player player, final Cell cell) {
         if (!cell.isBuyable()) {
             throw new IllegalArgumentException("Expected a buyable cell in input");
         }

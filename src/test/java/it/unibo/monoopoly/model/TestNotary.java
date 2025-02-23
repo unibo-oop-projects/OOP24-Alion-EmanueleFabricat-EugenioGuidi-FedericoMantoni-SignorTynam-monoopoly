@@ -47,13 +47,13 @@ class TestNotary {
     @Test
     void testCheckBuyedProperty() {
         final Exception exception = assertThrows(IllegalArgumentException.class,
-                () -> notary.checkBuyedProperty(player1, notBuyableProperty));
+                () -> notary.checkOwnedProperty(player1, notBuyableProperty));
         assertEquals("Expected a buyable cell in input", exception.getMessage());
         notary.buyProperty(player2, buildableProperty);
-        assertEquals(Optional.of(Event.RENT_PAYMENT), notary.checkBuyedProperty(player1, this.buildableProperty));
+        assertEquals(Optional.of(Event.RENT_PAYMENT), notary.checkOwnedProperty(player1, this.buildableProperty));
         this.buildableProperty.setMortgage();
-        assertEquals(Optional.empty(), notary.checkBuyedProperty(player1, this.buildableProperty));
-        assertEquals(Optional.empty(), notary.checkBuyedProperty(player2, this.buildableProperty));
+        assertEquals(Optional.empty(), notary.checkOwnedProperty(player1, this.buildableProperty));
+        assertEquals(Optional.empty(), notary.checkOwnedProperty(player2, this.buildableProperty));
     }
 
     @Test
