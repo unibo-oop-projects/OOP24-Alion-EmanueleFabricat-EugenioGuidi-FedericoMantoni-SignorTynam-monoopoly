@@ -1,8 +1,6 @@
 package it.unibo.monoopoly.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,13 +16,12 @@ import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.model.state.impl.ModelBankerState;
 import it.unibo.monoopoly.model.state.impl.ModelMovementState;
-import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
 
 /**
  * Tester of {@link Banker}
  */
-public class TestBanker {
+public class TestModelBankerState {
     MainModel model;
     ModelBankerState state;
     private final static int START_AMOUNT = 1500;
