@@ -21,21 +21,13 @@ import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.view.panel.api.PositionsFactory;
+import it.unibo.monoopoly.view.panel.impl.Position;
 
 /**
  * mettere commento qui, tutti i numeri molotiplicativi vengono percepiti come
  * magic number.
  */
 public class GameBoardPanel extends PanelAdapter {
-
-    /**
-     * This record stores the x and y coordinates of a position in the gameBoardPanel.
-     */
-    public record Position(int x, int y) {}
-
-    private static final List<String> FILES_NAMES = List.of("players_positions.json", 
-                                                            "property_positions.json", 
-                                                            "houses_positions.json");
 
     private final Map<Color, Map<Integer, Position>> playersPositions;
     private final Map<Integer, Position> propertyPositions;
