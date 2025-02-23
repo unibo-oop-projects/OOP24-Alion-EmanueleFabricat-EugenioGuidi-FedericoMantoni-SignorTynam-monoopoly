@@ -58,22 +58,14 @@ public class ModelUnmortgageState implements ModelState {
     public void doAction(final DataOutput data) {
         this.dataOutput = data;
         if (data.cellChoose().isPresent()) {
-            unmortgageByIndex(data.cellChoose());
+            buyableFromIndex(data.cellChoose()).removeMortgage();
             this.mainModel.getGameBoard().getCurrentPlayer().pay(
-                    indexToBuyable(data.cellChoose()).getMortgageValue() * 110 / 100);
+                    buyableFromIndex(data.cellChoose()).getMortgageValue() * 110 / 100);
         }
     }
 
-    private void unmortgageByIndex(final Optional<Integer> selectedCell) {
-        indexToBuyable(selectedCell).removeMortgage();
-    }
-
-    private Buyable indexToBuyable(final Optional<Integer> selectedCell) {
-        return this.mainModel.getGameBoard().getCellsList().stream()
-                .filter(c -> c instanceof Buyable)
-                .map(c -> (Buyable) c)
-                .toList()
-                .get(selectedCell.get());
+    private Buyable buyableFromIndex(final Optional<Integer> selectedCell) {
+        return (Buyable)(this.mainModel.getGameBoard().getCell(selectedCell.get()));
     }
 
     private boolean isPayable(final Buyable property) {
@@ -95,7 +87,7 @@ public class ModelUnmortgageState implements ModelState {
         if (makeState && dataOutput.cellChoose().isPresent()) {
             this.mainModel.setState(new ModelUnmortgageState(mainModel));
         } else {
-            this.mainModel.setState(new BuildHouseModelState());
+            this.mainModel.setState(new ModelBuildHouseState(mainModel));
         }
     }
 

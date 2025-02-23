@@ -8,8 +8,8 @@ import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
  * manca commenti qui.
  */
 public class DataBuilderOutputImpl implements DataBuilderOutput {
-    private Optional<Boolean> buyProperty;
-    private Optional<Integer> cellChoose;
+    private Optional<Boolean> buyProperty = Optional.empty();
+    private Optional<Integer> cellChoose = Optional.empty();
 
     /**
      *
