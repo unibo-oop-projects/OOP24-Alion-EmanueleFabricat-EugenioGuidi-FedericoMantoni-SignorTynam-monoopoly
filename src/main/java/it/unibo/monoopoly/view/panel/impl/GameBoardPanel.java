@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -35,12 +36,12 @@ public class GameBoardPanel extends PanelAdapter {
                                                             "property_positions.json", 
                                                             "houses_positions.json");
 
-    private final Map<String, Map<Integer, Position>> playersPositions = new HashMap<>();
+    private final Map<Color, Map<Integer, Position>> playersPositions = new HashMap<>();
     private final Map<Integer, Position> propertyPositions = new HashMap<>();
     private final Map<Integer, Position> housesPositions = new HashMap<>();
     private final Map<String, Position> prisonPositions = new HashMap<>();
     private final int mainFrameHeight;
-    private final List<Triple<String, Integer, Color>> playersColors;
+    private final Map<String, Color> playersColors;
     private final Image backgroundImage;
 
     /**
@@ -49,18 +50,23 @@ public class GameBoardPanel extends PanelAdapter {
      * @param mainFrameHeight
      * @param mainFrameWidth
      */
-    public GameBoardPanel(final int mainFrameHeight, final List<Triple<String, Integer, Color>> playersColoros) {
+    public GameBoardPanel(final int mainFrameHeight, final List<Triple<String, Integer, Color>> initializedList) {
         this.mainFrameHeight = mainFrameHeight;
-        this.playersColors = playersColoros;
+        this.playersColors = initializePlayersColoros(initializedList);
 
         final URL imgURL = ClassLoader.getSystemResource("images/monoopoly_gameboard_image.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
 
-        initializeMaps();
+        initializePositionsMaps();
     }
 
-    private void initializeMaps() {
+    private Map<String, Color> initializePlayersColoros(final List<Triple<String, Integer, Color>> initializedList) {
+        return initializedList.stream()
+                            .collect(Collectors.toMap(Triple::getLeft, Triple::getRight));
+    }
+
+    private void initializePositionsMaps() {
 
     }
 
