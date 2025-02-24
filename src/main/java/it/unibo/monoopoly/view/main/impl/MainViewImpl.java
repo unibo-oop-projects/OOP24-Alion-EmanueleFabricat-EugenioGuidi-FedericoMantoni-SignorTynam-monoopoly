@@ -44,7 +44,7 @@ import it.unibo.monoopoly.view.state.impl.ViewUnmortgageState;
  */
 public class MainViewImpl extends AbstractView implements MainView {
 
-    private final AbstractPanel gamePanel;
+    private final GamePanel gamePanel;
     private final MainController controller;
     private ViewState viewState;
     private final List<Color> colors;
@@ -151,7 +151,6 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        this.gamePanel.update(this.controller.getViewUpdateData());
     }
 }
