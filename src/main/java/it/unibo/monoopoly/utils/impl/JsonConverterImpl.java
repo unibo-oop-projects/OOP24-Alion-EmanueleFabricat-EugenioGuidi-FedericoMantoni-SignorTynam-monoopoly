@@ -46,4 +46,21 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
         return out;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<List<T>> jsonToListOfList(final InputStream fileJson) {
+        final List<List<T>> out;
+        try {
+            final JavaType outType = mapper.getTypeFactory()
+                .constructCollectionType(List.class, 
+                    mapper.getTypeFactory().constructCollectionType(List.class, type));
+            out = mapper.readValue(fileJson, outType);
+        } catch (final IOException e) {
+            throw new UncheckedIOException("Failed to convert the Json file", e);
+        }
+        return out;
+    }
+
 }

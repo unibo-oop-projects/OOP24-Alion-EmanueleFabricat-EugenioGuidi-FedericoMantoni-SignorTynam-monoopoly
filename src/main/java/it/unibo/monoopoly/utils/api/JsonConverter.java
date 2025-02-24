@@ -17,4 +17,11 @@ public interface JsonConverter<T> {
      */
     List<T> jsonToList(InputStream fileJson);
 
+    /**
+     * Convert a json file in a list of list of type T.
+     * @param fileJson the path of the file to convert.
+     * @return the converted list of list.
+     */
+    List<List<T>> jsonToListOfList(final InputStream fileJson);
+
 }
