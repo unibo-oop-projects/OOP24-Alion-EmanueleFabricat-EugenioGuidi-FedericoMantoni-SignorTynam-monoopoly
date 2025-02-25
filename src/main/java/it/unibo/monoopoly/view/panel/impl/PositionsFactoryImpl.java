@@ -46,9 +46,9 @@ public class PositionsFactoryImpl implements PositionsFactory {
 
     @Override
     public Map<Integer, Position> createPropertyPositions() {
-        Map<Integer, Position> positionsFromJson = this.converter.jsonToMap(ClassLoader.getSystemResourceAsStream(PROPERTY_POSITIONS_FILE_NAME));
+        Map<Integer, Position> propertyPositionsFromJson = this.converter.jsonToMap(ClassLoader.getSystemResourceAsStream(PROPERTY_POSITIONS_FILE_NAME));
 
-        return updateMap(positionsFromJson);
+        return updateMap(propertyPositionsFromJson);
     }
 
     private Map<Integer, Position> updateMap(final Map<Integer, Position> map) {
@@ -63,7 +63,9 @@ public class PositionsFactoryImpl implements PositionsFactory {
 
     @Override
     public Map<Integer, Position> createHousesPositions() {
-        return null;
+        Map<Integer, Position> housesPositionsFromJson = this.converter.jsonToMap(ClassLoader.getSystemResourceAsStream(HOUSES_POSITIONS_FILE_NAME));
+
+        return updateMap(housesPositionsFromJson);
     }
 
     @Override
