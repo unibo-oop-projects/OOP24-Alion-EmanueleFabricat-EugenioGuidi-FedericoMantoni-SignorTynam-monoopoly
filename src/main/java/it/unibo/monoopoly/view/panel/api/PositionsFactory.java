@@ -11,7 +11,7 @@ import it.unibo.monoopoly.view.panel.impl.Position;
  */
 public interface PositionsFactory {
 
-    Map<Color, Map<Integer, Position>> createPlayersPositions();
+    Map<Color, List<Position>> createPlayersPositions();
 
     Map<Integer, Position> createPropertyPositions();
 
