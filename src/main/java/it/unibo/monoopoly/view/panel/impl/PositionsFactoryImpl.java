@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.Color;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -37,15 +38,27 @@ public class PositionsFactoryImpl implements PositionsFactory {
         return playersPositions;
     }
 
-    private List<Position> updateList(final List<Position> newList) {
-        return newList.stream()
+    private List<Position> updateList(final List<Position> list) {
+        return list.stream()
                     .map(p -> new Position(p.x() * this.mainFrameHeight, p.y() * this.mainFrameHeight))
                     .collect(Collectors.toList());
     }
 
     @Override
     public Map<Integer, Position> createPropertyPositions() {
-        return null;
+        Map<Integer, Position> positionsFromJson = this.converter.jsonToMap(ClassLoader.getSystemResourceAsStream(PROPERTY_POSITIONS_FILE_NAME));
+
+        return updateMap(positionsFromJson);
+    }
+
+    private Map<Integer, Position> updateMap(final Map<Integer, Position> map) {
+        Map<Integer, Position> newMap = new HashMap<>();
+        for(var entry : map.entrySet()) {
+            newMap.put(entry.getKey(), new Position(entry.getValue().x() * this.mainFrameHeight,
+                                                    entry.getValue().y() * this.mainFrameHeight));
+        }
+
+        return newMap;
     }
 
     @Override
