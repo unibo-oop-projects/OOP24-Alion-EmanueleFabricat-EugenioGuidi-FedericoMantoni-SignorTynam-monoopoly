@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,9 +59,23 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
                     mapper.getTypeFactory().constructCollectionType(List.class, type));
             out = mapper.readValue(fileJson, outType);
         } catch (final IOException e) {
-            throw new UncheckedIOException("Failed to convert the Json file", e);
+            throw new UncheckedIOException("Failed to convert the Json file to List of List", e);
         }
         return out;
+    }
+
+    @Override
+    public Map<Integer, T> jsonToMap(InputStream fileJson) {
+        final Map<Integer, T> out;
+    try {
+        final JavaType outType = mapper.getTypeFactory()
+            .constructMapType(Map.class, Integer.class, type);
+
+        out = mapper.readValue(fileJson, outType);
+    } catch (IOException e) {
+        throw new UncheckedIOException("Failed to convert the Json file to Map", e);
+    }
+    return out;
     }
 
 }
