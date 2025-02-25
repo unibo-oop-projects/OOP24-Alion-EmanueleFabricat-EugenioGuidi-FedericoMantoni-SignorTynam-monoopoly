@@ -76,7 +76,7 @@ public class ModelCardState implements ModelState {
                 break;
             case Event.PRISON:
                 // this.mainModel.getGameBoard().getCurrentPlayer().isPrisoned();
-                nextState = new ModelPrisonState();
+                nextState = new ModelPrisonState(this.mainModel, true);
                 break;
             case Event.CARD_PAYMENT:
                 if (getCard().getMessage().data().isPresent()) {
