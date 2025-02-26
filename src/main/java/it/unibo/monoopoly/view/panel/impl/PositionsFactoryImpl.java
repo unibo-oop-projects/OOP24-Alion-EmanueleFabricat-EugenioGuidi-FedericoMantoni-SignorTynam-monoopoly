@@ -1,11 +1,11 @@
 package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import it.unibo.monoopoly.view.panel.api.PositionsFactory;
 import it.unibo.monoopoly.utils.api.JsonConverter;
@@ -17,76 +17,61 @@ public class PositionsFactoryImpl implements PositionsFactory {
     private static final String PROPERTY_POSITIONS_FILE_NAME = "property_positions.json";
     private static final String HOUSES_POSITIONS_FILE_NAME = "houses_positions.json";
     private static final String PRISON_POSITIONS_FILE_NAME = "prison_positions.json";
-    private static final int NUMBER_OF_PLAYERS = 4;
 
     private JsonConverter<Position> converter;
     private final int mainFrameHeight;
+    private final List<Color> colors;
 
     public PositionsFactoryImpl(final int mainFrameHeight) {
         this.mainFrameHeight = mainFrameHeight;
         this.converter = new JsonConverterImpl<>(Position.class);
+        this.colors = List.of(Color.BLUE, Color.RED, Color.GREEN, Color.ORANGE);
     }
 
     @Override
-    public Map<Color, Map<Integer, Position>> createPlayersPositions() {
-        List<Position> newList = this.converter.jsonToList(ClassLoader.getSystemResourceAsStream(PLAYERS_POSITIONS_FILE_NAME));
-        Map<Color, Map<Integer, Position>> playersPositions = new HashMap<>();
-        int index = 0;
-        final List<Position> blueList = portionOfList(newList, index++);
-        final List<Position> redList = portionOfList(newList, index++);
-        final List<Position> greenList = portionOfList(newList, index++);
-        final List<Position> orangeList = portionOfList(newList, index++);
-
-        playersPositions.put(Color.BLUE, transformListToMap(blueList));
-        playersPositions.put(Color.RED, transformListToMap(redList));
-        playersPositions.put(Color.GREEN, transformListToMap(greenList));
-        playersPositions.put(Color.ORANGE, transformListToMap(orangeList));
-
-        return playersPositions;
-    }
-
-    private List<Position> portionOfList(final List<Position> newList, final int index) {
-        List<Position> tempList = new ArrayList<>();
-        final int upperExtreme = (index * newList.size()) / NUMBER_OF_PLAYERS;
-        final int lowerExtreme = upperExtreme + NUMBER_OF_PLAYERS;
-
-        for(int i = upperExtreme ; i < lowerExtreme ; i++) {
-            tempList.add(newList.get(i));
-        }
-
-        return tempList;
-    }
-
-    private Map<Integer, Position> transformListToMap(final List<Position> partialList) {
-        List<Position> newPartialListUpdated = updateList(partialList);
-        Map<Integer, Position> positionMap = new HashMap<>();
-
-        for(int i = 0; i < newPartialListUpdated.size() ; i++) {
-            positionMap.put(i, newPartialListUpdated.get(i));
-        }
-
-        return positionMap;
-    }
-
-    private List<Position> updateList(final List<Position> newList) {
-        return newList.stream()
-                    .map(p -> new Position(p.x() * this.mainFrameHeight, p.y() * this.mainFrameHeight))
-                    .collect(Collectors.toList());
+    public Map<Color, List<Position>> createPlayersPositions() {
+        final List<List<Position>> listFromJson = this.converter.jsonToListOfList(ClassLoader.getSystemResourceAsStream(PLAYERS_POSITIONS_FILE_NAME));
+        return IntStream.range(0, this.colors.size())
+                        .boxed()
+                        .collect(Collectors.toMap(this.colors::get, i -> updateList(listFromJson.get(i))));
     }
 
     @Override
     public Map<Integer, Position> createPropertyPositions() {
-        return null;
+        Map<Integer, Position> propertyPositionsFromJson = this.converter.jsonToMap(ClassLoader.getSystemResourceAsStream(PROPERTY_POSITIONS_FILE_NAME));
+
+        return updateMap(propertyPositionsFromJson);
+    }
+
+    private Map<Integer, Position> updateMap(final Map<Integer, Position> map) {
+        final Map<Integer, Position> newMap = new HashMap<>();
+        for(var entry : map.entrySet()) {
+            newMap.put(entry.getKey(), new Position(entry.getValue().x() * this.mainFrameHeight,
+                                                    entry.getValue().y() * this.mainFrameHeight));
+        }
+
+        return newMap;
     }
 
     @Override
     public Map<Integer, Position> createHousesPositions() {
-        return null;
+        final Map<Integer, Position> housesPositionsFromJson = this.converter.jsonToMap(ClassLoader.getSystemResourceAsStream(HOUSES_POSITIONS_FILE_NAME));
+
+        return updateMap(housesPositionsFromJson);
     }
 
     @Override
     public Map<Color, Position> createPrisonPositions() {
-        return null;
+        final List<Position> newList = updateList(this.converter.jsonToList(ClassLoader.getSystemResourceAsStream(PRISON_POSITIONS_FILE_NAME)));
+        return IntStream.range(0, colors.size())
+                        .boxed()
+                        .collect(Collectors.toMap(colors::get, i -> newList.get(i)));
+    }
+
+    private List<Position> updateList(final List<Position> list) {
+        return list.stream()
+                    .map(p -> new Position(p.x() * this.mainFrameHeight, p.y() * this.mainFrameHeight))
+                    .collect(Collectors.toList());
     }
 
 }

@@ -29,7 +29,7 @@ import it.unibo.monoopoly.view.panel.impl.Position;
  */
 public class GameBoardPanel extends AbstractPanel {
 
-    private final Map<Color, Map<Integer, Position>> playersPositions;
+    private final Map<Color, List<Position>> playersPositions;
     private final Map<Integer, Position> propertyPositions;
     private final Map<Integer, Position> housesPositions;
     private final Map<Color, Position> prisonPositions;
