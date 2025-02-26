@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
+import java.text.CollationElementIterator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -26,15 +27,18 @@ import it.unibo.monoopoly.view.panel.api.PositionsFactory;
  */
 public class GameBoardPanel extends AbstractPanel {
 
+    public record CirclePosition(int x, int y, Color color) {}
+    public record NumberPosition(int x, int y, int number){}
+
     private final Map<Color, List<Position>> playersPositions;
     private final Map<Integer, Position> propertyPositions;
     private final Map<Integer, Position> housesPositions;
     private final Map<Color, Position> prisonPositions;
     private final int mainFrameHeight;
-    private final Map<String, Color> playersColors;
+    private final Map<Color, String> playersColors;
     private final Image backgroundImage;
     private final PositionsFactory positionsFactory;
-    //mettere qui i campi creati da update per essere usati dal metodo paintComponent
+    private final List<Color> colors;
 
     /**
      * 
@@ -42,9 +46,9 @@ public class GameBoardPanel extends AbstractPanel {
      * @param mainFrameHeight
      * @param mainFrameWidth
      */
-    public GameBoardPanel(final int mainFrameHeight, final Map<Color, String> players) {
-        this.playersColors = initializePlayersColors(players);
-
+    public GameBoardPanel(final int mainFrameHeight, final Map<Color, String> players, final List<Color> colors) {
+        this.colors = colors;
+        this.playersColors = players;
         this.mainFrameHeight = mainFrameHeight;
         this.positionsFactory = new PositionsFactoryImpl(mainFrameHeight);
         this.playersPositions = this.positionsFactory.createPlayersPositions();
@@ -57,14 +61,6 @@ public class GameBoardPanel extends AbstractPanel {
         this.backgroundImage = icon.getImage();
     }
 
-    private Map<String, Color> initializePlayersColors(final Map<Color, String> players) {
-        Map<String, Color> invertedMap = new HashMap<>();
-        for (var entry : players.entrySet()) {
-            invertedMap.put(entry.getValue(), entry.getKey());
-        }
-        return invertedMap;
-    }
-
     /**
      *
      * {@inheritDoc}
@@ -75,11 +71,34 @@ public class GameBoardPanel extends AbstractPanel {
         setLayout(new BorderLayout());
     }
 
-    public void update(Map<String, Integer> playerPositions, Map<Integer, Optional<String>> cellsOwners,
+    public void update(Map<String, Integer> newPlayersPositions, Map<Integer, Optional<String>> cellsOwners,
                        Map<Integer, Integer> nBuiltHouses, List<String> prisonedPlayers) {
-
-
+        final List<CirclePosition> circlesPositions = initializeCirclesPosition(newPlayersPositions, cellsOwners, prisonedPlayers);
+        final List<NumberPosition> numberPositions = new ArrayList<>();
     }
+
+    private List<CirclePosition> initializeCirclesPosition(Map<String, Integer> newPlayersPositions, 
+                                                           Map<Integer, Optional<String>> cellsOwners, 
+                                                           List<String> prisonedPlayers) {
+        final List<CirclePosition> newList = new ArrayList<>();
+        for(Map.Entry<Color, String> entry : this.playersColors.entrySet()) {
+            CirclePosition circlePosition = new CirclePosition(getX(entry, newPlayersPositions), 
+                                                               getY(entry, newPlayersPositions), 
+                                                               entry.getKey());
+            newList.add(circlePosition);
+        }
+        return newList;
+    }
+
+    private int getX(final Map.Entry<Color, String> entry, final Map<String, Integer> newPlayersPositions) {
+        return this.playersPositions.get(entry.getKey()).get(newPlayersPositions.get(entry.getValue())).x();
+    }
+
+    private int getY(final Map.Entry<Color, String> entry, final Map<String, Integer> newPlayersPositions) {
+        return this.playersPositions.get(entry.getKey()).get(newPlayersPositions.get(entry.getValue())).y();
+    }
+
+
 
     /**
      *
