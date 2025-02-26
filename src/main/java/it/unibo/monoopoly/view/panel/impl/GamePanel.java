@@ -37,13 +37,13 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
      * @param mainFrameWidth
      */
     public GamePanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth,
-            final String firstPlayer, final List<Triple<String, Integer, Color>> initializedList) {
+            final String firstPlayer, final List<Triple<String, Integer, Color>> initializedList, final Map<Color, String> players) {
         this.mainController = mainController;
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
         this.firstPlayer = firstPlayer;
         this.initializedList = initializedList;
-        this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, initializedList);
+        this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, players);
     }
 
     /**

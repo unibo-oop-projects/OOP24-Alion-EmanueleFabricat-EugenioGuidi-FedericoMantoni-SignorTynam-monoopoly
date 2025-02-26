@@ -12,16 +12,13 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 import org.apache.commons.lang3.tuple.Triple;
-
-import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.view.panel.api.PositionsFactory;
-import it.unibo.monoopoly.view.panel.impl.Position;
 
 /**
  * mettere commento qui, tutti i numeri molotiplicativi vengono percepiti come
@@ -37,6 +34,7 @@ public class GameBoardPanel extends AbstractPanel {
     private final Map<String, Color> playersColors;
     private final Image backgroundImage;
     private final PositionsFactory positionsFactory;
+    //mettere qui i campi creati da update per essere usati dal metodo paintComponent
 
     /**
      * 
@@ -44,7 +42,9 @@ public class GameBoardPanel extends AbstractPanel {
      * @param mainFrameHeight
      * @param mainFrameWidth
      */
-    public GameBoardPanel(final int mainFrameHeight, final List<Triple<String, Integer, Color>> initializedList) {
+    public GameBoardPanel(final int mainFrameHeight, final Map<Color, String> players) {
+        this.playersColors = initializePlayersColors(players);
+
         this.mainFrameHeight = mainFrameHeight;
         this.positionsFactory = new PositionsFactoryImpl(mainFrameHeight);
         this.playersPositions = this.positionsFactory.createPlayersPositions();
@@ -52,16 +52,17 @@ public class GameBoardPanel extends AbstractPanel {
         this.housesPositions = this.positionsFactory.createHousesPositions();
         this.prisonPositions = this.positionsFactory.createPrisonPositions();
 
-        this.playersColors = initializePlayersColoros(initializedList);
-
         final URL imgURL = ClassLoader.getSystemResource("images/monoopoly_gameboard_image.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
     }
 
-    private Map<String, Color> initializePlayersColoros(final List<Triple<String, Integer, Color>> initializedList) {
-        return initializedList.stream()
-                            .collect(Collectors.toMap(Triple::getLeft, Triple::getRight));
+    private Map<String, Color> initializePlayersColors(final Map<Color, String> players) {
+        Map<String, Color> invertedMap = new HashMap<>();
+        for (var entry : players.entrySet()) {
+            invertedMap.put(entry.getValue(), entry.getKey());
+        }
+        return invertedMap;
     }
 
     /**
@@ -72,6 +73,12 @@ public class GameBoardPanel extends AbstractPanel {
     protected void panelInit() {
         setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
         setLayout(new BorderLayout());
+    }
+
+    public void update(Map<String, Integer> playerPositions, Map<Integer, Optional<String>> cellsOwners,
+                       Map<Integer, Integer> nBuiltHouses, List<String> prisonedPlayers) {
+
+
     }
 
     /**
