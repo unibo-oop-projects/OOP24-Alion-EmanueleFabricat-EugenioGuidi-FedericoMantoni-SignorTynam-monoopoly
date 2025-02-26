@@ -26,6 +26,7 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
     private final int mainFrameHeight;
     private final int mainFrameWidth;
     private PlayerPanel playerPanel; 
+    private final GameBoardPanel gameBoardPanel;
     private final String firstPlayer;
     private final List<Triple<String, Integer, Color>> initializedList;
     /**
@@ -42,6 +43,7 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
         this.mainFrameWidth = mainFrameWidth;
         this.firstPlayer = firstPlayer;
         this.initializedList = initializedList;
+        this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, initializedList);
     }
 
     /**
@@ -50,8 +52,6 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
      */
     @Override
     protected void panelInit() {
-        final GameBoardPanel gameBoardPanel = new GameBoardPanel(this.mainFrameHeight,
-                this.initializedList);
         this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
@@ -76,7 +76,7 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
         this.add(westPanel, BorderLayout.WEST);
 
         centerPanel.setLayout(new BorderLayout());
-        centerPanel.add(gameBoardPanel, BorderLayout.WEST);
+        centerPanel.add(this.gameBoardPanel, BorderLayout.WEST);
         centerPanel.add(playerPanel, BorderLayout.CENTER);
 
     }
@@ -87,8 +87,10 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
 
     @Override
     public void update(ViewUpdateDTO updateData) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        this.gameBoardPanel.update(updateData.playerPositions(),
+                                   updateData.cellsOwners(),
+                                   updateData.nBuiltHouses(),
+                                   updateData.prisonedPlayers());
     }
 
 
