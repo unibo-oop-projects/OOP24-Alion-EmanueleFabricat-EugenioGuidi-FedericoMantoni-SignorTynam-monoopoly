@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class ViewMovementState implements ViewState {
 
-    private final MainView mainVIew;
+    private final MainView mainView;
     private DataInput dataInput;
 
     /**
@@ -20,7 +20,7 @@ public class ViewMovementState implements ViewState {
      * @param mainView
      */
     public ViewMovementState(final MainView mainView) {
-        this.mainVIew = mainView;
+        this.mainView = mainView;
     }
 
     /**
@@ -41,10 +41,12 @@ public class ViewMovementState implements ViewState {
         if (this.dataInput.mode().get()) {
             final String string = "Primo dado: " + this.dataInput.dices().get().getFirstRoll() + "\nSecondo dado: "
                     + this.dataInput.dices().get().getSecondRoll();
-            JOptionPane.showMessageDialog(this.mainVIew.getMainFrame(), string, "Lancio dei dadi",
+            JOptionPane.showMessageDialog(this.mainView.getMainFrame(), string, "Lancio dei dadi",
                     JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            throw new IllegalStateException("Cannot call this method without pass dices");
         }
-        this.mainVIew.getMainController().getControllerState().continueState(null);
+        this.mainView.getMainController().getControllerState().continueState(null);
     }
 
 }

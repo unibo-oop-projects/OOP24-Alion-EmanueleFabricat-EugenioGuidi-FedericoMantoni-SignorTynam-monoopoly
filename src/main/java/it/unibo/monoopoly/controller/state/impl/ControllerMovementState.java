@@ -2,11 +2,14 @@ package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.Optional;
 
+import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
+import it.unibo.monoopoly.model.gameboard.api.Dices;
+import it.unibo.monoopoly.model.gameboard.impl.DicesImpl;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -18,6 +21,7 @@ public class ControllerMovementState implements ControllerState {
     private final MainController mainController;
     private final ModelState actualModelState;
     private final ViewState actualViewState;
+    private final Dices dices;
 
     /**
      * comment.
@@ -25,10 +29,11 @@ public class ControllerMovementState implements ControllerState {
      * @param mainController
      */
     public ControllerMovementState(final MainController mainController, final ModelState modelState,
-    final ViewState viewState) {
+    final ViewState viewState, final Dices dices) {
         this.mainController = mainController;
         this.actualModelState = modelState;
         this.actualViewState = viewState;
+        this.dices = dices;
     }
 
     /**
@@ -37,10 +42,11 @@ public class ControllerMovementState implements ControllerState {
      */
     @Override
     public void startState() {
-        // ritorna se è con dadi o no.
-        this.actualViewState.setMode(this.actualModelState.verify());
+        final boolean rollDice = this.actualModelState.verify();
         this.actualModelState.doAction(new DataBuilderOutputImpl().build());
-        this.actualViewState.visualize(new DataInput(null, null, null, null, null, null));
+        if(rollDice) {
+            this.actualViewState.visualize(new DataBuilderInputImpl().dices(this.dices.getDices()).build());
+        }
     }
 
     /**
