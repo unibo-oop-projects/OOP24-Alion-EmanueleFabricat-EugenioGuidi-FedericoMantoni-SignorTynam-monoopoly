@@ -49,7 +49,7 @@ public class ViewBuildHouseState implements ViewState {
             final JPanel interactivePanel = new JPanel();
             mainView.setInteractivePanel(interactivePanel);
 
-            final int chosenCell = 0;
+            final int chosenCell = 1;
             mainView.getMainController().getControllerState().continueState(dataBuilder.cellChoose(chosenCell).build());
         } else {
             mainView.getMainController().getControllerState().continueState(dataBuilder.build());
