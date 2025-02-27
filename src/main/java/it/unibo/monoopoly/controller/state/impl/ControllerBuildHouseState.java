@@ -12,7 +12,6 @@ import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
-import it.unibo.monoopoly.model.main.api.MainModel;
 
 /**
  * Implementation of the controller for the house building state.
