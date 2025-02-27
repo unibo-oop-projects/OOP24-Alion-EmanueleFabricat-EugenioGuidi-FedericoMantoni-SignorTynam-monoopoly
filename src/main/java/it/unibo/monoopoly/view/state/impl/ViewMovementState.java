@@ -38,13 +38,14 @@ public class ViewMovementState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         this.dataInput = dataInput;
-        if (this.dataInput.mode().get()) {
+        if (this.dataInput.dices().isPresent()) {
             final String string = "Primo dado: " + this.dataInput.dices().get().getFirstRoll() + "\nSecondo dado: "
                     + this.dataInput.dices().get().getSecondRoll();
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), string, "Lancio dei dadi",
                     JOptionPane.INFORMATION_MESSAGE);
         } else {
-            throw new IllegalStateException("Cannot call this method without pass dices");
+            JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Ti sei mosso", "movimento", 
+                    JOptionPane.INFORMATION_MESSAGE);
         }
         this.mainView.getMainController().getControllerState().continueState(null);
     }
