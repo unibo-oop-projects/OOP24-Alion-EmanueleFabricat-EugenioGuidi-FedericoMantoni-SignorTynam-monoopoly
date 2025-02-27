@@ -46,8 +46,8 @@ public class PositionsFactoryImpl implements PositionsFactory {
     private Map<Integer, Position> updateMap(final Map<Integer, Position> map) {
         final Map<Integer, Position> newMap = new HashMap<>();
         for(var entry : map.entrySet()) {
-            newMap.put(entry.getKey(), new Position(entry.getValue().x() * this.mainFrameHeight,
-                                                    entry.getValue().y() * this.mainFrameHeight));
+            newMap.put(entry.getKey(), new Position((entry.getValue().x() / 100) * this.mainFrameHeight,
+                                                    (entry.getValue().y() / 100) * this.mainFrameHeight));
         }
 
         return newMap;
@@ -70,7 +70,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
 
     private List<Position> updateList(final List<Position> list) {
         return list.stream()
-                    .map(p -> new Position(p.x() * this.mainFrameHeight, p.y() * this.mainFrameHeight))
+                    .map(p -> new Position((p.x() / 100) * this.mainFrameHeight, (p.y() / 100) * this.mainFrameHeight))
                     .collect(Collectors.toList());
     }
 

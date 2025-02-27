@@ -62,6 +62,7 @@ public class GameBoardPanel extends AbstractPanel {
         final URL imgURL = ClassLoader.getSystemResource("images/monoopoly_gameboard_image.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
+        this.circlesPositions = new ArrayList<>();
     }
 
     /**
@@ -70,7 +71,6 @@ public class GameBoardPanel extends AbstractPanel {
      */
     @Override
     protected void panelInit() {
-        this.circlesPositions = new ArrayList<>();
         setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
         setLayout(new BorderLayout());
     }
@@ -89,8 +89,8 @@ public class GameBoardPanel extends AbstractPanel {
         for(var entry : this.playersColors.entrySet()) {
             if(newPlayersPositions.containsKey(entry.getValue())){
                 CirclePosition circlePosition = new CirclePosition(getX(entry, newPlayersPositions), 
-                                                               getY(entry, newPlayersPositions), 
-                                                               entry.getKey());
+                                                                   getY(entry, newPlayersPositions), 
+                                                                   entry.getKey());
                 newList.add(circlePosition);
             }
         }
@@ -133,7 +133,10 @@ public class GameBoardPanel extends AbstractPanel {
         int circleDiameter = (int)(this.mainFrameHeight * 0.025);
         int numberSize = (int)(this.mainFrameHeight * 0.022);
 
-
+        for(var circlePosition : this.circlesPositions) {
+            g.setColor(circlePosition.color);
+            g.fillOval((int) circlePosition.x(), (int) circlePosition.y(), circleDiameter, circleDiameter);
+        }
 
         //cella 0
 
