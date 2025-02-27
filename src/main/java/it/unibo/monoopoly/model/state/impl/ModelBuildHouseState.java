@@ -54,7 +54,7 @@ public class ModelBuildHouseState implements ModelState {
     public void doAction(final DataOutput data) {
         if (canBuild && data.cellChoose().isPresent()) {
             final int cellIndex = data.cellChoose().get();
-            final Buildable property = (Buildable) model.getGameBoard().getCell(cellIndex);
+            final Buildable property = (Buildable) (model.getGameBoard().getCell(cellIndex));
             if (property.getHousesNumber() < MAX_HOUSES && !property.isMortgaged()) {
                 property.buildHouse();
             }
