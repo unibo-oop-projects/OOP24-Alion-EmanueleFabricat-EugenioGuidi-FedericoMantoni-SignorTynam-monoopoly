@@ -3,7 +3,6 @@ package it.unibo.monoopoly.controller.state.impl;
 import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
-import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
