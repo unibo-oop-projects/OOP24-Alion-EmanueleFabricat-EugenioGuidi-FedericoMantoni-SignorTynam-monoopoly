@@ -61,6 +61,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      * @param nameCells   the list of names of the cells
      */
     public MainViewImpl(final MainController controller, final List<String> namePlayers, final List<String> nameCells) {
+        super();
         this.controller = controller;
 
         final Dimension screeDimension = Toolkit.getDefaultToolkit().getScreenSize();

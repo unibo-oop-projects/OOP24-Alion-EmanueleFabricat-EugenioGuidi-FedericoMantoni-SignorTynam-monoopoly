@@ -28,7 +28,7 @@ import it.unibo.monoopoly.view.panel.api.PositionsFactory;
 public class GameBoardPanel extends AbstractPanel {
 
     public record CirclePosition(int x, int y, Color color) {}
-    public record NumberPosition(int x, int y, int number){}
+    public record NumberPosition(int x, int y, int number) {}
 
     private final Map<Color, List<Position>> playersPositions;
     private final Map<Integer, Position> propertyPositions;
@@ -81,13 +81,27 @@ public class GameBoardPanel extends AbstractPanel {
                                                            Map<Integer, Optional<String>> cellsOwners, 
                                                            List<String> prisonedPlayers) {
         final List<CirclePosition> newList = new ArrayList<>();
-        for(Map.Entry<Color, String> entry : this.playersColors.entrySet()) {
-            CirclePosition circlePosition = new CirclePosition(getX(entry, newPlayersPositions), 
+        //nel seguente for spero che manto nel caso in cui un player è stato eliminato non me lo abbia passato
+        for(var entry : this.playersColors.entrySet()) {
+            if(newPlayersPositions.containsKey(entry.getValue())){
+                CirclePosition circlePosition = new CirclePosition(getX(entry, newPlayersPositions), 
                                                                getY(entry, newPlayersPositions), 
                                                                entry.getKey());
-            newList.add(circlePosition);
+                newList.add(circlePosition);
+            }
+        }
+        for(var entry : cellsOwners.entrySet()) {
+            Color color = getColorFromString(entry.getValue().get());
         }
         return newList;
+    }
+
+    private Color getColorFromString(final String player) {
+        return playersColors.entrySet().stream()
+        .filter(entry -> entry.getValue().equals(player)) // Filtra la coppia chiave-valore dove il valore è uguale al nome del giocatore
+            .map(Map.Entry::getKey) // Mappa il risultato alla chiave (cioè il colore)
+            .findFirst() // Trova il primo elemento che soddisfa la condizione
+            .orElse(null);
     }
 
     private int getX(final Map.Entry<Color, String> entry, final Map<String, Integer> newPlayersPositions) {
@@ -113,9 +127,11 @@ public class GameBoardPanel extends AbstractPanel {
         int circleDiameter = (int)(this.mainFrameHeight * 0.025);
         int numberSize = (int)(this.mainFrameHeight * 0.022);
 
+        
+
         //cella 0
 
-        int centerX = (int)(0.88 * this.mainFrameHeight);
+        /*int centerX = (int)(0.88 * this.mainFrameHeight);
         int centerY = (int)(0.96 * this.mainFrameHeight);
         g.setColor(Color.BLUE);
         g.fillOval(centerX, centerY, circleDiameter, circleDiameter);
@@ -2502,7 +2518,7 @@ public class GameBoardPanel extends AbstractPanel {
         centerY = (int)(0.834 * this.mainFrameHeight);
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, numberSize));
-        g.drawString("5", centerX , centerY);
+        g.drawString("5", centerX , centerY);*/
 
     }
 
