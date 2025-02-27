@@ -47,12 +47,14 @@ public class ViewBuildHouseState implements ViewState {
     public void visualize(final DataInput data) {
         if (canBuild) {
             final JPanel interactivePanel = new JPanel();
+            // ...existing code to set up the interactive panel...
             mainView.setInteractivePanel(interactivePanel);
-
-            final int chosenCell = 1;
-            mainView.getMainController().getControllerState().continueState(dataBuilder.cellChoose(chosenCell).build());
+            // Removed: immediate call to continueState;
+            // Instead, the interactive panel should forward the chosen input upon user action.
         } else {
-            mainView.getMainController().getControllerState().continueState(dataBuilder.build());
+            // Removed: direct call to continueState in the no-build branch.
+            // Instead: show a message or disable input.
         }
+        System.out.println(data.toString());
     }
 }
