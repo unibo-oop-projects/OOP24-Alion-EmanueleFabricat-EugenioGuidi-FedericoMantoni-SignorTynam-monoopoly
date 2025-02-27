@@ -47,13 +47,11 @@ public class ViewBuildHouseState implements ViewState {
     public void visualize(final DataInput data) {
         if (canBuild) {
             final JPanel interactivePanel = new JPanel();
-            // ...existing code to set up the interactive panel...
             mainView.setInteractivePanel(interactivePanel);
-            // Removed: immediate call to continueState;
-            // Instead, the interactive panel should forward the chosen input upon user action.
         } else {
-            // Removed: direct call to continueState in the no-build branch.
-            // Instead: show a message or disable input.
+            final JPanel nonBuildablePanel = new JPanel();
+            nonBuildablePanel.add(new javax.swing.JLabel("Building houses is not allowed."));
+            mainView.setInteractivePanel(nonBuildablePanel);
         }
         System.out.println(data.toString());
     }
