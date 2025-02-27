@@ -48,11 +48,11 @@ public class ViewBuildHouseState implements ViewState {
         if (canBuild) {
             final JPanel interactivePanel = new JPanel();
             mainView.setInteractivePanel(interactivePanel);
-
-            final int chosenCell = 1;
-            mainView.getMainController().getControllerState().continueState(dataBuilder.cellChoose(chosenCell).build());
         } else {
-            mainView.getMainController().getControllerState().continueState(dataBuilder.build());
+            final JPanel nonBuildablePanel = new JPanel();
+            nonBuildablePanel.add(new javax.swing.JLabel("Building houses is not allowed."));
+            mainView.setInteractivePanel(nonBuildablePanel);
         }
+        System.out.println(data.toString());
     }
 }

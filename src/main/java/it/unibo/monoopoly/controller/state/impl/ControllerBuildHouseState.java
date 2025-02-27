@@ -12,7 +12,6 @@ import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
-import it.unibo.monoopoly.model.main.api.MainModel;
 
 /**
  * Implementation of the controller for the house building state.
@@ -48,15 +47,15 @@ public class ControllerBuildHouseState implements ControllerState {
     public void startState() {
         canBuild = modelState.verify();
         viewState.setMode(canBuild);
-
         if (this.gameBoard != null) {
-            final List<Integer> buildableCells = canBuild ? this.gameBoard.getCurrentPlayer().getProperties().stream()
+            final List<Integer> buildableCells = canBuild 
+                ? this.gameBoard.getCurrentPlayer().getProperties().stream()
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
                     .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
                     .map(this.gameBoard.getCellsList()::indexOf)
-                    .collect(Collectors.toList()) : List.of();
-
+                    .collect(Collectors.toList())
+                : List.of();
             final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
             viewState.visualize(dataBuilder.cellList(buildableCells).build());
         }
