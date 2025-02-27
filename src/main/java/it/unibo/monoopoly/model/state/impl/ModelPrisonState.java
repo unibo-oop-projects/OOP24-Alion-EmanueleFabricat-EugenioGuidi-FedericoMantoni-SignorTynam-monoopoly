@@ -61,7 +61,6 @@ public class ModelPrisonState implements ModelState {
                 currentPlayer.useGetOutOfJailCard();
                 model.getGameBoard().getDeck().addPrisonCard();
             }
-            currentPlayer.releaseFromPrison();
         }
     }
 
@@ -78,6 +77,7 @@ public class ModelPrisonState implements ModelState {
         if (goInJail) {
             model.nextTurn();
         } else if (this.model.getGameBoard().getCurrentPlayer().isPrisoned()) {
+            this.model.getGameBoard().getCurrentPlayer().releaseFromPrison();
             if (usedCard) {
                 model.setState(new ModelMovementState(model, Optional.empty()));
             } else {
