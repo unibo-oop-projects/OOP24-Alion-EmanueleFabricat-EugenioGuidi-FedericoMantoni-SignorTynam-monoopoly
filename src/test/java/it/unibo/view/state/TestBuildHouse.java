@@ -29,9 +29,9 @@ public class TestBuildHouse extends JFrame {
         MainView view = new MainViewImpl(controller, propertyList, playerList);
         ViewBuildHouseState viewState = new ViewBuildHouseState(view);
         ModelBuildHouseState modelState = new ModelBuildHouseState(new MainModelImpl(propertyList));
-        ControllerBuildHouseState controllerState = new ControllerBuildHouseState(modelState, viewState);
+        //ControllerBuildHouseState controllerState = new ControllerBuildHouseState(modelState, viewState);
 
-        controllerState.startState();
+        //controllerState.startState();
         
         // se vogliamo aggiungere una logica di test ulteriore, possiame simulare delle azioni qui, ad esempio, simulando la scelta di una cella da parte dell'utente e chiamando
         // controllerState.continueState().

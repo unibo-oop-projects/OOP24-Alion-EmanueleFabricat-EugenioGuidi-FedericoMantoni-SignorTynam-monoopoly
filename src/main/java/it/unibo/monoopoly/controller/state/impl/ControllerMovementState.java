@@ -3,13 +3,13 @@ package it.unibo.monoopoly.controller.state.impl;
 import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
+import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Dices;
-import it.unibo.monoopoly.model.gameboard.impl.DicesImpl;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -56,6 +56,7 @@ public class ControllerMovementState implements ControllerState {
     @Override
     public void continueState(final DataOutput dataOutput) {
         this.actualModelState.closeState();
+        mainController.nextPhase();
     }
 
 }

@@ -23,8 +23,6 @@ public class ModelCheckActionState implements ModelState {
     private final MainModel mainModel;
     private final Notary notary = new NotaryImpl();
 
-    private Optional<Event> actualEvent;
-
     /**
      * Pass the mainModel to the state.
      * @param mainModel the main model
@@ -42,7 +40,7 @@ public class ModelCheckActionState implements ModelState {
     public boolean verify() {
         final boolean needInput = notary.isActionBuy(getActualCell(), getActualPlayer());
         if (needInput) {
-            this.actualEvent = Optional.of(Event.BUY_PROPERTY);
+            this.mainModel.setEvent(Optional.of(Event.BUY_PROPERTY));
         }
         return needInput;
     }
@@ -56,14 +54,14 @@ public class ModelCheckActionState implements ModelState {
     public void doAction(final DataOutput data) {
         if (data.buyProperty().isEmpty()) {
             if (getActualCell().isBuyable()) {
-                this.actualEvent = notary.checkOwnedProperty(getActualPlayer(), getActualCell());
+                this.mainModel.setEvent(notary.checkOwnedProperty(getActualPlayer(), getActualCell()));
             } else {
                 checkFunctionalCell();
             }
         } else if (data.buyProperty().get()) {
             notary.buyProperty(getActualPlayer(), (Buyable) getActualCell());
         } else {
-            this.actualEvent = Optional.empty();
+            this.mainModel.setEvent(Optional.empty());
         }
     }
 
@@ -74,11 +72,11 @@ public class ModelCheckActionState implements ModelState {
      */
     @Override
     public void closeState() {
-        if (actualEvent.equals(Optional.empty())) {
+        if (mainModel.getEvent().isEmpty()) {
             this.mainModel.setState(new ModelBuildHouseState(mainModel));
         } else {
             this.mainModel.setState(
-                switch (this.actualEvent.get()) {
+                switch (this.mainModel.getEvent().get()) {
                     case RENT_PAYMENT -> new ModelBankerState(mainModel,
                         ((Buyable) getActualCell()).getRentalValue(), false);
                     case TAX_PAYMENT -> new ModelBankerState(mainModel,
@@ -95,7 +93,7 @@ public class ModelCheckActionState implements ModelState {
 
     private void checkFunctionalCell() {
         final Functional functionalCell = (Functional) getActualCell();
-        this.actualEvent = functionalCell.getAction().map(Message::typeOfAction);
+        this.mainModel.setEvent(functionalCell.getAction().map(Message::typeOfAction));
     }
 
     private Cell getActualCell() {

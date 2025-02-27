@@ -26,6 +26,7 @@ import it.unibo.monoopoly.controller.state.impl.ControllerCardState;
 import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
 import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
 import it.unibo.monoopoly.controller.state.impl.ControllerUnmortgageState;
+import it.unibo.monoopoly.controller.state.impl.PrisonControllerState;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.GamePanel;
@@ -37,6 +38,7 @@ import it.unibo.monoopoly.view.state.impl.ViewBuildHouseState;
 import it.unibo.monoopoly.view.state.impl.ViewCardState;
 import it.unibo.monoopoly.view.state.impl.ViewCheckActionState;
 import it.unibo.monoopoly.view.state.impl.ViewMovementState;
+import it.unibo.monoopoly.view.state.impl.ViewPrisonState;
 import it.unibo.monoopoly.view.state.impl.ViewUnmortgageState;
 
 /**
@@ -73,7 +75,7 @@ public class MainViewImpl extends AbstractView implements MainView {
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), "1", initPlayerView());
-        this.viewState = new ViewCheckActionState(this); //TODO change to ViewPrisonState
+        this.viewState = new ViewPrisonState(this); //TODO change to ViewPrisonState
     }
 
     private List<Triple<String, Integer, Color>> initPlayerView() {
@@ -136,17 +138,8 @@ public class MainViewImpl extends AbstractView implements MainView {
      * {@inheritDoc}
      */
     @Override
-    public void setState() {
-        this.viewState = switch (this.getMainController().getControllerState()) {
-            // case ControllerPrisonState p -> new ViewPrisonState(this);
-            case final ControllerMovementState m -> new ViewMovementState(this);
-            case final ControllerCheckActionState ca -> new ViewCheckActionState(this);
-            case final ControllerCardState c -> new ViewCardState(this);
-            case final ControllerBankerState b -> new ViewBankerState(this);
-            case final ControllerBuildHouseState bh -> new ViewBuildHouseState(this);
-            case final ControllerUnmortgageState u -> new ViewUnmortgageState(this);
-            default -> throw new IllegalArgumentException();
-        };
+    public void setState(ViewState state) {
+        this.viewState = state;
     }
 
     @Override

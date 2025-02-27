@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
+import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
@@ -22,6 +23,8 @@ public class ControllerBuildHouseState implements ControllerState {
     private static final int MAX_HOUSES = 5;
     private final ModelState modelState;
     private final ViewState viewState;
+    private final MainController mainController;
+    private final GameBoard gameBoard;
     private boolean canBuild;
 
     /**
@@ -30,9 +33,11 @@ public class ControllerBuildHouseState implements ControllerState {
      * @param modelState the model state
      * @param viewState the view state
      */
-    public ControllerBuildHouseState(final ModelState modelState, final ViewState viewState) {
+    public ControllerBuildHouseState(final MainController mainController, final ModelState modelState, final ViewState viewState, final GameBoard gameBoard) {
         this.modelState = modelState;
         this.viewState = viewState;
+        this.mainController = mainController;
+        this.gameBoard = gameBoard;
     }
 
     /**
@@ -44,18 +49,12 @@ public class ControllerBuildHouseState implements ControllerState {
         canBuild = modelState.verify();
         viewState.setMode(canBuild);
 
-        GameBoard gameBoard = null;
-
-        if (modelState instanceof MainModel) { 
-            gameBoard = ((MainModel) modelState).getGameBoard();
-        }
-
-        if (gameBoard != null) {
-            final List<Integer> buildableCells = canBuild ? gameBoard.getCurrentPlayer().getProperties().stream()
+        if (this.gameBoard != null) {
+            final List<Integer> buildableCells = canBuild ? this.gameBoard.getCurrentPlayer().getProperties().stream()
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
                     .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
-                    .map(gameBoard.getCellsList()::indexOf)
+                    .map(this.gameBoard.getCellsList()::indexOf)
                     .collect(Collectors.toList()) : List.of();
 
             final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
@@ -72,5 +71,6 @@ public class ControllerBuildHouseState implements ControllerState {
     public void continueState(final DataOutput data) {
         modelState.doAction(data);
         modelState.closeState();
+        mainController.nextPhase();
     }
 }

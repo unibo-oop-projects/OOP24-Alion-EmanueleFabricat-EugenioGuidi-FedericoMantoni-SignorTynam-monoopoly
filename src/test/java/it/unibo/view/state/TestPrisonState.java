@@ -32,14 +32,14 @@ public class TestPrisonState extends JFrame {
             MainView view = new MainViewImpl(controller, propertyList, playerList);
 
             ModelPrisonState modelStateJail = new ModelPrisonState(mainModel, true);
-            PrisonControllerState prisonControllerJail = new PrisonControllerState(
-                    modelStateJail, new ViewPrisonState(view), mainModel);
+            PrisonControllerState prisonControllerJail = new PrisonControllerState(controller, 
+                    modelStateJail, new ViewPrisonState(view), mainModel.getGameBoard().getCurrentPlayer());
             prisonControllerJail.startState();
             prisonControllerJail.continueState(null);
 
             ModelPrisonState modelStateRelease = new ModelPrisonState(mainModel, false);
-            PrisonControllerState prisonControllerRelease = new PrisonControllerState(
-                    modelStateRelease, new ViewPrisonState(view), mainModel);
+            PrisonControllerState prisonControllerRelease = new PrisonControllerState(controller, 
+                    modelStateRelease, new ViewPrisonState(view), mainModel.getGameBoard().getCurrentPlayer());
             prisonControllerRelease.startState();
             prisonControllerRelease.continueState(null);
         });
