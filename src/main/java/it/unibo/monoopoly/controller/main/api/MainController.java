@@ -14,11 +14,6 @@ import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 public interface MainController {
 
     /**
-     * Start a new game turn.
-     */
-    void startTurn();
-
-    /**
      * 
      * @return comment.
      */
