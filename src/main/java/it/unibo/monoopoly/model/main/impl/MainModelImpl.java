@@ -86,8 +86,8 @@ public class MainModelImpl implements MainModel {
      * {@inheritDoc}
      */
     @Override
-    public void setEvent(final Event selectOperations) {
-        this.actualEvent = Optional.of(selectOperations);
+    public void setEvent(final Optional<Event> selectOperations) {
+        this.actualEvent = selectOperations;
     }
 
     /**
