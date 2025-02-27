@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.view.panel.impl;
 
+import java.util.Objects;
+
 import javax.swing.JPanel;
 
 public class InteractivePanel extends AbstractPanel {
@@ -13,7 +15,7 @@ public class InteractivePanel extends AbstractPanel {
 
     public void setInteractivePanel(final JPanel newPanel) {
         final var parent = getParent();
-        if(parent != null) {
+        if (Objects.nonNull(parent)) {
             parent.remove(this);
             parent.add(newPanel);
             parent.revalidate();

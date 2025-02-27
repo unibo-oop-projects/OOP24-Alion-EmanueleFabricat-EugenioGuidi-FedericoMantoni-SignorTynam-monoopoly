@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -25,7 +26,7 @@ public class ControllerBankerState implements ControllerState {
     private final ModelState actualModelState;
     private final ViewState actualViewState;
     private final GameBoard gameBoard;
-    private final Event event;
+    private final Optional<Event> event;
     private boolean payable;
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
 
@@ -35,7 +36,7 @@ public class ControllerBankerState implements ControllerState {
      * @param mainController
      */
     public ControllerBankerState(final MainController mainController, final ModelState actualModelState,
-            final ViewState actualViewState, final GameBoard gameBoard, final Event event) {
+            final ViewState actualViewState, final GameBoard gameBoard, final Optional<Event> event) {
         this.mainController = mainController;
         this.actualModelState = actualModelState;
         this.actualViewState = actualViewState;
@@ -62,10 +63,16 @@ public class ControllerBankerState implements ControllerState {
     public void continueState(final DataOutput dataOutput) {
         this.actualModelState.doAction(dataOutput);
         this.actualModelState.closeState();
+        mainController.nextPhase();
+
     }
 
     private DataInput buildData() {
-        return switch (this.event) {
+        if (this.event.isEmpty()) {
+            return this.dataBuilderInput.build();
+        }
+        final Event event = this.event.get();
+        return switch (this.event.get()) {
             case Event.SELL_HOUSE -> this.dataBuilderInput
                     .event(event)
                     .cellList(cellListChoser(event))

@@ -55,7 +55,7 @@ public class ModelPrisonState implements ModelState {
         Player currentPlayer = model.getGameBoard().getCurrentPlayer();
         if (goInJail) {
             currentPlayer.setPrisoned();
-        } else {
+        } else if (currentPlayer.isPrisoned()) {
             if (currentPlayer.getFreeJailCards() > 0) {
                 usedCard = true;
                 currentPlayer.useGetOutOfJailCard();
@@ -77,12 +77,14 @@ public class ModelPrisonState implements ModelState {
     public void closeState() {
         if (goInJail) {
             model.nextTurn();
-        } else {
+        } else if (this.model.getGameBoard().getCurrentPlayer().isPrisoned()) {
             if (usedCard) {
                 model.setState(new ModelMovementState(model, Optional.empty()));
             } else {
                 model.setState(new ModelBankerState(model, 50, true));
             }
+        } else {
+            model.setState(new ModelMovementState(this.model, Optional.empty()));
         }
     }
 }

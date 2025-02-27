@@ -23,6 +23,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.ModelBankerState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelMovementState;
+import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 
 /**
  * Implements the {@link MainModel} interface.
@@ -45,11 +46,8 @@ public class MainModelImpl implements MainModel {
         final List<Player> players = playersName.stream()
                 .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 0, false)).collect(Collectors.toList());
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
-        //this.deck = new DeckImpl();
-        // this.actualPlayer = gameBoard.getCurrentPlayer();
         this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT, false);
-        // TODO initialize state : new ModelPrisonState(this, false);
-        this.actualState = new ModelMovementState(this, Optional.empty());
+        this.actualState = new ModelPrisonState(this, false);
     }
 
     /**
@@ -88,8 +86,8 @@ public class MainModelImpl implements MainModel {
      * {@inheritDoc}
      */
     @Override
-    public void setEvent(final Event selectOperations) {
-        this.actualEvent = Optional.of(selectOperations);
+    public void setEvent(final Optional<Event> selectOperations) {
+        this.actualEvent = selectOperations;
     }
 
     /**
@@ -98,7 +96,7 @@ public class MainModelImpl implements MainModel {
     @Override
     public void nextTurn() {
         gameBoard.getNextPlayer(); //TODO Valore di ritorno non usato, si può togliere?
-        //this.actualState = new ModelPrisonState(this, false) 
+        this.actualState = new ModelPrisonState(this, false);
     }
 
 }

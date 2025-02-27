@@ -51,8 +51,8 @@ public class ViewCheckActionState implements ViewState {
 
             case BUY_PROPERTY -> {
                 final int choice = JOptionPane.showOptionDialog(mainView.getMainFrame(),
-                        "Vuoi comprare la proprietà " + dataInput.text().get() + "al costo di " + dataInput.valueToPay().get()
-                                + "€",
+                        "Vuoi comprare la proprietà " + dataInput.text().get() + " al costo di " + dataInput.valueToPay().get()
+                                + "€ ?",
                         "Compra proprietà",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null,

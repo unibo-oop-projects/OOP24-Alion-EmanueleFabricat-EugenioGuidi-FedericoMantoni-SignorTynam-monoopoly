@@ -26,8 +26,7 @@ public class MenuControllerImpl implements MenuController {
      */
     @Override
     public void goGame(final List<String> namePlayers) {
-        final MainController mainController = new MainControllerImpl(new MainModelImpl(namePlayers), namePlayers);
-        mainController.startTurn();
+        new MainControllerImpl(new MainModelImpl(namePlayers), namePlayers);
     }
 
 }

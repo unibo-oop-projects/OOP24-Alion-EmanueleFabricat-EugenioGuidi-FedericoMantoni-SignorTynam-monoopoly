@@ -27,7 +27,7 @@ public interface MainView extends View {
     /**
      * change the actual state of the view.
      */
-    void setState();
+    void setState(ViewState state);
 
     void setInteractivePanel(JPanel panel);
 
