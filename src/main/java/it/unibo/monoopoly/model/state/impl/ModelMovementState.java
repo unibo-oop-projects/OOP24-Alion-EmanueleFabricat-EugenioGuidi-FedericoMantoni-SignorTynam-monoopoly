@@ -72,16 +72,16 @@ public class ModelMovementState implements ModelState {
     }
 
     private void moveWithCards(final int cellIndex) {
-        if (cellIndex() >= 0) {
-            if (!getPlayer().isPrisoned() && cellIndex() < getPlayer().getActualPosition()) {
+        if (cellIndex >= 0) {
+            if (!getPlayer().isPrisoned() && cellIndex < getPlayer().getActualPosition()) {
                 getPlayer().receive(PASS_GO_REWARD);
             }
-            movePlayer(cellIndex());
+            movePlayer(cellIndex);
         } else {
-            if (getPlayerPosition() + cellIndex() < 0) {
-                movePlayer(getPlayerPosition() + cellIndex() + numberOfCells());
+            if (getPlayerPosition() + cellIndex < 0) {
+                movePlayer(getPlayerPosition() + cellIndex + numberOfCells());
             } else {
-                movePlayer(getPlayerPosition() + cellIndex());
+                movePlayer(getPlayerPosition() + cellIndex);
             }
         }
     }
