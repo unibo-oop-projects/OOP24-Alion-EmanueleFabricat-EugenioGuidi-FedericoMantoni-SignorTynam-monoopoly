@@ -56,19 +56,22 @@ public class ControllerCheckActionState implements ControllerState {
                     .event(Event.BUY_PROPERTY)
                     .valueToPay(((Buyable) actualCell).getCost())
                     .text(actualCell.getName()).build());
-        } else if (actualEvent.isPresent()) {
+        } else {
             modelState.doAction(new DataBuilderOutputImpl().build());
-            if (actualEvent.get().equals(Event.RENT_PAYMENT)) {
-                viewState.visualize(new DataBuilderInputImpl().event(actualEvent.get())
-                        .valueToPay(((Buyable) actualCell).getRentalValue())
-                        .text(((Buyable) actualCell).getOwner().get().getName()).build());
-            } else if (actualEvent.get().equals(Event.TAX_PAYMENT)) {
-                viewState.visualize(new DataBuilderInputImpl()
-                        .event(actualEvent.get())
-                        .valueToPay(((Functional) actualCell).getAction().get().data().get()).build());
+            if (actualEvent.isPresent()) {
+                modelState.doAction(new DataBuilderOutputImpl().build());
+                if (actualEvent.get().equals(Event.RENT_PAYMENT)) {
+                    viewState.visualize(new DataBuilderInputImpl().event(actualEvent.get())
+                            .valueToPay(((Buyable) actualCell).getRentalValue())
+                            .text(((Buyable) actualCell).getOwner().get().getName()).build());
+                } else if (actualEvent.get().equals(Event.TAX_PAYMENT)) {
+                    viewState.visualize(new DataBuilderInputImpl()
+                            .event(actualEvent.get())
+                            .valueToPay(((Functional) actualCell).getAction().get().data().get()).build());
+                }
             }
+            this.continueState(new DataBuilderOutputImpl().build());
         }
-        this.continueState(new DataBuilderOutputImpl().build());
     }
 
     /**

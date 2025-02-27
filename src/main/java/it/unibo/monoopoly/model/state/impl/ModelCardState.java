@@ -90,7 +90,7 @@ public class ModelCardState implements ModelState {
                 nextState = new ModelUnmortgageState(mainModel);
                 break;
             default:
-                break;
+                throw new IllegalStateException("la carta non dovrebbe non far niente");
         }
         this.mainModel.setState(nextState);
     }

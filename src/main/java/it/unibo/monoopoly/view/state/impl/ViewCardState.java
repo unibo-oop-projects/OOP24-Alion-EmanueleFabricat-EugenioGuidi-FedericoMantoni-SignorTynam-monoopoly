@@ -1,7 +1,6 @@
 package it.unibo.monoopoly.view.state.impl;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.view.main.api.MainView;
@@ -39,10 +38,8 @@ public class ViewCardState implements ViewState {
     @Override
     public void visualize(final DataInput data) {
         this.dataInput = data;
-        final JPanel panel = new JPanel();
-        JOptionPane.showMessageDialog(panel, this.dataInput.text().get(), "Card",
+        JOptionPane.showMessageDialog(this.mainView.getMainFrame(), this.dataInput.text().get(), "Card",
                 JOptionPane.PLAIN_MESSAGE);
-        this.mainView.setInteractivePanel(panel);
     }
 
 }

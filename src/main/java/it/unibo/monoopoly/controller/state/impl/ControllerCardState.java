@@ -48,10 +48,10 @@ public class ControllerCardState implements ControllerState {
     public void startState() {
         this.actualViewState.setMode(this.actualModelState.verify());
         this.actualModelState.doAction(new DataBuilderOutputImpl().build());
-        System.out.println("\n\n\n\n\n\n\n\n" + this.gameBoard.getDeck().getActualCard().getEffectText() + "\n\n\n\n\n\n\n\n\n");
         this.actualViewState.visualize(this.dataBuilderInput.text(
                 this.gameBoard.getDeck().getActualCard().getEffectText() 
         ).build());
+        continueState(new DataBuilderOutputImpl().build());
     }
 
     /**
