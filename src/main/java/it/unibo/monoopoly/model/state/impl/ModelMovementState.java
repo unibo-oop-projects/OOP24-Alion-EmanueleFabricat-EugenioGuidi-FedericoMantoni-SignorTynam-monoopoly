@@ -19,7 +19,7 @@ public class ModelMovementState implements ModelState {
     private static final int PASS_GO_REWARD = 200;
 
     private final MainModel turn;
-    private final Dices dices = new DicesImpl();
+    private final Dices dices;
     private final Optional<Integer> cellIndex;
 
     /**
@@ -34,6 +34,7 @@ public class ModelMovementState implements ModelState {
     public ModelMovementState(final MainModel turn, final Optional<Integer> cellIndex) {
         this.turn = turn;
         this.cellIndex = cellIndex;
+        this.dices = turn.getGameBoard().getDices();
     }
 
     /**
@@ -106,20 +107,11 @@ public class ModelMovementState implements ModelState {
     }
 
     private void movePlayer(final int cellIndex) {
-        getPlayer().changePosition(cellIndex());
+        getPlayer().changePosition(cellIndex);
     }
 
     private boolean hasPassedGo() {
         return getPlayerPosition() + diceResult() >= numberOfCells();
-    }
-
-    /**
-     * comment.
-     * 
-     * @return comment.
-     */
-    public Pair getData() {
-        return this.dices.getDices();
     }
 
     /**
@@ -129,7 +121,7 @@ public class ModelMovementState implements ModelState {
     @Override
     public void closeState() {
         if (getPlayer().isPrisoned()) {
-            //this.turn.setState(new ModelBankerState(turn, PASS_GO_REWARD)); // new ModelPrisonState(turn, false)
+            this.turn.nextTurn();
         } else {
             this.turn.setState(new ModelCheckActionState(this.turn));
         }
