@@ -19,7 +19,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
 public class ViewBankerState implements ViewState {
     private final MainView mainView;
     private DataInput dataInput;
-    private boolean payable;
+    private boolean isIndebited;
 
     /**
      * comment.
@@ -36,7 +36,7 @@ public class ViewBankerState implements ViewState {
      */
     @Override
     public void setMode(final Boolean setter) {
-        this.payable = setter;
+        this.isIndebited = setter;
     }
 
     /**
@@ -45,9 +45,9 @@ public class ViewBankerState implements ViewState {
      */
     @Override
     public void visualize(final DataInput data) {
-        if (payable) {
+        if (!isIndebited) {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
-                    "Mi spiace non hai proprietà da disipotecare", "Disipoteca", JOptionPane.PLAIN_MESSAGE);
+                    "Pagamento effetuato con successo", "Pagamento", JOptionPane.PLAIN_MESSAGE);
             this.mainView.getMainController().getControllerState().continueState(new DataBuilderOutputImpl().build());
         } else {
             switch (data.event().get()) {
