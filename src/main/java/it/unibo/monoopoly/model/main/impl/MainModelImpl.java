@@ -43,7 +43,7 @@ public class MainModelImpl implements MainModel {
      */
     public MainModelImpl(final List<String> playersName) {
         final List<Player> players = playersName.stream()
-                .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 1, false)).collect(Collectors.toList());
+                .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 0, false)).collect(Collectors.toList());
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         //this.deck = new DeckImpl();
         // this.actualPlayer = gameBoard.getCurrentPlayer();

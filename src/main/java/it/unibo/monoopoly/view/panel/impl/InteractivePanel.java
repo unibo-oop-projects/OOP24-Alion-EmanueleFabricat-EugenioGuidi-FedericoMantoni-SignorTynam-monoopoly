@@ -13,9 +13,11 @@ public class InteractivePanel extends AbstractPanel {
 
     public void setInteractivePanel(final JPanel newPanel) {
         final var parent = getParent();
-        parent.remove(this);
-        parent.add(newPanel);
-        parent.revalidate();
-        parent.repaint();
+        if(parent != null) {
+            parent.remove(this);
+            parent.add(newPanel);
+            parent.revalidate();
+            parent.repaint();
+        }
     }
 }

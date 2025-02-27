@@ -61,6 +61,7 @@ public class MainControllerImpl implements MainController {
         // names
         this.mainView = new MainViewImpl(this, playersName, cellsNames);
         this.mainView.display();
+        this.mainView.update();
         // this.actualState = new ControllerBankerState(this, this.model.getState(),
         // this.mainView.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
         this.actualState = new ControllerCheckActionState(this, this.model.getState(), this.mainView.getViewState(),

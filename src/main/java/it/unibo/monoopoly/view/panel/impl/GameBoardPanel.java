@@ -27,7 +27,7 @@ import it.unibo.monoopoly.view.panel.api.PositionsFactory;
  */
 public class GameBoardPanel extends AbstractPanel {
 
-    public record CirclePosition(int x, int y, Color color) {}
+    public record CirclePosition(double x, double y, Color color) {}
     public record NumberPosition(int x, int y, int number) {}
 
     private final Map<Color, List<Position>> playersPositions;
@@ -39,6 +39,9 @@ public class GameBoardPanel extends AbstractPanel {
     private final Image backgroundImage;
     private final PositionsFactory positionsFactory;
     private final List<Color> colors;
+    private List<CirclePosition> circlesPositions;
+    private List<NumberPosition> numberPositions;
+
 
     /**
      * 
@@ -67,21 +70,22 @@ public class GameBoardPanel extends AbstractPanel {
      */
     @Override
     protected void panelInit() {
+        this.circlesPositions = new ArrayList<>();
         setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
         setLayout(new BorderLayout());
     }
 
     public void update(Map<String, Integer> newPlayersPositions, Map<Integer, Optional<String>> cellsOwners,
                        Map<Integer, Integer> nBuiltHouses, List<String> prisonedPlayers) {
-        final List<CirclePosition> circlesPositions = initializeCirclesPosition(newPlayersPositions, cellsOwners, prisonedPlayers);
-        final List<NumberPosition> numberPositions = new ArrayList<>();
+        this.circlesPositions = initializeCirclesPosition(newPlayersPositions, cellsOwners, prisonedPlayers);
+        this.numberPositions = new ArrayList<>();
+        this.repaint();
     }
 
     private List<CirclePosition> initializeCirclesPosition(Map<String, Integer> newPlayersPositions, 
                                                            Map<Integer, Optional<String>> cellsOwners, 
                                                            List<String> prisonedPlayers) {
         final List<CirclePosition> newList = new ArrayList<>();
-        //nel seguente for spero che manto nel caso in cui un player è stato eliminato non me lo abbia passato
         for(var entry : this.playersColors.entrySet()) {
             if(newPlayersPositions.containsKey(entry.getValue())){
                 CirclePosition circlePosition = new CirclePosition(getX(entry, newPlayersPositions), 
@@ -91,24 +95,27 @@ public class GameBoardPanel extends AbstractPanel {
             }
         }
         for(var entry : cellsOwners.entrySet()) {
-            Color color = getColorFromString(entry.getValue().get());
+            if(entry.getValue().isPresent()) {
+                Color color = getColorFromString(entry.getValue().get());
+
+            }
         }
         return newList;
     }
 
     private Color getColorFromString(final String player) {
         return playersColors.entrySet().stream()
-        .filter(entry -> entry.getValue().equals(player)) // Filtra la coppia chiave-valore dove il valore è uguale al nome del giocatore
-            .map(Map.Entry::getKey) // Mappa il risultato alla chiave (cioè il colore)
-            .findFirst() // Trova il primo elemento che soddisfa la condizione
-            .orElse(null);
+                                       .filter(entry -> entry.getValue().equals(player))
+                                       .map(Map.Entry::getKey)
+                                       .findFirst()
+                                       .orElse(null);
     }
 
-    private int getX(final Map.Entry<Color, String> entry, final Map<String, Integer> newPlayersPositions) {
+    private double getX(final Map.Entry<Color, String> entry, final Map<String, Integer> newPlayersPositions) {
         return this.playersPositions.get(entry.getKey()).get(newPlayersPositions.get(entry.getValue())).x();
     }
 
-    private int getY(final Map.Entry<Color, String> entry, final Map<String, Integer> newPlayersPositions) {
+    private double getY(final Map.Entry<Color, String> entry, final Map<String, Integer> newPlayersPositions) {
         return this.playersPositions.get(entry.getKey()).get(newPlayersPositions.get(entry.getValue())).y();
     }
 
@@ -123,11 +130,10 @@ public class GameBoardPanel extends AbstractPanel {
         super.paintComponent(g);
 
         g.drawImage(backgroundImage, 0, 0, this.mainFrameHeight, this.mainFrameHeight, this);
-
         int circleDiameter = (int)(this.mainFrameHeight * 0.025);
         int numberSize = (int)(this.mainFrameHeight * 0.022);
 
-        
+
 
         //cella 0
 
