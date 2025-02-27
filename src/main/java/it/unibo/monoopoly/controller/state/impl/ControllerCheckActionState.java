@@ -82,6 +82,8 @@ public class ControllerCheckActionState implements ControllerState {
             modelState.doAction(dataOutput);
         }
         modelState.closeState();
+        mainController.nextPhase();
+
     }
 
 }
