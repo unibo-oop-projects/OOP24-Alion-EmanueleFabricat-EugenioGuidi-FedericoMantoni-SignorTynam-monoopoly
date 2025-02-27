@@ -22,6 +22,7 @@ import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
 import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
 import it.unibo.monoopoly.controller.state.impl.ControllerUnmortgageState;
+import it.unibo.monoopoly.controller.state.impl.PrisonControllerState;
 import it.unibo.monoopoly.model.state.impl.ModelMovementState;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.BuildHouseModelState;
@@ -37,6 +38,13 @@ import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.panel.impl.MainPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 import it.unibo.monoopoly.view.state.impl.GameViewState;
+import it.unibo.monoopoly.view.state.impl.ViewBankerState;
+import it.unibo.monoopoly.view.state.impl.ViewBuildHouseState;
+import it.unibo.monoopoly.view.state.impl.ViewCardState;
+import it.unibo.monoopoly.view.state.impl.ViewCheckActionState;
+import it.unibo.monoopoly.view.state.impl.ViewMovementState;
+import it.unibo.monoopoly.view.state.impl.ViewPrisonState;
+import it.unibo.monoopoly.view.state.impl.ViewUnmortgageState;
 
 /**
  * Implementation of {@link MainController}.
@@ -61,10 +69,8 @@ public class MainControllerImpl implements MainController {
         // names
         this.mainView = new MainViewImpl(this, playersName, cellsNames);
         this.mainView.display();
-        // this.actualState = new ControllerBankerState(this, this.model.getState(),
-        // this.mainView.getViewState(), model.getGameBoard(), Event.SELL_HOUSE);
-        this.actualState = new ControllerCheckActionState(this, this.model.getState(), this.mainView.getViewState(),
-                this.model.getGameBoard());
+        this.actualState = new PrisonControllerState(this, this.model.getState(), this.mainView.getViewState(),
+                model.getGameBoard().getCurrentPlayer());
         this.actualState.startState();
         // this.nextPhase();
     }
@@ -80,59 +86,47 @@ public class MainControllerImpl implements MainController {
      */
     @Override
     public void nextPhase() {
-        // TODO add call to update view
-        this.actualState = switch (this.model.getState()) {
-            // case ModelPrisontState p -> new ControllerPrisonState(this, model.getState(),
-            // mainView.getViewState(), this.model.getGameboard());
-            // case ModelMovementState m -> new ControllerMovementState(this,
-            // model.getState(), mainView.getViewState(),
-            // this.model.getGameBoard().getDices());
-            case final ModelCheckActionState ca ->
-                new ControllerCheckActionState(this, model.getState(), mainView.getViewState(), model.getGameBoard());
-            // case ModelCardState c -> new ControllerCardState(this, model.getState(),
-            // mainView.getViewState(), this.model.getGameBoard().getDeck());
-            // case ModelBankerState b -> new ControllerBankerState(this, model.getState(),
-            // mainView.getViewState(), this.model.getGameBoard());
-            // case ModelBuildHouseState bh -> new ControllerBuildHouseState(this,
-            // model.getState(), mainView.getViewState(), this.model.getGameBoard());
-            case final ModelUnmortgageState u -> new ControllerUnmortgageState(this, model.getState(),
+        // this.mainView.update();
+        switch (this.model.getState()) {
+            case ModelPrisonState p -> {
+                this.mainView.setState(new ViewPrisonState(mainView));
+                this.actualState = new PrisonControllerState(this, model.getState(),
+                        mainView.getViewState(), this.model.getGameBoard().getCurrentPlayer());
+            }
+            case ModelMovementState m -> {
+                this.mainView.setState(new ViewMovementState(mainView));
+                this.actualState = new ControllerMovementState(this,
+                        model.getState(), mainView.getViewState(), this.model.getGameBoard().getDices());
+            }
+            case final ModelCheckActionState ca -> {
+                this.mainView.setState(new ViewCheckActionState(mainView));
+                this.actualState = new ControllerCheckActionState(this, model.getState(), mainView.getViewState(),
+                        model.getGameBoard());
+            }
+            case ModelCardState c -> {
+                this.mainView.setState(new ViewCardState(mainView));
+                this.actualState = new ControllerCardState(this, model.getState(),
+                mainView.getViewState(), this.model.getGameBoard());
+            }
+            case ModelBankerState b -> {
+                this.mainView.setState(new ViewBankerState(mainView));
+                this.actualState = new ControllerBankerState(this, model.getState(),
+                mainView.getViewState(), this.model.getGameBoard(), this.getActualEvent());
+            } 
+            case ModelBuildHouseState bh -> {
+                this.mainView.setState(new ViewBuildHouseState(mainView));
+                this.actualState = new ControllerBuildHouseState(this,
+                    model.getState(), mainView.getViewState(), this.model.getGameBoard());
+            }
+            case final ModelUnmortgageState u -> {
+                this.mainView.setState(new ViewUnmortgageState(mainView));
+                this.actualState = new ControllerUnmortgageState(this, model.getState(),
                     mainView.getViewState(), this.model.getGameBoard());
+            }
             default -> throw new IllegalArgumentException("Implementation of ModelState not supported");
-        };
+        }
+        ;
         this.actualState.startState();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void startTurn() {
-        /*
-         * // Get the MainPanel from the view and create the GameViewState
-         * MainPanel mainPanel = (MainPanel) mainView.getMainPanel();
-         * GameViewState viewState = new GameViewState(mainPanel);
-         * 
-         * // If the current player is in prison
-         * if (model.getActualPlayer().isPrisoned()) {
-         * // Create and start the prison state
-         * PrisonModelState prisonState = new PrisonModelState(model.getActualPlayer());
-         * PrisonControllerState prisonController = new
-         * PrisonControllerState(prisonState, viewState);
-         * prisonController.startState();
-         * // Here input might come from the UI; for example, we simulate that the
-         * player chooses NOT to use the card (false)
-         * prisonController.continueState(false);
-         * } else {
-         * // Otherwise, proceed to the house building state
-         * BuildHouseModelState buildState = new
-         * BuildHouseModelState(model.getActualPlayer());
-         * BuildHouseControllerState buildController = new
-         * BuildHouseControllerState(buildState, viewState);
-         * buildController.startState();
-         * // Simulate input: for example, select index 0 (the first property)
-         * buildController.continueState(0);
-         * }
-         */
     }
 
     /**
