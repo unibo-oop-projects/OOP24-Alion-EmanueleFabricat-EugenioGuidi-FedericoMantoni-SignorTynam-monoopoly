@@ -76,8 +76,6 @@ public class MainViewImpl extends AbstractView implements MainView {
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), "1", initPlayerView(), this.players, this.colors);
-        this.viewState = new ViewCheckActionState(this); //TODO change to ViewPrisonState
-        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), "1", initPlayerView());
         this.viewState = new ViewPrisonState(this); //TODO change to ViewPrisonState
     }
 
