@@ -59,6 +59,7 @@ public class ControllerBuildHouseState implements ControllerState {
             final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
             viewState.visualize(dataBuilder.cellList(buildableCells).build());
         }
+        // Removed: automatic invocation of continueState() to avoid recursive state transitions.
     }
 
     /**
