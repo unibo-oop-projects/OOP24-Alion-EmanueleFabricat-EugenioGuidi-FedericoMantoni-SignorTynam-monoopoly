@@ -44,6 +44,7 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
         this.firstPlayer = firstPlayer;
         this.initializedList = initializedList;
         this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, players, colors);
+        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
     }
 
     /**
@@ -52,7 +53,6 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
      */
     @Override
     protected void panelInit() {
-        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
         final JPanel centerPanel = new JPanel();
@@ -86,11 +86,12 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
     }
 
     @Override
-    public void update(ViewUpdateDTO updateData) {
+    public void updateVisualizePlayerPanel(ViewUpdateDTO updateData) {
         this.gameBoardPanel.update(updateData.playerPositions(),
                                    updateData.cellsOwners(),
                                    updateData.nBuiltHouses(),
                                    updateData.prisonedPlayers());
+        //this.playerPanel.updateVisualizePlayerPanel(updateData); //da decommentare quando funzionerà
     }
 
 

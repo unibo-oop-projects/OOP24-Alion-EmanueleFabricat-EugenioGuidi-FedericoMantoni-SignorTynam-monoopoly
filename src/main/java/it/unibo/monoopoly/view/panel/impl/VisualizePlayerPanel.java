@@ -39,6 +39,10 @@ public class VisualizePlayerPanel extends AbstractPanel implements UpdatablePane
         this.mainFrameHeight = mainFrameHeight;
         this.firstPlayer = firstPlayer;
         this.initializedList = initializedList;
+        setLayout(new GridLayout(playersNumber * 2 + 1, 1));
+        this.textList.add(new JTextArea("E' il turno di " + this.firstPlayer));
+        System.out.println("\n\n\n ciao \n\n\n");
+        System.out.println("\n\n\n\n\n\n\n" + this.textList + "\n\n\n\n\n\n\n\n\n\n\n");
     }
 
     /**
@@ -46,8 +50,6 @@ public class VisualizePlayerPanel extends AbstractPanel implements UpdatablePane
      */
     @Override
     protected void panelInit() {
-        setLayout(new GridLayout(playersNumber * 2 + 1, 1));
-        this.textList.add(new JTextArea("E' il turno di " + this.firstPlayer));
         for (final Triple<String, Integer, Color> triple : initializedList) {
             this.textList.add(new JTextArea(triple.getLeft()));
             this.textList.getLast().setBackground(triple.getRight());
@@ -65,7 +67,8 @@ public class VisualizePlayerPanel extends AbstractPanel implements UpdatablePane
      * {@inheritDoc}
      */
     @Override
-    public void update(ViewUpdateDTO updateData) {
+    public void updateVisualizePlayerPanel(ViewUpdateDTO updateData) {
+        System.out.println("\n\n\n ciao2 \n\n\n");
         this.textList.get(0).setText("E' il turno di " + updateData.actualPlayer());
         for (var entry : updateData.playersMoney().entrySet()) {
             this.textList.stream()

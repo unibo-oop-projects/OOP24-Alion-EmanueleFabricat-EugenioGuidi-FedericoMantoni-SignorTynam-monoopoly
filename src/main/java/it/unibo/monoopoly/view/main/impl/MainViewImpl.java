@@ -82,7 +82,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     private List<Triple<String, Integer, Color>> initPlayerView() {
         List<Triple<String, Integer, Color>> l = new LinkedList<>();
         for (var entry: this.players.entrySet()) {
-            l.add(Triple.of(entry.getValue(), 1500, entry.getKey()));
+            l.add(Triple.of(entry.getValue(), 0, entry.getKey()));
         }
         return l;
     }
@@ -145,6 +145,6 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     @Override
     public void update() {
-        this.gamePanel.update(this.controller.getViewUpdateData());
+        this.gamePanel.updateVisualizePlayerPanel(this.controller.getViewUpdateData());
     }
 }

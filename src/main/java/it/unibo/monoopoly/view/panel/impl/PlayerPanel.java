@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 
 import org.apache.commons.lang3.tuple.Triple;
 
+import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
+
 /**
  * 
  */
@@ -49,5 +51,9 @@ public class PlayerPanel extends AbstractPanel {
      */
     public void setInteractivePanel(final JPanel panel) {
         this.interactivePanel.setInteractivePanel(panel);
+    }
+    
+    public void updateVisualizePlayerPanel(ViewUpdateDTO updateData) {
+        this.visualizePlayerPanel.updateVisualizePlayerPanel(updateData);
     }
 }
