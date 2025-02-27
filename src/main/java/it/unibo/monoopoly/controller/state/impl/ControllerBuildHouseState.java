@@ -47,19 +47,18 @@ public class ControllerBuildHouseState implements ControllerState {
     public void startState() {
         canBuild = modelState.verify();
         viewState.setMode(canBuild);
-
         if (this.gameBoard != null) {
-            final List<Integer> buildableCells = canBuild ? this.gameBoard.getCurrentPlayer().getProperties().stream()
+            final List<Integer> buildableCells = canBuild 
+                ? this.gameBoard.getCurrentPlayer().getProperties().stream()
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
                     .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
                     .map(this.gameBoard.getCellsList()::indexOf)
-                    .collect(Collectors.toList()) : List.of();
-
+                    .collect(Collectors.toList())
+                : List.of();
             final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
             viewState.visualize(dataBuilder.cellList(buildableCells).build());
         }
-        // Removed: automatic invocation of continueState() to avoid recursive state transitions.
     }
 
     /**
