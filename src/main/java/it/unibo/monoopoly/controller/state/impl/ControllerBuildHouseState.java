@@ -53,6 +53,7 @@ public class ControllerBuildHouseState implements ControllerState {
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
                     .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
+                    .filter(p -> this.gameBoard.getCurrentPlayer().isPayable(p.getHouseCost()))
                     .map(this.gameBoard.getCellsList()::indexOf)
                     .collect(Collectors.toList())
                 : List.of();
@@ -68,7 +69,9 @@ public class ControllerBuildHouseState implements ControllerState {
      */
     @Override
     public void continueState(final DataOutput data) {
-        modelState.doAction(data);
+        if (canBuild) {
+            modelState.doAction(data);
+        }
         modelState.closeState();
         mainController.nextPhase();
     }
