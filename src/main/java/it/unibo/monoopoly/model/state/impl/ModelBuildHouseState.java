@@ -40,6 +40,7 @@ public class ModelBuildHouseState implements ModelState {
                 .filter(p -> p instanceof Buildable)
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
+                .filter(p -> currentPlayer.isPayable(p.getHouseCost()))
                 .collect(Collectors.toSet());
         canBuild = !buildableProperties.isEmpty();
         return canBuild;
@@ -55,9 +56,10 @@ public class ModelBuildHouseState implements ModelState {
         if (canBuild && data.cellChoose().isPresent()) {
             final int cellIndex = data.cellChoose().get();
             final Buildable property = (Buildable) (model.getGameBoard().getCell(cellIndex));
-            if (property.getHousesNumber() < MAX_HOUSES && !property.isMortgaged()) {
-                property.buildHouse();
-            }
+            property.buildHouse();
+            model.getGameBoard().getCurrentPlayer().pay(property.getHouseCost());
+        } else {
+            canBuild = false;
         }
     }
 
