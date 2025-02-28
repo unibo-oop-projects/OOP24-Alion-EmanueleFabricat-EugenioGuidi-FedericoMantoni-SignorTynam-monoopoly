@@ -104,7 +104,7 @@ public class MainControllerImpl implements MainController {
             case ModelBankerState b -> {
                 this.mainView.setState(new ViewBankerState(mainView));
                 this.actualState = new ControllerBankerState(this, model.getState(),
-                mainView.getViewState(), this.model.getGameBoard(), this.getActualEvent());
+                mainView.getViewState(), this.model.getGameBoard());
             } 
             case ModelBuildHouseState bh -> {
                 this.mainView.setState(new ViewBuildHouseState(mainView));
