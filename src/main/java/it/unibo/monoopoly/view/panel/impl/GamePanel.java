@@ -25,10 +25,11 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
     private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
-    private PlayerPanel playerPanel; 
+    private final PlayerPanel playerPanel;
     private final GameBoardPanel gameBoardPanel;
     private final String firstPlayer;
     private final List<Triple<String, Integer, Color>> initializedList;
+
     /**
      * comment.
      * 
@@ -36,8 +37,10 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
      * @param mainFrameHeight
      * @param mainFrameWidth
      */
-    public GamePanel(final MainController mainController, final int mainFrameHeight, final int mainFrameWidth,
-            final String firstPlayer, final List<Triple<String, Integer, Color>> initializedList, final Map<Color, String> players, final List<Color> colors) {
+    public GamePanel(final MainController mainController, final int mainFrameHeight,
+            final int mainFrameWidth, final String firstPlayer,
+            final List<Triple<String, Integer, Color>> initializedList,
+            final Map<Color, String> players, final List<Color> colors) {
         this.mainController = mainController;
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
@@ -45,7 +48,7 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
         this.initializedList = initializedList;
         this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, players, colors);
         this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
-        
+
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
         final JPanel centerPanel = new JPanel();
@@ -78,21 +81,21 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
     }
 
     @Override
-    public void updateVisualizePlayerPanel(ViewUpdateDTO updateData) {
+    public void update(final ViewUpdateDTO updateData) {
         this.gameBoardPanel.update(updateData.playerPositions(),
-                                   updateData.cellsOwners(),
-                                   updateData.nBuiltHouses(),
-                                   updateData.prisonedPlayers());
-        this.playerPanel.updateVisualizePlayerPanel(updateData); //da decommentare quando funzionerà
+                updateData.cellsOwners(),
+                updateData.nBuiltHouses(),
+                updateData.prisonedPlayers());
+        this.playerPanel.update(updateData); // da decommentare quando funzionerà
     }
 
-
-
-    /*private Color getColorPlayer(String name) {
-        return this.playersColors.entrySet().stream()
-                .filter(e -> e.getValue().equals(name))
-                .map(e -> e.getKey())
-                .findFirst()
-                .get();
-    }*/
+    /*
+     * private Color getColorPlayer(String name) {
+     * return this.playersColors.entrySet().stream()
+     * .filter(e -> e.getValue().equals(name))
+     * .map(e -> e.getKey())
+     * .findFirst()
+     * .get();
+     * }
+     */
 }

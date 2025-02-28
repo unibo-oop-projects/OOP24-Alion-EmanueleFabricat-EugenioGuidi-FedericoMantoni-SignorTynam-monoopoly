@@ -13,6 +13,6 @@ public interface UpdatablePanel {
      * Update the panel to reflect the actual state of the model.
      * @param updateData contains all the data to update the GUI
      */
-    void updateVisualizePlayerPanel(ViewUpdateDTO updateData);
+    void update(ViewUpdateDTO updateData);
 
 }
