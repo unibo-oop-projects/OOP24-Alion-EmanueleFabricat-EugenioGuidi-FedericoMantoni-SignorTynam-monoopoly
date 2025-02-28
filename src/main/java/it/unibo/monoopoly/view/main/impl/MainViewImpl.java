@@ -3,27 +3,20 @@ package it.unibo.monoopoly.view.main.impl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.text.View;
 
 import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
-import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
-import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.GamePanel;
-import it.unibo.monoopoly.view.panel.impl.PlayerPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 import it.unibo.monoopoly.view.state.impl.ViewPrisonState;
 
@@ -61,13 +54,14 @@ public class MainViewImpl extends AbstractView implements MainView {
         this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
-        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), "1", initPlayerView(), this.players, this.colors);
+        this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), "1",
+                initPlayerView(), this.players, this.colors);
         this.viewState = new ViewPrisonState(this);
     }
 
     private List<Triple<String, Integer, Color>> initPlayerView() {
-        List<Triple<String, Integer, Color>> l = new LinkedList<>();
-        for (var entry: this.players.entrySet()) {
+        final List<Triple<String, Integer, Color>> l = new LinkedList<>();
+        for (final var entry : this.players.entrySet()) {
             l.add(Triple.of(entry.getValue(), 0, entry.getKey()));
         }
         return l;
@@ -118,19 +112,22 @@ public class MainViewImpl extends AbstractView implements MainView {
      */
     @Override
     public void setInteractivePanel(final JPanel panel) {
-        ((GamePanel) this.gamePanel).setInteractivePanel(panel); // cast per non creare il metodo nella classe astratta
+        this.gamePanel.setInteractivePanel(panel); // cast per non creare il metodo nella classe astratta
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setState(ViewState state) {
+    public void setState(final ViewState state) {
         this.viewState = state;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update() {
-        this.gamePanel.updateVisualizePlayerPanel(this.controller.getViewUpdateData());
+        this.gamePanel.update(this.controller.getViewUpdateData());
     }
 }
