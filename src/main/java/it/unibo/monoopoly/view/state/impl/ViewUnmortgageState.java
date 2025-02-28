@@ -46,8 +46,9 @@ public class ViewUnmortgageState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         if (this.makeState) {
-            final JPanel panel = new UnmortgagePanel(new ViewCellGiver(this.mainView), intToTextCell(dataInput.cellList().get()));
-            this.mainView.getMainFrame().add(panel);
+            final JPanel panel = new UnmortgagePanel(new ViewCellGiver(this.mainView),
+                    intToTextCell(dataInput.cellList().get()));
+            this.mainView.setInteractivePanel(panel);;
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
                     "Mi spiace non hai proprietà da disipotecare", "Disipoteca", JOptionPane.PLAIN_MESSAGE);

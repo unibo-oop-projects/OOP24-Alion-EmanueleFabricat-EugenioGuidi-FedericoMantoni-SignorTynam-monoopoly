@@ -7,6 +7,7 @@ import javax.swing.JButton;
 
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.view.main.api.MainView;
+import it.unibo.monoopoly.view.panel.impl.DefaultInteractivePanel;
 
 public class ViewCellGiver implements ActionListener {
     private final MainView mainView;
@@ -28,5 +29,6 @@ public class ViewCellGiver implements ActionListener {
                 mainView.getMainController().getControllerState().continueState(
                         new DataBuilderOutputImpl().cellChoose(cell).build());
             }
+            this.mainView.setInteractivePanel(new DefaultInteractivePanel());
     }
 }
