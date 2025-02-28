@@ -19,7 +19,7 @@ import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
 import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
 import it.unibo.monoopoly.controller.state.impl.ControllerUnmortgageState;
-import it.unibo.monoopoly.controller.state.impl.PrisonControllerState;
+import it.unibo.monoopoly.controller.state.impl.ControllerPrisonState;
 import it.unibo.monoopoly.model.state.impl.ModelMovementState;
 import it.unibo.monoopoly.model.state.impl.ModelBankerState;
 import it.unibo.monoopoly.model.state.impl.ModelBuildHouseState;
@@ -62,7 +62,7 @@ public class MainControllerImpl implements MainController {
         this.mainView = new MainViewImpl(this, playersName, cellsNames);
         this.mainView.display();
         this.mainView.update();
-        this.actualState = new PrisonControllerState(this, this.model.getState(), this.mainView.getViewState(),
+        this.actualState = new ControllerPrisonState(this, this.model.getState(), this.mainView.getViewState(),
                 model.getGameBoard().getCurrentPlayer());
         this.actualState.startState();
         // this.nextPhase();
@@ -83,7 +83,7 @@ public class MainControllerImpl implements MainController {
         switch (this.model.getState()) {
             case ModelPrisonState p -> {
                 this.mainView.setState(new ViewPrisonState(mainView));
-                this.actualState = new PrisonControllerState(this, model.getState(),
+                this.actualState = new ControllerPrisonState(this, model.getState(),
                         mainView.getViewState(), this.model.getGameBoard().getCurrentPlayer());
             }
             case ModelMovementState m -> {
@@ -118,7 +118,6 @@ public class MainControllerImpl implements MainController {
             }
             default -> throw new IllegalArgumentException("Implementation of ModelState not supported");
         }
-        ;
         this.actualState.startState();
     }
 

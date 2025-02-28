@@ -8,13 +8,11 @@ import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
-import it.unibo.monoopoly.model.gameboard.api.GameBoard;
-import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
-public class PrisonControllerState implements ControllerState {
+public class ControllerPrisonState implements ControllerState {
 
     private final ModelState modelState;
     private final MainController mainController;
@@ -23,12 +21,12 @@ public class PrisonControllerState implements ControllerState {
 
     /**
      * Constructs the prison controller state.
-     * 
-     * @param modelState
-     * @param viewState
-     * @param mainModel
+     * @param mainController the mainController
+     * @param modelState the actual {@link ModelState}
+     * @param viewState the actual {@link ViewState}
+     * @param player the {@link Player} of the turn.
      */
-    public PrisonControllerState(MainController mainController, ModelState modelState, ViewState viewState, Player player) {
+    public ControllerPrisonState(final MainController mainController, final ModelState modelState, final ViewState viewState, final Player player) {
         this.modelState = modelState;
         this.viewState = viewState;
         this.player = player;
@@ -46,17 +44,17 @@ public class PrisonControllerState implements ControllerState {
      */
     @Override
     public void startState() {
-        boolean goToJail = modelState.verify();
+        final boolean goToJail = modelState.verify();
         viewState.setMode(goToJail);
 
-        DataBuilderInput dataBuilder = new DataBuilderInputImpl();
+        final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
         if (goToJail) {
             viewState.visualize(dataBuilder.build());
             modelState.doAction(new DataOutput(Optional.empty(), Optional.empty()));
         } else {
-            Player currentPlayer = this.player;
-            if(currentPlayer.isPrisoned()) {
-                boolean hasCard = currentPlayer.getFreeJailCards() > 0;
+            final Player currentPlayer = this.player;
+            if (currentPlayer.isPrisoned()) {
+                final boolean hasCard = currentPlayer.getFreeJailCards() > 0;
                 viewState.visualize(dataBuilder.mode(hasCard).build());
                 modelState.doAction(new DataOutput(Optional.empty(), Optional.empty()));
             }
@@ -70,7 +68,7 @@ public class PrisonControllerState implements ControllerState {
      * @param data
      */
     @Override
-    public void continueState(DataOutput data) {
+    public void continueState(final DataOutput data) {
         modelState.closeState();
         mainController.nextPhase();
     }
