@@ -91,7 +91,7 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
                                    updateData.cellsOwners(),
                                    updateData.nBuiltHouses(),
                                    updateData.prisonedPlayers());
-        //this.playerPanel.updateVisualizePlayerPanel(updateData); //da decommentare quando funzionerà
+        this.playerPanel.updateVisualizePlayerPanel(updateData); //da decommentare quando funzionerà
     }
 
 
