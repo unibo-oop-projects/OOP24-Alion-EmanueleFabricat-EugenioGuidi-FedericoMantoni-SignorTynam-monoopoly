@@ -67,10 +67,5 @@ public abstract class AbstractView implements View {
         return COLORS;
     }
 
-    /**
-     * 
-     * @return all {@link JPanel}s contained in the main frame of the view
-     */
-    abstract JPanel getMainPanel();
 
 }
