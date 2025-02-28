@@ -26,7 +26,6 @@ public class ControllerBankerState implements ControllerState {
     private final ModelState actualModelState;
     private final ViewState actualViewState;
     private final GameBoard gameBoard;
-    private final Optional<Event> event;
     private boolean payable;
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
 
@@ -36,12 +35,11 @@ public class ControllerBankerState implements ControllerState {
      * @param mainController
      */
     public ControllerBankerState(final MainController mainController, final ModelState actualModelState,
-            final ViewState actualViewState, final GameBoard gameBoard, final Optional<Event> event) {
+            final ViewState actualViewState, final GameBoard gameBoard) {
         this.mainController = mainController;
         this.actualModelState = actualModelState;
         this.actualViewState = actualViewState;
         this.gameBoard = gameBoard;
-        this.event = event;
     }
 
     /**
@@ -68,11 +66,11 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private DataInput buildData() {
-        if (this.event.isEmpty()) {
+        if (this.mainController.getActualEvent().isEmpty()) {
             return this.dataBuilderInput.build();
         }
-        final Event event = this.event.get();
-        return switch (this.event.get()) {
+        final Event event = this.mainController.getActualEvent().get();
+        return switch (event) {
             case Event.SELL_HOUSE -> this.dataBuilderInput
                     .event(event)
                     .cellList(cellListChoser(event))
