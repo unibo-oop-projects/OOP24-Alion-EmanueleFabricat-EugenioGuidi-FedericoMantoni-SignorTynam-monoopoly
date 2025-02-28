@@ -64,7 +64,6 @@ public class VisualizePlayerPanel extends AbstractPanel implements UpdatablePane
      */
     @Override
     public void updateVisualizePlayerPanel(ViewUpdateDTO updateData) {
-        System.out.println("\n ciao \n");
         this.textList.get(0).setText("E' il turno di " + updateData.actualPlayer());
         for (var entry : updateData.playersMoney().entrySet()) {
             this.textList.stream()
