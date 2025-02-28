@@ -95,6 +95,13 @@ public final class GameBoardPanel extends JPanel {
                 newList.add(circlePosition);
             }
         }
+        for(var prisonedPlayer : prisonedPlayers) {
+            Color color = getColorFromString(prisonedPlayer);
+            CirclePosition circlePosition = new CirclePosition(this.prisonPositions.get(color).x(), 
+                                                               this.prisonPositions.get(color).y(), 
+                                                               color);
+            newList.add(circlePosition);
+        }
         return newList;
     }
 
