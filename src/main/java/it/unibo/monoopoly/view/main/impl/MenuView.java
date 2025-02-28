@@ -3,6 +3,7 @@ package it.unibo.monoopoly.view.main.impl;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -10,14 +11,13 @@ import java.awt.Toolkit;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.menu.api.MenuController;
 import it.unibo.monoopoly.view.panel.impl.MenuPanel;
-import it.unibo.monoopoly.view.panel.impl.AbstractPanel;
 
 /**
  * Initial view shown at the start of application.
  */
 public class MenuView extends AbstractView {
 
-    private final AbstractPanel menuPanel;
+    private final JPanel menuPanel;
 
     /**
      * Construct and initialize thr frame and panels of {@link MenuView}.
@@ -37,7 +37,7 @@ public class MenuView extends AbstractView {
      * {@inheritDoc}
      */
     @Override
-    public AbstractPanel getMainPanel() {
+    public JPanel getMainPanel() {
         return this.menuPanel;
     }
 

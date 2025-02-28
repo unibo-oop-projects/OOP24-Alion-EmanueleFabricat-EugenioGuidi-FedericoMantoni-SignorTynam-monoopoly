@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import org.apache.commons.lang3.tuple.Triple;
@@ -14,7 +15,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 
-public class VisualizePlayerPanel extends AbstractPanel implements UpdatablePanel {
+public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,14 +50,6 @@ public class VisualizePlayerPanel extends AbstractPanel implements UpdatablePane
             text.setFont(new Font("Arial", Font.PLAIN, (int) (PERC_RESIZE * this.mainFrameHeight)));
             add(text);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
-       
     }
 
     /**

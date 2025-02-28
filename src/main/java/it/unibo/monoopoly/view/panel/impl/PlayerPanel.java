@@ -13,7 +13,7 @@ import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 /**
  * 
  */
-public class PlayerPanel extends AbstractPanel {
+public final class PlayerPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,14 +31,7 @@ public class PlayerPanel extends AbstractPanel {
             final List<Triple<String, Integer, Color>> initializedList) {
         this.interactivePanel = new InteractivePanel();
         this.visualizePlayerPanel = new VisualizePlayerPanel(mainFrameHeight, firstPlayer, initializedList);
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
+        
         final InteractivePanel interactivePanel = new InteractivePanel();
         setBackground(Color.BLUE);
         setLayout(new GridLayout(2, 1));

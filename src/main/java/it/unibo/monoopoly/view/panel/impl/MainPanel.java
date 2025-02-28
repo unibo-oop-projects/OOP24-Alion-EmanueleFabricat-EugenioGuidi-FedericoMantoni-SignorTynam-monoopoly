@@ -3,13 +3,15 @@ package it.unibo.monoopoly.view.panel.impl;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
  * comment.
  */
-public class MainPanel extends AbstractPanel {
+public final class MainPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +24,8 @@ public class MainPanel extends AbstractPanel {
         setLayout(new BorderLayout());
         textArea = new JTextArea();
         textArea.setEditable(false);
+        final JScrollPane scrollPane = new JScrollPane(textArea);
+        add(scrollPane, BorderLayout.CENTER);
     }
     
     /**
@@ -40,16 +44,6 @@ public class MainPanel extends AbstractPanel {
      */
     public void setText(final String text) {
         textArea.setText(text);
-    }
-    
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
-        final JScrollPane scrollPane = new JScrollPane(textArea);
-        add(scrollPane, BorderLayout.CENTER);
     }
 
 }

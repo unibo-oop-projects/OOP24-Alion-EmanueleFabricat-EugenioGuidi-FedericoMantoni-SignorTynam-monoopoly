@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 import org.apache.commons.lang3.tuple.Triple;
 import it.unibo.monoopoly.view.panel.api.PositionsFactory;
@@ -25,7 +26,7 @@ import it.unibo.monoopoly.view.panel.api.PositionsFactory;
  * mettere commento qui, tutti i numeri molotiplicativi vengono percepiti come
  * magic number.
  */
-public class GameBoardPanel extends AbstractPanel {
+public final class GameBoardPanel extends JPanel {
 
     public record CirclePosition(double x, double y, Color color) {}
     public record NumberPosition(int x, int y, int number) {}
@@ -63,14 +64,6 @@ public class GameBoardPanel extends AbstractPanel {
         final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
         this.circlesPositions = new ArrayList<>();
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
         setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
         setLayout(new BorderLayout());
     }

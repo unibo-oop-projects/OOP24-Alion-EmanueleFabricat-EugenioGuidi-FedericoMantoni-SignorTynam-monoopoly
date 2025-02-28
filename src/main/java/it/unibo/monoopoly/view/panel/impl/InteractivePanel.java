@@ -4,12 +4,11 @@ import java.util.Objects;
 
 import javax.swing.JPanel;
 
-public class InteractivePanel extends AbstractPanel {
+public final class InteractivePanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void panelInit() {
+    public InteractivePanel() {
         setInteractivePanel(new DefaultInteractivePanel());
     }
 

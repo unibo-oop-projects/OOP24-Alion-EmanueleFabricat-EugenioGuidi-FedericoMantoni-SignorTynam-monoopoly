@@ -27,7 +27,7 @@ import it.unibo.monoopoly.controller.menu.api.MenuController;
  * Panel for handle input of the number and names of players decided by the
  * user.
  */
-public class SelectionPanel extends AbstractPanel {
+public final class SelectionPanel extends JPanel {
 
     private static final int MAX_NAME_LENGTH = 25;
     private static final double NUMBER_LABEL_WEIGHT = 0.4;
@@ -59,20 +59,7 @@ public class SelectionPanel extends AbstractPanel {
         this.menuController = controller;
         this.colors = colors;
         this.players = new ArrayList<>();
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public void display() {
-        this.setVisible(true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
         this.setLayout(new GridBagLayout());
         final JLabel nPlayerTextSelection = new JLabel("Scegli il numero di giocatori");
         nPlayerTextSelection.setFont(this.font);

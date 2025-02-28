@@ -13,7 +13,7 @@ import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 /**
  * comment.
  */
-public class SellHousePanel extends AbstractPanel {
+public final class SellHousePanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,15 +31,8 @@ public class SellHousePanel extends AbstractPanel {
         super();
         this.closeMethod = closeMethod;
         this.cellList = cellList;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
         this.innerPanel = new JPanel();
+
         this.setLayout(new BorderLayout());
         this.innerPanel.setLayout(new GridLayout(0, cellList.size()));
         this.add(new JTextArea("Scegli una proprietà su cui vendere una casa"), BorderLayout.NORTH);

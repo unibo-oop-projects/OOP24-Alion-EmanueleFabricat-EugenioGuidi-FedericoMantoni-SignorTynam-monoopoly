@@ -17,7 +17,7 @@ import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 /**
  * comment.
  */
-public class GamePanel extends AbstractPanel implements UpdatablePanel {
+public final class GamePanel extends JPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
@@ -45,14 +45,7 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
         this.initializedList = initializedList;
         this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, players, colors);
         this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
+        
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
         final JPanel centerPanel = new JPanel();
@@ -78,7 +71,6 @@ public class GamePanel extends AbstractPanel implements UpdatablePanel {
         centerPanel.setLayout(new BorderLayout());
         centerPanel.add(this.gameBoardPanel, BorderLayout.WEST);
         centerPanel.add(playerPanel, BorderLayout.CENTER);
-
     }
 
     public void setInteractivePanel(final JPanel panel) {

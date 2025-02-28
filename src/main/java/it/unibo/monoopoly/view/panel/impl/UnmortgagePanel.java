@@ -13,7 +13,7 @@ import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 /**
  * comment.
  */
-public class UnmortgagePanel extends AbstractPanel {
+public final class UnmortgagePanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,14 +31,7 @@ public class UnmortgagePanel extends AbstractPanel {
         super();
         this.closeMethod = closeMethod;
         this.cellList = cellList;
-    }
 
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
         this.innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
         this.innerPanel.setLayout(new GridLayout(0, cellList.size()));

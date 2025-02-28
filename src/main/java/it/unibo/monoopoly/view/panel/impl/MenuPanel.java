@@ -18,7 +18,7 @@ import it.unibo.monoopoly.controller.menu.api.MenuController;
 /**
  * Panel showed at the start of the application.
  */
-public class MenuPanel extends AbstractPanel {
+public final class MenuPanel extends JPanel {
 
     private static final String ARIAL_FONT = "Arial";
     private static final long serialVersionUID = 1L;
@@ -48,13 +48,7 @@ public class MenuPanel extends AbstractPanel {
     public MenuPanel(final MenuController controller, final List<Color> colors) {
         super();
         this.playerSelection = new SelectionPanel(controller, colors);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
         final JPanel title = new JPanel(new BorderLayout());
         this.start = new JButton("START");
         this.monoopoly = new JLabel("MONOOPOLY");
@@ -70,7 +64,7 @@ public class MenuPanel extends AbstractPanel {
         this.start.addActionListener(e -> {
             start.setVisible(false);
             this.add(playerSelection, getSelectionConstraints());
-            playerSelection.display();
+            //playerSelection.init();
         });
         this.add(start, getButtonCostraints());
         this.add(title, getTitleConstraints());

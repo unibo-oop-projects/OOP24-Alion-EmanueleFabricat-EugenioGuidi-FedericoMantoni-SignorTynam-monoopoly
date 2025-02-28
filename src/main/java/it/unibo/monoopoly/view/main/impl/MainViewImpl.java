@@ -20,26 +20,12 @@ import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
-import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
-import it.unibo.monoopoly.controller.state.impl.ControllerBuildHouseState;
-import it.unibo.monoopoly.controller.state.impl.ControllerCardState;
-import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
-import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
-import it.unibo.monoopoly.controller.state.impl.ControllerUnmortgageState;
-import it.unibo.monoopoly.controller.state.impl.PrisonControllerState;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.GamePanel;
-import it.unibo.monoopoly.view.panel.impl.AbstractPanel;
 import it.unibo.monoopoly.view.panel.impl.PlayerPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
-import it.unibo.monoopoly.view.state.impl.ViewBankerState;
-import it.unibo.monoopoly.view.state.impl.ViewBuildHouseState;
-import it.unibo.monoopoly.view.state.impl.ViewCardState;
-import it.unibo.monoopoly.view.state.impl.ViewCheckActionState;
-import it.unibo.monoopoly.view.state.impl.ViewMovementState;
 import it.unibo.monoopoly.view.state.impl.ViewPrisonState;
-import it.unibo.monoopoly.view.state.impl.ViewUnmortgageState;
 
 /**
  * Represents the main view component of the application when game starts.
@@ -95,7 +81,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      * {@inheritDoc}
      */
     @Override
-    public AbstractPanel getMainPanel() {
+    public JPanel getMainPanel() {
         return this.gamePanel;
     }
 

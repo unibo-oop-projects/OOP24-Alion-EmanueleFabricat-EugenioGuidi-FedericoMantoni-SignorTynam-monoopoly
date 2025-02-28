@@ -13,7 +13,7 @@ import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 /**
  * comment.
  */
-public class MortgagePanel extends AbstractPanel {
+public final class MortgagePanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,14 +30,6 @@ public class MortgagePanel extends AbstractPanel {
         super();
         this.closeMethod = closeMethod;
         this.cellList = cellList;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    protected void panelInit() {
         this.innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
         this.innerPanel.setLayout(new GridLayout(0, cellList.size()));
@@ -51,6 +43,5 @@ public class MortgagePanel extends AbstractPanel {
         final JButton noChoiceButton = new JButton(ViewCellGiver.NO_CHOICE);
         noChoiceButton.addActionListener(closeMethod);
         this.add(noChoiceButton, BorderLayout.SOUTH);
-
     }
 }
