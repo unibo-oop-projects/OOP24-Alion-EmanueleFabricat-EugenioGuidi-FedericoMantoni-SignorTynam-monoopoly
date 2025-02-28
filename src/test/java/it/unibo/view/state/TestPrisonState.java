@@ -13,7 +13,7 @@ import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.state.impl.ViewPrisonState;
-import it.unibo.monoopoly.controller.state.impl.PrisonControllerState;
+import it.unibo.monoopoly.controller.state.impl.ControllerPrisonState;
 
 public class TestPrisonState extends JFrame {
 
@@ -32,13 +32,13 @@ public class TestPrisonState extends JFrame {
             MainView view = new MainViewImpl(controller, propertyList, playerList);
 
             ModelPrisonState modelStateJail = new ModelPrisonState(mainModel, true);
-            PrisonControllerState prisonControllerJail = new PrisonControllerState(controller, 
+            ControllerPrisonState prisonControllerJail = new ControllerPrisonState(controller, 
                     modelStateJail, new ViewPrisonState(view), mainModel.getGameBoard().getCurrentPlayer());
             prisonControllerJail.startState();
             prisonControllerJail.continueState(null);
 
             ModelPrisonState modelStateRelease = new ModelPrisonState(mainModel, false);
-            PrisonControllerState prisonControllerRelease = new PrisonControllerState(controller, 
+            ControllerPrisonState prisonControllerRelease = new ControllerPrisonState(controller, 
                     modelStateRelease, new ViewPrisonState(view), mainModel.getGameBoard().getCurrentPlayer());
             prisonControllerRelease.startState();
             prisonControllerRelease.continueState(null);
