@@ -23,13 +23,13 @@ public interface JsonConverter<T> {
      * @param fileJson the path of the file to convert.
      * @return the converted list of list.
      */
-    List<List<T>> jsonToListOfList(final InputStream fileJson);
+    List<List<T>> jsonToListOfList(InputStream fileJson);
 
     /**
      * Convert a json file in a Map of type Integer, T.
      * @param fileJson the path of the file to convert.
      * @return the converted Map.
      */
-    Map<Integer, T> jsonToMap(final InputStream fileJson);
+    Map<Integer, T> jsonToMap(InputStream fileJson);
 
 }

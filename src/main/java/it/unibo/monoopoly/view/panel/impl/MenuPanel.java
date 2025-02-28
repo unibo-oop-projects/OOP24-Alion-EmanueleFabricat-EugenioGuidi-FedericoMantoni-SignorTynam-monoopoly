@@ -35,8 +35,8 @@ public final class MenuPanel extends JPanel {
 
     private final SelectionPanel playerSelection;
 
-    private JButton start;
-    private JLabel monoopoly;
+    private final JButton start;
+    private final JLabel monoopoly;
 
     /**
      * Construct and inizialize the MenuPanel.

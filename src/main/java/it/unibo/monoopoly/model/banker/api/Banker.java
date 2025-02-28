@@ -1,8 +1,5 @@
 package it.unibo.monoopoly.model.banker.api;
 
-import java.util.List;
-import java.util.Optional;
-
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.common.Message;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;

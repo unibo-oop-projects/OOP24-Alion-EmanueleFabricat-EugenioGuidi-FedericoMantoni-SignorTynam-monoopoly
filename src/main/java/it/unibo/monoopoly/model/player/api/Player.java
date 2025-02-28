@@ -1,6 +1,5 @@
 package it.unibo.monoopoly.model.player.api;
 
-import java.util.Optional;
 import java.util.Set;
 
 import it.unibo.monoopoly.model.gameboard.api.Buyable;

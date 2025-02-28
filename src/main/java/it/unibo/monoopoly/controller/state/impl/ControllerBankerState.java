@@ -1,7 +1,6 @@
 package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -26,13 +25,14 @@ public class ControllerBankerState implements ControllerState {
     private final ModelState actualModelState;
     private final ViewState actualViewState;
     private final GameBoard gameBoard;
-    private boolean payable;
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
 
     /**
-     * comment.
      * 
-     * @param mainController
+     * @param mainController the main controller
+     * @param actualModelState the actual {@link ModelState}
+     * @param actualViewState the actual {@link ViewState}
+     * @param gameBoard the {@link GameBoard}
      */
     public ControllerBankerState(final MainController mainController, final ModelState actualModelState,
             final ViewState actualViewState, final GameBoard gameBoard) {
@@ -48,8 +48,7 @@ public class ControllerBankerState implements ControllerState {
      */
     @Override
     public void startState() {
-        this.payable = this.actualModelState.verify();
-        this.actualViewState.setMode(this.payable);
+        this.actualViewState.setMode(this.actualModelState.verify());
         this.actualViewState.visualize(buildData());
     }
 

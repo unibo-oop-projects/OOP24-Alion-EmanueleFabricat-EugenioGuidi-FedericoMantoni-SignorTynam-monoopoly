@@ -4,25 +4,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.model.deck.api.Deck;
-import it.unibo.monoopoly.model.deck.impl.DeckImpl;
-import it.unibo.monoopoly.model.gameboard.api.Buyable;
-import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.gameboard.impl.CellFactoryImpl;
 import it.unibo.monoopoly.model.gameboard.impl.GameBoardImpl;
 import it.unibo.monoopoly.model.main.api.MainModel;
-import it.unibo.monoopoly.model.notary.api.Notary;
-import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.ModelBankerState;
-import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
-import it.unibo.monoopoly.model.state.impl.ModelMovementState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 
 /**

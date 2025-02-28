@@ -19,7 +19,7 @@ public class ViewPrisonState implements ViewState {
      * 
      * @param mainView the main view
      */
-    public ViewPrisonState(MainView mainView) {
+    public ViewPrisonState(final MainView mainView) {
         this.mainView = mainView;
     }
 
@@ -29,7 +29,7 @@ public class ViewPrisonState implements ViewState {
      * @param mode the mode
      */
     @Override
-    public void setMode(Boolean mode) {
+    public void setMode(final Boolean mode) {
         this.goToJail = mode;
     }
 
@@ -39,8 +39,8 @@ public class ViewPrisonState implements ViewState {
      * @param data the data
      */
     @Override
-    public void visualize(DataInput data) {
-        String message;
+    public void visualize(final DataInput data) {
+        final String message;
         if (goToJail) {
             message = "You must go to jail without passing VIA!";
         } else {

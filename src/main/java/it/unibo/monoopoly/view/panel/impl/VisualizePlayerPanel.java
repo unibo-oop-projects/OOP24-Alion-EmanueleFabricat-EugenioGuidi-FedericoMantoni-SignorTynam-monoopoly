@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -39,7 +40,8 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
         this.mainFrameHeight = mainFrameHeight;
         this.firstPlayer = firstPlayer;
         setLayout(new GridLayout(playersNumber * 2 + 1, 1));
-        this.textList.add(new JTextArea("E' il turno di " + this.firstPlayer)); for (final Triple<String, Integer, Color> triple : initializedList) {
+        this.textList.add(new JTextArea("E' il turno di " + this.firstPlayer));
+        for (final Triple<String, Integer, Color> triple : initializedList) {
             this.textList.add(new JTextArea(triple.getLeft()));
             this.textList.getLast().setBackground(triple.getRight());
             this.textList.add(new JTextArea(triple.getMiddle() + " €"));
@@ -56,16 +58,16 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
      * {@inheritDoc}
      */
     @Override
-    public void updateVisualizePlayerPanel(ViewUpdateDTO updateData) {
+    public void update(final ViewUpdateDTO updateData) {
         this.textList.get(0).setText("E' il turno di " + updateData.actualPlayer());
-        for (var entry : updateData.playersMoney().entrySet()) {
+        for (final var entry : updateData.playersMoney().entrySet()) {
             this.textList.stream()
                     .filter(t -> t.getText().equals(entry.getKey()))
                     .map(t -> this.textList.get(this.textList.indexOf(t) + 1))
                     .findFirst().get().setText(entry.getValue() + " €");
         }
         this.textList.stream()
-                .filter(t -> this.textList.indexOf(t) % 2 == 1 &&  this.textList.indexOf(t) > 0)
+                .filter(t -> this.textList.indexOf(t) % 2 == 1 && this.textList.indexOf(t) > 0)
                 .filter(t -> !keysList(updateData.playersMoney()).contains(t.getText()))
                 .map(t -> this.textList.get(this.textList.indexOf(t) + 1))
                 .forEach(t -> {
@@ -74,9 +76,9 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
                 });
     }
 
-    private List<String> keysList(Map<String, Integer> map) {
+    private List<String> keysList(final Map<String, Integer> map) {
         return map.entrySet().stream()
-                .map(e -> e.getKey())
+                .map(Entry::getKey)
                 .toList();
     }
 }

@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 public class ViewMovementState implements ViewState {
 
     private final MainView mainView;
-    private DataInput dataInput;
 
     /**
      * comment.
@@ -37,10 +36,9 @@ public class ViewMovementState implements ViewState {
      */
     @Override
     public void visualize(final DataInput dataInput) {
-        this.dataInput = dataInput;
-        if (this.dataInput.dices().isPresent()) {
-            final String string = "Primo dado: " + this.dataInput.dices().get().getFirstRoll() + "\nSecondo dado: "
-                    + this.dataInput.dices().get().getSecondRoll();
+        if (dataInput.dices().isPresent()) {
+            final String string = "Primo dado: " + dataInput.dices().get().getFirstRoll() + "\nSecondo dado: "
+                    + dataInput.dices().get().getSecondRoll();
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), string, "Lancio dei dadi",
                     JOptionPane.INFORMATION_MESSAGE);
         } else {

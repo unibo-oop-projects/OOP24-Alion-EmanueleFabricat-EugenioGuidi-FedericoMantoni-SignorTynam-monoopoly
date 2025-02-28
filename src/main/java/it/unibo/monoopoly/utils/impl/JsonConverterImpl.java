@@ -64,15 +64,18 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
         return out;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Map<Integer, T> jsonToMap(InputStream fileJson) {
+    public Map<Integer, T> jsonToMap(final InputStream fileJson) {
         final Map<Integer, T> out;
         try {
             final JavaType outType = mapper.getTypeFactory()
                 .constructMapType(Map.class, Integer.class, type);
 
             out = mapper.readValue(fileJson, outType);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new UncheckedIOException("Failed to convert the Json file to Map", e);
         }
         return out;

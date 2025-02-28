@@ -12,7 +12,6 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  */
 public class ViewCardState implements ViewState {
     private final MainView mainView;
-    private DataInput dataInput;
 
     /**
      * Constructor of the class that sets the field.
@@ -37,8 +36,7 @@ public class ViewCardState implements ViewState {
      */
     @Override
     public void visualize(final DataInput data) {
-        this.dataInput = data;
-        JOptionPane.showMessageDialog(this.mainView.getMainFrame(), this.dataInput.text().get(), "Card",
+        JOptionPane.showMessageDialog(this.mainView.getMainFrame(), data.text().get(), "Card",
                 JOptionPane.PLAIN_MESSAGE);
     }
 

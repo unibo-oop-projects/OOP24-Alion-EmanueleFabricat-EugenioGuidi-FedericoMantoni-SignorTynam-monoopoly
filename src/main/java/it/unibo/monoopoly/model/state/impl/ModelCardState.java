@@ -19,6 +19,7 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
  * it changes the state.
  */
 public class ModelCardState implements ModelState {
+    private static final int N_CELLS = 40;
     private final MainModel mainModel;
 
     /**
@@ -96,7 +97,7 @@ public class ModelCardState implements ModelState {
     }
 
     private int payForHouse() {
-        Optional<Integer> amount = Stream.iterate(0, n -> n + 40).limit(numberOfHouses()).findFirst();
+        final Optional<Integer> amount = Stream.iterate(0, n -> n + N_CELLS).limit(numberOfHouses()).findFirst();
         if (amount.isEmpty()) {
             return 0;
         }
@@ -108,7 +109,7 @@ public class ModelCardState implements ModelState {
         return this.mainModel.getGameBoard().getCurrentPlayer().getProperties().stream()
                 .filter(c -> c instanceof Buildable)
                 .map(c -> (Buildable) c)
-                .mapToInt(c -> c.getHousesNumber())
+                .mapToInt(Buildable::getHousesNumber)
                 .sum();
     }
 }

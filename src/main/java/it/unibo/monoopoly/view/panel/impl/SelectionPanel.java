@@ -42,7 +42,7 @@ public final class SelectionPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private JPanel namesPanel;
-    private JPanel numberPanel;
+    private final JPanel numberPanel;
     private final List<Color> colors;
     private final List<JTextField> players;
     private final MenuController menuController;

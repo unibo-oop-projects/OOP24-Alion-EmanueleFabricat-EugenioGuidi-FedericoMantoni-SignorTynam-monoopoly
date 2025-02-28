@@ -2,7 +2,6 @@ package it.unibo.monoopoly.controller.menu.impl;
 
 import java.util.List;
 
-import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.controller.menu.api.MenuController;
 import it.unibo.monoopoly.model.main.impl.MainModelImpl;

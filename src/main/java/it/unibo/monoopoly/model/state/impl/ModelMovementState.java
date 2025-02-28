@@ -4,8 +4,6 @@ import java.util.Optional;
 
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Dices;
-import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
-import it.unibo.monoopoly.model.gameboard.impl.DicesImpl;
 import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
@@ -42,10 +40,7 @@ public class ModelMovementState implements ModelState {
      */
     @Override
     public boolean verify() {
-        if (this.cellIndex.isEmpty()) {
-            return true;
-        }
-        return false;
+        return this.cellIndex.isEmpty();
     }
 
     /**

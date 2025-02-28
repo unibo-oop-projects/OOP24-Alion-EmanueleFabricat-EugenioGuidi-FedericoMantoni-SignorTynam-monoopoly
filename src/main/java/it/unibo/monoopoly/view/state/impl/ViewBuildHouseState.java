@@ -53,6 +53,6 @@ public class ViewBuildHouseState implements ViewState {
             nonBuildablePanel.add(new javax.swing.JLabel("Building houses is not allowed."));
             mainView.setInteractivePanel(nonBuildablePanel);
         }
-        System.out.println(data.toString());
+        //System.out.println(data.toString());
     }
 }

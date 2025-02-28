@@ -13,6 +13,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
  */
 public class ModelPrisonState implements ModelState {
 
+    private static final int PRISON_COST = 50;
     private final MainModel model;
     private final boolean goInJail;
     private boolean usedCard;
@@ -23,7 +24,7 @@ public class ModelPrisonState implements ModelState {
      * @param model    the main game model
      * @param goInJail a boolean flag indicating whether the player must go to jail
      */
-    public ModelPrisonState(MainModel model, boolean goInJail) {
+    public ModelPrisonState(final MainModel model, final boolean goInJail) {
         this.model = model;
         this.goInJail = goInJail;
         this.usedCard = false;
@@ -51,18 +52,16 @@ public class ModelPrisonState implements ModelState {
      * @param data the DataOutput containing mode information (e.g., whether a card was used)
      */
     @Override
-    public void doAction(DataOutput data) {
-        Player currentPlayer = model.getGameBoard().getCurrentPlayer();
+    public void doAction(final DataOutput data) {
+        final Player currentPlayer = model.getGameBoard().getCurrentPlayer();
         if (goInJail) {
             currentPlayer.setPrisoned();
-        } else if (currentPlayer.isPrisoned()) {
-            if (currentPlayer.getFreeJailCards() > 0) {
+        } else if (currentPlayer.isPrisoned() && currentPlayer.getFreeJailCards() > 0) {
                 usedCard = true;
                 currentPlayer.useGetOutOfJailCard();
                 model.getGameBoard().getDeck().addPrisonCard();
             }
         }
-    }
 
     /**
      * Closes the state.
@@ -81,7 +80,7 @@ public class ModelPrisonState implements ModelState {
             if (usedCard) {
                 model.setState(new ModelMovementState(model, Optional.empty()));
             } else {
-                model.setState(new ModelBankerState(model, 50, true));
+                model.setState(new ModelBankerState(model, PRISON_COST, true));
             }
         } else {
             model.setState(new ModelMovementState(this.model, Optional.empty()));

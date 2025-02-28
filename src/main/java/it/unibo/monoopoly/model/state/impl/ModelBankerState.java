@@ -28,7 +28,8 @@ public class ModelBankerState implements ModelState {
      * according to the State pattern.
      * 
      * @param mainModel the reference to perform the operations.
-     * @param amountToPay
+     * @param amountToPay the amount that the {@link Player} will try to pay
+     * @param isInPrison tells if the {@link Player} is paying to get out of prison
      */
     public ModelBankerState(final MainModel mainModel, final int amountToPay, final boolean isInPrison) {
         this.mainModel = mainModel;

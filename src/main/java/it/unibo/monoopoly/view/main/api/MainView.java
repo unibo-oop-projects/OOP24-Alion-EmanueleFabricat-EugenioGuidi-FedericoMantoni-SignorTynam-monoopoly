@@ -14,18 +14,19 @@ public interface MainView extends View {
 
     /**
      * 
-     * @return comment.
+     * @return the istance of the {@link MainController}
      */
     MainController getMainController();
 
     /**
      * 
-     * @return comment.
+     * @return the list of the names of all {@link Cell}s
      */
     List<String> getNameCells();
 
     /**
      * change the actual state of the view.
+     * @param state the {@link ViewState} to set
      */
     void setState(ViewState state);
 
@@ -38,7 +39,7 @@ public interface MainView extends View {
     ViewState getViewState();
 
     /**
-     * Update the {@link View}
+     * Update the {@link View}.
      */
     void update();
 
