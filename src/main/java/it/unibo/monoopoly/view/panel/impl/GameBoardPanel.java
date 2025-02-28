@@ -89,9 +89,18 @@ public final class GameBoardPanel extends JPanel {
         }
         for(var entry : cellsOwners.entrySet()) {
             if(entry.getValue().isPresent()) {
-                Color color = getColorFromString(entry.getValue().get());
-
+                CirclePosition circlePosition = new CirclePosition(this.propertyPositions.get(entry.getKey()).x(),
+                                                                   this.propertyPositions.get(entry.getKey()).y(),
+                                                                   getColorFromString(entry.getValue().get()));
+                newList.add(circlePosition);
             }
+        }
+        for(var prisonedPlayer : prisonedPlayers) {
+            Color color = getColorFromString(prisonedPlayer);
+            CirclePosition circlePosition = new CirclePosition(this.prisonPositions.get(color).x(), 
+                                                               this.prisonPositions.get(color).y(), 
+                                                               color);
+            newList.add(circlePosition);
         }
         return newList;
     }

@@ -30,10 +30,8 @@ public final class PlayerPanel extends JPanel implements UpdatablePanel {
      */
     public PlayerPanel(final int mainFrameHeight, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList) {
-        this.interactivePanel = new InteractivePanel();
+        this.interactivePanel = new InteractivePanel(new DefaultInteractivePanel());
         this.visualizePlayerPanel = new VisualizePlayerPanel(mainFrameHeight, firstPlayer, initializedList);
-
-        final InteractivePanel interactivePanel = new InteractivePanel();
         setBackground(Color.BLUE);
         setLayout(new GridLayout(2, 1));
         add(visualizePlayerPanel);
@@ -44,7 +42,8 @@ public final class PlayerPanel extends JPanel implements UpdatablePanel {
      * {@inheritDoc}
      */
     public void setInteractivePanel(final JPanel panel) {
-        this.interactivePanel.setInteractivePanel(panel);
+        this.interactivePanel.remove(0);
+        this.interactivePanel.add(panel);
     }
 
     /**

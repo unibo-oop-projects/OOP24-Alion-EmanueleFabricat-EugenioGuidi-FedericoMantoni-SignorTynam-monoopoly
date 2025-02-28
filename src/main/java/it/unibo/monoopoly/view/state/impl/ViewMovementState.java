@@ -5,6 +5,7 @@ import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * comment.

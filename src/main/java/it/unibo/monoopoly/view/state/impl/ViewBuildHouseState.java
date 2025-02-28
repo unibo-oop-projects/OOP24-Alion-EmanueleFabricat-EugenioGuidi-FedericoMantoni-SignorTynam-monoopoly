@@ -1,11 +1,16 @@
 package it.unibo.monoopoly.view.state.impl;
 
+import java.util.List;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
+import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 import it.unibo.monoopoly.view.main.api.MainView;
+import it.unibo.monoopoly.view.panel.impl.BuildHousePanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -46,13 +51,16 @@ public class ViewBuildHouseState implements ViewState {
     @Override
     public void visualize(final DataInput data) {
         if (canBuild) {
-            final JPanel interactivePanel = new JPanel();
+            final JPanel interactivePanel = new BuildHousePanel(new ViewCellGiver(mainView), intToTextCell(data.cellList().get()));
             mainView.setInteractivePanel(interactivePanel);
         } else {
-            final JPanel nonBuildablePanel = new JPanel();
-            nonBuildablePanel.add(new javax.swing.JLabel("Building houses is not allowed."));
-            mainView.setInteractivePanel(nonBuildablePanel);
+            JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "There are no properties to build houses on.", "Build House", JOptionPane.PLAIN_MESSAGE);
+            this.mainView.getMainController().getControllerState().continueState(new DataBuilderOutputImpl().build());
         }
         //System.out.println(data.toString());
+    }
+
+    private List<String> intToTextCell(final List<Integer> cellList) {
+        return cellList.stream().map(this.mainView.getNameCells()::get).toList();
     }
 }
