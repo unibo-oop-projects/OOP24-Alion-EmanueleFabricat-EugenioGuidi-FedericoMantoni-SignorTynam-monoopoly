@@ -50,13 +50,13 @@ public class ControllerCheckActionState implements ControllerState {
     @Override
     public void startState() {
         final Cell actualCell = this.gameBoard.getCell(this.gameBoard.getCurrentPlayer().getActualPosition());
-        final Optional<Event> actualEvent = this.mainController.getActualEvent();
         if (modelState.verify()) {
             viewState.visualize(new DataBuilderInputImpl()
-                    .event(Event.BUY_PROPERTY)
-                    .valueToPay(((Buyable) actualCell).getCost())
-                    .text(actualCell.getName()).build());
+            .event(Event.BUY_PROPERTY)
+            .valueToPay(((Buyable) actualCell).getCost())
+            .text(actualCell.getName()).build());
         } else {
+            final Optional<Event> actualEvent = this.mainController.getActualEvent();
             modelState.doAction(new DataBuilderOutputImpl().build());
             if (actualEvent.isPresent()) {
                 modelState.doAction(new DataBuilderOutputImpl().build());
