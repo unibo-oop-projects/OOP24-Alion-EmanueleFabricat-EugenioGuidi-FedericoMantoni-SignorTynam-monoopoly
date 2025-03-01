@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.impl;
+package it.unibo.monoopoly.utils.impl;
 
 public record Position(double x, double y) {
 

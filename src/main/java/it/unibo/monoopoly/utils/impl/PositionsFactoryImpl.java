@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.impl;
+package it.unibo.monoopoly.utils.impl;
 
 import java.awt.Color;
 import java.util.HashMap;
@@ -7,9 +7,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import it.unibo.monoopoly.view.panel.api.PositionsFactory;
 import it.unibo.monoopoly.utils.api.JsonConverter;
-import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
+import it.unibo.monoopoly.utils.api.PositionsFactory;
 
 public class PositionsFactoryImpl implements PositionsFactory {
 

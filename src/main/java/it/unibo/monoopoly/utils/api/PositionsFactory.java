@@ -1,10 +1,10 @@
-package it.unibo.monoopoly.view.panel.api;
+package it.unibo.monoopoly.utils.api;
 
 import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 
-import it.unibo.monoopoly.view.panel.impl.Position;
+import it.unibo.monoopoly.utils.impl.Position;
 
 /**
  * create Position.
