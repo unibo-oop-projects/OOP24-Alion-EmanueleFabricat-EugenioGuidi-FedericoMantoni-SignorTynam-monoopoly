@@ -1,5 +1,7 @@
 package it.unibo.monoopoly.model.main.impl;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,6 +37,7 @@ public class MainModelImpl implements MainModel {
     public MainModelImpl(final List<String> playersName) {
         final List<Player> players = playersName.stream()
                 .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 0, false)).collect(Collectors.toList());
+        Collections.shuffle(players);
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
         this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT, false);
         this.actualState = new ModelPrisonState(this, false);
