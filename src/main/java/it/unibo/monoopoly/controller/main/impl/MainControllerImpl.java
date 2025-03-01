@@ -79,6 +79,7 @@ public class MainControllerImpl implements MainController {
      */
     @Override
     public void nextPhase() {
+        System.out.println(this.model.getState().getClass());
         this.mainView.update();
         switch (this.model.getState()) {
             case ModelPrisonState p -> {
