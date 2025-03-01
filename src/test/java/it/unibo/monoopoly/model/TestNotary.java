@@ -38,22 +38,23 @@ class TestNotary {
 
     @BeforeEach
     void init() {
-        this.player1 = new PlayerImpl("Marco", 100, 0, false);
+        this.player1 = new PlayerImpl("Marco", 50, 0, false);
         this.player2 = new PlayerImpl("Franco", START_MONEY, 0, false);
         this.buildableProperty = (Buyable) cells.stream().filter(Cell::isBuyable).findFirst().get();
         this.notBuyableProperty = cells.stream().filter(Predicate.not(Cell::isBuyable)).findFirst().get();
     }
 
     @Test
-    void testCheckBuyedProperty() {
+    void testCheckProperty() {
         final Exception exception = assertThrows(IllegalArgumentException.class,
-                () -> notary.checkOwnedProperty(player1, notBuyableProperty));
+                () -> notary.checkProperty(player1, notBuyableProperty));
         assertEquals("Expected a buyable cell in input", exception.getMessage());
+        assertEquals(Optional.empty(), notary.checkProperty(player1, this.buildableProperty));
         notary.buyProperty(player2, buildableProperty);
-        assertEquals(Optional.of(Event.RENT_PAYMENT), notary.checkOwnedProperty(player1, this.buildableProperty));
+        assertEquals(Optional.of(Event.RENT_PAYMENT), notary.checkProperty(player1, this.buildableProperty));
         this.buildableProperty.setMortgage();
-        assertEquals(Optional.empty(), notary.checkOwnedProperty(player1, this.buildableProperty));
-        assertEquals(Optional.empty(), notary.checkOwnedProperty(player2, this.buildableProperty));
+        assertEquals(Optional.empty(), notary.checkProperty(player1, this.buildableProperty));
+        assertEquals(Optional.empty(), notary.checkProperty(player2, this.buildableProperty));
     }
 
     @Test
