@@ -18,8 +18,6 @@ import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
-import org.apache.commons.lang3.tuple.Triple;
 import it.unibo.monoopoly.view.panel.api.PositionsFactory;
 
 /**
@@ -29,7 +27,7 @@ import it.unibo.monoopoly.view.panel.api.PositionsFactory;
 public final class GameBoardPanel extends JPanel {
 
     public record CirclePosition(double x, double y, Color color) {}
-    public record NumberPosition(int x, int y, int number) {}
+    public record NumberPosition(double x, double y, String number) {}
 
     private final Map<Color, List<Position>> playersPositions;
     private final Map<Integer, Position> propertyPositions;
@@ -70,12 +68,24 @@ public final class GameBoardPanel extends JPanel {
 
     public void update(Map<String, Integer> newPlayersPositions, Map<Integer, Optional<String>> cellsOwners,
                        Map<Integer, Integer> nBuiltHouses, List<String> prisonedPlayers) {
-        this.circlesPositions = initializeCirclesPosition(newPlayersPositions, cellsOwners, prisonedPlayers);
-        this.numberPositions = new ArrayList<>();
+        this.circlesPositions = initializeCirclesPositions(newPlayersPositions, cellsOwners, prisonedPlayers);
+        this.numberPositions = initializeNumbersPositions(nBuiltHouses);
         this.repaint();
     }
 
-    private List<CirclePosition> initializeCirclesPosition(Map<String, Integer> newPlayersPositions, 
+    private List<NumberPosition> initializeNumbersPositions(Map<Integer, Integer> nBuiltHouses) {
+        final List<NumberPosition> newList = new ArrayList<>();
+        for(var entry : nBuiltHouses.entrySet()) {
+            NumberPosition numberPosition = new NumberPosition(this.housesPositions.get(entry.getKey()).x(), 
+                                                               this.housesPositions.get(entry.getKey()).y(), 
+                                                               entry.getValue().toString());
+            newList.add(numberPosition);
+        }
+
+        return newList;
+    }
+
+    private List<CirclePosition> initializeCirclesPositions(Map<String, Integer> newPlayersPositions, 
                                                            Map<Integer, Optional<String>> cellsOwners, 
                                                            List<String> prisonedPlayers) {
         final List<CirclePosition> newList = new ArrayList<>();
@@ -121,8 +131,6 @@ public final class GameBoardPanel extends JPanel {
         return this.playersPositions.get(entry.getKey()).get(newPlayersPositions.get(entry.getValue())).y();
     }
 
-
-
     /**
      *
      * {@inheritDoc}
@@ -138,6 +146,11 @@ public final class GameBoardPanel extends JPanel {
         for(var circlePosition : this.circlesPositions) {
             g.setColor(circlePosition.color);
             g.fillOval((int) circlePosition.x(), (int) circlePosition.y(), circleDiameter, circleDiameter);
+        }
+        g.setColor(Color.GREEN);
+        g.setFont(new Font("Arial", Font.BOLD, numberSize));
+        for(var numberPosition : this.numberPositions) {
+            g.drawString(numberPosition.number, (int) numberPosition.x(), (int) numberPosition.y());
         }
 
         //cella 0
