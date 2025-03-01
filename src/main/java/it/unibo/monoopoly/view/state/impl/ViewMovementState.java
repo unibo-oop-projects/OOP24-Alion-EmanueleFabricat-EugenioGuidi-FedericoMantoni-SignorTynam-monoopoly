@@ -40,6 +40,9 @@ public class ViewMovementState implements ViewState {
         if (dataInput.dices().isPresent()) {
             final String string = "Primo dado: " + dataInput.dices().get().getFirstRoll() + "\nSecondo dado: "
                     + dataInput.dices().get().getSecondRoll();
+            JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Clicca ok per lanciare i dati", 
+              "Lancio dei dadi",
+                    JOptionPane.INFORMATION_MESSAGE);
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), string, "Lancio dei dadi",
                     JOptionPane.INFORMATION_MESSAGE);
         } else {
