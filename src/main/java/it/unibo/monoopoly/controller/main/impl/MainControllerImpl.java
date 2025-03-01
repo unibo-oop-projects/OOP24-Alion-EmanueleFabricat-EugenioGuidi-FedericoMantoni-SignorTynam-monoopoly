@@ -159,7 +159,7 @@ public class MainControllerImpl implements MainController {
                         .collect(Collectors.toMap(this::cellToIndex,
                                 c -> ((Buyable) c).getOwner().map(Player::getName))),
                 model.getGameBoard().getCellsList().stream().filter(Cell::isBuildable)
-                        .collect(Collectors.toMap(this::cellToIndex, c -> ((Buildable) c).getHousesNumber())),
+                        .filter(c -> !((Buyable) c).isAvailable()).collect(Collectors.toMap(this::cellToIndex, c -> ((Buildable) c).getHousesNumber())),
                 model.getGameBoard().getPlayersList().stream().filter(Player::isPrisoned).map(Player::getName).toList(),
                 model.getGameBoard().getPlayersList().stream()
                         .collect(Collectors.toMap(Player::getName, Player::getMoneyAmount)),
