@@ -22,10 +22,10 @@ public class PositionsFactoryImpl implements PositionsFactory {
     private final int mainFrameHeight;
     private final List<Color> colors;
 
-    public PositionsFactoryImpl(final int mainFrameHeight) {
+    public PositionsFactoryImpl(final int mainFrameHeight, final List<Color> colors) {
         this.mainFrameHeight = mainFrameHeight;
         this.converter = new JsonConverterImpl<>(Position.class);
-        this.colors = List.of(Color.BLUE, Color.RED, Color.GREEN, Color.ORANGE);
+        this.colors = colors;
     }
 
     /**
