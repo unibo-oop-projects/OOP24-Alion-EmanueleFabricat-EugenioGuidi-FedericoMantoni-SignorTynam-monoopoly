@@ -56,8 +56,8 @@ public class ControllerCheckActionState implements ControllerState {
             .valueToPay(((Buyable) actualCell).getCost())
             .text(actualCell.getName()).build());
         } else {
-            final Optional<Event> actualEvent = this.mainController.getActualEvent();
             modelState.doAction(new DataBuilderOutputImpl().build());
+            final Optional<Event> actualEvent = this.mainController.getActualEvent();
             if (actualEvent.isPresent()) {
                 modelState.doAction(new DataBuilderOutputImpl().build());
                 if (actualEvent.get().equals(Event.RENT_PAYMENT)) {
