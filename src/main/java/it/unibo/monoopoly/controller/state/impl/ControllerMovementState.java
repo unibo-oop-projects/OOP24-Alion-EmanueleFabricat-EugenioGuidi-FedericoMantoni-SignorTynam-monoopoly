@@ -19,6 +19,7 @@ public class ControllerMovementState implements ControllerState {
     private final ModelState actualModelState;
     private final ViewState actualViewState;
     private final Dices dices;
+    private boolean rollDice;
 
     /**
      * comment.
@@ -39,12 +40,8 @@ public class ControllerMovementState implements ControllerState {
      */
     @Override
     public void startState() {
-        final boolean rollDice = this.actualModelState.verify();
-        this.actualModelState.doAction(new DataBuilderOutputImpl().build());
-        if (rollDice) {
-            this.actualViewState.visualize(new DataBuilderInputImpl().dices(this.dices.getDices()).build());
-        }
-        this.continueState(new DataBuilderOutputImpl().build());
+        this.rollDice = this.actualModelState.verify();
+        this.actualViewState.visualize(new DataBuilderInputImpl().mode(this.rollDice).build());
     }
 
     /**
@@ -53,8 +50,11 @@ public class ControllerMovementState implements ControllerState {
      */
     @Override
     public void continueState(final DataOutput dataOutput) {
+        this.actualModelState.doAction(new DataBuilderOutputImpl().build());
+        if (this.rollDice) {
+            this.actualViewState.visualize(new DataBuilderInputImpl().dices(this.dices.getDices()).build());
+        }
         this.actualModelState.closeState();
         mainController.nextPhase();
     }
-
 }
