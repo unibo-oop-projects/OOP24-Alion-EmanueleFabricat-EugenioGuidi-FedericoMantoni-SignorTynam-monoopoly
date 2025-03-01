@@ -49,7 +49,6 @@ public class ViewMovementState implements ViewState {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Ti sei mosso", "movimento", 
                     JOptionPane.INFORMATION_MESSAGE);
         }
-        this.mainView.getMainController().getControllerState().continueState(null);
     }
 
 }
