@@ -1,7 +1,7 @@
 package it.unibo.monoopoly.view.panel.impl;
 
 import java.util.List;
-
+import java.util.Random;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.List;
@@ -31,10 +31,11 @@ public class BuildHousePanel extends JPanel {
 
         this.setLayout(new BorderLayout());
         this.innerPanel.setLayout(new GridLayout(0, cellList.size()));
-        this.add(new JTextArea("Choose a property on which to build a house"), BorderLayout.NORTH);
+        this.add(new JTextArea("Choose a property on which to build a house" + new Random().nextInt()), BorderLayout.NORTH);
         for (final String string : cellList) {
             final JButton j = new JButton(string);
             this.innerPanel.add(j, BorderLayout.CENTER);
+            j.setSelected(false);
             j.addActionListener(closeMethod);
         }
         this.add(innerPanel, BorderLayout.CENTER);
