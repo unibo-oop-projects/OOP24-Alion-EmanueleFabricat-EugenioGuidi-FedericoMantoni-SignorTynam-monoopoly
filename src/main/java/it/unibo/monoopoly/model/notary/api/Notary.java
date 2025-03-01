@@ -21,7 +21,7 @@ public interface Notary {
      * @param cell   the cell of the property to check
      * @return the type of event if this occurs
      */
-    Optional<Event> checkOwnedProperty(Player player, Cell cell);
+    Optional<Event> checkProperty(Player player, Cell cell);
 
     /**
      * Set the given player as owner of the property.

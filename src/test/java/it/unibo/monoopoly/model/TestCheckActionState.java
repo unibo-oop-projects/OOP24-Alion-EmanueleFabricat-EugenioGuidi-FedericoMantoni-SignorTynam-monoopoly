@@ -21,6 +21,7 @@ import it.unibo.monoopoly.model.state.impl.ModelBuildHouseState;
 import it.unibo.monoopoly.model.state.impl.ModelCardState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
+import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
 
 /**
  * Test for the {@link ModelCheckActionState}.
@@ -41,6 +42,13 @@ class TestCheckActionState {
     }
 
     @Test
+    void testCannotBuyProperty() {
+        this.model.getGameBoard().getCurrentPlayer().pay(1480);
+        assertFalse(this.checkActionState.verify());
+        this.checkActionState.doAction(new DataBuilderOutputImpl().build());
+    }
+
+    @Test
     void testBuyProperty() {
         this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertTrue(this.checkActionState.verify());
@@ -55,7 +63,7 @@ class TestCheckActionState {
         assertTrue(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().buyProperty(false).build());
         this.checkActionState.closeState();
-        assertInstanceOf(ModelBuildHouseState.class, model.getState());
+        assertInstanceOf(ModelUnmortgageState.class, model.getState());
     }
 
     @Test
@@ -67,7 +75,7 @@ class TestCheckActionState {
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
-        assertInstanceOf(ModelBuildHouseState.class, model.getState());
+        assertInstanceOf(ModelUnmortgageState.class, model.getState());
     }
 
     @Test
@@ -89,7 +97,7 @@ class TestCheckActionState {
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
         this.checkActionState.closeState();
-        assertInstanceOf(ModelBuildHouseState.class, model.getState());
+        assertInstanceOf(ModelUnmortgageState.class, model.getState());
     }
 
     @Test
