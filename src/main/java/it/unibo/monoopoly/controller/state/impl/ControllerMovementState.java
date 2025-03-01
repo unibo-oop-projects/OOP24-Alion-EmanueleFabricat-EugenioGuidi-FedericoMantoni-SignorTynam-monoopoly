@@ -44,6 +44,7 @@ public class ControllerMovementState implements ControllerState {
         if (rollDice) {
             this.actualViewState.visualize(new DataBuilderInputImpl().dices(this.dices.getDices()).build());
         }
+        this.continueState(new DataBuilderOutputImpl().build());
     }
 
     /**
