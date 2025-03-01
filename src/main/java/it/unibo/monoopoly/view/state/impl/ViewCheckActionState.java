@@ -46,7 +46,7 @@ public class ViewCheckActionState implements ViewState {
                     "Pagamento affitto", JOptionPane.PLAIN_MESSAGE);
 
             case TAX_PAYMENT -> JOptionPane.showMessageDialog(mainView.getMainFrame(),
-                    "Devi pagare " + dataInput.valueToPay().get() + "€ a " + dataInput.text().get(), "Pagamento tassa",
+                    "Devi pagare " + dataInput.valueToPay().get() + "€", "Pagamento tassa",
                     JOptionPane.PLAIN_MESSAGE);
 
             case BUY_PROPERTY -> {
