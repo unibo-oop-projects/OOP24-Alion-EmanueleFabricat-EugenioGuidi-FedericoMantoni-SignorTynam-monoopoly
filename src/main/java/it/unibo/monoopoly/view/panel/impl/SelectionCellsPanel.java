@@ -13,7 +13,7 @@ import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 /**
  * comment.
  */
-public final class MortgagePanel extends JPanel {
+public final class SelectionCellsPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,12 +22,12 @@ public final class MortgagePanel extends JPanel {
      * @param closeMethod
      * @param cellList
      */
-    public MortgagePanel(final ViewCellGiver closeMethod, final List<String> cellList) {
+    public SelectionCellsPanel(final ViewCellGiver closeMethod, final List<String> cellList, final String text) {
         super();
         final JPanel innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
         innerPanel.setLayout(new GridLayout(0, cellList.size()));
-        this.add(new JTextArea("Scegli una proprietà da ipotecare"), BorderLayout.NORTH);
+        this.add(new JTextArea("Scegli una proprietà " + text), BorderLayout.NORTH);
         for (final String string : cellList) {
             final JButton j = new JButton(string);
             innerPanel.add(j, BorderLayout.CENTER);

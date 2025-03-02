@@ -9,7 +9,7 @@ import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.panel.impl.UnmortgagePanel;
+import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -46,9 +46,9 @@ public class ViewUnmortgageState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         if (this.makeState) {
-            final JPanel panel = new UnmortgagePanel(new ViewCellGiver(this.mainView),
-                    intToTextCell(dataInput.cellList().get()));
-            this.mainView.setInteractivePanel(panel);;
+            final JPanel panel = new SelectionCellsPanel(new ViewCellGiver(this.mainView),
+                    intToTextCell(dataInput.cellList().get()), "da disipotecare");
+            this.mainView.setInteractivePanel(panel);
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
                     "Mi spiace non hai proprietà da disipotecare", "Disipoteca", JOptionPane.PLAIN_MESSAGE);

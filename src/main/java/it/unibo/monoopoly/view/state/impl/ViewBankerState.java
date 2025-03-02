@@ -3,14 +3,14 @@ package it.unibo.monoopoly.view.state.impl;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.panel.impl.MortgagePanel;
-import it.unibo.monoopoly.view.panel.impl.SellHousePanel;
+import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -52,12 +52,14 @@ public class ViewBankerState implements ViewState {
         } else {
             switch (data.event().get()) {
                 case Event.SELL_HOUSE:
-                    this.mainView.setInteractivePanel(
-                            new SellHousePanel(new ViewCellGiver(this.mainView), intToTextCell(this.dataInput.cellList().get())));
+                    JPanel panel = new SelectionCellsPanel(new ViewCellGiver(this.mainView),
+                            intToTextCell(data.cellList().get()), "in cui vendere una casa");
+                    this.mainView.setInteractivePanel(panel);
                     break;
                 case Event.MORTGAGE_PROPERTY:
-                    this.mainView.setInteractivePanel(
-                            new MortgagePanel(new ViewCellGiver(this.mainView), intToTextCell(this.dataInput.cellList().get())));
+                    JPanel panel1 = new SelectionCellsPanel(new ViewCellGiver(this.mainView),
+                            intToTextCell(dataInput.cellList().get()), "da disipotecare");
+                    this.mainView.setInteractivePanel(panel1);
                     break;
                 case Event.BANKRUPT:
                     JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
