@@ -1,8 +1,11 @@
 package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.utils.api.PositionsFactory;
 import it.unibo.monoopoly.utils.impl.Position;
@@ -15,16 +18,81 @@ public class PositionAllocatorImpl implements PositionAllocator{
     private final Map<Integer, Position> propertyPositions;
     private final Map<Integer, Position> housesPositions;
     private final Map<Color, Position> prisonPositions;
-    private final Map<Color, String> playersColors;
-    private final int mainFrameHeight;
+    private final Map<String, Color> playersColors;
 
     public PositionAllocatorImpl(final int mainFrameHeight, final Map<Color, String> playersColors, final List<Color> colors) {
-        this.playersColors = playersColors;
-        this.mainFrameHeight = mainFrameHeight;
+        this.playersColors = reverseColor(playersColors);
         final PositionsFactory positionsFactory = new PositionsFactoryImpl(mainFrameHeight, colors);
         this.playersPositions = positionsFactory.createPlayersPositions();
         this.propertyPositions = positionsFactory.createPropertyPositions();
         this.housesPositions = positionsFactory.createHousesPositions();
         this.prisonPositions = positionsFactory.createPrisonPositions();
+    }
+
+    public List<NumberAndCirclePosition> createListCircleNumberPosition(Map<String, Integer> newPlayersPositions, 
+                                                                        Map<Integer, Optional<String>> cellsOwners, 
+                                                                        List<String> prisonedPlayers,
+                                                                        Map<Integer, Integer> nBuiltHouses) {
+        List<NumberAndCirclePosition> newList = new ArrayList<>();
+        NumberAndCirclePosition numberAndCirclePosition;
+        for(var entry : this.playersColors.entrySet()) {
+            if(newPlayersPositions.containsKey(entry.getKey())){
+                numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                                                        .setX((int) getX(entry, newPlayersPositions))
+                                                        .setY((int) getY(entry, newPlayersPositions))
+                                                        .setIsCircle(true)
+                                                        .setColor(this.playersColors.get(entry.getKey()))
+                                                        .build();
+                newList.add(numberAndCirclePosition);
+            }
+        }
+
+        for(var entry : cellsOwners.entrySet()) {
+            if(entry.getValue().isPresent()) {
+                numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                                                        .setX((int) this.propertyPositions.get(entry.getKey()).x())
+                                                        .setY((int) this.propertyPositions.get(entry.getKey()).y())
+                                                        .setIsCircle(true)
+                                                        .setColor(this.playersColors.get(entry.getValue().get()))
+                                                        .build();
+                newList.add(numberAndCirclePosition);
+            }
+        }
+
+        for(var prisonedPlayer : prisonedPlayers) {
+            Color color = this.playersColors.get(prisonedPlayer);
+            numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                                                    .setX((int) this.prisonPositions.get(color).x())
+                                                    .setY((int) this.prisonPositions.get(color).y())
+                                                    .setIsCircle(true)
+                                                    .setColor(color)
+                                                    .build();
+            newList.add(numberAndCirclePosition);
+        }
+        for(var entry : nBuiltHouses.entrySet()) {
+            numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                                                    .setX((int) this.housesPositions.get(entry.getKey()).x())
+                                                    .setY((int) this.housesPositions.get(entry.getKey()).y())
+                                                    .setIsCircle(false)
+                                                    .setColor(Color.BLACK)
+                                                    .setNumber(entry.getValue().toString())
+                                                    .build();
+            newList.add(numberAndCirclePosition);
+        }
+
+        return newList;
+    }
+
+    private double getX(final Map.Entry<String, Color> entry, final Map<String, Integer> newPlayersPositions) {
+        return this.playersPositions.get(entry.getValue()).get(newPlayersPositions.get(entry.getKey())).x();
+    }
+
+    private double getY(final Map.Entry<String, Color> entry, final Map<String, Integer> newPlayersPositions) {
+        return this.playersPositions.get(entry.getValue()).get(newPlayersPositions.get(entry.getKey())).y();
+    }
+
+    private Map<String, Color> reverseColor(final Map<Color, String> list) {
+        return list.entrySet().stream()
+                        .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 }
