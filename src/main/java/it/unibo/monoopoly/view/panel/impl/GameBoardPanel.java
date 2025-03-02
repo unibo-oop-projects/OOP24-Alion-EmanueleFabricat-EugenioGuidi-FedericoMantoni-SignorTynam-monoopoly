@@ -18,7 +18,10 @@ import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import it.unibo.monoopoly.view.panel.api.PositionsFactory;
+
+import it.unibo.monoopoly.utils.api.PositionsFactory;
+import it.unibo.monoopoly.utils.impl.Position;
+import it.unibo.monoopoly.utils.impl.PositionsFactoryImpl;
 
 /**
  * mettere commento qui, tutti i numeri molotiplicativi vengono percepiti come
@@ -33,10 +36,11 @@ public final class GameBoardPanel extends JPanel {
     private final Map<Integer, Position> propertyPositions;
     private final Map<Integer, Position> housesPositions;
     private final Map<Color, Position> prisonPositions;
-    private final int mainFrameHeight;
     private final Map<Color, String> playersColors;
-    private final Image backgroundImage;
     private final PositionsFactory positionsFactory;
+    
+    private final int mainFrameHeight;
+    private final Image backgroundImage;
     private List<CirclePosition> circlesPositions;
     private List<NumberPosition> numberPositions;
 
