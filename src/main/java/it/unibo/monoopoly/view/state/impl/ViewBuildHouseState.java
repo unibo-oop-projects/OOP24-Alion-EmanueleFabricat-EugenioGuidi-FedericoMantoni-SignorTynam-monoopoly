@@ -10,7 +10,7 @@ import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.panel.impl.BuildHousePanel;
+import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -51,7 +51,7 @@ public class ViewBuildHouseState implements ViewState {
     @Override
     public void visualize(final DataInput data) {
         if (canBuild) {
-            final JPanel interactivePanel = new BuildHousePanel(new ViewCellGiver(mainView), intToTextCell(data.cellList().get()));
+            final JPanel interactivePanel = new SelectionCellsPanel(new ViewCellGiver(mainView), intToTextCell(data.cellList().get()) , "su cui vendere una casa");
             mainView.setInteractivePanel(interactivePanel);
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "There are no properties to build houses on.", "Build House", JOptionPane.PLAIN_MESSAGE);
