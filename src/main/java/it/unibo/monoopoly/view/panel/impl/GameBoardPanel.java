@@ -28,22 +28,10 @@ import it.unibo.monoopoly.utils.impl.PositionsFactoryImpl;
  * magic number.
  */
 public final class GameBoardPanel extends JPanel {
-
-    public record CirclePosition(double x, double y, Color color) {}
-    public record NumberPosition(double x, double y, String number) {}
-
-    private final Map<Color, List<Position>> playersPositions;
-    private final Map<Integer, Position> propertyPositions;
-    private final Map<Integer, Position> housesPositions;
-    private final Map<Color, Position> prisonPositions;
-    private final Map<Color, String> playersColors;
-    private final PositionsFactory positionsFactory;
     
     private final int mainFrameHeight;
     private final Image backgroundImage;
-    private List<CirclePosition> circlesPositions;
-    private List<NumberPosition> numberPositions;
-
+    private List<NumberAndCirclePosition> numberAndCirclePositions;
 
     /**
      * 
@@ -52,13 +40,7 @@ public final class GameBoardPanel extends JPanel {
      * @param mainFrameWidth
      */
     public GameBoardPanel(final int mainFrameHeight, final Map<Color, String> players, final List<Color> colors) {
-        this.playersColors = players;
         this.mainFrameHeight = mainFrameHeight;
-        this.positionsFactory = new PositionsFactoryImpl(mainFrameHeight, colors);
-        this.playersPositions = this.positionsFactory.createPlayersPositions();
-        this.propertyPositions = this.positionsFactory.createPropertyPositions();
-        this.housesPositions = this.positionsFactory.createHousesPositions();
-        this.prisonPositions = this.positionsFactory.createPrisonPositions();
 
         final URL imgURL = ClassLoader.getSystemResource("images/monoopoly_gameboard_image.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
@@ -145,14 +127,16 @@ public final class GameBoardPanel extends JPanel {
         int circleDiameter = (int)(this.mainFrameHeight * 0.025);
         int numberSize = (int)(this.mainFrameHeight * 0.022);
 
-        for(var circlePosition : this.circlesPositions) {
-            g.setColor(circlePosition.color);
-            g.fillOval((int) circlePosition.x(), (int) circlePosition.y(), circleDiameter, circleDiameter);
-        }
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", Font.BOLD, numberSize));
-        for(var numberPosition : this.numberPositions) {
-            g.drawString(numberPosition.number, (int) numberPosition.x(), (int) numberPosition.y());
+        for(var position : this.numberAndCirclePositions) {
+            if(position.isCircle()) {
+                g.setColor(position.getColor());
+                g.fillOval(position.getX(), position.getY(), circleDiameter, circleDiameter
+                );
+            }else {
+                g.setColor(position.getColor());
+                g.setFont(new Font("Arial", Font.BOLD, numberSize));
+                g.drawString(position.getNumber(), position.getX(), position.getY());
+            }
         }
     }
 
