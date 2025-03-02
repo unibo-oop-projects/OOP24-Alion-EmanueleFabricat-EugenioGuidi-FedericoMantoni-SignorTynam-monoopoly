@@ -7,21 +7,13 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
-import java.text.CollationElementIterator;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import it.unibo.monoopoly.utils.api.PositionsFactory;
-import it.unibo.monoopoly.utils.impl.Position;
-import it.unibo.monoopoly.utils.impl.PositionsFactoryImpl;
 import it.unibo.monoopoly.view.panel.api.PositionAllocator;
 
 /**
