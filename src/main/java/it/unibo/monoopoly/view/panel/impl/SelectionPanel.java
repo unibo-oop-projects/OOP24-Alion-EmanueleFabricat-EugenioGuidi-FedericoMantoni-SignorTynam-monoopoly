@@ -136,7 +136,7 @@ public final class SelectionPanel extends JPanel {
                 this.menuController.goGame(getPlayersNames());
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "Ogni giocatore deve avere un nome di lunghezza minore di 25 caratteri", "Warning",
+                        "Ogni giocatore deve avere un nome diverso dagli altri e di lunghezza minore di 25 caratteri", "Warning",
                         JOptionPane.WARNING_MESSAGE);
             }
         });
@@ -149,7 +149,9 @@ public final class SelectionPanel extends JPanel {
 
     private boolean legalNames() {
         return players.stream().map(JTextComponent::getText).allMatch(
-                t -> !t.isBlank() && !t.isEmpty() && t.length() < MAX_NAME_LENGTH);
+                t -> !t.isBlank() && !t.isEmpty() && t.length() < MAX_NAME_LENGTH)
+                && players.stream().map(JTextComponent::getText).count()
+                == players.stream().map(JTextComponent::getText).distinct().count();
     }
 
     private GridBagConstraints getNamesConstraint() {
