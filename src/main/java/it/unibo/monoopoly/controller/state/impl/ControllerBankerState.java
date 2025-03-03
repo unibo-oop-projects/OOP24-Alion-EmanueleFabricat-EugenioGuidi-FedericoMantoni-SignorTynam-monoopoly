@@ -110,9 +110,6 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private List<Integer> propertiesMortgageableList() {
-        System.out.println("\n\n\nunmortgage\n" + unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
-        .map(this.gameBoard.getCellsList()::indexOf)
-        .toList());
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                 .map(this.gameBoard.getCellsList()::indexOf)
                 .toList();
