@@ -29,10 +29,10 @@ public class ControllerBankerState implements ControllerState {
 
     /**
      * 
-     * @param mainController the main controller
+     * @param mainController   the main controller
      * @param actualModelState the actual {@link ModelState}
-     * @param actualViewState the actual {@link ViewState}
-     * @param gameBoard the {@link GameBoard}
+     * @param actualViewState  the actual {@link ViewState}
+     * @param gameBoard        the {@link GameBoard}
      */
     public ControllerBankerState(final MainController mainController, final ModelState actualModelState,
             final ViewState actualViewState, final GameBoard gameBoard) {
@@ -89,7 +89,8 @@ public class ControllerBankerState implements ControllerState {
         return switch (event) {
             case Event.SELL_HOUSE -> sellHouseList();
             case Event.MORTGAGE_PROPERTY -> propertiesMortgageableList();
-            default -> List.of();
+            default -> throw new IllegalStateException(
+                    "It's impossible to create a list of cells to show in ControllerBankerState without an Event");
         };
     }
 
@@ -100,7 +101,14 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private List<Integer> sellHouseList() {
+        System.out.println("\n\n\nhouse\n" + unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
+        .filter(p -> p instanceof Buildable)
+        .map(p -> (Buildable) p)
+        .filter(p -> p.getHousesNumber() > 0)
+        .map(this.gameBoard.getCellsList()::indexOf)
+        .toList());
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
+                .filter(p -> p instanceof Buildable)
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
                 .map(this.gameBoard.getCellsList()::indexOf)
@@ -108,12 +116,10 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private List<Integer> propertiesMortgageableList() {
-        return Stream.concat(unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
-                    .filter(p -> !(p instanceof Buildable)),
-                unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
-                    .filter(p -> p instanceof Buildable)
-                    .map(p -> (Buildable) p)
-                    .filter(p -> p.getHousesNumber() == 0))
+        System.out.println("\n\n\nunmortgage\n" + unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
+        .map(this.gameBoard.getCellsList()::indexOf)
+        .toList());
+        return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                 .map(this.gameBoard.getCellsList()::indexOf)
                 .toList();
     }

@@ -50,6 +50,7 @@ public class ModelBankerState implements ModelState {
     public boolean verify() {
         if (getPlayer().getMoneyAmount() - this.amountToPay >= 0) {
             getPlayer().pay(amountToPay);
+            this.isIndebted = false;
         } else {
             this.mainModel.setEvent(Optional.of(this.banker.selectOperations(getPlayer())));
             this.isIndebted = true;
