@@ -2,6 +2,7 @@ package it.unibo.monoopoly.view.main.impl;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,8 +10,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JWindow;
 
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -129,5 +134,21 @@ public class MainViewImpl extends AbstractView implements MainView {
     @Override
     public void update() {
         this.gamePanel.update(this.controller.getViewUpdateData());
+    }
+
+    @Override
+    public void endGame(String player) {
+        this.getMainFrame().dispose();
+        JDialog closeWindow = new JDialog();
+        closeWindow.setModal(true);
+        JTextArea winnerText = new JTextArea("BRAVO, " + player + " HAI VINTO IL GIOCO"); 
+        winnerText.setEditable(false);
+        winnerText.setFont(new Font("Arial", Font.PLAIN, 50));
+        closeWindow.add(winnerText);
+        closeWindow.setSize(1000, 100);
+        closeWindow.setLocationRelativeTo(null);
+        closeWindow.setVisible(true);
+        closeWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        System.exit(0);
     }
 }

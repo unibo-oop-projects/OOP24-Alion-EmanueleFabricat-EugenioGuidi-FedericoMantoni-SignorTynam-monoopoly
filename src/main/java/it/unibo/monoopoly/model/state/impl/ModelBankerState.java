@@ -87,7 +87,6 @@ public class ModelBankerState implements ModelState {
     @Override
     public void closeState() {
         if (getPlayer().isBankrupt()) {
-            System.out.println("\n\nprigione\n\n");
             completeBankrupt();
             this.mainModel.nextTurn();
         } else if (isIndebted) {
