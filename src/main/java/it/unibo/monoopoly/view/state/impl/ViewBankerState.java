@@ -58,7 +58,7 @@ public class ViewBankerState implements ViewState {
                     break;
                 case Event.MORTGAGE_PROPERTY:
                     JPanel panel1 = new SelectionCellsPanel(new ViewCellGiver(this.mainView),
-                            intToTextCell(dataInput.cellList().get()), "da disipotecare");
+                            intToTextCell(data.cellList().get()), "da disipotecare");
                     this.mainView.setInteractivePanel(panel1);
                     break;
                 case Event.BANKRUPT:
