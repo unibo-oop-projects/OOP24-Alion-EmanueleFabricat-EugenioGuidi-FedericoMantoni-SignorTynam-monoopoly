@@ -22,7 +22,7 @@ public final class SelectionCellsPanel extends JPanel {
      * @param closeMethod
      * @param cellList
      */
-    public SelectionCellsPanel(final ViewCellGiver closeMethod, final List<String> cellList, final String text) {
+    public SelectionCellsPanel(final ViewCellGiver closeMethod, final List<String> cellList, final String text, final boolean addNoChooseButton) {
         super();
         final JPanel innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
@@ -34,8 +34,10 @@ public final class SelectionCellsPanel extends JPanel {
             j.addActionListener(closeMethod);
         }
         this.add(innerPanel, BorderLayout.CENTER);
-        final JButton noChoiceButton = new JButton(ViewCellGiver.NO_CHOICE);
-        noChoiceButton.addActionListener(closeMethod);
-        this.add(noChoiceButton, BorderLayout.SOUTH);
+        if (addNoChooseButton) {
+            final JButton noChoiceButton = new JButton(ViewCellGiver.NO_CHOICE);
+            noChoiceButton.addActionListener(closeMethod);
+            this.add(noChoiceButton, BorderLayout.SOUTH);
+        }
     }
 }
