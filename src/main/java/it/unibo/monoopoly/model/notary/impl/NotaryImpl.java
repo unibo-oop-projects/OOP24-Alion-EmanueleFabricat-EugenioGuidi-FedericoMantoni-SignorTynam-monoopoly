@@ -6,6 +6,7 @@ import java.util.Optional;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.gameboard.api.Company;
 import it.unibo.monoopoly.model.notary.api.Notary;
 import it.unibo.monoopoly.model.player.api.Player;
 
@@ -65,6 +66,9 @@ public class NotaryImpl implements Notary {
     }
 
     private void payOwner(final Buyable buyableCell) {
+        if (buyableCell.isCompany()) {
+            ((Company) buyableCell).rollAndCalculate();
+        }
         buyableCell.getOwner().get().receive(buyableCell.getRentalValue());
     }
 
