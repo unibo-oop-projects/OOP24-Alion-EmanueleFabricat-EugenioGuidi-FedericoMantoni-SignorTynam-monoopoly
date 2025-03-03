@@ -87,6 +87,8 @@ public class ModelBankerState implements ModelState {
     @Override
     public void closeState() {
         if (getPlayer().isBankrupt()) {
+            System.out.println("\n\nprigione\n\n");
+            completeBankrupt();
             this.mainModel.nextTurn();
         } else if (isIndebted) {
             this.mainModel.setState(new ModelBankerState(mainModel, this.amountToPay, this.isInPrison));
@@ -95,5 +97,13 @@ public class ModelBankerState implements ModelState {
         } else {
             this.mainModel.setState(new ModelUnmortgageState(this.mainModel));
         }
+    }
+
+    private void completeBankrupt() {
+        for (int index = 0; index < getPlayer().getFreeJailCards(); index++) {
+            this.mainModel.getGameBoard().getDeck().addPrisonCard();
+            getPlayer().useGetOutOfJailCard();
+        }
+        this.mainModel.getGameBoard().removePlayer();
     }
 }

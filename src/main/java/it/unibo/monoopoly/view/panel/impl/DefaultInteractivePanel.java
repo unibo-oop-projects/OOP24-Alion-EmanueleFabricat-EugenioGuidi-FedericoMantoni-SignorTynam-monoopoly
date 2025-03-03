@@ -8,7 +8,7 @@ import javax.swing.JTextArea;
 
 public final class DefaultInteractivePanel extends JPanel {
 
-    private static final int FONT_SIZE = 50;
+    private static final int FONT_SIZE = 35;
     private static final long serialVersionUID = 1L;
 
     public DefaultInteractivePanel() {

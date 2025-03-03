@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.banker.impl;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -22,7 +23,7 @@ public class BankerImpl implements Banker {
         } else if (haveProperties(player.getProperties())) {
             return Event.MORTGAGE_PROPERTY;
         }
-        player.inBankrupt(); 
+        goInBankrupt(player);
         return Event.BANKRUPT;
     }
 
@@ -41,6 +42,15 @@ public class BankerImpl implements Banker {
     private boolean haveProperties(final Set<Buyable> properties) {
         return unmortgagedList(properties)
                 .count() > 0;
+    }
+
+    private void goInBankrupt(Player player) {
+        for (var property : player.getProperties()) {
+            property.setOwner(Optional.empty());
+            property.removeMortgage();
+            player.removeProperty(property);
+        }
+        player.inBankrupt();
     }
     /**
      * {@inheritDoc}
