@@ -97,12 +97,8 @@ public class ModelCardState implements ModelState {
     }
 
     private int payForHouse() {
-        final Optional<Integer> amount = Stream.iterate(0, n -> n + N_CELLS).limit(numberOfHouses()).findFirst();
-        if (amount.isEmpty()) {
-            return 0;
-        }
-        return amount.get();
-
+        final Integer amount = numberOfHouses() * N_CELLS;
+        return amount;
     }
 
     private int numberOfHouses() {
