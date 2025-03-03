@@ -14,6 +14,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 public class ModelPrisonState implements ModelState {
 
     private static final int PRISON_COST = 50;
+    private static final int PRISON_INDEX = 10;
     private final MainModel model;
     private final boolean goInJail;
     private boolean usedCard;
@@ -74,7 +75,7 @@ public class ModelPrisonState implements ModelState {
     @Override
     public void closeState() {
         if (goInJail) {
-            model.nextTurn();
+            this.model.setState(new ModelMovementState(this.model, Optional.of(PRISON_INDEX)));
         } else if (this.model.getGameBoard().getCurrentPlayer().isPrisoned()) {
             this.model.getGameBoard().getCurrentPlayer().releaseFromPrison();
             if (usedCard) {
