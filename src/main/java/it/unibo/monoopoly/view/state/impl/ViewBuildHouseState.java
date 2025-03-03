@@ -51,7 +51,7 @@ public class ViewBuildHouseState implements ViewState {
     @Override
     public void visualize(final DataInput data) {
         if (canBuild) {
-            final JPanel interactivePanel = new SelectionCellsPanel(new ViewCellGiver(mainView), intToTextCell(data.cellList().get()) , "su cui vendere una casa", true);
+            final JPanel interactivePanel = new SelectionCellsPanel(new ViewCellGiver(mainView), intToTextCell(data.cellList().get()) , "su cui comprare una casa", true);
             mainView.setInteractivePanel(interactivePanel);
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "There are no properties to build houses on.", "Build House", JOptionPane.PLAIN_MESSAGE);
