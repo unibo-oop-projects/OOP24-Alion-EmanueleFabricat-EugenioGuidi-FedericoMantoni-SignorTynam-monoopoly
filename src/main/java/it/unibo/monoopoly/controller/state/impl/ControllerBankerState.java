@@ -101,12 +101,6 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private List<Integer> sellHouseList() {
-        System.out.println("\n\n\nhouse\n" + unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
-        .filter(p -> p instanceof Buildable)
-        .map(p -> (Buildable) p)
-        .filter(p -> p.getHousesNumber() > 0)
-        .map(this.gameBoard.getCellsList()::indexOf)
-        .toList());
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                 .filter(p -> p instanceof Buildable)
                 .map(p -> (Buildable) p)
