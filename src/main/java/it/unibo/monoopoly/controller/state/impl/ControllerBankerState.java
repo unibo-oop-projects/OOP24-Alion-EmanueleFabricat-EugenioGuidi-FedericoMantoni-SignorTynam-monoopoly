@@ -72,11 +72,11 @@ public class ControllerBankerState implements ControllerState {
         return switch (event) {
             case Event.SELL_HOUSE -> this.dataBuilderInput
                     .event(event)
-                    .cellList(cellListChoser(event))
+                    .cellList(cellListChooser(event))
                     .build();
             case Event.MORTGAGE_PROPERTY -> this.dataBuilderInput
                     .event(event)
-                    .cellList(cellListChoser(event))
+                    .cellList(cellListChooser(event))
                     .build();
             case Event.BANKRUPT -> this.dataBuilderInput
                     .event(event)
@@ -85,7 +85,7 @@ public class ControllerBankerState implements ControllerState {
         };
     }
 
-    private List<Integer> cellListChoser(final Event event) {
+    private List<Integer> cellListChooser(final Event event) {
         return switch (event) {
             case Event.SELL_HOUSE -> sellHouseList();
             case Event.MORTGAGE_PROPERTY -> propertiesMortgageableList();
