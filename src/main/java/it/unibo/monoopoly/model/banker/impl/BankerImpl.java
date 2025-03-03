@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.banker.impl;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -49,6 +50,7 @@ public class BankerImpl implements Banker {
             property.removeMortgage();
             player.removeProperty(property);
         }
+        player.inBankrupt();
     }
     /**
      * {@inheritDoc}
