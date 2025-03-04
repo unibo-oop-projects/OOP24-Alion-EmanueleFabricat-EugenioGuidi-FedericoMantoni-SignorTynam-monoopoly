@@ -87,8 +87,8 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
                 updateData.cellsOwners(),
                 updateData.nBuiltHouses(),
                 updateData.prisonedPlayers(),
-                new ArrayList<>());//da cancellare
-        this.playerPanel.update(updateData); // da decommentare quando funzionerà
+                updateData.mortgagedProperties());
+        this.playerPanel.update(updateData);
     }
 
     /*
