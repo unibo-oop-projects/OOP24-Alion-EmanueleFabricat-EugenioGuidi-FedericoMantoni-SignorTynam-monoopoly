@@ -103,22 +103,22 @@ public class MainControllerImpl implements MainController {
             case ModelCardState c -> {
                 this.mainView.setState(new ViewCardState(mainView));
                 this.actualState = new ControllerCardState(this, model.getState(),
-                mainView.getViewState(), this.model.getGameBoard());
+                        mainView.getViewState(), this.model.getGameBoard());
             }
             case ModelBankerState b -> {
                 this.mainView.setState(new ViewBankerState(mainView));
                 this.actualState = new ControllerBankerState(this, model.getState(),
-                mainView.getViewState(), this.model.getGameBoard());
-            } 
+                        mainView.getViewState(), this.model.getGameBoard());
+            }
             case ModelBuildHouseState bh -> {
                 this.mainView.setState(new ViewBuildHouseState(mainView));
                 this.actualState = new ControllerBuildHouseState(this,
-                    model.getState(), mainView.getViewState(), this.model.getGameBoard());
+                        model.getState(), mainView.getViewState(), this.model.getGameBoard());
             }
             case final ModelUnmortgageState u -> {
                 this.mainView.setState(new ViewUnmortgageState(mainView));
                 this.actualState = new ControllerUnmortgageState(this, model.getState(),
-                    mainView.getViewState(), this.model.getGameBoard());
+                        mainView.getViewState(), this.model.getGameBoard());
             }
             default -> throw new IllegalArgumentException("Implementation of ModelState not supported");
         }
@@ -160,11 +160,15 @@ public class MainControllerImpl implements MainController {
                 model.getGameBoard().getPlayersList().stream()
                         .collect(Collectors.toMap(Player::getName, Player::getActualPosition)),
                 model.getGameBoard().getCellsList().stream().filter(Cell::isBuyable)
+                        .filter(p -> !((Buyable) p).isMortgaged())
                         .collect(Collectors.toMap(this::cellToIndex,
                                 c -> ((Buyable) c).getOwner().map(Player::getName))),
                 model.getGameBoard().getCellsList().stream().filter(Cell::isBuildable)
-                        .filter(c -> !((Buyable) c).isAvailable()).collect(Collectors.toMap(this::cellToIndex, c -> ((Buildable) c).getHousesNumber())),
+                        .filter(c -> !((Buyable) c).isAvailable())
+                        .collect(Collectors.toMap(this::cellToIndex, c -> ((Buildable) c).getHousesNumber())),
                 model.getGameBoard().getPlayersList().stream().filter(Player::isPrisoned).map(Player::getName).toList(),
+                model.getGameBoard().getCellsList().stream().filter(Cell::isBuyable)
+                        .filter(p -> ((Buyable) p).isMortgaged()).map(this::cellToIndex).toList(),
                 model.getGameBoard().getPlayersList().stream()
                         .collect(Collectors.toMap(Player::getName, Player::getMoneyAmount)),
                 model.getGameBoard().getCurrentPlayer().getName());

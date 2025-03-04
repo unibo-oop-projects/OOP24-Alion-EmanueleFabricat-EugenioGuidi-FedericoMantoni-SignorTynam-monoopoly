@@ -23,6 +23,7 @@ public record ViewUpdateDTO(
         Map<Integer, Optional<String>> cellsOwners,
         Map<Integer, Integer> nBuiltHouses,
         List<String> prisonedPlayers,
+        List<Integer> mortgagedProperties,
         Map<String, Integer> playersMoney,
         String actualPlayer) {
 }
