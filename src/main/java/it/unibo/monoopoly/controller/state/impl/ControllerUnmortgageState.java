@@ -79,7 +79,7 @@ public class ControllerUnmortgageState implements ControllerState {
         return this.gameBoard.getCurrentPlayer().getProperties().stream()
                 .filter(Buyable::isMortgaged)
                 .filter(this::isPayable)
-                .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, p -> p.getMortgageValue()*110/100));
+                .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, p -> p.getUnmortgageValue()));
     }
 
     private boolean isPayable(final Buyable property) {

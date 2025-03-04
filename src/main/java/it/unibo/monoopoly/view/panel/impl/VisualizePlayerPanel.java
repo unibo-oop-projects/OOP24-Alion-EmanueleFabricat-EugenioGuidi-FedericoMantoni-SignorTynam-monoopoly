@@ -25,6 +25,7 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
     private final String firstPlayer;
     private final List<JTextArea> textList = new LinkedList<>();
     private static final double PERC_RESIZE = 0.035;
+    private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
     /**
      * comment
@@ -41,6 +42,7 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
         this.firstPlayer = firstPlayer;
         setLayout(new GridLayout(playersNumber * 2 + 1, 1));
         this.textList.add(new JTextArea("E' il turno di " + this.firstPlayer));
+        this.textList.getLast().setBackground(GREEN_MONOPOLY);
         for (final Triple<String, Integer, Color> triple : initializedList) {
             this.textList.add(new JTextArea(triple.getLeft()));
             this.textList.getLast().setBackground(triple.getRight());
@@ -59,7 +61,8 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
      */
     @Override
     public void update(final ViewUpdateDTO updateData) {
-        this.textList.get(0).setText("E' il turno di " + updateData.actualPlayer());
+        this.textList.getFirst().setText("E' il turno di " + updateData.actualPlayer());
+        this.textList.getFirst().setBackground(GREEN_MONOPOLY);
         for (final var entry : updateData.playersMoney().entrySet()) {
             this.textList.stream()
                     .filter(t -> t.getText().equals(entry.getKey()))
