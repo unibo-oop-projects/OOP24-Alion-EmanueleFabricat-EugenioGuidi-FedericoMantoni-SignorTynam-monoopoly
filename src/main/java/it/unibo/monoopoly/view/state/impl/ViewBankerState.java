@@ -1,7 +1,7 @@
 package it.unibo.monoopoly.view.state.impl;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
@@ -20,7 +20,6 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  */
 public class ViewBankerState implements ViewState {
     private final MainView mainView;
-    private DataInput dataInput;
     private boolean isIndebited;
 
     /**
@@ -54,12 +53,14 @@ public class ViewBankerState implements ViewState {
         } else {
             switch (data.event().get()) {
                 case Event.SELL_HOUSE:
-                    JPanel panel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(), new ViewCellGiver(this.mainView),
+                    final JPanel panel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(),
+                            new ViewCellGiver(this.mainView),
                             intToTextCell(data.cellMap().get()), "in cui vendere una casa", false);
                     this.mainView.setInteractivePanel(panel);
                     break;
                 case Event.MORTGAGE_PROPERTY:
-                    JPanel panel1 = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(), new ViewCellGiver(this.mainView),
+                    final JPanel panel1 = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(),
+                            new ViewCellGiver(this.mainView),
                             intToTextCell(data.cellMap().get()), "da disipotecare", false);
                     this.mainView.setInteractivePanel(panel1);
                     break;
@@ -77,6 +78,6 @@ public class ViewBankerState implements ViewState {
 
     private Map<String, Integer> intToTextCell(final Map<Integer, Integer> cellMap) {
         return cellMap.entrySet().stream()
-                .collect(Collectors.toMap(e -> this.mainView.getNameCells().get(e.getKey()), e -> e.getValue()));
+                .collect(Collectors.toMap(e -> this.mainView.getNameCells().get(e.getKey()), Entry::getValue));
     }
 }

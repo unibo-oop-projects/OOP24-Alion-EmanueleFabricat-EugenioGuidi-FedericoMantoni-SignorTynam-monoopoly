@@ -1,6 +1,5 @@
 package it.unibo.monoopoly.model.main.impl;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

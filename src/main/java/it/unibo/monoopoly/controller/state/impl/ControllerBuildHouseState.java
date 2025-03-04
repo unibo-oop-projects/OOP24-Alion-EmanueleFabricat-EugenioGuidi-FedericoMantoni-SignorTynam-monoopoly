@@ -1,7 +1,6 @@
 package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -32,9 +31,10 @@ public class ControllerBuildHouseState implements ControllerState {
      * Constructs the controller for the house building state.
      * 
      * @param modelState the model state
-     * @param viewState the view state
+     * @param viewState  the view state
      */
-    public ControllerBuildHouseState(final MainController mainController, final ModelState modelState, final ViewState viewState, final GameBoard gameBoard) {
+    public ControllerBuildHouseState(final MainController mainController, final ModelState modelState,
+            final ViewState viewState, final GameBoard gameBoard) {
         this.modelState = modelState;
         this.viewState = viewState;
         this.mainController = mainController;
@@ -50,21 +50,22 @@ public class ControllerBuildHouseState implements ControllerState {
         canBuild = modelState.verify();
         viewState.setMode(canBuild);
         if (this.gameBoard != null) {
-            final Map<Integer, Integer> buildableCells = canBuild 
-                ? this.gameBoard.getCurrentPlayer().getProperties().stream()
-                    .filter(p -> p instanceof Buildable)
-                    .map(p -> (Buildable) p)
-                    .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
-                    .filter(p -> this.gameBoard.getCurrentPlayer().isPayable(p.getHouseCost()))
-                    .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, p -> p.getHouseCost()))
-                : new HashMap<>();
+            final Map<Integer, Integer> buildableCells = canBuild
+                    ? this.gameBoard.getCurrentPlayer().getProperties().stream()
+                        .filter(p -> p instanceof Buildable)
+                        .map(p -> (Buildable) p)
+                        .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
+                        .filter(p -> this.gameBoard.getCurrentPlayer().isPayable(p.getHouseCost()))
+                        .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, Buildable::getHouseCost))
+                    : new HashMap<>();
             final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
             viewState.visualize(dataBuilder.cellMap(buildableCells).build());
         }
     }
 
     /**
-     * Continues the execution of the state by performing the action corresponding to the user's choice.
+     * Continues the execution of the state by performing the action corresponding
+     * to the user's choice.
      * 
      * @param data the data related to the cell chosen by the user
      */

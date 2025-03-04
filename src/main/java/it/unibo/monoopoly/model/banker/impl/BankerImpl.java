@@ -44,8 +44,8 @@ public class BankerImpl implements Banker {
                 .count() > 0;
     }
 
-    private void goInBankrupt(Player player) {
-        for (var property : player.getProperties()) {
+    private void goInBankrupt(final Player player) {
+        for (final var property : player.getProperties()) {
             property.setOwner(Optional.empty());
             property.removeMortgage();
             player.removeProperty(property);

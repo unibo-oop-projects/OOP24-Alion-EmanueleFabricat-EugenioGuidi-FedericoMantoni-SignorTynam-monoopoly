@@ -8,7 +8,7 @@ public final class InteractivePanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    public InteractivePanel(JPanel initPanel) {
+    public InteractivePanel(final JPanel initPanel) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(initPanel);
     }

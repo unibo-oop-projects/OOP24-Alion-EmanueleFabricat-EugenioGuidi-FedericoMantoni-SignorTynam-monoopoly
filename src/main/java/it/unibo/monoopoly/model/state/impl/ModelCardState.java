@@ -1,16 +1,12 @@
 package it.unibo.monoopoly.model.state.impl;
 
+import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.state.api.ModelState;
-
-import java.util.Optional;
-import java.util.stream.Stream;
-
-import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.controller.data.impl.DataOutput;
 
 /**
  * Implementations of {@link ModelState} for the card's phase:

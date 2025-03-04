@@ -108,7 +108,7 @@ public class ControllerBankerState implements ControllerState {
                 .filter(p -> p.getHousesNumber() > 0)
                 .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getHouseIncome));
     }
-    private int getHouseIncome(Buildable property) {
+    private int getHouseIncome(final Buildable property) {
         return property.getSellHouseCost();
     }
 
@@ -116,7 +116,7 @@ public class ControllerBankerState implements ControllerState {
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                 .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getMortgageIncome));
     }
-    private int getMortgageIncome(Buyable property) {
+    private int getMortgageIncome(final Buyable property) {
         return property.getMortgageValue();
     }
 

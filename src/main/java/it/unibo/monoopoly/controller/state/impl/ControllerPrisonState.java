@@ -21,12 +21,14 @@ public class ControllerPrisonState implements ControllerState {
 
     /**
      * Constructs the prison controller state.
+     * 
      * @param mainController the mainController
-     * @param modelState the actual {@link ModelState}
-     * @param viewState the actual {@link ViewState}
-     * @param player the {@link Player} of the turn.
+     * @param modelState     the actual {@link ModelState}
+     * @param viewState      the actual {@link ViewState}
+     * @param player         the {@link Player} of the turn.
      */
-    public ControllerPrisonState(final MainController mainController, final ModelState modelState, final ViewState viewState, final Player player) {
+    public ControllerPrisonState(final MainController mainController, final ModelState modelState,
+            final ViewState viewState, final Player player) {
         this.modelState = modelState;
         this.viewState = viewState;
         this.player = player;

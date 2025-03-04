@@ -2,7 +2,7 @@ package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.Color;
 
-public class NumberAndCirclePosition{
+public class NumberAndCirclePosition {
 
     private final int x;
     private final int y;
@@ -10,7 +10,7 @@ public class NumberAndCirclePosition{
     private final Color color;
     private final String number;
 
-    private NumberAndCirclePosition(Builder builder) {
+    private NumberAndCirclePosition(final Builder builder) {
         this.x = builder.x;
         this.y = builder.y;
         this.isCircle = builder.isCircle;

@@ -7,7 +7,7 @@ import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.DefaultInteractivePanel;
 
-public class RollDicesListener implements ActionListener{
+public class RollDicesListener implements ActionListener {
 
     private final MainView mainView;
 
@@ -16,7 +16,7 @@ public class RollDicesListener implements ActionListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
         this.mainView.setInteractivePanel(new DefaultInteractivePanel());
         mainView.getMainController().getControllerState().continueState(
                     new DataBuilderOutputImpl().build());

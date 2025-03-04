@@ -21,7 +21,9 @@ import it.unibo.monoopoly.view.panel.api.PositionAllocator;
  * magic number.
  */
 public final class GameBoardPanel extends JPanel {
-    
+
+    private static final long serialVersionUID = 1L;
+
     private final int mainFrameHeight;
     private final Image backgroundImage;
     private List<NumberAndCirclePosition> numberAndCirclePositions;
@@ -29,9 +31,7 @@ public final class GameBoardPanel extends JPanel {
 
     /**
      * 
-     * @param mainController
      * @param mainFrameHeight
-     * @param mainFrameWidth
      */
     public GameBoardPanel(final int mainFrameHeight, final Map<Color, String> players, final List<Color> colors) {
         this.mainFrameHeight = mainFrameHeight;
@@ -44,9 +44,9 @@ public final class GameBoardPanel extends JPanel {
         setLayout(new BorderLayout());
     }
 
-    public void update(Map<String, Integer> newPlayersPositions, Map<Integer, Optional<String>> cellsOwners,
-                       Map<Integer, Integer> nBuiltHouses, List<String> prisonedPlayers,
-                       List<Integer> mortgagedProperties) {
+    public void update(final Map<String, Integer> newPlayersPositions, final Map<Integer, Optional<String>> cellsOwners,
+                       final Map<Integer, Integer> nBuiltHouses, final List<String> prisonedPlayers,
+                       final List<Integer> mortgagedProperties) {
         this.numberAndCirclePositions = this.positionAllocator.createListCircleNumberPosition(newPlayersPositions, 
                                                                                               cellsOwners, 
                                                                                               prisonedPlayers,
@@ -64,15 +64,14 @@ public final class GameBoardPanel extends JPanel {
         super.paintComponent(g);
 
         g.drawImage(backgroundImage, 0, 0, this.mainFrameHeight, this.mainFrameHeight, this);
-        int circleDiameter = (int)(this.mainFrameHeight * 0.025);
-        int numberSize = (int)(this.mainFrameHeight * 0.022);
+        final int circleDiameter = (int) (this.mainFrameHeight * 0.025);
+        final int numberSize = (int) (this.mainFrameHeight * 0.022);
 
-        for(var position : this.numberAndCirclePositions) {
-            if(position.isCircle()) {
+        for (final var position : this.numberAndCirclePositions) {
+            if (position.isCircle()) {
                 g.setColor(position.getColor());
-                g.fillOval(position.getX(), position.getY(), circleDiameter, circleDiameter
-                );
-            }else {
+                g.fillOval(position.getX(), position.getY(), circleDiameter, circleDiameter);
+            } else {
                 g.setColor(position.getColor());
                 g.setFont(new Font("Arial", Font.BOLD, numberSize));
                 g.drawString(position.getNumber(), position.getX(), position.getY());

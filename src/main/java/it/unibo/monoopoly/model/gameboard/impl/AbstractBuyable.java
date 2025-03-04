@@ -10,6 +10,8 @@ import it.unibo.monoopoly.model.player.api.Player;
  */
 public abstract class AbstractBuyable extends AbstractCell implements Buyable {
 
+    private static final double UNMORTGAGE_MULTIPLIER = 1.1;
+
     private Optional<Player> owner;
     private final int cost;
     private boolean mortgaged;
@@ -112,7 +114,7 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
      */
     @Override
     public int getUnmortgageValue() {
-        return (this.cost * 110) / 100;
+        return (int) (this.cost * UNMORTGAGE_MULTIPLIER);
     }
 
 }

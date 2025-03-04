@@ -8,9 +8,9 @@ import it.unibo.monoopoly.view.panel.impl.NumberAndCirclePosition;
 
 public interface PositionAllocator {
 
-    List<NumberAndCirclePosition> createListCircleNumberPosition(Map<String, Integer> newPlayersPositions, 
-                                                                 Map<Integer, Optional<String>> cellsOwners, 
-                                                                 List<String> prisonedPlayers,
-                                                                 Map<Integer, Integer> nBuiltHouses,
-                                                                 List<Integer> mortgagedProperties);
+    List<NumberAndCirclePosition> createListCircleNumberPosition(Map<String, Integer> newPlayersPositions,
+            Map<Integer, Optional<String>> cellsOwners,
+            List<String> prisonedPlayers,
+            Map<Integer, Integer> nBuiltHouses,
+            List<Integer> mortgagedProperties);
 }

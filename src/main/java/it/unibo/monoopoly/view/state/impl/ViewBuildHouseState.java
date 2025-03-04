@@ -1,7 +1,7 @@
 package it.unibo.monoopoly.view.state.impl;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
@@ -17,7 +17,8 @@ import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
  * Implementation of the view for the house building state.
- * Handles the interaction with the user for selecting properties to build houses on.
+ * Handles the interaction with the user for selecting properties to build
+ * houses on.
  */
 public class ViewBuildHouseState implements ViewState {
 
@@ -53,17 +54,19 @@ public class ViewBuildHouseState implements ViewState {
     @Override
     public void visualize(final DataInput data) {
         if (canBuild) {
-            final JPanel interactivePanel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(), new ViewCellGiver(mainView), intToTextCell(data.cellMap().get()) , "su cui comprare una casa", true);
+            final JPanel interactivePanel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(),
+                    new ViewCellGiver(mainView), intToTextCell(data.cellMap().get()), "su cui comprare una casa", true);
             mainView.setInteractivePanel(interactivePanel);
         } else {
-            JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Non hai proprietà su cui costruire case", "Build House", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Non hai proprietà su cui costruire case",
+                    "Build House", JOptionPane.PLAIN_MESSAGE);
             this.mainView.getMainController().getControllerState().continueState(new DataBuilderOutputImpl().build());
         }
-        //System.out.println(data.toString());
+        // System.out.println(data.toString());
     }
 
     private Map<String, Integer> intToTextCell(final Map<Integer, Integer> cellMap) {
         return cellMap.entrySet().stream()
-                .collect(Collectors.toMap(e -> this.mainView.getNameCells().get(e.getKey()), e -> e.getValue()));
+                .collect(Collectors.toMap(e -> this.mainView.getNameCells().get(e.getKey()), Entry::getValue));
     }
 }

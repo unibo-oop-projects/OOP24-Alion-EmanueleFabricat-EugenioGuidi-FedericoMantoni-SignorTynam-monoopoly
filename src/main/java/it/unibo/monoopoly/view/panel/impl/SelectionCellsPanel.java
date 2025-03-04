@@ -3,16 +3,11 @@ package it.unibo.monoopoly.view.panel.impl;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
-import com.fasterxml.jackson.databind.jdk14.JDK14Util;
 
 import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 
@@ -28,20 +23,22 @@ public final class SelectionCellsPanel extends JPanel {
      * @param closeMethod
      * @param cellMap
      */
-    public SelectionCellsPanel(final int mainFrameHeight, final ViewCellGiver closeMethod, final Map<String, Integer> cellMap, final String text, final boolean addNoChooseButton) {
+    public SelectionCellsPanel(final int mainFrameHeight, final ViewCellGiver closeMethod,
+            final Map<String, Integer> cellMap, final String text, final boolean addNoChooseButton) {
         super();
         final JPanel innerPanel = new JPanel();
         final JTextArea title = new JTextArea("Scegli una proprietà " + text);
-        final Font font = new Font("Arial", Font.PLAIN, mainFrameHeight/45);
+        final Font font = new Font("Arial", Font.PLAIN, mainFrameHeight / 45);
         title.setLineWrap(true);
         title.setWrapStyleWord(true);
         title.setFont(font);
         this.setLayout(new BorderLayout());
-        innerPanel.setLayout(new GridLayout(cellMap.size()/2+cellMap.size()%2, cellMap.size()>2 ? 2 : cellMap.size()));
+        innerPanel.setLayout(
+                new GridLayout(cellMap.size() / 2 + cellMap.size() % 2, cellMap.size() > 2 ? 2 : cellMap.size()));
         this.add(title, BorderLayout.NORTH);
         for (final var entry : cellMap.entrySet()) {
             final JButton j = new JButton(entry.getKey() + "\n " + entry.getValue() + " €");
-            j.setFont(new Font("Arial", Font.PLAIN, mainFrameHeight/60));
+            j.setFont(new Font("Arial", Font.PLAIN, mainFrameHeight / 60));
             innerPanel.add(j, BorderLayout.CENTER);
             j.addActionListener(closeMethod);
         }

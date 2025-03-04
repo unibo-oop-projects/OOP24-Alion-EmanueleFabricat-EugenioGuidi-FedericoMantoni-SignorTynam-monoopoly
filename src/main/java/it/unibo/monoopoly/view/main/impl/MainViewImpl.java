@@ -12,10 +12,8 @@ import java.util.stream.IntStream;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JWindow;
 
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -30,13 +28,13 @@ import it.unibo.monoopoly.view.state.impl.ViewPrisonState;
  */
 public class MainViewImpl extends AbstractView implements MainView {
 
+    private static final int END_MESSAGE_FONT_SIZE = 50;
     private final GamePanel gamePanel;
     private final MainController controller;
     private ViewState viewState;
     private final List<Color> colors;
     private final Map<Color, String> players;
     private final List<String> nameCells;
-    // private final PanelAdapter mainPanel;
 
     /**
      * Initialize the {@link JFrame} and all the informations needed to show
@@ -136,14 +134,17 @@ public class MainViewImpl extends AbstractView implements MainView {
         this.gamePanel.update(this.controller.getViewUpdateData());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void endGame(String player) {
+    public void endGame(final String player) {
         this.getMainFrame().dispose();
-        JDialog closeWindow = new JDialog();
+        final JDialog closeWindow = new JDialog();
         closeWindow.setModal(true);
-        JTextArea winnerText = new JTextArea("BRAVO, " + player + " HAI VINTO IL GIOCO"); 
+        final JTextArea winnerText = new JTextArea("BRAVO, " + player + " HAI VINTO IL GIOCO"); 
         winnerText.setEditable(false);
-        winnerText.setFont(new Font("Arial", Font.PLAIN, 50));
+        winnerText.setFont(new Font("Arial", Font.PLAIN, END_MESSAGE_FONT_SIZE));
         closeWindow.add(winnerText);
         closeWindow.setSize(1000, 100);
         closeWindow.setLocationRelativeTo(null);
