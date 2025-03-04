@@ -109,7 +109,7 @@ public class ControllerBankerState implements ControllerState {
                 .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getHouseIncome));
     }
     private int getHouseIncome(Buildable property) {
-        return property.getHouseCost();//cambiare con nuovo metodo
+        return property.getSellHouseCost();
     }
 
     private Map<Integer, Integer> propertiesMortgageableList() {
