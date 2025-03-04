@@ -32,7 +32,8 @@ public class PositionAllocatorImpl implements PositionAllocator{
     public List<NumberAndCirclePosition> createListCircleNumberPosition(Map<String, Integer> newPlayersPositions, 
                                                                         Map<Integer, Optional<String>> cellsOwners, 
                                                                         List<String> prisonedPlayers,
-                                                                        Map<Integer, Integer> nBuiltHouses) {
+                                                                        Map<Integer, Integer> nBuiltHouses,
+                                                                        List<Integer> mortgagedProperties) {
         List<NumberAndCirclePosition> newList = new ArrayList<>();
         NumberAndCirclePosition numberAndCirclePosition;
         for(var entry : this.playersColors.entrySet()) {
@@ -78,6 +79,14 @@ public class PositionAllocatorImpl implements PositionAllocator{
                                                     .setNumber(entry.getValue().toString())
                                                     .build();
             newList.add(numberAndCirclePosition);
+        }
+        for(var cellIndex : mortgagedProperties) {
+            numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                                                    .setX((int) this.propertyPositions.get(cellIndex).x())
+                                                    .setY((int) this.propertyPositions.get(cellIndex).y())
+                                                    .setIsCircle(true)
+                                                    .setColor(Color.BLACK)
+                                                    .build();
         }
 
         return newList;
