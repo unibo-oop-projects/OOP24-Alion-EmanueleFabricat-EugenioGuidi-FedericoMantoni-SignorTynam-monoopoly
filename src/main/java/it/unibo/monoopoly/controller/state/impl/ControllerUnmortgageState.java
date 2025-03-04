@@ -1,7 +1,9 @@
 package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
@@ -69,18 +71,17 @@ public class ControllerUnmortgageState implements ControllerState {
 
     private DataInput buildData() {
         if (runState) {
-            return this.dataBuilderInput.cellList(unmortgageableList()).build();
+            return this.dataBuilderInput.cellMap(unmortgageableList()).build();
         } else {
             return this.dataBuilderInput.build();
         }
     }
 
-    private List<Integer> unmortgageableList() {
-        return Optional.of(this.gameBoard.getCurrentPlayer().getProperties().stream()
+    private Map<Integer, Integer> unmortgageableList() {
+        return this.gameBoard.getCurrentPlayer().getProperties().stream()
                 .filter(Buyable::isMortgaged)
                 .filter(this::isPayable)
-                .map(this.gameBoard.getCellsList()::indexOf)
-                .toList()).get();
+                .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, p -> p.getMortgageValue()*110/100));
     }
 
     private boolean isPayable(final Buyable property) {
