@@ -48,7 +48,7 @@ public class ViewUnmortgageState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         if (this.makeState) {
-            final JPanel panel = new SelectionCellsPanel(new ViewCellGiver(this.mainView),
+            final JPanel panel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(), new ViewCellGiver(this.mainView),
                     intToTextCell(dataInput.cellMap().get()), "da disipotecare", true);
             this.mainView.setInteractivePanel(panel);
         } else {

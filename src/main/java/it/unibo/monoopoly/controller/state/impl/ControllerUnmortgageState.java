@@ -85,7 +85,7 @@ public class ControllerUnmortgageState implements ControllerState {
     }
 
     private boolean isPayable(final Buyable property) {
-        final int toPay = property.getMortgageValue() * 110 / 100;
+        final int toPay = property.getUnmortgageValue();
         return this.gameBoard.getCurrentPlayer().isPayable(toPay);
     }
 
