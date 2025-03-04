@@ -71,7 +71,7 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
     public int sellHouse() {
        this.checkMortgageAndHouseLimit(false);
        this.houses--;
-       return this.getHouseCost() / 2;
+       return getSellHouseCost();
     }
 
     /**
@@ -112,5 +112,13 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
     @Override
     public int calculateRentalValue() {
         return this.rentalMap.get(this.houses);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getSellHouseCost() {
+        return this.getHouseCost() / 2;
     }
 }
