@@ -20,7 +20,6 @@ public class ModelBankerState implements ModelState {
     private final MainModel mainModel;
     private final Banker banker = new BankerImpl();
     private boolean isIndebted;
-    private final int amountToPay;
     private final boolean isInPrison;
     /**
      * Constructor of the class,
@@ -28,12 +27,10 @@ public class ModelBankerState implements ModelState {
      * according to the State pattern.
      * 
      * @param mainModel the reference to perform the operations.
-     * @param amountToPay the amount that the {@link Player} will try to pay
      * @param isInPrison tells if the {@link Player} is paying to get out of prison
      */
-    public ModelBankerState(final MainModel mainModel, final int amountToPay, final boolean isInPrison) {
+    public ModelBankerState(final MainModel mainModel, final boolean isInPrison) {
         this.mainModel = mainModel;
-        this.amountToPay = amountToPay;
         this.isInPrison = isInPrison;
     }
 
@@ -48,8 +45,7 @@ public class ModelBankerState implements ModelState {
      */
     @Override
     public boolean verify() {
-        if (getPlayer().getMoneyAmount() - this.amountToPay >= 0) {
-            getPlayer().pay(amountToPay);
+        if (getPlayer().getMoneyAmount() >= 0) {
             this.isIndebted = false;
         } else {
             this.mainModel.setEvent(Optional.of(this.banker.selectOperations(getPlayer())));
@@ -90,7 +86,7 @@ public class ModelBankerState implements ModelState {
             completeBankrupt();
             this.mainModel.nextTurn();
         } else if (isIndebted) {
-            this.mainModel.setState(new ModelBankerState(mainModel, this.amountToPay, this.isInPrison));
+            this.mainModel.setState(new ModelBankerState(mainModel, this.isInPrison));
         } else if (isInPrison) {
             this.mainModel.setState(new ModelMovementState(this.mainModel, Optional.empty()));
         } else {

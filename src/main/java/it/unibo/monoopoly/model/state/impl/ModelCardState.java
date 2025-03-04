@@ -80,10 +80,12 @@ public class ModelCardState implements ModelState {
                 break;
             case Event.CARD_PAYMENT:
                 if (getCard().getMessage().data().isPresent()) {
-                    nextState = new ModelBankerState(mainModel, getCard().getMessage().data().get(), false);
+                    this.mainModel.getGameBoard().getCurrentPlayer().pay(getCard().getMessage().data().get());
+                    nextState = new ModelBankerState(mainModel, false);
                     break;
                 } else {
-                    nextState = new ModelBankerState(mainModel, payForHouse(), false);
+                    this.mainModel.getGameBoard().getCurrentPlayer().pay(payForHouse());
+                    nextState = new ModelBankerState(mainModel, false);
                     break;
                 }
             case Event.RECEIVE_CARD:

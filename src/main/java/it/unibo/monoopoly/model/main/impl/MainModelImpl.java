@@ -14,7 +14,6 @@ import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 import it.unibo.monoopoly.model.state.api.ModelState;
-import it.unibo.monoopoly.model.state.impl.ModelBankerState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 
 /**
@@ -39,7 +38,6 @@ public class MainModelImpl implements MainModel {
                 .map(name -> new PlayerImpl(name, START_MONEY_AMOUNT, 0, false)).collect(Collectors.toList());
         Collections.shuffle(players);
         this.gameBoard = new GameBoardImpl(new CellFactoryImpl().createCells(), players);
-        this.actualState = new ModelBankerState(this, START_MONEY_AMOUNT, false);
         this.actualState = new ModelPrisonState(this, false);
     }
 
