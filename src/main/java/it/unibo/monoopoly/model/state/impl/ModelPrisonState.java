@@ -82,7 +82,7 @@ public class ModelPrisonState implements ModelState {
                 model.setState(new ModelMovementState(model, Optional.empty()));
             } else {
                 this.model.getGameBoard().getCurrentPlayer().pay(PRISON_COST);
-                model.setState(new ModelBankerState(model, PRISON_COST, true));
+                model.setState(new ModelBankerState(model, true));
             }
         } else {
             model.setState(new ModelMovementState(this.model, Optional.empty()));
