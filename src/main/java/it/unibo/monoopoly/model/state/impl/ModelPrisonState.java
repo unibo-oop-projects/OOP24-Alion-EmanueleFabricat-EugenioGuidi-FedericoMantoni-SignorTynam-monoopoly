@@ -74,7 +74,7 @@ public class ModelPrisonState implements ModelState {
     @Override
     public void closeState() {
         if (goInJail) {
-            model.nextTurn();
+            model.setState(new ModelMovementState(model, Optional.of(10)));
         } else if (this.model.getGameBoard().getCurrentPlayer().isPrisoned()) {
             this.model.getGameBoard().getCurrentPlayer().releaseFromPrison();
             if (usedCard) {
