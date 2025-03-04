@@ -29,7 +29,7 @@ public final class SelectionCellsPanel extends JPanel {
         super();
         final JPanel innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
-        innerPanel.setLayout(new GridLayout(0, cellMap.size()));
+        innerPanel.setLayout(new GridLayout(cellMap.size()/3, cellMap.size()>3 ? 3 : cellMap.size()));
         this.add(new JTextArea("Scegli una proprietà " + text), BorderLayout.NORTH);
         for (final var entry : cellMap.entrySet()) {
             final JButton j = new JButton(entry.getKey() + "\n " + entry.getValue() + " €");
