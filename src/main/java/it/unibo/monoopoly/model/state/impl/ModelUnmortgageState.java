@@ -60,7 +60,7 @@ public class ModelUnmortgageState implements ModelState {
         if (data.cellChoose().isPresent()) {
             buyableFromIndex(data.cellChoose()).removeMortgage();
             this.mainModel.getGameBoard().getCurrentPlayer().pay(
-                    buyableFromIndex(data.cellChoose()).getMortgageValue() * 110 / 100);
+                    buyableFromIndex(data.cellChoose()).getUnmortgageValue());
         }
     }
 
