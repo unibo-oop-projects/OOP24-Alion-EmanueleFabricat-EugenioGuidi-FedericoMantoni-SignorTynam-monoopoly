@@ -1,6 +1,6 @@
 package it.unibo.monoopoly.controller.data.api;
 
-import java.util.List;
+import java.util.Map;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
@@ -12,10 +12,10 @@ import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 public interface DataBuilderInput {
     /**
      * 
-     * @param list
+     * @param map
      * @return this.
      */
-    DataBuilderInput cellList(List<Integer> list);
+    DataBuilderInput cellMap(Map<Integer, Integer> map);
 
     /**
      * 
