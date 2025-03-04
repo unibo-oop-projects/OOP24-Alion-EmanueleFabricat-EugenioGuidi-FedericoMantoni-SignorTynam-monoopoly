@@ -1,6 +1,8 @@
 package it.unibo.monoopoly.view.state.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -53,12 +55,12 @@ public class ViewBankerState implements ViewState {
             switch (data.event().get()) {
                 case Event.SELL_HOUSE:
                     JPanel panel = new SelectionCellsPanel(new ViewCellGiver(this.mainView),
-                            intToTextCell(data.cellList().get()), "in cui vendere una casa", false);
+                            intToTextCell(data.cellMap().get()), "in cui vendere una casa", false);
                     this.mainView.setInteractivePanel(panel);
                     break;
                 case Event.MORTGAGE_PROPERTY:
                     JPanel panel1 = new SelectionCellsPanel(new ViewCellGiver(this.mainView),
-                            intToTextCell(data.cellList().get()), "da disipotecare", false);
+                            intToTextCell(data.cellMap().get()), "da disipotecare", false);
                     this.mainView.setInteractivePanel(panel1);
                     break;
                 case Event.BANKRUPT:
@@ -73,9 +75,8 @@ public class ViewBankerState implements ViewState {
         }
     }
 
-    private List<String> intToTextCell(final List<Integer> cellList) {
-        return cellList.stream()
-                .map(this.mainView.getNameCells()::get)
-                .toList();
+    private Map<String, Integer> intToTextCell(final Map<Integer, Integer> cellMap) {
+        return cellMap.entrySet().stream()
+                .collect(Collectors.toMap(e -> this.mainView.getNameCells().get(e.getKey()), e -> e.getValue()));
     }
 }
