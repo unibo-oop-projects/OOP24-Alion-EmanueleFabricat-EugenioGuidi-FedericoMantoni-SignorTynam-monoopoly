@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
+import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -42,5 +43,11 @@ public interface MainView extends View {
      * Update the {@link View}.
      */
     void update();
+
+    /**
+     * visualize the end game with the winner.
+     * @param player who won.
+     */
+    void endGame(String player);
 
 }

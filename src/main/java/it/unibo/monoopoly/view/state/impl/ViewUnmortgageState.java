@@ -1,6 +1,8 @@
 package it.unibo.monoopoly.view.state.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
@@ -46,8 +48,8 @@ public class ViewUnmortgageState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         if (this.makeState) {
-            final JPanel panel = new SelectionCellsPanel(new ViewCellGiver(this.mainView),
-                    intToTextCell(dataInput.cellList().get()), "da disipotecare");
+            final JPanel panel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(), new ViewCellGiver(this.mainView),
+                    intToTextCell(dataInput.cellMap().get()), "da disipotecare", true);
             this.mainView.setInteractivePanel(panel);
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
@@ -56,9 +58,8 @@ public class ViewUnmortgageState implements ViewState {
         }
     }
 
-    private List<String> intToTextCell(final List<Integer> cellList) {
-        return cellList.stream()
-                .map(this.mainView.getNameCells()::get)
-                .toList();
+    private Map<String, Integer> intToTextCell(final Map<Integer, Integer> cellMap) {
+        return cellMap.entrySet().stream()
+                .collect(Collectors.toMap(e -> this.mainView.getNameCells().get(e.getKey()), e -> e.getValue()));
     }
 }

@@ -50,6 +50,7 @@ public class BankerImpl implements Banker {
             property.removeMortgage();
             player.removeProperty(property);
         }
+        player.inBankrupt();
     }
     /**
      * {@inheritDoc}

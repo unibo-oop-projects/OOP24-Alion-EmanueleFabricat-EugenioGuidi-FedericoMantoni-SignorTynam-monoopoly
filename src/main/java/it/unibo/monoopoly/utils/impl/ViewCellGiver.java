@@ -20,7 +20,7 @@ public class ViewCellGiver implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent e) {
             final var button = (JButton) e.getSource();
-            final String cellName = button.getText();
+            final String cellName = button.getText().split("\n")[0];
             final int cell = mainView.getNameCells().indexOf(cellName);
             this.mainView.setInteractivePanel(new DefaultInteractivePanel());
             if (NO_CHOICE.equals(cellName)) {

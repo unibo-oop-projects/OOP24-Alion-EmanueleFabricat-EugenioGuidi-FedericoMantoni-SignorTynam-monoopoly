@@ -97,7 +97,7 @@ public class ModelCardState implements ModelState {
     }
 
     private int payForHouse() {
-        return numberOfHouses()*N_CELLS;
+        return numberOfHouses() * N_CELLS;
 
     }
 

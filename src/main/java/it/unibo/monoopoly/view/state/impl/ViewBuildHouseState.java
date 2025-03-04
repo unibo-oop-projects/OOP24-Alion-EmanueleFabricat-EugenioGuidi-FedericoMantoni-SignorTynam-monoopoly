@@ -1,6 +1,8 @@
 package it.unibo.monoopoly.view.state.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -51,7 +53,7 @@ public class ViewBuildHouseState implements ViewState {
     @Override
     public void visualize(final DataInput data) {
         if (canBuild) {
-            final JPanel interactivePanel = new SelectionCellsPanel(new ViewCellGiver(mainView), intToTextCell(data.cellList().get()) , "su cui comprare una casa");
+            final JPanel interactivePanel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(), new ViewCellGiver(mainView), intToTextCell(data.cellMap().get()) , "su cui comprare una casa", true);
             mainView.setInteractivePanel(interactivePanel);
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Non hai proprietà su cui costruire case", "Build House", JOptionPane.PLAIN_MESSAGE);
@@ -60,7 +62,8 @@ public class ViewBuildHouseState implements ViewState {
         //System.out.println(data.toString());
     }
 
-    private List<String> intToTextCell(final List<Integer> cellList) {
-        return cellList.stream().map(this.mainView.getNameCells()::get).toList();
+    private Map<String, Integer> intToTextCell(final Map<Integer, Integer> cellMap) {
+        return cellMap.entrySet().stream()
+                .collect(Collectors.toMap(e -> this.mainView.getNameCells().get(e.getKey()), e -> e.getValue()));
     }
 }

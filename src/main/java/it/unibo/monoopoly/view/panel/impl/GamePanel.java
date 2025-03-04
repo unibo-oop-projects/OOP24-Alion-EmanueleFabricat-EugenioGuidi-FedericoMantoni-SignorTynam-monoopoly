@@ -3,6 +3,7 @@ package it.unibo.monoopoly.view.panel.impl;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -85,7 +86,8 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
         this.gameBoardPanel.update(updateData.playerPositions(),
                 updateData.cellsOwners(),
                 updateData.nBuiltHouses(),
-                updateData.prisonedPlayers());
+                updateData.prisonedPlayers(),
+                new ArrayList<>());//da cancellare
         this.playerPanel.update(updateData); // da decommentare quando funzionerà
     }
 

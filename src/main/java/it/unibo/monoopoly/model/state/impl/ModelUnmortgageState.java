@@ -69,7 +69,7 @@ public class ModelUnmortgageState implements ModelState {
     }
 
     private boolean isPayable(final Buyable property) {
-        final int toPay = property.getMortgageValue() * 110 / 100;
+        final int toPay = property.getUnmortgageValue();
         return this.mainModel.getGameBoard().getCurrentPlayer().isPayable(toPay);
     }
 
