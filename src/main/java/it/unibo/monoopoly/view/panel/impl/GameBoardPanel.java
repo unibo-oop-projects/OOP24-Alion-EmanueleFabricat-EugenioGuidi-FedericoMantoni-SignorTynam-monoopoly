@@ -45,11 +45,13 @@ public final class GameBoardPanel extends JPanel {
     }
 
     public void update(Map<String, Integer> newPlayersPositions, Map<Integer, Optional<String>> cellsOwners,
-                       Map<Integer, Integer> nBuiltHouses, List<String> prisonedPlayers) {
+                       Map<Integer, Integer> nBuiltHouses, List<String> prisonedPlayers,
+                       List<Integer> mortgagedProperties) {
         this.numberAndCirclePositions = this.positionAllocator.createListCircleNumberPosition(newPlayersPositions, 
                                                                                               cellsOwners, 
                                                                                               prisonedPlayers,
-                                                                                              nBuiltHouses);
+                                                                                              nBuiltHouses,
+                                                                                              mortgagedProperties);
         this.repaint();
     }
 

@@ -11,5 +11,6 @@ public interface PositionAllocator {
     List<NumberAndCirclePosition> createListCircleNumberPosition(Map<String, Integer> newPlayersPositions, 
                                                                  Map<Integer, Optional<String>> cellsOwners, 
                                                                  List<String> prisonedPlayers,
-                                                                 Map<Integer, Integer> nBuiltHouses);
+                                                                 Map<Integer, Integer> nBuiltHouses,
+                                                                 List<Integer> mortgagedProperties);
 }
