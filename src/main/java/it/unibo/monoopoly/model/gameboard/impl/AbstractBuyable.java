@@ -107,4 +107,12 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
         this.owner = ownerPlayer;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getUnmortgageValue() {
+        return (this.cost * 110) / 100;
+    }
+
 }

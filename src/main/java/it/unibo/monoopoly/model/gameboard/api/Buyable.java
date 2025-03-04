@@ -68,4 +68,10 @@ public interface Buyable extends Cell {
      */
     void removeMortgage();
 
+    /**
+     * 
+     * @return the 10% incremented of mortgage value.
+     */
+    int getUnmortgageValue();
+
 }
