@@ -1,7 +1,8 @@
 package it.unibo.monoopoly.controller.state.impl;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import it.unibo.monoopoly.common.Event;
@@ -72,11 +73,11 @@ public class ControllerBankerState implements ControllerState {
         return switch (event) {
             case Event.SELL_HOUSE -> this.dataBuilderInput
                     .event(event)
-                    .cellList(cellListChooser(event))
+                    .cellMap(cellListChooser(event))
                     .build();
             case Event.MORTGAGE_PROPERTY -> this.dataBuilderInput
                     .event(event)
-                    .cellList(cellListChooser(event))
+                    .cellMap(cellListChooser(event))
                     .build();
             case Event.BANKRUPT -> this.dataBuilderInput
                     .event(event)
@@ -85,7 +86,7 @@ public class ControllerBankerState implements ControllerState {
         };
     }
 
-    private List<Integer> cellListChooser(final Event event) {
+    private Map<Integer, Integer> cellListChooser(final Event event) {
         return switch (event) {
             case Event.SELL_HOUSE -> sellHouseList();
             case Event.MORTGAGE_PROPERTY -> propertiesMortgageableList();
@@ -100,19 +101,23 @@ public class ControllerBankerState implements ControllerState {
                 .filter(p -> !p.isMortgaged());
     }
 
-    private List<Integer> sellHouseList() {
+    private Map<Integer, Integer> sellHouseList() {
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                 .filter(p -> p instanceof Buildable)
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
-                .map(this.gameBoard.getCellsList()::indexOf)
-                .toList();
+                .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getHouseIncome));
+    }
+    private int getHouseIncome(Buildable property) {
+        return property.getSellHouseCost();
     }
 
-    private List<Integer> propertiesMortgageableList() {
+    private Map<Integer, Integer> propertiesMortgageableList() {
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
-                .map(this.gameBoard.getCellsList()::indexOf)
-                .toList();
+                .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getMortgageIncome));
+    }
+    private int getMortgageIncome(Buyable property) {
+        return property.getMortgageValue();
     }
 
 }

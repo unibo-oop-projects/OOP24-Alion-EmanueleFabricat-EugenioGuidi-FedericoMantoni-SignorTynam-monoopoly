@@ -3,6 +3,9 @@ package it.unibo.monoopoly.view.panel.impl;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -20,16 +23,16 @@ public final class SelectionCellsPanel extends JPanel {
     /**
      * 
      * @param closeMethod
-     * @param cellList
+     * @param cellMap
      */
-    public SelectionCellsPanel(final ViewCellGiver closeMethod, final List<String> cellList, final String text, final boolean addNoChooseButton) {
+    public SelectionCellsPanel(final ViewCellGiver closeMethod, final Map<String, Integer> cellMap, final String text, final boolean addNoChooseButton) {
         super();
         final JPanel innerPanel = new JPanel();
         this.setLayout(new BorderLayout());
-        innerPanel.setLayout(new GridLayout(0, cellList.size()));
+        innerPanel.setLayout(new GridLayout(0, cellMap.size()));
         this.add(new JTextArea("Scegli una proprietà " + text), BorderLayout.NORTH);
-        for (final String string : cellList) {
-            final JButton j = new JButton(string);
+        for (final var entry : cellMap.entrySet()) {
+            final JButton j = new JButton(entry.getKey() + "\n " + entry.getValue() + " €");
             innerPanel.add(j, BorderLayout.CENTER);
             j.addActionListener(closeMethod);
         }

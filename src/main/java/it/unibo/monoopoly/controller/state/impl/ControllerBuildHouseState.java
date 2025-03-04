@@ -1,6 +1,8 @@
 package it.unibo.monoopoly.controller.state.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
@@ -48,17 +50,16 @@ public class ControllerBuildHouseState implements ControllerState {
         canBuild = modelState.verify();
         viewState.setMode(canBuild);
         if (this.gameBoard != null) {
-            final List<Integer> buildableCells = canBuild 
+            final Map<Integer, Integer> buildableCells = canBuild 
                 ? this.gameBoard.getCurrentPlayer().getProperties().stream()
                     .filter(p -> p instanceof Buildable)
                     .map(p -> (Buildable) p)
                     .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
                     .filter(p -> this.gameBoard.getCurrentPlayer().isPayable(p.getHouseCost()))
-                    .map(this.gameBoard.getCellsList()::indexOf)
-                    .collect(Collectors.toList())
-                : List.of();
+                    .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, p -> p.getHouseCost()))
+                : new HashMap<>();
             final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
-            viewState.visualize(dataBuilder.cellList(buildableCells).build());
+            viewState.visualize(dataBuilder.cellMap(buildableCells).build());
         }
     }
 

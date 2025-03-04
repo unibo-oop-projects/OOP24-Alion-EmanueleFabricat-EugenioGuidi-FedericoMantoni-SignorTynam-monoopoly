@@ -1,6 +1,6 @@
 package it.unibo.monoopoly.controller.data.impl;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
@@ -15,7 +15,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
     private Optional<Integer> valueToPAy = Optional.empty();
     private Optional<Pair> dices = Optional.empty();
     private Optional<Boolean> mode = Optional.empty();
-    private Optional<List<Integer>> cellList = Optional.empty();
+    private Optional<Map<Integer, Integer>> cellMap = Optional.empty();
     private Optional<String> text = Optional.empty();
 
     /**
@@ -23,8 +23,8 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput cellList(final List<Integer> list) {
-        this.cellList = Optional.of(list);
+    public DataBuilderInput cellMap(final Map<Integer, Integer> map) {
+        this.cellMap = Optional.of(map);
         return this;
     }
 
@@ -84,7 +84,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      */
     @Override
     public DataInput build() {
-        return new DataInput(this.cellList, this.dices, this.event, this.mode, this.text, this.valueToPAy);
+        return new DataInput(this.cellMap, this.dices, this.event, this.mode, this.text, this.valueToPAy);
     }
 
 }
