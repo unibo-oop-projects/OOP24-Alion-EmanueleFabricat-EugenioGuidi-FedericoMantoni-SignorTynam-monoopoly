@@ -22,7 +22,7 @@ public class ViewCellGiver implements ActionListener {
             final var button = (JButton) e.getSource();
             final String cellName = button.getText().split("\n")[0];
             final int cell = mainView.getNameCells().indexOf(cellName);
-            this.mainView.setInteractivePanel(new DefaultInteractivePanel());
+            this.mainView.setInteractivePanel(new DefaultInteractivePanel(this.mainView.getMainFrame().getHeight()));
             if (NO_CHOICE.equals(cellName)) {
                 mainView.getMainController().getControllerState().continueState(
                     new DataBuilderOutputImpl().build());
