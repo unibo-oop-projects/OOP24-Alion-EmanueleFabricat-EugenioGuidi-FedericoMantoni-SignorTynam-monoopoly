@@ -36,7 +36,7 @@ public class ViewCardState implements ViewState {
      */
     @Override
     public void visualize(final DataInput data) {
-        JOptionPane.showMessageDialog(this.mainView.getMainFrame(), data.text().get(), "Card",
+        JOptionPane.showMessageDialog(this.mainView.getMainFrame(), data.text().get(), "Carte",
                 JOptionPane.PLAIN_MESSAGE);
     }
 
