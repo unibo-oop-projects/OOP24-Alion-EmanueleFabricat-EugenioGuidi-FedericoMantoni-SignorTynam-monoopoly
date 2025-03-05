@@ -14,9 +14,13 @@ import javax.swing.border.LineBorder;
 
 import org.apache.commons.lang3.tuple.Triple;
 
+import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
-
+/**
+ * {@link JPanel} where the players and their financial situation will be displayed,
+ * as well as the current {@link Player}.
+ */
 public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
@@ -29,11 +33,10 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
     /**
-     * comment
-     * 
-     * @param mainFrameHeight the height of the main frame
-     * @param firstPlayer     the name of the player starting the game
-     * @param initializedList
+     * Constructor of the class.
+     * @param mainFrameHeight used to size the text.
+     * @param firstPlayer the name of the first {@link Player} that play.
+     * @param initializedList the list of players with their respective color, name, and initial money.
      */
     public VisualizePlayerPanel(final int mainFrameHeight, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList) {
