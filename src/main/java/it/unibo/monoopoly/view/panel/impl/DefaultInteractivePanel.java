@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.view.panel.impl;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
@@ -31,6 +32,7 @@ public final class DefaultInteractivePanel extends JPanel {
         startText.setEnabled(false);
         startText.setLineWrap(true);
         startText.setWrapStyleWord(true);
+        startText.setDisabledTextColor(Color.BLACK);
         add(startText);
     }
 
