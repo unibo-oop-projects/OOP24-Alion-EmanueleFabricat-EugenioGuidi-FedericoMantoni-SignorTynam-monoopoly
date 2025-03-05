@@ -12,7 +12,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
 import it.unibo.monoopoly.model.gameboard.impl.GameBoardImpl;
@@ -77,6 +79,8 @@ class GameBoardImplTest {
         this.gameBoardImpl.removePlayer();
         assertFalse(this.gameBoardImpl.isGameEnded());
         this.gameBoardImpl.removePlayer();
+        assertFalse(this.gameBoardImpl.isGameEnded());
+        this.gameBoardImpl.removePlayer();
         assertTrue(this.gameBoardImpl.isGameEnded());
     }
 
@@ -91,6 +95,8 @@ class GameBoardImplTest {
         this.gameBoardImpl.getNextPlayer();
         assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(2));
         this.gameBoardImpl.getNextPlayer();
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(3));
+        this.gameBoardImpl.getNextPlayer();
         assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(0));
     }
 
@@ -102,11 +108,32 @@ class GameBoardImplTest {
         assertEquals(PLAYERS_LIST, this.gameBoardImpl.getPlayersList());
     }
 
+    /**
+     * Test the method getCellsNames.
+     */
     @Test
     void testGetCellsNames() {
         assertEquals(List.of("first", "second", "third"), this.gameBoardImpl.getCellsNames());
         assertNotEquals(List.of("first", "third", "second"), this.gameBoardImpl.getCellsNames());
         assertEquals(List.of("first", "second", "third").size(), this.gameBoardImpl.getCellsNames().size());
+    }
+
+    /**
+     * Test the method getCellsList.
+     */
+    @Test
+    void testGetCellsList() {
+        assertEquals(3, this.gameBoardImpl.getCellsList().size());
+        assertEquals(CELLS_LIST, this.gameBoardImpl.getCellsList());
+    }
+
+    /**
+     * Test the methods getDices and getDeck.
+     */
+    @Test
+    void testGetDicesAndGetDeck() {
+        assertTrue(this.gameBoardImpl.getDices() instanceof Dices);
+        assertTrue(this.gameBoardImpl.getDeck() instanceof Deck);
     }
 
 }

@@ -3,7 +3,6 @@ package it.unibo.monoopoly.view.panel.impl;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
