@@ -54,7 +54,7 @@ class TestCheckActionState {
         assertTrue(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().buyProperty(true).build());
         this.checkActionState.closeState();
-        assertInstanceOf(ModelBankerState.class, model.getState());
+        assertInstanceOf(ModelUnmortgageState.class, model.getState());
     }
 
     @Test

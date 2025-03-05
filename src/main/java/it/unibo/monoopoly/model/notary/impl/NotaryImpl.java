@@ -23,6 +23,7 @@ public class NotaryImpl implements Notary {
         Objects.requireNonNull(player);
         Objects.requireNonNull(cell);
         if (cell.isAvailable()) {
+            player.pay(cell.getCost());
             cell.setOwner(Optional.of(player));
             player.addProperty(cell);
         } else {
@@ -54,7 +55,7 @@ public class NotaryImpl implements Notary {
         }
         final Buyable buyableCell = (Buyable) cell;
         if (checkRentPayment(player, buyableCell)) {
-            payOwner(buyableCell);
+            payOwner(player, buyableCell);
             return Optional.of(Event.RENT_PAYMENT);
         } else {
             return Optional.empty();
@@ -65,11 +66,13 @@ public class NotaryImpl implements Notary {
         return !cell.isAvailable() && !cell.isMortgaged() && !cell.getOwner().get().equals(player);
     }
 
-    private void payOwner(final Buyable buyableCell) {
+    private void payOwner(final Player player, final Buyable buyableCell) {
         if (buyableCell.isCompany()) {
             ((Company) buyableCell).rollAndCalculate();
         }
-        buyableCell.getOwner().get().receive(buyableCell.getRentalValue());
+        final int actualRentalValue = buyableCell.getRentalValue();
+        buyableCell.getOwner().get().receive(actualRentalValue);
+        player.pay(actualRentalValue);
     }
 
 }

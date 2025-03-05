@@ -40,8 +40,8 @@ class TestBuyable {
     private static final int TRIES = 10;
 
     private Set<Buyable> railroads;
-    private Company company1;
-    private Company company2;
+    private Buyable company1;
+    private Buyable company2;
 
     private Player owner;
 
@@ -52,9 +52,9 @@ class TestBuyable {
     void init() {
         this.railroads = Set.of(RAILROAD_E, RAILROAD_N, RAILROAD_O, RAILROAD_S);
         this.company1 = (Company) cells.stream()
-                .filter(c -> c.isCompany() && "Società acqua potabile".equals(c.getName()));
+                .filter(c -> c.isCompany() && "Società acqua potabile".equals(c.getName())).findFirst().get();
         this.company2 = (Company) cells.stream()
-                .filter(c -> c.isCompany() && "Società elettrica".equals(c.getName()));
+                .filter(c -> c.isCompany() && "Società elettrica".equals(c.getName())).findFirst().get();
         this.owner = new PlayerImpl("Franco", START_MONEY, 0, false);
         this.notary = new NotaryImpl();
     }
@@ -81,8 +81,8 @@ class TestBuyable {
 
     @Test
     void testCompany() {
-        final Company company1 = this.company1;
-        final Company company2 = this.company2;
+        final Company company1 = (Company) this.company1;
+        final Company company2 = (Company) this.company2;
         final Exception exception1 = assertThrows(IllegalStateException.class, company1::getRentalValue);
         final Exception exception2 = assertThrows(IllegalStateException.class, company1::rollAndCalculate);
         assertEquals("The property must be owned by a player", exception1.getMessage());

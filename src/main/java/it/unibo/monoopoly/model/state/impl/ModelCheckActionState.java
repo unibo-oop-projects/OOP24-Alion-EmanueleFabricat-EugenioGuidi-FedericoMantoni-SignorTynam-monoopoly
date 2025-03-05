@@ -72,17 +72,13 @@ public class ModelCheckActionState implements ModelState {
      */
     @Override
     public void closeState() {
-        if (mainModel.getEvent().isEmpty()) {
+        final Optional<Event> event = this.mainModel.getEvent();
+        if (event.isEmpty() || event.get().equals(Event.BUY_PROPERTY)) {
             this.mainModel.setState(new ModelUnmortgageState(mainModel));
         } else {
             this.mainModel.setState(
-                switch (this.mainModel.getEvent().get()) {
-                    case RENT_PAYMENT -> new ModelBankerState(mainModel,
-                        ((Buyable) getActualCell()).getRentalValue(), false);
-                    case TAX_PAYMENT -> new ModelBankerState(mainModel,
-                        ((Functional) getActualCell()).getAction().get().data().get(), false);
-                    case BUY_PROPERTY -> new ModelBankerState(mainModel,
-                        ((Buyable) getActualCell()).getCost(), false);
+                switch (event.get()) {
+                    case RENT_PAYMENT, TAX_PAYMENT -> new ModelBankerState(mainModel, false);
                     case DRAW -> new ModelCardState(mainModel);
                     case PRISON -> new ModelPrisonState(mainModel, true);
                     default -> throw new IllegalStateException("Card event or unsupported event was insert");
@@ -94,6 +90,9 @@ public class ModelCheckActionState implements ModelState {
     private void checkFunctionalCell() {
         final Functional functionalCell = (Functional) getActualCell();
         this.mainModel.setEvent(functionalCell.getAction().map(Message::typeOfAction));
+        if (functionalCell.getAction().map(Message::typeOfAction).equals(Optional.of(Event.TAX_PAYMENT))) {
+            this.getActualPlayer().pay(functionalCell.getAction().get().data().get());
+        }
     }
 
     private Cell getActualCell() {
