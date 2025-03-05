@@ -1,16 +1,19 @@
 package it.unibo.monoopoly.view.panel.impl;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 
 
 public final class DefaultInteractivePanel extends JPanel {
 
     private static final int TEXT_SIZE = 50;
     private static final long serialVersionUID = 1L;
+    private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
     public DefaultInteractivePanel(final int mainFrameHeight) {
         final JTextArea startText = new JTextArea(
@@ -31,6 +34,9 @@ public final class DefaultInteractivePanel extends JPanel {
         startText.setEnabled(false);
         startText.setLineWrap(true);
         startText.setWrapStyleWord(true);
+        startText.setDisabledTextColor(Color.BLACK);
+        startText.setBorder(new LineBorder(Color.BLACK));
+        startText.setBackground(GREEN_MONOPOLY);
         add(startText);
     }
 

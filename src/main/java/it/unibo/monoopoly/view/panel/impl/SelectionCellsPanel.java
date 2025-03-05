@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 
 import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 
@@ -17,6 +19,7 @@ import it.unibo.monoopoly.utils.impl.ViewCellGiver;
 public final class SelectionCellsPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
+    private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
     /**
      * 
@@ -32,6 +35,10 @@ public final class SelectionCellsPanel extends JPanel {
         title.setLineWrap(true);
         title.setWrapStyleWord(true);
         title.setFont(font);
+        title.setEnabled(false);
+        title.setDisabledTextColor(Color.BLACK);
+        title.setBorder(new LineBorder(Color.BLACK));
+        title.setBackground(GREEN_MONOPOLY);
         this.setLayout(new BorderLayout());
         innerPanel.setLayout(
                 new GridLayout(cellMap.size() / 2 + cellMap.size() % 2, cellMap.size() > 2 ? 2 : cellMap.size()));
