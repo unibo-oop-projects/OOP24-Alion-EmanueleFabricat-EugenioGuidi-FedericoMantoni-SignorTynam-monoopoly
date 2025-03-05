@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -52,6 +53,8 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
         for (final var text : this.textList) {
             text.setEnabled(false);
             text.setFont(new Font("Arial", Font.PLAIN, (int) (PERC_RESIZE * this.mainFrameHeight)));
+            text.setDisabledTextColor(Color.BLACK);
+            text.setBorder(new LineBorder(Color.BLACK));
             add(text);
         }
     }
