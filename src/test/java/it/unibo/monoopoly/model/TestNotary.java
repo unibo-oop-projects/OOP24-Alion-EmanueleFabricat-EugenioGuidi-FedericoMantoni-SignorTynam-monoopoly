@@ -52,6 +52,8 @@ class TestNotary {
         assertEquals(Optional.empty(), notary.checkProperty(player1, this.buildableProperty));
         notary.buyProperty(player2, buildableProperty);
         assertEquals(Optional.of(Event.RENT_PAYMENT), notary.checkProperty(player1, this.buildableProperty));
+        assertEquals(START_MONEY - buildableProperty.getCost() + buildableProperty.getRentalValue(), player2.getMoneyAmount());
+        assertEquals(50 - buildableProperty.getRentalValue(), player1.getMoneyAmount());
         this.buildableProperty.setMortgage();
         assertEquals(Optional.empty(), notary.checkProperty(player1, this.buildableProperty));
         assertEquals(Optional.empty(), notary.checkProperty(player2, this.buildableProperty));
@@ -70,10 +72,12 @@ class TestNotary {
 
     @Test
     void testBuyProperty() {
+        player1.receive(START_MONEY - 50);
         notary.buyProperty(player1, buildableProperty);
         assertEquals(player1, buildableProperty.getOwner().get());
         assertFalse(buildableProperty.isAvailable());
         assertTrue(player1.getProperties().contains(buildableProperty));
+        assertEquals(START_MONEY - buildableProperty.getCost(), player1.getMoneyAmount());
     }
 
     @Test
