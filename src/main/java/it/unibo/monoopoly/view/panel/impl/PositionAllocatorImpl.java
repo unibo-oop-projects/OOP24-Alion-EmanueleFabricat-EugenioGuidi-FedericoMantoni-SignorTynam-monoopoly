@@ -40,9 +40,21 @@ public class PositionAllocatorImpl implements PositionAllocator {
             final List<Integer> mortgagedProperties) {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
         NumberAndCirclePosition numberAndCirclePosition;
+
+        newList.addAll(createCircleOfPlayersPositions(newPlayersPositions));
+        newList.addAll(createCircleOfPropertyPositions(cellsOwners));
+        newList.addAll(createCircleOfPrisonedPlayers(prisonedPlayers));
+        newList.addAll(createCircleOfMortgagedProperties(mortgagedProperties));
+        newList.addAll(createNumberOfHousesBuilded(nBuiltHouses));
+        
+        return newList;
+    }
+
+    private List<NumberAndCirclePosition> createCircleOfPlayersPositions(final Map<String, Integer> newPlayersPositions) {
+        final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var entry : this.playersColors.entrySet()) {
             if (newPlayersPositions.containsKey(entry.getKey())) {
-                numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                         .setX((int) getX(entry, newPlayersPositions))
                         .setY((int) getY(entry, newPlayersPositions))
                         .setIsCircle(true)
@@ -51,10 +63,14 @@ public class PositionAllocatorImpl implements PositionAllocator {
                 newList.add(numberAndCirclePosition);
             }
         }
+        return newList;
+    }
 
+    private List<NumberAndCirclePosition> createCircleOfPropertyPositions(final Map<Integer, Optional<String>> cellsOwners) {
+        final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var entry : cellsOwners.entrySet()) {
             if (entry.getValue().isPresent()) {
-                numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                         .setX((int) this.propertyPositions.get(entry.getKey()).x())
                         .setY((int) this.propertyPositions.get(entry.getKey()).y())
                         .setIsCircle(true)
@@ -63,10 +79,14 @@ public class PositionAllocatorImpl implements PositionAllocator {
                 newList.add(numberAndCirclePosition);
             }
         }
+        return newList;
+    }
 
+    private List<NumberAndCirclePosition> createCircleOfPrisonedPlayers(final List<String> prisonedPlayers) {
+        final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var prisonedPlayer : prisonedPlayers) {
             final Color color = this.playersColors.get(prisonedPlayer);
-            numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+            NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                     .setX((int) this.prisonPositions.get(color).x())
                     .setY((int) this.prisonPositions.get(color).y())
                     .setIsCircle(true)
@@ -74,8 +94,27 @@ public class PositionAllocatorImpl implements PositionAllocator {
                     .build();
             newList.add(numberAndCirclePosition);
         }
+        return newList;
+    }
+
+    private List<NumberAndCirclePosition> createCircleOfMortgagedProperties(final List<Integer> mortgagedProperties) {
+        final List<NumberAndCirclePosition> newList = new ArrayList<>();
+        for (final var cellIndex : mortgagedProperties) {
+            NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                    .setX((int) this.propertyPositions.get(cellIndex).x())
+                    .setY((int) this.propertyPositions.get(cellIndex).y())
+                    .setIsCircle(true)
+                    .setColor(Color.BLACK)
+                    .build();
+            newList.add(numberAndCirclePosition);
+        }
+        return newList;
+    }
+
+    private List<NumberAndCirclePosition> createNumberOfHousesBuilded(final Map<Integer, Integer> nBuiltHouses) {
+        final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var entry : nBuiltHouses.entrySet()) {
-            numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+            NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                     .setX((int) this.housesPositions.get(entry.getKey()).x())
                     .setY((int) this.housesPositions.get(entry.getKey()).y())
                     .setIsCircle(false)
@@ -84,15 +123,6 @@ public class PositionAllocatorImpl implements PositionAllocator {
                     .build();
             newList.add(numberAndCirclePosition);
         }
-        for (final var cellIndex : mortgagedProperties) {
-            numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .setX((int) this.propertyPositions.get(cellIndex).x())
-                    .setY((int) this.propertyPositions.get(cellIndex).y())
-                    .setIsCircle(true)
-                    .setColor(Color.BLACK)
-                    .build();
-        }
-
         return newList;
     }
 
