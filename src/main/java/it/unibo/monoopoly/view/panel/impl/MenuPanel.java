@@ -23,8 +23,6 @@ public final class MenuPanel extends JPanel {
     private static final String ARIAL_FONT = "Arial";
     private static final long serialVersionUID = 1L;
     private static final int MARGIN_TOP_TITLE = 70;
-    private static final int BUTTON_RATIO = 77;
-    private static final int TITLE_RATIO = 25;
     private static final int PADX_TITLE = 250;
     private static final int PADY_TITLE = 50;
     private static final int PADX_BUTTON = 80;
@@ -64,28 +62,12 @@ public final class MenuPanel extends JPanel {
         this.start.addActionListener(e -> {
             start.setVisible(false);
             this.add(playerSelection, getSelectionConstraints());
-            //playerSelection.init();
         });
         this.add(start, getButtonCostraints());
         this.add(title, getTitleConstraints());
         this.revalidate();
         this.repaint();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    /*@Override
-    public void resizeText(final Dimension frameSize) {
-        this.monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / TITLE_RATIO));
-        this.start.setFont(new Font(ARIAL_FONT, Font.BOLD, (int) frameSize.getWidth() / BUTTON_RATIO));
-        this.playerSelection.resizeText(frameSize);
-    }*/
-
-    /*private Font getPersonalizedFont(final Component c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPersonalizedFont'");
-    }*/
 
     private GridBagConstraints getButtonCostraints() {
         final GridBagConstraints gbc = new GridBagConstraints();
