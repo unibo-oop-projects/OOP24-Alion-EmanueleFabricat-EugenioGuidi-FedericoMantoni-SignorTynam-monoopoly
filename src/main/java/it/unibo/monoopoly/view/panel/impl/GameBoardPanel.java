@@ -17,8 +17,8 @@ import javax.swing.JPanel;
 import it.unibo.monoopoly.view.panel.api.PositionAllocator;
 
 /**
- * mettere commento qui, tutti i numeri molotiplicativi vengono percepiti come
- * magic number.
+ * the class is used to realize the vision of the main gameBoard and 
+ * dynamically update the game.
  */
 public final class GameBoardPanel extends JPanel {
 
@@ -30,8 +30,10 @@ public final class GameBoardPanel extends JPanel {
     private final PositionAllocator positionAllocator;
 
     /**
-     * 
+     * initialize all the information to create the initial gameBoard.
      * @param mainFrameHeight
+     * @param players
+     * @param colors
      */
     public GameBoardPanel(final int mainFrameHeight, final Map<Color, String> players, final List<Color> colors) {
         this.mainFrameHeight = mainFrameHeight;
@@ -44,6 +46,14 @@ public final class GameBoardPanel extends JPanel {
         setLayout(new BorderLayout());
     }
 
+    /**
+     * this method is used to update the view of gameBoard.
+     * @param newPlayersPositions
+     * @param cellsOwners
+     * @param nBuiltHouses
+     * @param prisonedPlayers
+     * @param mortgagedProperties
+     */
     public void update(final Map<String, Integer> newPlayersPositions, final Map<Integer, Optional<String>> cellsOwners,
                        final Map<Integer, Integer> nBuiltHouses, final List<String> prisonedPlayers,
                        final List<Integer> mortgagedProperties) {
@@ -56,7 +66,6 @@ public final class GameBoardPanel extends JPanel {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override

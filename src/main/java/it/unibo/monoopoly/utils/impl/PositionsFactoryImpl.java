@@ -10,6 +10,10 @@ import java.util.stream.IntStream;
 import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.api.PositionsFactory;
 
+/**
+ * implement a factory to realize the lists of {@link Position} associated to all possible colors
+ * of players.
+ */
 public class PositionsFactoryImpl implements PositionsFactory {
 
     private static final String PLAYERS_POSITIONS_FILE_NAME = "players_positions.json";
@@ -21,6 +25,11 @@ public class PositionsFactoryImpl implements PositionsFactory {
     private final int mainFrameHeight;
     private final List<Color> colors;
 
+    /**
+     * initialize some fields of factory.
+     * @param mainFrameHeight to calculate the exactly coordinates of position.
+     * @param colors to be associated with the list of positions for each player.
+     */
     public PositionsFactoryImpl(final int mainFrameHeight, final List<Color> colors) {
         this.mainFrameHeight = mainFrameHeight;
         this.converter = new JsonConverterImpl<>(Position.class);
@@ -50,16 +59,6 @@ public class PositionsFactoryImpl implements PositionsFactory {
         return updateMap(propertyPositionsFromJson);
     }
 
-    private Map<Integer, Position> updateMap(final Map<Integer, Position> map) {
-        final Map<Integer, Position> newMap = new HashMap<>();
-        for (final var entry : map.entrySet()) {
-            newMap.put(entry.getKey(), new Position(entry.getValue().x() / 100 * this.mainFrameHeight,
-                    entry.getValue().y() / 100 * this.mainFrameHeight));
-        }
-
-        return newMap;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -87,6 +86,16 @@ public class PositionsFactoryImpl implements PositionsFactory {
         return list.stream()
                 .map(p -> new Position(p.x() / 100 * this.mainFrameHeight, p.y() / 100 * this.mainFrameHeight))
                 .collect(Collectors.toList());
+    }
+
+    private Map<Integer, Position> updateMap(final Map<Integer, Position> map) {
+        final Map<Integer, Position> newMap = new HashMap<>();
+        for (final var entry : map.entrySet()) {
+            newMap.put(entry.getKey(), new Position(entry.getValue().x() / 100 * this.mainFrameHeight,
+                    entry.getValue().y() / 100 * this.mainFrameHeight));
+        }
+
+        return newMap;
     }
 
 }

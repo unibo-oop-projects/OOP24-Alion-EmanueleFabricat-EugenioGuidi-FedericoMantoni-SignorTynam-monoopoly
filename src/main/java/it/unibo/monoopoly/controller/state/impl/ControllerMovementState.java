@@ -22,12 +22,16 @@ public class ControllerMovementState implements ControllerState {
     private boolean rollDice;
 
     /**
-     * comment.
-     * 
+     * inizialize fields of class.
      * @param mainController
+     * @param modelState
+     * @param viewState
+     * @param dices
      */
-    public ControllerMovementState(final MainController mainController, final ModelState modelState,
-    final ViewState viewState, final Dices dices) {
+    public ControllerMovementState(final MainController mainController, 
+                                   final ModelState modelState,
+                                   final ViewState viewState, 
+                                   final Dices dices) {
         this.mainController = mainController;
         this.actualModelState = modelState;
         this.actualViewState = viewState;
@@ -35,7 +39,6 @@ public class ControllerMovementState implements ControllerState {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
