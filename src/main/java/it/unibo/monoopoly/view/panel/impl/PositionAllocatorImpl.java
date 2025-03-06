@@ -12,6 +12,10 @@ import it.unibo.monoopoly.utils.impl.Position;
 import it.unibo.monoopoly.utils.impl.PositionsFactoryImpl;
 import it.unibo.monoopoly.view.panel.api.PositionAllocator;
 
+/**
+ * class that takes lists of player positions, cells, prison and houses
+ * and creates a list of objects that will be displayed on the gameBoard.
+ */
 public class PositionAllocatorImpl implements PositionAllocator {
 
     private final Map<Color, List<Position>> playersPositions;
@@ -20,8 +24,14 @@ public class PositionAllocatorImpl implements PositionAllocator {
     private final Map<Color, Position> prisonPositions;
     private final Map<String, Color> playersColors;
 
+    /**
+     * initialize all fields needed.
+     * @param mainFrameHeight
+     * @param playersColors
+     * @param colors
+     */
     public PositionAllocatorImpl(final int mainFrameHeight, final Map<Color, String> playersColors,
-            final List<Color> colors) {
+                                 final List<Color> colors) {
         this.playersColors = reverseColor(playersColors);
         final PositionsFactory positionsFactory = new PositionsFactoryImpl(mainFrameHeight, colors);
         this.playersPositions = positionsFactory.createPlayersPositions();
@@ -33,13 +43,13 @@ public class PositionAllocatorImpl implements PositionAllocator {
     /**
      * {@inheritDoc}
      */
+    @Override
     public List<NumberAndCirclePosition> createListCircleNumberPosition(final Map<String, Integer> newPlayersPositions,
             final Map<Integer, Optional<String>> cellsOwners,
             final List<String> prisonedPlayers,
             final Map<Integer, Integer> nBuiltHouses,
             final List<Integer> mortgagedProperties) {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        NumberAndCirclePosition numberAndCirclePosition;
 
         newList.addAll(createCircleOfPlayersPositions(newPlayersPositions));
         newList.addAll(createCircleOfPropertyPositions(cellsOwners));
@@ -54,11 +64,11 @@ public class PositionAllocatorImpl implements PositionAllocator {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var entry : this.playersColors.entrySet()) {
             if (newPlayersPositions.containsKey(entry.getKey())) {
-                NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                        .setX((int) getX(entry, newPlayersPositions))
-                        .setY((int) getY(entry, newPlayersPositions))
-                        .setIsCircle(true)
-                        .setColor(this.playersColors.get(entry.getKey()))
+                final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                        .x((int) getX(entry, newPlayersPositions))
+                        .y((int) getY(entry, newPlayersPositions))
+                        .isCircle(true)
+                        .color(this.playersColors.get(entry.getKey()))
                         .build();
                 newList.add(numberAndCirclePosition);
             }
@@ -70,11 +80,11 @@ public class PositionAllocatorImpl implements PositionAllocator {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var entry : cellsOwners.entrySet()) {
             if (entry.getValue().isPresent()) {
-                NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                        .setX((int) this.propertyPositions.get(entry.getKey()).x())
-                        .setY((int) this.propertyPositions.get(entry.getKey()).y())
-                        .setIsCircle(true)
-                        .setColor(this.playersColors.get(entry.getValue().get()))
+                final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                        .x((int) this.propertyPositions.get(entry.getKey()).x())
+                        .y((int) this.propertyPositions.get(entry.getKey()).y())
+                        .isCircle(true)
+                        .color(this.playersColors.get(entry.getValue().get()))
                         .build();
                 newList.add(numberAndCirclePosition);
             }
@@ -86,11 +96,11 @@ public class PositionAllocatorImpl implements PositionAllocator {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var prisonedPlayer : prisonedPlayers) {
             final Color color = this.playersColors.get(prisonedPlayer);
-            NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .setX((int) this.prisonPositions.get(color).x())
-                    .setY((int) this.prisonPositions.get(color).y())
-                    .setIsCircle(true)
-                    .setColor(color)
+            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                    .x((int) this.prisonPositions.get(color).x())
+                    .y((int) this.prisonPositions.get(color).y())
+                    .isCircle(true)
+                    .color(color)
                     .build();
             newList.add(numberAndCirclePosition);
         }
@@ -100,11 +110,11 @@ public class PositionAllocatorImpl implements PositionAllocator {
     private List<NumberAndCirclePosition> createCircleOfMortgagedProperties(final List<Integer> mortgagedProperties) {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var cellIndex : mortgagedProperties) {
-            NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .setX((int) this.propertyPositions.get(cellIndex).x())
-                    .setY((int) this.propertyPositions.get(cellIndex).y())
-                    .setIsCircle(true)
-                    .setColor(Color.BLACK)
+            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                    .x((int) this.propertyPositions.get(cellIndex).x())
+                    .y((int) this.propertyPositions.get(cellIndex).y())
+                    .isCircle(true)
+                    .color(Color.BLACK)
                     .build();
             newList.add(numberAndCirclePosition);
         }
@@ -114,12 +124,12 @@ public class PositionAllocatorImpl implements PositionAllocator {
     private List<NumberAndCirclePosition> createNumberOfHousesBuilded(final Map<Integer, Integer> nBuiltHouses) {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var entry : nBuiltHouses.entrySet()) {
-            NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .setX((int) this.housesPositions.get(entry.getKey()).x())
-                    .setY((int) this.housesPositions.get(entry.getKey()).y())
-                    .setIsCircle(false)
-                    .setColor(Color.BLACK)
-                    .setNumber(entry.getValue().toString())
+            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
+                    .x((int) this.housesPositions.get(entry.getKey()).x())
+                    .y((int) this.housesPositions.get(entry.getKey()).y())
+                    .isCircle(false)
+                    .color(Color.BLACK)
+                    .number(entry.getValue().toString())
                     .build();
             newList.add(numberAndCirclePosition);
         }

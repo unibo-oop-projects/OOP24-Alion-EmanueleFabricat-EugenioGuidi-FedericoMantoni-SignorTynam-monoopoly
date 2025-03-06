@@ -39,7 +39,8 @@ public class ViewMovementState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         if (dataInput.mode().isPresent() && dataInput.mode().get()) {
-            this.mainView.setInteractivePanel(new RollDicesPanel(new RollDicesListener(this.mainView), mainView.getMainFrame().getHeight()));
+            this.mainView.setInteractivePanel(new RollDicesPanel(new RollDicesListener(this.mainView), 
+                                              mainView.getMainFrame().getHeight()));
         } else if (dataInput.dices().isPresent()) {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
                     "Primo dado: " + dataInput.dices().get().getFirstRoll() 

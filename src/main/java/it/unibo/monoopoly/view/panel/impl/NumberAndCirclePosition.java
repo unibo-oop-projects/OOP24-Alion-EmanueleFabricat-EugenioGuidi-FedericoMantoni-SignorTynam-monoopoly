@@ -2,6 +2,9 @@ package it.unibo.monoopoly.view.panel.impl;
 
 import java.awt.Color;
 
+/**
+ * this class create a Builder of position of circle and number in the game board.
+ */
 public final class NumberAndCirclePosition {
 
     private final int x;
@@ -53,6 +56,9 @@ public final class NumberAndCirclePosition {
         return this.number;
     }
 
+    /**
+     * Builder of class NumberAndCirclePosition.
+     */
     public static class Builder {
         private int x;
         private int y;
@@ -64,7 +70,7 @@ public final class NumberAndCirclePosition {
          * @param x to set in Builder.
          * @return the actual Builder.
          */
-        public Builder setX(final int x) {
+        public Builder x(final int x) {
             this.x = x;
             return this;
         }
@@ -73,7 +79,7 @@ public final class NumberAndCirclePosition {
          * @param y to set in Builder.
          * @return the actual Builder.
          */
-        public Builder setY(final int y) {
+        public Builder y(final int y) {
             this.y = y;
             return this;
         }
@@ -82,7 +88,7 @@ public final class NumberAndCirclePosition {
          * @param isCircle to set in Builder.
          * @return the actual Builder.
          */
-        public Builder setIsCircle(final boolean isCircle) {
+        public Builder isCircle(final boolean isCircle) {
             this.isCircle = isCircle;
             return this;
         }
@@ -91,7 +97,7 @@ public final class NumberAndCirclePosition {
          * @param color to set in Builder.
          * @return the actual Builder.
          */
-        public Builder setColor(final Color color) {
+        public Builder color(final Color color) {
             this.color = color;
             return this;
         }
@@ -100,7 +106,7 @@ public final class NumberAndCirclePosition {
          * @param number to set in Builder.
          * @return the actual Builder.
          */
-        public Builder setNumber(final String number) {
+        public Builder number(final String number) {
             this.number = number;
             return this;
         }

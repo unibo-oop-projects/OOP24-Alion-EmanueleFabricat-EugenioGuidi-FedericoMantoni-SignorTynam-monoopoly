@@ -10,19 +10,17 @@ import javax.swing.JPanel;
 
 import org.apache.commons.lang3.tuple.Triple;
 
-import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 
 /**
- * comment.
+ * 
  */
 public final class GamePanel extends JPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
-    private final MainController mainController;
     private final int mainFrameHeight;
     private final int mainFrameWidth;
     private final PlayerPanel playerPanel;
@@ -31,17 +29,19 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
     private final List<Triple<String, Integer, Color>> initializedList;
 
     /**
-     * comment.
      * 
      * @param mainController
      * @param mainFrameHeight
      * @param mainFrameWidth
+     * @param firstPlayer
+     * @param initializedList
+     * @param players
+     * @param colors
      */
-    public GamePanel(final MainController mainController, final int mainFrameHeight,
+    public GamePanel(final int mainFrameHeight,
             final int mainFrameWidth, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList,
             final Map<Color, String> players, final List<Color> colors) {
-        this.mainController = mainController;
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
         this.firstPlayer = firstPlayer;
@@ -76,10 +76,17 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
         centerPanel.add(playerPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * 
+     * @param panel
+     */
     public void setInteractivePanel(final JPanel panel) {
         this.playerPanel.setInteractivePanel(panel);
     }
 
+    /**
+     * 
+     */
     @Override
     public void update(final ViewUpdateDTO updateData) {
         this.gameBoardPanel.update(updateData.playerPositions(),
@@ -90,13 +97,4 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
         this.playerPanel.update(updateData);
     }
 
-    /*
-     * private Color getColorPlayer(String name) {
-     * return this.playersColors.entrySet().stream()
-     * .filter(e -> e.getValue().equals(name))
-     * .map(e -> e.getKey())
-     * .findFirst()
-     * .get();
-     * }
-     */
 }
