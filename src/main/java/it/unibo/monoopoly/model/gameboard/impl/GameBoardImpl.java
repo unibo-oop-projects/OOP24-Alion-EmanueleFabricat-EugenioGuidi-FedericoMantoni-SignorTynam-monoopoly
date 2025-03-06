@@ -105,7 +105,7 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public List<Cell> getCellsList() {
-        return this.cellsList;
+        return List.copyOf(this.cellsList);
     }
 
     /**

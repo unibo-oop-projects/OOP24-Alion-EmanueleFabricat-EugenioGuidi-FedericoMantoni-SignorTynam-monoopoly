@@ -18,22 +18,37 @@ public final class NumberAndCirclePosition {
         this.number = builder.number;
     }
 
+    /**
+     * @return the x of position.
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * @return return the y of position.
+     */
     public int getY() {
         return this.y;
     }
 
+    /**
+     * @return if is a circle or a number.
+     */
     public boolean isCircle() {
         return this.isCircle;
     }
 
+    /**
+     * @return the color of the circle.
+     */
     public Color getColor() {
         return this.color;
     }
 
+    /**
+     * @return return the number of house to show.
+     */
     public String getNumber() {
         return this.number;
     }
@@ -45,31 +60,55 @@ public final class NumberAndCirclePosition {
         private Color color;
         private String number;
 
+        /**
+         * @param x to set in Builder.
+         * @return the actual Builder.
+         */
         public Builder setX(final int x) {
             this.x = x;
             return this;
         }
 
+        /**
+         * @param y to set in Builder.
+         * @return the actual Builder.
+         */
         public Builder setY(final int y) {
             this.y = y;
             return this;
         }
 
+        /**
+         * @param isCircle to set in Builder.
+         * @return the actual Builder.
+         */
         public Builder setIsCircle(final boolean isCircle) {
             this.isCircle = isCircle;
             return this;
         }
 
+        /**
+         * @param color to set in Builder.
+         * @return the actual Builder.
+         */
         public Builder setColor(final Color color) {
             this.color = color;
             return this;
         }
 
+        /**
+         * @param number to set in Builder.
+         * @return the actual Builder.
+         */
         public Builder setNumber(final String number) {
             this.number = number;
             return this;
         }
 
+        /**
+         * create the effective object whit data setted.
+         * @return the object created with builder.
+         */
         public NumberAndCirclePosition build() {
             return new NumberAndCirclePosition(this);
         }

@@ -3,6 +3,7 @@ package it.unibo.monoopoly.model.gameboard;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
@@ -12,9 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
-import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
 import it.unibo.monoopoly.model.gameboard.impl.GameBoardImpl;
@@ -33,14 +32,17 @@ class GameBoardImplTest {
     private static final int ONE_HUNDRED = 100;
     private static final int TWO_HUNDRED = 200;
     private static final int THREE_HUNDRED = 300;
+    private static final String FIRST = "first";
+    private static final String SECOND = "second";
+    private static final String THIRD = "third";
 
     private GameBoard gameBoardImpl;
 
     private static List<Cell> initializeCellsList() {
         final List<Cell> cellsList = new LinkedList<>();
-        cellsList.add(new BuildableImpl(new HashMap<>(), "first", ONE_HUNDRED, ONE_HUNDRED));
-        cellsList.add(new BuildableImpl(new HashMap<>(), "second", TWO_HUNDRED, TWO_HUNDRED));
-        cellsList.add(new BuildableImpl(new HashMap<>(), "third", THREE_HUNDRED, THREE_HUNDRED));
+        cellsList.add(new BuildableImpl(new HashMap<>(), FIRST, ONE_HUNDRED, ONE_HUNDRED));
+        cellsList.add(new BuildableImpl(new HashMap<>(), SECOND, TWO_HUNDRED, TWO_HUNDRED));
+        cellsList.add(new BuildableImpl(new HashMap<>(), THIRD, THREE_HUNDRED, THREE_HUNDRED));
         return cellsList;
     }
 
@@ -113,9 +115,9 @@ class GameBoardImplTest {
      */
     @Test
     void testGetCellsNames() {
-        assertEquals(List.of("first", "second", "third"), this.gameBoardImpl.getCellsNames());
-        assertNotEquals(List.of("first", "third", "second"), this.gameBoardImpl.getCellsNames());
-        assertEquals(List.of("first", "second", "third").size(), this.gameBoardImpl.getCellsNames().size());
+        assertEquals(List.of(FIRST, SECOND, THIRD), this.gameBoardImpl.getCellsNames());
+        assertNotEquals(List.of(FIRST, THIRD, SECOND), this.gameBoardImpl.getCellsNames());
+        assertEquals(List.of(FIRST, SECOND, THIRD).size(), this.gameBoardImpl.getCellsNames().size());
     }
 
     /**
@@ -132,8 +134,8 @@ class GameBoardImplTest {
      */
     @Test
     void testGetDicesAndGetDeck() {
-        assertTrue(this.gameBoardImpl.getDices() instanceof Dices);
-        assertTrue(this.gameBoardImpl.getDeck() instanceof Deck);
+        assertNotNull(this.gameBoardImpl.getDices(), "Dices should not be null");
+        assertNotNull(this.gameBoardImpl.getDeck(), "Deck should not be null");
     }
 
 }

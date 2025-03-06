@@ -157,7 +157,7 @@ class BuildableImplTest {
         this.property.buildHouse();
         assertEquals(2, this.property.getHousesNumber());
 
-        int sellValue = this.property.sellHouse();
+        final int sellValue = this.property.sellHouse();
         assertEquals(HOUSE_COST / 2, sellValue);
         assertEquals(1, this.property.getHousesNumber());
         assertEquals(RENTAL_MAP.get(1), this.property.getRentalValue());
