@@ -70,6 +70,7 @@ public class ViewBankerState implements ViewState {
                             "Bancarotta", JOptionPane.PLAIN_MESSAGE);
                     this.mainView.getMainController().getControllerState()
                             .continueState(new DataBuilderOutputImpl().build());
+                    break;
                 default:
                     throw new IllegalStateException("ViewBankerState non riconosce lo stato in cui ti trovi");
             }

@@ -70,7 +70,6 @@ public class ModelBankerState implements ModelState {
             getPlayer().receive(((Buyable) chosen).getMortgageValue());
             ((Buyable) chosen).setMortgage();
         }
-        this.verify();
     }
     /**
      * {@inheritDoc}
