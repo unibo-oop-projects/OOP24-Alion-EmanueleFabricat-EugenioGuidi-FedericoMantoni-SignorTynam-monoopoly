@@ -8,7 +8,7 @@ import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 
 /**
- * manca commento qui.
+ * Implementation of the DataBuilderInput.
  */
 public class DataBuilderInputImpl implements DataBuilderInput {
     private Optional<Event> event = Optional.empty();
