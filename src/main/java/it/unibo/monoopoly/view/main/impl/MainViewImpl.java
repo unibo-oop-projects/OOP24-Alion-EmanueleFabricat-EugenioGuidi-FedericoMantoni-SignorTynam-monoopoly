@@ -58,14 +58,17 @@ public class MainViewImpl extends AbstractView implements MainView {
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
         this.nameCells = nameCells;
         this.gamePanel = new GamePanel(controller, mainFrame().getHeight(), mainFrame().getWidth(), "1",
-                initPlayerView(), this.players, this.colors);
+                initPlayerView(namePlayers), this.players, this.colors);
         this.viewState = new ViewPrisonState(this);
     }
 
-    private List<Triple<String, Integer, Color>> initPlayerView() {
+    private List<Triple<String, Integer, Color>> initPlayerView(final List<String> namePlayers) {
         final List<Triple<String, Integer, Color>> l = new LinkedList<>();
-        for (final var entry : this.players.entrySet()) {
-            l.add(Triple.of(entry.getValue(), 0, entry.getKey()));
+        for (var name : namePlayers) {
+            l.add(Triple.of(name, 0, players.entrySet().stream()
+                    .filter(e -> e.getValue() == name)
+                    .map(e -> e.getKey())
+                    .findFirst().get()));
         }
         return l;
     }
@@ -115,7 +118,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      */
     @Override
     public void setInteractivePanel(final JPanel panel) {
-        this.gamePanel.setInteractivePanel(panel); // cast per non creare il metodo nella classe astratta
+        this.gamePanel.setInteractivePanel(panel);
     }
 
     /**
