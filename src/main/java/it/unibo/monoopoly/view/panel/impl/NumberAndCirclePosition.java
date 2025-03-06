@@ -88,7 +88,7 @@ public final class NumberAndCirclePosition {
          * @param isCircle to set in Builder.
          * @return the actual Builder.
          */
-        public Builder isCircle(final boolean isCircle) {
+        public Builder circle(final boolean isCircle) {
             this.isCircle = isCircle;
             return this;
         }

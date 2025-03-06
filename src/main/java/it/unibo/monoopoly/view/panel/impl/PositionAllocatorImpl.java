@@ -56,7 +56,7 @@ public class PositionAllocatorImpl implements PositionAllocator {
         newList.addAll(createCircleOfPrisonedPlayers(prisonedPlayers));
         newList.addAll(createCircleOfMortgagedProperties(mortgagedProperties));
         newList.addAll(createNumberOfHousesBuilded(nBuiltHouses));
-        
+
         return newList;
     }
 
@@ -67,7 +67,7 @@ public class PositionAllocatorImpl implements PositionAllocator {
                 final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                         .x((int) getX(entry, newPlayersPositions))
                         .y((int) getY(entry, newPlayersPositions))
-                        .isCircle(true)
+                        .circle(true)
                         .color(this.playersColors.get(entry.getKey()))
                         .build();
                 newList.add(numberAndCirclePosition);
@@ -83,7 +83,7 @@ public class PositionAllocatorImpl implements PositionAllocator {
                 final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                         .x((int) this.propertyPositions.get(entry.getKey()).x())
                         .y((int) this.propertyPositions.get(entry.getKey()).y())
-                        .isCircle(true)
+                        .circle(true)
                         .color(this.playersColors.get(entry.getValue().get()))
                         .build();
                 newList.add(numberAndCirclePosition);
@@ -99,7 +99,7 @@ public class PositionAllocatorImpl implements PositionAllocator {
             final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                     .x((int) this.prisonPositions.get(color).x())
                     .y((int) this.prisonPositions.get(color).y())
-                    .isCircle(true)
+                    .circle(true)
                     .color(color)
                     .build();
             newList.add(numberAndCirclePosition);
@@ -113,7 +113,7 @@ public class PositionAllocatorImpl implements PositionAllocator {
             final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                     .x((int) this.propertyPositions.get(cellIndex).x())
                     .y((int) this.propertyPositions.get(cellIndex).y())
-                    .isCircle(true)
+                    .circle(true)
                     .color(Color.BLACK)
                     .build();
             newList.add(numberAndCirclePosition);
@@ -127,7 +127,7 @@ public class PositionAllocatorImpl implements PositionAllocator {
             final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
                     .x((int) this.housesPositions.get(entry.getKey()).x())
                     .y((int) this.housesPositions.get(entry.getKey()).y())
-                    .isCircle(false)
+                    .circle(false)
                     .color(Color.BLACK)
                     .number(entry.getValue().toString())
                     .build();
