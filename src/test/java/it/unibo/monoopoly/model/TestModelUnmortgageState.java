@@ -51,7 +51,7 @@ class TestModelUnmortgageState {
         assertEquals(false, property.isMortgaged());
         state.closeState();
         assertInstanceOf(ModelUnmortgageState.class, this.model.getState());
-        assertEquals(START_AMOUNT - property.getMortgageValue() * 110 / 100,
+        assertEquals(START_AMOUNT - property.getUnmortgageValue(),
                 this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
 
     }
