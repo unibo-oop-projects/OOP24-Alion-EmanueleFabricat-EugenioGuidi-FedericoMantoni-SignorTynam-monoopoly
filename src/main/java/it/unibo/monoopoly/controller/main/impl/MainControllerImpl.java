@@ -2,6 +2,7 @@ package it.unibo.monoopoly.controller.main.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.common.Event;
@@ -157,7 +158,7 @@ public class MainControllerImpl implements MainController {
     @Override
     public ViewUpdateDTO getViewUpdateData() {
         return new ViewUpdateDTO(
-                model.getGameBoard().getPlayersList().stream()
+                model.getGameBoard().getPlayersList().stream().filter(Predicate.not(Player::isPrisoned))
                         .collect(Collectors.toMap(Player::getName, Player::getActualPosition)),
                 model.getGameBoard().getCellsList().stream().filter(Cell::isBuyable)
                         .filter(p -> !((Buyable) p).isMortgaged())
