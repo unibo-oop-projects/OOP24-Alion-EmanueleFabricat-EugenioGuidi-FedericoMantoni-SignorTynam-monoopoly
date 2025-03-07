@@ -42,12 +42,12 @@ public class ControllerMovementState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void startState() {
+    public void startControllerState() {
         this.rollDice = this.actualModelState.verify();
         if (this.rollDice) {
-            this.actualViewState.visualize(new DataBuilderInputImpl().mode(this.rollDice).build());
+            this.actualViewState.visualize(new DataBuilderInputImpl().isEnabled(this.rollDice).build());
         } else {
-            continueState(new DataBuilderOutputImpl().build());
+            closeControllerState(new DataBuilderOutputImpl().build());
         }
     }
 
@@ -56,7 +56,7 @@ public class ControllerMovementState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void continueState(final DataOutput dataOutput) {
+    public void closeControllerState(final DataOutput dataOutput) {
         this.actualModelState.doAction(new DataBuilderOutputImpl().build());
         if (this.rollDice) {
             this.actualViewState.visualize(new DataBuilderInputImpl().dices(this.dices.getDices()).build());

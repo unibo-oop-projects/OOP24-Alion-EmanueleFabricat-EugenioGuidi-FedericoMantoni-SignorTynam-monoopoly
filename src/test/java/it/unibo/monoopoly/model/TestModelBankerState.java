@@ -62,14 +62,14 @@ public class TestModelBankerState {
         ModelBankerState state = new ModelBankerState(this.model, false);
         assertEquals(true, state.verify());
         assertEquals(Optional.of(Event.SELL_HOUSE), this.model.getEvent());
-        state.doAction(new DataBuilderOutputImpl().cellChoose(BUILDABLE_CELL1).build());
+        state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL1).build());
         assertEquals(property.getSellHouseCost() - 200, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();
         assert (this.model.getState() instanceof ModelBankerState);
         property.buildHouse();
         assertEquals(true, this.model.getState().verify());
         assertEquals(Optional.of(Event.SELL_HOUSE), this.model.getEvent());
-        state.doAction(new DataBuilderOutputImpl().cellChoose(BUILDABLE_CELL1).build());
+        state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL1).build());
         assertEquals(0, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
     }
 
@@ -84,14 +84,14 @@ public class TestModelBankerState {
         ModelBankerState state = new ModelBankerState(this.model, false);
         assertEquals(true, state.verify());
         assertEquals(Optional.of(Event.MORTGAGE_PROPERTY), this.model.getEvent());
-        state.doAction(new DataBuilderOutputImpl().cellChoose(BUILDABLE_CELL1).build());
+        state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL1).build());
         assertEquals(true, property.isMortgaged());
         assertEquals(property.getMortgageValue() - 200, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();
         assertInstanceOf(ModelBankerState.class, this.model.getState());
         assertEquals(true, this.model.getState().verify());
         assertEquals(Optional.of(Event.MORTGAGE_PROPERTY), this.model.getEvent());
-        state.doAction(new DataBuilderOutputImpl().cellChoose(BUILDABLE_CELL2).build());
+        state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL2).build());
         assertEquals(START_AMOUNT - 1700 + property.getMortgageValue() + property2.getMortgageValue(),
                 this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
     }

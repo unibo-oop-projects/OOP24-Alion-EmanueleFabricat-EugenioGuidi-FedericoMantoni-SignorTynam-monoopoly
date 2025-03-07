@@ -44,7 +44,7 @@ public class ViewPrisonState implements ViewState {
         if (goToJail) {
             message = "You must go to jail without passing VIA!";
         } else {
-            if (data.mode().isPresent() && data.mode().get()) {
+            if (data.isEnabled().isPresent() && data.isEnabled().get()) {
                 message = "You got out of jail using your 'Get Out of Jail Free' card.";
             } else {
                 message = "You must exit jail and pay €50.";

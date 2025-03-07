@@ -57,10 +57,10 @@ public class ModelUnmortgageState implements ModelState {
     @Override
     public void doAction(final DataOutput data) {
         this.dataOutput = data;
-        if (data.cellChoose().isPresent()) {
-            buyableFromIndex(data.cellChoose()).removeMortgage();
+        if (data.selectedCell().isPresent()) {
+            buyableFromIndex(data.selectedCell()).removeMortgage();
             this.mainModel.getGameBoard().getCurrentPlayer().pay(
-                    buyableFromIndex(data.cellChoose()).getUnmortgageValue());
+                    buyableFromIndex(data.selectedCell()).getUnmortgageValue());
         }
     }
 
@@ -84,7 +84,7 @@ public class ModelUnmortgageState implements ModelState {
      */
     @Override
     public void closeState() {
-        if (makeState && dataOutput.cellChoose().isPresent()) {
+        if (makeState && dataOutput.selectedCell().isPresent()) {
             this.mainModel.setState(new ModelUnmortgageState(mainModel));
         } else {
             this.mainModel.setState(new ModelBuildHouseState(mainModel));

@@ -53,8 +53,8 @@ public class ModelBuildHouseState implements ModelState {
      */
     @Override
     public void doAction(final DataOutput data) {
-        if (canBuild && data.cellChoose().isPresent()) {
-            final int cellIndex = data.cellChoose().get();
+        if (canBuild && data.selectedCell().isPresent()) {
+            final int cellIndex = data.selectedCell().get();
             final Buildable property = (Buildable) model.getGameBoard().getCell(cellIndex);
             property.buildHouse();
             model.getGameBoard().getCurrentPlayer().pay(property.getHouseCost());

@@ -29,7 +29,7 @@ public class RollDicesListener implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent e) {
         this.mainView.setInteractivePanel(new DefaultInteractivePanel(this.mainView.getMainFrame().getHeight()));
-        this.mainView.getMainController().getControllerState().continueState(
+        this.mainView.getMainController().getControllerState().closeControllerState(
                     new DataBuilderOutputImpl().build());
     }
 }

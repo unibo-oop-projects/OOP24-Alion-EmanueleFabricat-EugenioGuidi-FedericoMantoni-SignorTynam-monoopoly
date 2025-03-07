@@ -18,10 +18,10 @@ public interface DataBuilderInput {
      * Fluent method that insert a {@link Map} {@link Player} index -> amount of
      * money, in the {@link DataInput}.
      * 
-     * @param map to be inserted.
+     * @param cellMap to be inserted.
      * @return this.
      */
-    DataBuilderInput cellMap(Map<Integer, Integer> map);
+    DataBuilderInput cellMap(Map<Integer, Integer> cellMap);
 
     /**
      * Fluent method that insert a {@link Pair} of the result of {@link Dices}, in
@@ -45,10 +45,10 @@ public interface DataBuilderInput {
      * Fluent method that insert a boolean useful to make decision, in the
      * {@link DataInput}.
      * 
-     * @param mode to be inserted.
+     * @param isEnabled to be inserted.
      * @return this.
      */
-    DataBuilderInput mode(boolean mode);
+    DataBuilderInput isEnabled(boolean isEnabled);
 
     /**
      * Fluent method that insert a {@link String} to set some text, in the
@@ -63,10 +63,10 @@ public interface DataBuilderInput {
      * Fluent method that insert a {@link Integer} that represents a value to pay,
      * in the {@link DataInput}.
      * 
-     * @param value to be inserted
+     * @param valueToPay to be inserted
      * @return this.
      */
-    DataBuilderInput valueToPay(Integer value);
+    DataBuilderInput valueToPay(Integer valueToPay);
 
     /**
      * The method to return the built product.
