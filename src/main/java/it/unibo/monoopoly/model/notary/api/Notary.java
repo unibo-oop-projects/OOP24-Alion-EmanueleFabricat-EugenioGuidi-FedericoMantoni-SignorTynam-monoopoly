@@ -14,7 +14,7 @@ import it.unibo.monoopoly.model.player.api.Player;
 public interface Notary {
 
     /**
-     * Tells how the active {@link Player} is going to interacte with the
+     * Tells how the active {@link Player} is going to interact with the
      * {@link Buyable} property is on.
      * 
      * @param player the player to check
@@ -34,7 +34,7 @@ public interface Notary {
     /**
      * Check if the cell is buyable by the actual {@link Player}.
      * 
-     * @param cell         the cell where the player happened
+     * @param cell         the actual cell where the player is currently
      * @param actualPlayer the actual player in this {@link Turn}
      * @return if the player can buy the cell
      */
