@@ -20,7 +20,7 @@ public interface View {
 
     /**
      * 
-     * @return all {@link JPanel}s contained in the main frame of the view
+     * @return the main {@link JPanel} contained in the main frame of the view
      */
     JPanel getMainPanel();
 
