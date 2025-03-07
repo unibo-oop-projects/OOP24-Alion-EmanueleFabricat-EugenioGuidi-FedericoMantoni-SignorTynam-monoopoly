@@ -91,15 +91,20 @@ class GameBoardImplTest {
      */
     @Test
     void testGetNextAndCurrentPlayer() {
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(0));
-        this.gameBoardImpl.getNextPlayer();
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(1));
-        this.gameBoardImpl.getNextPlayer();
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(2));
-        this.gameBoardImpl.getNextPlayer();
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(3));
-        this.gameBoardImpl.getNextPlayer();
-        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(0));
+        int index = PLAYERS_LIST.indexOf(this.gameBoardImpl.getCurrentPlayer());
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(index));
+        this.gameBoardImpl.nextPlayer();
+        index = PLAYERS_LIST.indexOf(this.gameBoardImpl.getCurrentPlayer());
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(index));
+        this.gameBoardImpl.nextPlayer();
+        index = PLAYERS_LIST.indexOf(this.gameBoardImpl.getCurrentPlayer());
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(index));
+        this.gameBoardImpl.nextPlayer();
+        index = PLAYERS_LIST.indexOf(this.gameBoardImpl.getCurrentPlayer());
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(index));
+        this.gameBoardImpl.nextPlayer();
+        index = PLAYERS_LIST.indexOf(this.gameBoardImpl.getCurrentPlayer());
+        assertEquals(this.gameBoardImpl.getCurrentPlayer(), PLAYERS_LIST.get(index));
     }
 
     /**

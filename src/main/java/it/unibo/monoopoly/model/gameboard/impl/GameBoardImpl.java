@@ -32,8 +32,7 @@ public class GameBoardImpl implements GameBoard {
         this.playersList = playersList;
         this.dices = new DicesImpl();
         this.deck = new DeckImpl();
-        final Random randomInt = new Random();
-        this.currentPlayerIndex = randomInt.nextInt(playersList.size());
+        this.currentPlayerIndex = new Random().nextInt(playersList.size());
     }
 
     /**
@@ -72,9 +71,8 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public Player getNextPlayer() {
+    public void nextPlayer() {
         this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playersList.size();
-        return this.getCurrentPlayer();
     }
 
     /**
