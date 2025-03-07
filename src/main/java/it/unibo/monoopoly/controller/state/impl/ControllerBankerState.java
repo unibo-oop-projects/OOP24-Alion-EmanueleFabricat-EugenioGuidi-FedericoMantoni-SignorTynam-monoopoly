@@ -19,7 +19,11 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * missing comment.
+ * Implementation of {@link ControllerState} for the banker:
+ * that call the {@link ModelState} and {@link ViewState} methods,
+ * in the right order,
+ * with the right input.
+ * Build with {@link DataBuilderInput} all the data that need the view.
  */
 public class ControllerBankerState implements ControllerState {
     private final MainController mainController;
@@ -29,11 +33,11 @@ public class ControllerBankerState implements ControllerState {
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
 
     /**
-     * 
-     * @param mainController   the main controller
-     * @param actualModelState the actual {@link ModelState}
-     * @param actualViewState  the actual {@link ViewState}
-     * @param gameBoard        the {@link GameBoard}
+     * Constructor of the class that sets the fields.
+     * @param mainController   the main controller to be set.
+     * @param actualModelState the actual {@link ModelState} to be set.
+     * @param actualViewState  the actual {@link ViewState} to be set.
+     * @param gameBoard        the {@link GameBoard} to be set.
      */
     public ControllerBankerState(final MainController mainController, final ModelState actualModelState,
             final ViewState actualViewState, final GameBoard gameBoard) {
@@ -108,6 +112,7 @@ public class ControllerBankerState implements ControllerState {
                 .filter(p -> p.getHousesNumber() > 0)
                 .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getHouseIncome));
     }
+
     private int getHouseIncome(final Buildable property) {
         return property.getSellHouseCost();
     }
@@ -116,6 +121,7 @@ public class ControllerBankerState implements ControllerState {
         return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
                 .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getMortgageIncome));
     }
+
     private int getMortgageIncome(final Buyable property) {
         return property.getMortgageValue();
     }

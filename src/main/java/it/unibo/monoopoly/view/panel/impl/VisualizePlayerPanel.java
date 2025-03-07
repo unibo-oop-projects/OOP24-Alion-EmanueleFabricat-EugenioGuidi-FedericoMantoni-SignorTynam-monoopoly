@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
@@ -42,9 +43,9 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
             final List<Triple<String, Integer, Color>> initializedList) {
         super();
         this.playersNumber = initializedList.size();
+        setLayout(new GridLayout(playersNumber * 2 + 1, 1));
         this.mainFrameHeight = mainFrameHeight;
         this.firstPlayer = firstPlayer;
-        setLayout(new GridLayout(playersNumber * 2 + 1, 1));
         this.textList.add(new JTextArea("E' il turno di " + this.firstPlayer));
         this.textList.getLast().setBackground(GREEN_MONOPOLY);
         for (final Triple<String, Integer, Color> triple : initializedList) {
@@ -57,8 +58,18 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
             text.setEnabled(false);
             text.setFont(new Font("Arial", Font.PLAIN, (int) (PERC_RESIZE * this.mainFrameHeight)));
             text.setDisabledTextColor(Color.BLACK);
-            text.setBorder(new LineBorder(Color.BLACK));
             add(text);
+        }
+        for (int i = 0; i < this.textList.size(); i++) {
+            if (i == 0) {
+                this.textList.get(i).setBorder(BorderFactory.createMatteBorder(4, 4, 2, 4, Color.BLACK));
+            } else {
+                if (i % 2 == 1) {
+                    this.textList.get(i).setBorder(BorderFactory.createMatteBorder(2, 4, 1, 4, Color.BLACK));
+                } else {
+                    this.textList.get(i).setBorder(BorderFactory.createMatteBorder(1, 4, 2, 4, Color.BLACK));
+                }
+            }
         }
     }
 

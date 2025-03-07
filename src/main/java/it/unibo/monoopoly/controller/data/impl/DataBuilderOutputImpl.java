@@ -5,7 +5,7 @@ import java.util.Optional;
 import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 
 /**
- * manca commenti qui.
+ * Implementation of the DataBuilderOutput.
  */
 public class DataBuilderOutputImpl implements DataBuilderOutput {
     private Optional<Boolean> buyProperty = Optional.empty();

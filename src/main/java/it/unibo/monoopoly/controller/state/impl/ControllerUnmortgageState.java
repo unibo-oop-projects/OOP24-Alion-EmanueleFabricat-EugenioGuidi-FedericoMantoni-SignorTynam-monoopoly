@@ -19,7 +19,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  * that call the {@link ModelState} and {@link ViewState} methods,
  * in the right order,
  * with the right input.
- * Build with {@link DataBuilderInput} all the data that need the view
+ * Build with {@link DataBuilderInput} all the data that need the view.
  */
 public class ControllerUnmortgageState implements ControllerState {
     private final MainController mainController;
@@ -32,10 +32,10 @@ public class ControllerUnmortgageState implements ControllerState {
     /**
      * Constructor of the class that sets the fields.
      * 
-     * @param mainController   to set.
-     * @param actualModelState to set.
-     * @param actualViewState  to set.
-     * @param gameBoard        to set.
+     * @param mainController   to be set.
+     * @param actualModelState to be set.
+     * @param actualViewState  to be set.
+     * @param gameBoard        to be set.
      */
     public ControllerUnmortgageState(final MainController mainController, final ModelState actualModelState,
             final ViewState actualViewState, final GameBoard gameBoard) {
