@@ -83,7 +83,7 @@ class TestCheckActionState {
         final Notary notary = new NotaryImpl();
         final Buyable cell = (Buyable) this.model.getGameBoard().getCell(BUYABLE_CELL);
         notary.buyProperty(this.model.getGameBoard().getCurrentPlayer(), cell);
-        this.model.getGameBoard().getNextPlayer();
+        this.model.getGameBoard().nextPlayer();
         this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());

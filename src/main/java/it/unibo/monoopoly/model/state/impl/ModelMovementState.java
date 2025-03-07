@@ -56,6 +56,19 @@ public class ModelMovementState implements ModelState {
         }
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
+    @Override
+    public void closeState() {
+        if (getPlayer().isPrisoned()) {
+            this.turn.nextTurn();
+        } else {
+            this.turn.setState(new ModelCheckActionState(this.turn));
+        }
+    }
+
     private void moveWithDices() {
         this.dices.rollDices();
         if (hasPassedGo()) {
@@ -107,19 +120,6 @@ public class ModelMovementState implements ModelState {
 
     private boolean hasPassedGo() {
         return getPlayerPosition() + diceResult() >= numberOfCells();
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public void closeState() {
-        if (getPlayer().isPrisoned()) {
-            this.turn.nextTurn();
-        } else {
-            this.turn.setState(new ModelCheckActionState(this.turn));
-        }
     }
 
 }

@@ -84,7 +84,7 @@ public class MainModelImpl implements MainModel {
      */
     @Override
     public void nextTurn() {
-        gameBoard.getNextPlayer(); //TODO Valore di ritorno non usato, si può togliere?
+        gameBoard.nextPlayer(); //TODO Valore di ritorno non usato, si può togliere?
         this.actualState = new ModelPrisonState(this, false);
     }
 
