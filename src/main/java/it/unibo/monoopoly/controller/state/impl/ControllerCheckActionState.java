@@ -51,28 +51,27 @@ public class ControllerCheckActionState implements ControllerState {
     public void startState() {
         final Cell actualCell = this.gameBoard.getCell(this.gameBoard.getCurrentPlayer().getActualPosition());
         if (modelState.verify()) {
-            viewState.visualize(new DataBuilderInputImpl()
-            .event(Event.BUY_PROPERTY)
-            .valueToPay(((Buyable) actualCell).getCost())
-            .text(actualCell.getName()).build());
+            visualizeBuyProperty(actualCell);
         } else {
             modelState.doAction(new DataBuilderOutputImpl().build());
             final Optional<Event> actualEvent = this.mainController.getActualEvent();
             if (actualEvent.isPresent()) {
                 if (actualEvent.get().equals(Event.RENT_PAYMENT)) {
-                    viewState.visualize(new DataBuilderInputImpl().event(actualEvent.get())
-                            .valueToPay(((Buyable) actualCell).getRentalValue())
-                            .text(((Buyable) actualCell).getOwner().get().getName()).build());
+                    visualizeRentPayment(actualCell, actualEvent);
                 } else if (actualEvent.get().equals(Event.TAX_PAYMENT)) {
-                    viewState.visualize(new DataBuilderInputImpl()
-                            .event(actualEvent.get())
-                            .valueToPay(((Functional) actualCell).getAction().get().data().get()).build());
+                    visualizeTaxPayment(actualCell, actualEvent);
                 }
             }
             this.continueState(new DataBuilderOutputImpl().build());
         }
     }
 
+    private void visualizeTaxPayment(final Cell actualCell, final Optional<Event> actualEvent) {
+        viewState.visualize(new DataBuilderInputImpl()
+                .event(actualEvent.get())
+                .valueToPay(((Functional) actualCell).getAction().get().data().get()).build());
+    }
+    
     /**
      * If needed perform the action of buy a property given the input of the player,
      * and next ends the state.
@@ -87,5 +86,19 @@ public class ControllerCheckActionState implements ControllerState {
         mainController.nextPhase();
 
     }
+    
+    private void visualizeRentPayment(final Cell actualCell, final Optional<Event> actualEvent) {
+        viewState.visualize(new DataBuilderInputImpl().event(actualEvent.get())
+                .valueToPay(((Buyable) actualCell).getRentalValue())
+                .text(((Buyable) actualCell).getOwner().get().getName()).build());
+    }
+
+    private void visualizeBuyProperty(final Cell actualCell) {
+        viewState.visualize(new DataBuilderInputImpl()
+        .event(Event.BUY_PROPERTY)
+        .valueToPay(((Buyable) actualCell).getCost())
+        .text(actualCell.getName()).build());
+    }
+
 
 }

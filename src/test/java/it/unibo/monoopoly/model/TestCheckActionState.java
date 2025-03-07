@@ -17,7 +17,6 @@ import it.unibo.monoopoly.model.notary.api.Notary;
 import it.unibo.monoopoly.model.notary.impl.NotaryImpl;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.ModelBankerState;
-import it.unibo.monoopoly.model.state.impl.ModelBuildHouseState;
 import it.unibo.monoopoly.model.state.impl.ModelCardState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
@@ -28,6 +27,7 @@ import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
  */
 class TestCheckActionState {
 
+    private static final int TEST_AMOUNT = 1480;
     private static final int BUYABLE_CELL = 1;
     private static final int CARD_CELL = 2;
     private static final int TAX_CELL = 4;
@@ -43,7 +43,7 @@ class TestCheckActionState {
 
     @Test
     void testCannotBuyProperty() {
-        this.model.getGameBoard().getCurrentPlayer().pay(1480);
+        this.model.getGameBoard().getCurrentPlayer().pay(TEST_AMOUNT);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
     }

@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.controller.main.impl;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -56,6 +57,7 @@ public class MainControllerImpl implements MainController {
      * @param playersName list of players' names
      */
     public MainControllerImpl(final MainModel model, final List<String> playersName) {
+        Objects.requireNonNull(model);
         this.model = model;
         final List<String> cellsNames = model.getGameBoard().getCellsNames();
         // Create the main view passing this controller, players' names, and the cells'
@@ -68,12 +70,6 @@ public class MainControllerImpl implements MainController {
         this.actualState.startState();
         // this.nextPhase();
     }
-
-    /**
-     * Starts the turn; as an example, if the current player is in prison the prison
-     * state is activated,
-     * otherwise the house building state is activated.
-     */
 
     /**
      * {@inheritDoc}

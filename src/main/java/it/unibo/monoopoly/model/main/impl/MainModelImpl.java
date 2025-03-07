@@ -1,7 +1,7 @@
 package it.unibo.monoopoly.model.main.impl;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -52,6 +52,7 @@ public class MainModelImpl implements MainModel {
      */
     @Override
     public void setState(final ModelState state) {
+        Objects.requireNonNull(state);
         this.actualState = state;
     }
 
@@ -76,6 +77,7 @@ public class MainModelImpl implements MainModel {
      */
     @Override
     public void setEvent(final Optional<Event> selectOperations) {
+        Objects.requireNonNull(selectOperations);
         this.actualEvent = selectOperations;
     }
 
