@@ -37,6 +37,8 @@ public class NotaryImpl implements Notary {
      */
     @Override
     public boolean isActionBuy(final Cell cell, final Player actualPlayer) {
+        Objects.requireNonNull(actualPlayer);
+        Objects.requireNonNull(cell);
         if (cell.isBuyable()) {
             final Buyable buyableCell = (Buyable) cell;
             return buyableCell.isAvailable() && actualPlayer.isPayable(buyableCell.getCost());
@@ -50,6 +52,8 @@ public class NotaryImpl implements Notary {
      */
     @Override
     public Optional<Event> checkProperty(final Player player, final Cell cell) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(cell);
         if (!cell.isBuyable()) {
             throw new IllegalArgumentException("Expected a buyable cell in input");
         }
