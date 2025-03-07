@@ -45,7 +45,7 @@ public class ControllerPrisonState implements ControllerState {
      * </p>
      */
     @Override
-    public void startState() {
+    public void startControllerState() {
         final boolean goToJail = modelState.verify();
         viewState.setMode(goToJail);
 
@@ -57,11 +57,11 @@ public class ControllerPrisonState implements ControllerState {
             final Player currentPlayer = this.player;
             if (currentPlayer.isPrisoned()) {
                 final boolean hasCard = currentPlayer.getFreeJailCards() > 0;
-                viewState.visualize(dataBuilder.mode(hasCard).build());
+                viewState.visualize(dataBuilder.isEnabled(hasCard).build());
                 modelState.doAction(new DataOutput(Optional.empty(), Optional.empty()));
             }
         }
-        this.continueState(new DataBuilderOutputImpl().build());
+        this.closeControllerState(new DataBuilderOutputImpl().build());
     }
 
     /**
@@ -70,7 +70,7 @@ public class ControllerPrisonState implements ControllerState {
      * @param data
      */
     @Override
-    public void continueState(final DataOutput data) {
+    public void closeControllerState(final DataOutput data) {
         modelState.closeState();
         mainController.nextPhase();
     }

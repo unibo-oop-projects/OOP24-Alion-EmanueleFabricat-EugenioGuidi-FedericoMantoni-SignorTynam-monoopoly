@@ -10,7 +10,7 @@ public interface ControllerState {
      * Launch the state, calling all the other state method in the right order.
      * In this method is built the {@link DataInput}.
      */
-    void startState();
+    void startControllerState();
 
     /**
      * Continue the state until the end, calling all the remaining state method in
@@ -18,5 +18,5 @@ public interface ControllerState {
      * 
      * @param dataOutput a possible data to process.
      */
-    void continueState(DataOutput dataOutput);
+    void closeControllerState(DataOutput dataOutput);
 }

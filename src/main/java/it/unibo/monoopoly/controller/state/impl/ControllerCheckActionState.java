@@ -48,7 +48,7 @@ public class ControllerCheckActionState implements ControllerState {
      * right action.
      */
     @Override
-    public void startState() {
+    public void startControllerState() {
         final Cell actualCell = this.gameBoard.getCell(this.gameBoard.getCurrentPlayer().getActualPosition());
         if (modelState.verify()) {
             visualizeBuyProperty(actualCell);
@@ -62,7 +62,7 @@ public class ControllerCheckActionState implements ControllerState {
                     visualizeTaxPayment(actualCell, actualEvent);
                 }
             }
-            this.continueState(new DataBuilderOutputImpl().build());
+            this.closeControllerState(new DataBuilderOutputImpl().build());
         }
     }
 
@@ -78,7 +78,7 @@ public class ControllerCheckActionState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void continueState(final DataOutput dataOutput) {
+    public void closeControllerState(final DataOutput dataOutput) {
         if (dataOutput.buyProperty().isPresent()) {
             modelState.doAction(dataOutput);
         }

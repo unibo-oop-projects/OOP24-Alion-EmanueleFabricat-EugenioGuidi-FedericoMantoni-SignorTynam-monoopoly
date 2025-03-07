@@ -16,14 +16,13 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  * that call the {@link ModelState} and {@link ViewState} methods, 
  * in the right order,
  * with the right input.
- * Build with {@link DataBuilderInput} all the data that need the view
+ * Build with {@link DataBuilderInput} all the data that need the View.
  */
 public class ControllerCardState implements ControllerState {
     private final MainController mainController;
     private final ModelState actualModelState;
     private final ViewState actualViewState;
     private final GameBoard gameBoard;
-    private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
 
    /**
     * Constructor of the class that sets the fields.
@@ -45,13 +44,13 @@ public class ControllerCardState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void startState() {
+    public void startControllerState() {
         this.actualViewState.setMode(this.actualModelState.verify());
         this.actualModelState.doAction(new DataBuilderOutputImpl().build());
-        this.actualViewState.visualize(this.dataBuilderInput.text(
+        this.actualViewState.visualize(new DataBuilderInputImpl().text(
                 this.gameBoard.getDeck().getActualCard().getEffectText() 
         ).build());
-        continueState(new DataBuilderOutputImpl().build());
+        closeControllerState(new DataBuilderOutputImpl().build());
     }
 
     /**
@@ -59,7 +58,7 @@ public class ControllerCardState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void continueState(final DataOutput dataOutput) {
+    public void closeControllerState(final DataOutput dataOutput) {
         this.actualModelState.closeState();
         this.mainController.nextPhase();
     }

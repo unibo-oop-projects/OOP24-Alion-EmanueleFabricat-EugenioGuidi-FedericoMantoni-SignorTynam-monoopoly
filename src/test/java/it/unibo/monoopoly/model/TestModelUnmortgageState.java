@@ -47,7 +47,7 @@ class TestModelUnmortgageState {
         assertEquals(false, state.verify());
         this.model.getGameBoard().getCurrentPlayer().receive(AMOUNT_TO_PAY);
         assertEquals(true, state.verify());
-        state.doAction(new DataBuilderOutputImpl().cellChoose(BUILDABLE_CELL).build());
+        state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL).build());
         assertEquals(false, property.isMortgaged());
         state.closeState();
         assertInstanceOf(ModelUnmortgageState.class, this.model.getState());

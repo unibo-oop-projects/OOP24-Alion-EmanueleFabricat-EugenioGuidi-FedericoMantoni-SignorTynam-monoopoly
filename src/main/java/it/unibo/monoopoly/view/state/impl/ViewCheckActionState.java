@@ -59,10 +59,10 @@ public class ViewCheckActionState implements ViewState {
                         YES_NO, 1);
                 if (choice == 0) {
                     mainView.getMainController().getControllerState()
-                            .continueState(new DataOutput(Optional.of(true), Optional.empty()));
+                            .closeControllerState(new DataOutput(Optional.of(true), Optional.empty()));
                 } else {
                     mainView.getMainController().getControllerState()
-                            .continueState(new DataOutput(Optional.of(false), Optional.empty()));
+                            .closeControllerState(new DataOutput(Optional.of(false), Optional.empty()));
                 }
             }
             default -> throw new IllegalArgumentException("Nothing to visualize in this state");

@@ -15,7 +15,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * Implementations of {@link ControllerState} for the card's phase:
+ * Implementations of {@link ControllerState} for the unmortgage phase:
  * that call the {@link ModelState} and {@link ViewState} methods,
  * in the right order,
  * with the right input.
@@ -26,7 +26,7 @@ public class ControllerUnmortgageState implements ControllerState {
     private final ModelState actualModelState;
     private final ViewState actualViewState;
     private final GameBoard gameBoard;
-    private boolean runState;
+    private boolean haveMortgagePayableProperty;
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
 
     /**
@@ -50,9 +50,9 @@ public class ControllerUnmortgageState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void startState() {
-        this.runState = this.actualModelState.verify();
-        this.actualViewState.setMode(this.runState);
+    public void startControllerState() {
+        this.haveMortgagePayableProperty = this.actualModelState.verify();
+        this.actualViewState.setMode(this.haveMortgagePayableProperty);
         this.actualViewState.visualize(buildData());
     }
 
@@ -61,14 +61,14 @@ public class ControllerUnmortgageState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void continueState(final DataOutput dataOutput) {
+    public void closeControllerState(final DataOutput dataOutput) {
         this.actualModelState.doAction(dataOutput);
         this.actualModelState.closeState();
         this.mainController.nextPhase();
     }
 
     private DataInput buildData() {
-        if (runState) {
+        if (haveMortgagePayableProperty) {
             return this.dataBuilderInput.cellMap(unmortgageableList()).build();
         } else {
             return this.dataBuilderInput.build();

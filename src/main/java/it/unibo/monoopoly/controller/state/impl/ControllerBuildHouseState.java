@@ -46,7 +46,7 @@ public class ControllerBuildHouseState implements ControllerState {
      * Verifies if building is possible and sets the mode in the view.
      */
     @Override
-    public void startState() {
+    public void startControllerState() {
         canBuild = modelState.verify();
         viewState.setMode(canBuild);
         if (this.gameBoard != null) {
@@ -70,7 +70,7 @@ public class ControllerBuildHouseState implements ControllerState {
      * @param data the data related to the cell chosen by the user
      */
     @Override
-    public void continueState(final DataOutput data) {
+    public void closeControllerState(final DataOutput data) {
         if (canBuild) {
             modelState.doAction(data);
         }

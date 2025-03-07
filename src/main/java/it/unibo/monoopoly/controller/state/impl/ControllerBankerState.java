@@ -31,9 +31,11 @@ public class ControllerBankerState implements ControllerState {
     private final ViewState actualViewState;
     private final GameBoard gameBoard;
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
+    private boolean isIndebted;
 
     /**
      * Constructor of the class that sets the fields.
+     * 
      * @param mainController   the main controller to be set.
      * @param actualModelState the actual {@link ModelState} to be set.
      * @param actualViewState  the actual {@link ViewState} to be set.
@@ -52,9 +54,10 @@ public class ControllerBankerState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void startState() {
-        this.actualViewState.setMode(this.actualModelState.verify());
-        this.actualViewState.visualize(buildData());
+    public void startControllerState() {
+        isIndebted = this.actualModelState.verify();
+        this.actualViewState.setMode(isIndebted);
+        this.actualViewState.visualize(buildDataInput());
     }
 
     /**
@@ -62,15 +65,15 @@ public class ControllerBankerState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void continueState(final DataOutput dataOutput) {
+    public void closeControllerState(final DataOutput dataOutput) {
         this.actualModelState.doAction(dataOutput);
         this.actualModelState.closeState();
         mainController.nextPhase();
 
     }
 
-    private DataInput buildData() {
-        if (this.mainController.getActualEvent().isEmpty()) {
+    private DataInput buildDataInput() {
+        if (!this.isIndebted) {
             return this.dataBuilderInput.build();
         }
         final Event event = this.mainController.getActualEvent().get();
@@ -86,7 +89,8 @@ public class ControllerBankerState implements ControllerState {
             case Event.BANKRUPT -> this.dataBuilderInput
                     .event(event)
                     .build();
-            default -> this.dataBuilderInput.build();
+            default -> throw new IllegalStateException(
+                    "It's impossible to have an different Event if isn't indebted");
         };
     }
 
@@ -101,8 +105,7 @@ public class ControllerBankerState implements ControllerState {
 
     private Stream<Buyable> unmortgagedList(final Set<Buyable> properties) {
         return properties.stream()
-                .filter(p -> p instanceof Buildable)
-                .filter(p -> !p.isMortgaged());
+                .filter(p -> p instanceof Buildable && !p.isMortgaged());
     }
 
     private Map<Integer, Integer> sellHouseList() {
