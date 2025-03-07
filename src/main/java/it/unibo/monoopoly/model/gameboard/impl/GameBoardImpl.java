@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.model.gameboard.impl;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.model.deck.api.Deck;
@@ -31,6 +32,8 @@ public class GameBoardImpl implements GameBoard {
         this.playersList = playersList;
         this.dices = new DicesImpl();
         this.deck = new DeckImpl();
+        final Random randomInt = new Random();
+        this.currentPlayerIndex = randomInt.nextInt(playersList.size());
     }
 
     /**
