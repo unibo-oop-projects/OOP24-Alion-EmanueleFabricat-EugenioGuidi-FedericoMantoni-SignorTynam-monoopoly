@@ -70,12 +70,6 @@ public class MainControllerImpl implements MainController {
     }
 
     /**
-     * Starts the turn; as an example, if the current player is in prison the prison
-     * state is activated,
-     * otherwise the house building state is activated.
-     */
-
-    /**
      * {@inheritDoc}
      */
     @Override
