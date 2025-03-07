@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -44,12 +45,15 @@ public class MainViewImpl extends AbstractView implements MainView {
      * @param namePlayers the names of the players
      * @param nameCells   the list of names of the cells
      */
-    public MainViewImpl(final MainController controller, final List<String> namePlayers, final List<String> nameCells) {
+    public MainViewImpl(
+            final MainController controller,
+            final List<String> namePlayers,
+            final List<String> nameCells) {
         super();
         this.controller = controller;
 
-        final Dimension screeDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        mainFrame().setSize(screeDimension);
+        final Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        mainFrame().setSize(screenDimension);
         mainFrame().setResizable(false);
         mainFrame().setUndecorated(true);
 
@@ -126,6 +130,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      */
     @Override
     public void setState(final ViewState state) {
+        Objects.requireNonNull(state);
         this.viewState = state;
     }
 
@@ -145,7 +150,7 @@ public class MainViewImpl extends AbstractView implements MainView {
         this.getMainFrame().dispose();
         final JDialog closeWindow = new JDialog();
         closeWindow.setModal(true);
-        final JTextArea winnerText = new JTextArea("BRAVO, " + player + " HAI VINTO IL GIOCO"); 
+        final JTextArea winnerText = new JTextArea("BRAVO, " + player + " HAI VINTO IL GIOCO");
         winnerText.setEditable(false);
         winnerText.setFont(new Font("Arial", Font.PLAIN, END_MESSAGE_FONT_SIZE));
         closeWindow.add(winnerText);

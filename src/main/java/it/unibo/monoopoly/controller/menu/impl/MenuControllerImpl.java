@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.controller.menu.impl;
 
 import java.util.List;
+import java.util.Objects;
 
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.controller.menu.api.MenuController;
@@ -25,6 +26,7 @@ public class MenuControllerImpl implements MenuController {
      */
     @Override
     public void goGame(final List<String> namePlayers) {
+        Objects.requireNonNull(namePlayers);
         new MainControllerImpl(new MainModelImpl(namePlayers), namePlayers);
     }
 

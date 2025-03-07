@@ -26,7 +26,8 @@ import it.unibo.monoopoly.model.player.impl.PlayerImpl;
  */
 class TestNotary {
 
-    private static final int START_MONEY = 1500;
+    private static final int START_MONEY1 = 50;
+    private static final int START_MONEY2 = 1500;
     private final Notary notary = new NotaryImpl();
 
     private Player player1;
@@ -38,8 +39,8 @@ class TestNotary {
 
     @BeforeEach
     void init() {
-        this.player1 = new PlayerImpl("Marco", 50, 0, false);
-        this.player2 = new PlayerImpl("Franco", START_MONEY, 0, false);
+        this.player1 = new PlayerImpl("Marco", START_MONEY1, 0, false);
+        this.player2 = new PlayerImpl("Franco", START_MONEY2, 0, false);
         this.buildableProperty = (Buyable) cells.stream().filter(Cell::isBuyable).findFirst().get();
         this.notBuyableProperty = cells.stream().filter(Predicate.not(Cell::isBuyable)).findFirst().get();
     }
@@ -52,8 +53,8 @@ class TestNotary {
         assertEquals(Optional.empty(), notary.checkProperty(player1, this.buildableProperty));
         notary.buyProperty(player2, buildableProperty);
         assertEquals(Optional.of(Event.RENT_PAYMENT), notary.checkProperty(player1, this.buildableProperty));
-        assertEquals(START_MONEY - buildableProperty.getCost() + buildableProperty.getRentalValue(), player2.getMoneyAmount());
-        assertEquals(50 - buildableProperty.getRentalValue(), player1.getMoneyAmount());
+        assertEquals(START_MONEY2 - buildableProperty.getCost() + buildableProperty.getRentalValue(), player2.getMoneyAmount());
+        assertEquals(START_MONEY1 - buildableProperty.getRentalValue(), player1.getMoneyAmount());
         this.buildableProperty.setMortgage();
         assertEquals(Optional.empty(), notary.checkProperty(player1, this.buildableProperty));
         assertEquals(Optional.empty(), notary.checkProperty(player2, this.buildableProperty));
@@ -62,7 +63,7 @@ class TestNotary {
     @Test
     void testIsActionBuy() {
         assertFalse(notary.isActionBuy(buildableProperty, player1));
-        player1.receive(START_MONEY);
+        player1.receive(START_MONEY2);
         assertFalse(notary.isActionBuy(notBuyableProperty, player1));
         assertTrue(notary.isActionBuy(buildableProperty, player1));
         notary.buyProperty(player1, buildableProperty);
@@ -72,12 +73,12 @@ class TestNotary {
 
     @Test
     void testBuyProperty() {
-        player1.receive(START_MONEY - 50);
+        player1.receive(START_MONEY2 - START_MONEY1);
         notary.buyProperty(player1, buildableProperty);
         assertEquals(player1, buildableProperty.getOwner().get());
         assertFalse(buildableProperty.isAvailable());
         assertTrue(player1.getProperties().contains(buildableProperty));
-        assertEquals(START_MONEY - buildableProperty.getCost(), player1.getMoneyAmount());
+        assertEquals(START_MONEY2 - buildableProperty.getCost(), player1.getMoneyAmount());
     }
 
     @Test

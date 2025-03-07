@@ -66,5 +66,4 @@ public abstract class AbstractView implements View {
         return COLORS;
     }
 
-
 }

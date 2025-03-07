@@ -15,16 +15,17 @@ import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
 
 /**
- * State that represent the control of what action will be performed depending on the {@link Cell}.
+ * State that represent the control of what action will be performed depending
+ * on the {@link Cell}.
  */
 public class ModelCheckActionState implements ModelState {
-
 
     private final MainModel mainModel;
     private final Notary notary = new NotaryImpl();
 
     /**
      * Pass the mainModel to the state.
+     * 
      * @param mainModel the main model
      */
     public ModelCheckActionState(final MainModel mainModel) {
@@ -34,7 +35,8 @@ public class ModelCheckActionState implements ModelState {
     /**
      * {@inheritDoc}
      * 
-     * Check if the action to perform is buy a property and set the state correctly to perform the action.
+     * Check if the action to perform is buy a property and set the state correctly
+     * to perform the action.
      */
     @Override
     public boolean verify() {
@@ -68,7 +70,7 @@ public class ModelCheckActionState implements ModelState {
     /**
      * {@inheritDoc}
      * 
-     * The next state is set based of the action to perform or to be performed. 
+     * The next state is set based of the action to perform or to be performed.
      */
     @Override
     public void closeState() {
@@ -77,20 +79,21 @@ public class ModelCheckActionState implements ModelState {
             this.mainModel.setState(new ModelUnmortgageState(mainModel));
         } else {
             this.mainModel.setState(
-                switch (event.get()) {
-                    case RENT_PAYMENT, TAX_PAYMENT -> new ModelBankerState(mainModel, false);
-                    case DRAW -> new ModelCardState(mainModel);
-                    case PRISON -> new ModelPrisonState(mainModel, true);
-                    default -> throw new IllegalStateException("Card event or unsupported event was insert");
-                }
-            );
+                    switch (event.get()) {
+                        case RENT_PAYMENT,
+                            TAX_PAYMENT -> new ModelBankerState(mainModel, false);
+                        case DRAW -> new ModelCardState(mainModel);
+                        case PRISON -> new ModelPrisonState(mainModel, true);
+                        default -> throw new IllegalStateException("Card event or unsupported event was insert");
+                    });
         }
     }
 
     private void checkFunctionalCell() {
         final Functional functionalCell = (Functional) getActualCell();
-        this.mainModel.setEvent(functionalCell.getAction().map(Message::typeOfAction));
-        if (functionalCell.getAction().map(Message::typeOfAction).equals(Optional.of(Event.TAX_PAYMENT))) {
+        final var event = functionalCell.getAction().map(Message::typeOfAction);
+        this.mainModel.setEvent(event);
+        if (event.equals(Optional.of(Event.TAX_PAYMENT))) {
             this.getActualPlayer().pay(functionalCell.getAction().get().data().get());
         }
     }
