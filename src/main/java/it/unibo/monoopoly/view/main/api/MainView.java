@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.view.state.api.ViewState;

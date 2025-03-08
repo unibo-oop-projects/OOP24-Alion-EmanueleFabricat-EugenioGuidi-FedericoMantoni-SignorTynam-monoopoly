@@ -25,7 +25,7 @@ import it.unibo.monoopoly.utils.impl.PositionAllocatorImpl;
 public final class GameBoardPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    
+
     private static final double CIRCLE_DIAMETER_RATIO = 0.025;
     private static final double NUMBER_SIZE_RATIO = 0.025;
 
