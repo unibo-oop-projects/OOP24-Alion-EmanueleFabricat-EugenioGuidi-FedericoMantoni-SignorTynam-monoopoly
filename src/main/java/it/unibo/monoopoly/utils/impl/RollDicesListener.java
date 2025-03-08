@@ -3,6 +3,7 @@ package it.unibo.monoopoly.utils.impl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.DefaultInteractivePanel;
@@ -23,6 +24,7 @@ public class RollDicesListener implements ActionListener {
      * 
      * @param mainView
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public RollDicesListener(final MainView mainView) {
         this.mainView = mainView;
     }
