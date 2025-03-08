@@ -7,6 +7,8 @@ import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
+import it.unibo.monoopoly.model.deck.api.Deck;
+import it.unibo.monoopoly.model.deck.impl.DeckImpl;
 import it.unibo.monoopoly.model.deck.impl.DeckWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -44,6 +46,13 @@ public class ControllerCardState implements ControllerState {
     /**
      *
      * {@inheritDoc}
+     * In this specific case,
+     * performs the verify operation,
+     * setting it as input to the setMode of the view's state.
+     * Then executes the doAction on the model,
+     * followed by calling the visualize method,
+     * passing the text of the current {@link Card} from the {@link Deck}.
+     * Finally, it calls the closeControllerState method.
      */
     @Override
     public void startControllerState() {
@@ -57,6 +66,8 @@ public class ControllerCardState implements ControllerState {
     /**
      *
      * {@inheritDoc}
+     * In this specific case,
+     * finalizes the model's state and calls the nextPhase method of the {@link MainController}.
      */
     @Override
     public void closeControllerState(final DataOutput dataOutput) {

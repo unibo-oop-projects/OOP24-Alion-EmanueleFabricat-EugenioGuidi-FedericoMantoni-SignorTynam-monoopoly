@@ -17,6 +17,7 @@ import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -59,6 +60,9 @@ public class ControllerBankerState implements ControllerState {
     /**
      *
      * {@inheritDoc}
+     * In this specific case,3
+     * then communicates this to the {@link ViewState} and calls the visualize method,
+     * correctly constructing the {@link DataInput}.
      */
     @Override
     public void startControllerState() {
@@ -70,6 +74,10 @@ public class ControllerBankerState implements ControllerState {
     /**
      *
      * {@inheritDoc}
+     * In this specific case,
+     * executes the operations in the model according to the logic,
+     * passing the player's possible choices,
+     * then finalizes the model's state and calls the nextPhase method of the {@link MainController}.
      */
     @Override
     public void closeControllerState(final DataOutput dataOutput) {
