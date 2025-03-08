@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.controller.state.impl;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -29,7 +31,8 @@ public class ControllerBankerState implements ControllerState {
     private final MainController mainController;
     private final ModelState actualModelState;
     private final ViewState actualViewState;
-    private final GameBoard gameBoard;
+    private final Set<Buyable> playerProperty;
+    private final List<Cell> gameBoardCellList;
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
     private boolean isIndebted;
 
@@ -42,11 +45,12 @@ public class ControllerBankerState implements ControllerState {
      * @param gameBoard        the {@link GameBoard} to be set.
      */
     public ControllerBankerState(final MainController mainController, final ModelState actualModelState,
-            final ViewState actualViewState, final GameBoard gameBoard) {
+            final ViewState actualViewState, final Set<Buyable> playerProperty, final List<Cell> gameBoardCellList) {
         this.mainController = mainController;
         this.actualModelState = actualModelState;
         this.actualViewState = actualViewState;
-        this.gameBoard = gameBoard;
+        this.playerProperty = playerProperty;
+        this.gameBoardCellList = List.copyOf(gameBoardCellList);
     }
 
     /**
@@ -106,11 +110,11 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private Map<Integer, Integer> sellHouseList() {
-        return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
+        return unmortgagedList(this.playerProperty)
                 .filter(p -> p instanceof Buildable)
                 .map(p -> (Buildable) p)
                 .filter(p -> p.getHousesNumber() > 0)
-                .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getHouseIncome));
+                .collect(Collectors.toMap(gameBoardCellList::indexOf, this::getHouseIncome));
     }
 
     private int getHouseIncome(final Buildable property) {
@@ -118,8 +122,8 @@ public class ControllerBankerState implements ControllerState {
     }
 
     private Map<Integer, Integer> propertiesMortgageableList() {
-        return unmortgagedList(this.gameBoard.getCurrentPlayer().getProperties())
-                .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, this::getMortgageIncome));
+        return unmortgagedList(this.playerProperty)
+                .collect(Collectors.toMap(gameBoardCellList::indexOf, this::getMortgageIncome));
     }
 
     private int getMortgageIncome(final Buyable property) {

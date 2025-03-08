@@ -59,8 +59,7 @@ public class MainControllerImpl implements MainController {
         this.mainView = new MainViewImpl(this, playersName, cellsNames);
         this.mainView.display();
         this.mainView.update();
-        this.actualState = new ControllerPrisonState(this, this.model.getState(), this.mainView.getViewState(),
-                model.getGameBoard().getCurrentPlayer());
+        this.actualState = new ControllerPrisonState(this, this.model.getState(), this.mainView.getViewState(), this.model.getPlayerWrapper());
         this.actualState.startControllerState();
         // this.nextPhase();
     }
@@ -78,7 +77,7 @@ public class MainControllerImpl implements MainController {
             case ModelPrisonState p -> {
                 this.mainView.setState(new ViewPrisonState(mainView));
                 this.actualState = new ControllerPrisonState(this, model.getState(),
-                        mainView.getViewState(), this.model.getGameBoard().getCurrentPlayer());
+                        mainView.getViewState(), this.model.getPlayerWrapper());
             }
             case ModelMovementState m -> {
                 this.mainView.setState(new ViewMovementState(mainView));
@@ -88,27 +87,28 @@ public class MainControllerImpl implements MainController {
             case final ModelCheckActionState ca -> {
                 this.mainView.setState(new ViewCheckActionState(mainView));
                 this.actualState = new ControllerCheckActionState(this, model.getState(), mainView.getViewState(),
-                        model.getGameBoard());
+                        model.getGameBoard(), this.model.getPlayerWrapper());
             }
             case ModelCardState c -> {
                 this.mainView.setState(new ViewCardState(mainView));
                 this.actualState = new ControllerCardState(this, model.getState(),
-                        mainView.getViewState(), this.model.getGameBoard());
+                        mainView.getViewState(), this.model.getDeckWrapper());
             }
             case ModelBankerState b -> {
                 this.mainView.setState(new ViewBankerState(mainView));
                 this.actualState = new ControllerBankerState(this, model.getState(),
-                        mainView.getViewState(), this.model.getGameBoard());
+                        mainView.getViewState(), this.model.getGameBoard().getCurrentPlayer().getProperties(),
+                        this.model.getGameBoard().getCellsList());
             }
             case ModelBuildHouseState bh -> {
                 this.mainView.setState(new ViewBuildHouseState(mainView));
                 this.actualState = new ControllerBuildHouseState(this,
-                        model.getState(), mainView.getViewState(), this.model.getGameBoard());
+                        model.getState(), mainView.getViewState(), this.model.getPlayerWrapper(), this.model.getGameBoard().getCellsList());
             }
             case final ModelUnmortgageState u -> {
                 this.mainView.setState(new ViewUnmortgageState(mainView));
                 this.actualState = new ControllerUnmortgageState(this, model.getState(),
-                        mainView.getViewState(), this.model.getGameBoard());
+                        mainView.getViewState(), this.model.getPlayerWrapper(), this.model.getGameBoard().getCellsList());
             }
             default -> throw new IllegalArgumentException("Implementation of ModelState not supported");
         }

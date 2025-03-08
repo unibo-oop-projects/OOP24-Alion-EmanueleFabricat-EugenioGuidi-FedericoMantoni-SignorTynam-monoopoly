@@ -9,6 +9,7 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.player.api.Player;
+import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -22,7 +23,7 @@ public class ControllerPrisonState implements ControllerState {
     private final ModelState modelState;
     private final MainController mainController;
     private final ViewState viewState;
-    private final Player player;
+    private final PlayerWrapper playerWrapper;
 
     /**
      * Constructs the prison controller state.
@@ -30,13 +31,13 @@ public class ControllerPrisonState implements ControllerState {
      * @param mainController the mainController
      * @param modelState     the actual {@link ModelState}
      * @param viewState      the actual {@link ViewState}
-     * @param player         the {@link Player} of the turn.
+     * @param playerWrapper  the {@link PlayerWrapper} of the turn.
      */
     public ControllerPrisonState(final MainController mainController, final ModelState modelState,
-            final ViewState viewState, final Player player) {
+            final ViewState viewState, final PlayerWrapper playerWrapper) {
         this.modelState = modelState;
         this.viewState = viewState;
-        this.player = player;
+        this.playerWrapper = playerWrapper;
         this.mainController = mainController;
     }
 
@@ -57,7 +58,7 @@ public class ControllerPrisonState implements ControllerState {
             viewState.visualize(dataBuilder.build());
             modelState.doAction(new DataOutput(Optional.empty(), Optional.empty()));
         } else {
-            final Player currentPlayer = this.player;
+            final Player currentPlayer = this.playerWrapper;
             if (currentPlayer.isPrisoned()) {
                 final boolean hasCard = currentPlayer.getFreeJailCards() > 0;
                 viewState.visualize(dataBuilder.enabled(hasCard).build());
