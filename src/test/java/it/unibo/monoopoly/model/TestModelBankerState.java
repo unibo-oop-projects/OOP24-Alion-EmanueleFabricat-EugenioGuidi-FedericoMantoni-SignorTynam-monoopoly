@@ -104,7 +104,7 @@ public class TestModelBankerState {
         ModelBankerState state = new ModelBankerState(this.model, false);
         assertEquals(true, state.verify());
         state.doAction(new DataBuilderOutputImpl().build());
-        assertEquals(- AMOUNT_TO_PAY_2, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
+        assertEquals(-AMOUNT_TO_PAY_2, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         assertEquals(Optional.of(Event.BANKRUPT), this.model.getEvent());
     }
 
