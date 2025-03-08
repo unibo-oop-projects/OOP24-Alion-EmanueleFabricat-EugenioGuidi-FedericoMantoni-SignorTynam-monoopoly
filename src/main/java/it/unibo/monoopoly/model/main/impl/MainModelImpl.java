@@ -111,6 +111,9 @@ public class MainModelImpl implements MainModel {
         return new DeckWrapper(this.getGameBoard().getDeck());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CellWrapper getCellWrapper() {
         return new CellWrapper(this.getGameBoard().getCell(this.getGameBoard().getCurrentPlayer().getActualPosition()));

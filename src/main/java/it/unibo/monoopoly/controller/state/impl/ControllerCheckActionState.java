@@ -13,7 +13,6 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
-import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.gameboard.impl.CellWrapper;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -34,7 +33,7 @@ public class ControllerCheckActionState implements ControllerState {
      * @param mainController the main controller
      * @param modelState     the actual model state
      * @param viewState      the view state
-     * @param gameBoard      the {@link GameBoard}
+     * @param cellWrapper    the actual cell wrapped
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerCheckActionState(final MainController mainController, final ModelState modelState,
@@ -97,9 +96,9 @@ public class ControllerCheckActionState implements ControllerState {
 
     private void visualizeBuyProperty(final Cell actualCell) {
         viewState.visualize(new DataBuilderInputImpl()
-        .event(Event.BUY_PROPERTY)
-        .valueToPay(((Buyable) actualCell).getCost())
-        .text(actualCell.getName()).build());
+                .event(Event.BUY_PROPERTY)
+                .valueToPay(((Buyable) actualCell).getCost())
+                .text(actualCell.getName()).build());
     }
 
 }
