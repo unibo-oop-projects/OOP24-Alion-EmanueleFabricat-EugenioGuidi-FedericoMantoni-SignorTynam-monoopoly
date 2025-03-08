@@ -3,21 +3,22 @@ package it.unibo.monoopoly.view.state.impl;
 import javax.swing.JOptionPane;
 
 import it.unibo.monoopoly.controller.data.impl.DataInput;
+import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.utils.impl.RollDicesListener;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.RollDicesPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * comment.
+ * Implementations of {@link ViewState} for the movement's phase:
+ * that visualize in the PlayerPanel the text of the {@link Dices}.
  */
 public class ViewMovementState implements ViewState {
 
     private final MainView mainView;
 
     /**
-     * comment.
-     * 
+     * Constructor of the class that sets the field.
      * @param mainView
      */
     public ViewMovementState(final MainView mainView) {
@@ -25,7 +26,6 @@ public class ViewMovementState implements ViewState {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -33,7 +33,6 @@ public class ViewMovementState implements ViewState {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override

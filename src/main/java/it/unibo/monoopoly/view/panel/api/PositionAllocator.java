@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import it.unibo.monoopoly.view.panel.impl.NumberAndCirclePosition;
+import it.unibo.monoopoly.utils.impl.NumberAndCirclePosition;
 
 /**
- * It is used to create a class that takes lists of player positions, cells, prison and houses
- * and creates a list of objects that will be displayed on the gameBoard.
+ * It is used to create a class that takes lists of player {@link Position}, cells, 
+ * prison and houses and creates a list of objects that will be displayed on the gameBoard.
  */
 public interface PositionAllocator {
 

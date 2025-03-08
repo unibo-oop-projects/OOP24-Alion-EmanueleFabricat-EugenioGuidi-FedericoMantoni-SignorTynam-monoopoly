@@ -135,6 +135,9 @@ class BuildableImplTest {
         assertFalse(this.property.isMortgaged());
     }
 
+    /**
+     * Test the method buildHouse.
+     */
     @Test
     void testBuildHouse() {
         this.property.setOwner(FIRSTOWNER);
@@ -150,6 +153,9 @@ class BuildableImplTest {
         assertThrows(IllegalStateException.class, this.property::buildHouse);
     }
 
+    /**
+     * Test the method sellHJouse
+     */
     @Test
     void testSellHouse() {
         this.property.setOwner(FIRSTOWNER);
@@ -168,6 +174,9 @@ class BuildableImplTest {
         assertThrows(IllegalStateException.class, this.property::sellHouse);
     }
 
+    /**
+     * Test methods buildHouse and sellHouse in mortgage.
+     */
     @Test
     void testBuildAndSellHouseOnMortgagedProperty() {
         this.property.setMortgage();

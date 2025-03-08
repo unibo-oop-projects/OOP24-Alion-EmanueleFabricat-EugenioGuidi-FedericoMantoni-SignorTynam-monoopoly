@@ -14,11 +14,12 @@ import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import it.unibo.monoopoly.utils.impl.NumberAndCirclePosition;
 import it.unibo.monoopoly.view.panel.api.PositionAllocator;
 
 /**
- * the class is used to realize the vision of the main gameBoard and 
- * dynamically update the game.
+ * The class is used to realize the vision of the main gameBoard and 
+ * dynamically update the game implementing {@link JPanel}.
  */
 public final class GameBoardPanel extends JPanel {
 

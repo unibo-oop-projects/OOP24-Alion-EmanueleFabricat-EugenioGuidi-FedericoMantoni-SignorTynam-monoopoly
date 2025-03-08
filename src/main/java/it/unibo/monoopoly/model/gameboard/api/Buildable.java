@@ -1,8 +1,9 @@
 package it.unibo.monoopoly.model.gameboard.api;
 
 /**
- * This interface rapresents a buildable property in the game.
- * I allows to construct and sell haouses.
+ * This interface rapresents a buildable property in the game that implements
+ * {@link Buyable}.
+ * The class is used to construct and sell houses.
  */
 public interface Buildable extends Buyable {
 
@@ -27,7 +28,7 @@ public interface Buildable extends Buyable {
     int getHousesNumber();
 
     /**
-     * @return the costo of selling house.
+     * @return the cost of selling house.
      */
     int getSellHouseCost();
 

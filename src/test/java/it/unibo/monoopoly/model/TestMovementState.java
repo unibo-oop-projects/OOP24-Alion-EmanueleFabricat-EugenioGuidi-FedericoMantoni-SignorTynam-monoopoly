@@ -22,7 +22,7 @@ import it.unibo.monoopoly.model.state.impl.ModelMovementState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 
 /**
- * Test for the {@link ModelMovementState}
+ * Test for the {@link ModelMovementState}.
  */
 public class TestMovementState {
 
@@ -31,6 +31,9 @@ public class TestMovementState {
     private MainModel firstMainModel;
     private MainModel secondMainModel;
 
+    /**
+     * Initialization before each test.
+     */
     @BeforeEach
     void init() {
         this.firstMainModel =  new MainModelImpl(List.of("Mauro", "Francesca"));
@@ -39,12 +42,18 @@ public class TestMovementState {
         this.secondModelMovemenState = new ModelMovementState(this.secondMainModel, Optional.of(1));
     }
 
+    /**
+     * Test the method verify.
+     */
     @Test
     void testVerify() {
         assertTrue(this.firstModelMovemenState.verify());
         assertFalse(this.secondModelMovemenState.verify());
     }
 
+    /**
+     * Test the method doAction and closeState.
+     */
     @Test
     void testDoActionAndCloseState() {
         this.firstModelMovemenState.doAction(new DataBuilderOutputImpl().build());

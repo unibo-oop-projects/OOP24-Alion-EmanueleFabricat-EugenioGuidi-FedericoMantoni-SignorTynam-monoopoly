@@ -61,7 +61,7 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
     }
 
     /**
-     * Check if the current class has an owner, if not there is an error.
+     * {@inheritDoc}
      */
     @Override
     public int getRentalValue() {
@@ -116,5 +116,4 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
     public int getUnmortgageValue() {
         return (int) (this.cost * UNMORTGAGE_MULTIPLIER);
     }
-
 }

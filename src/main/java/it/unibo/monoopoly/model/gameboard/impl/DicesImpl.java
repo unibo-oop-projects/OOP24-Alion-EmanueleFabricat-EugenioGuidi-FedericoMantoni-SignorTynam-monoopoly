@@ -24,7 +24,7 @@ public class DicesImpl implements Dices {
     }
 
     /**
-     * Create two random int like rolling real dices.
+     * {@inheritDoc}
      */
     @Override
     public void rollDices() {
@@ -35,7 +35,7 @@ public class DicesImpl implements Dices {
     }
 
     /**
-     * @return the Pair of dices rolled.
+     * {@inheritDoc}
      */
     @Override
     public Pair getDices() {
@@ -43,7 +43,7 @@ public class DicesImpl implements Dices {
     }
 
     /**
-     * @return the sum of two dices rolled.
+     * {@inheritDoc}
      */
     @Override
     public int getResult() {

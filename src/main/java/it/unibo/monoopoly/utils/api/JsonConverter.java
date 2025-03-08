@@ -8,7 +8,7 @@ import java.util.Map;
  * Represent a tool to translate a Json file in a collection of a given Java
  * object.
  * 
- * @param <T> the class of the elements that the json file will be converted to
+ * @param <T> the class of the elements that the json file will be converted to.
  */
 public interface JsonConverter<T> {
 

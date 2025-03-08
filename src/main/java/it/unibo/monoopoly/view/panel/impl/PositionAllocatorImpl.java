@@ -8,13 +8,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.utils.api.PositionsFactory;
+import it.unibo.monoopoly.utils.impl.NumberAndCirclePosition;
 import it.unibo.monoopoly.utils.impl.Position;
 import it.unibo.monoopoly.utils.impl.PositionsFactoryImpl;
 import it.unibo.monoopoly.view.panel.api.PositionAllocator;
 
 /**
- * class that takes lists of player positions, cells, prison and houses
- * and creates a list of objects that will be displayed on the gameBoard.
+ * Class that takes lists of player positions, cells, prison and houses
+ * and creates a list of objects that will be displayed on the gameBoard,
+ * implementing {@link PositionAllocator} interface.
  */
 public class PositionAllocatorImpl implements PositionAllocator {
 

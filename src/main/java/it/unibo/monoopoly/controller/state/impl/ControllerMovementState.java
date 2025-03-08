@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.controller.state.impl;
 
 
+import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
@@ -11,7 +12,9 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * comment.
+ * Implementations of {@link ControllerState} for the movement's state,
+ * that call the {@link ModelState} and {@link ViewState} methods.
+ * Build with {@link DataBuilderInput} all the data that need the View.
  */
 public class ControllerMovementState implements ControllerState {
 

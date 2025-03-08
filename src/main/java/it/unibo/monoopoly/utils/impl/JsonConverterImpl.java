@@ -15,7 +15,7 @@ import it.unibo.monoopoly.utils.api.JsonConverter;
 /**
  * Generic implementation of interface {@link JsonConverter}.
  * 
- * @param <T> the class that the json file will be converted to
+ * @param <T> the class that the json file will be converted to.
  */
 public class JsonConverterImpl<T> implements JsonConverter<T> {
 
@@ -25,7 +25,7 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
     /**
      * Create a converter for the given class.
      * 
-     * @param type the class that the json file will be converted to
+     * @param type the class that the json file will be converted to.
      */
     public JsonConverterImpl(final Class<T> type) {
         this.type = type;
