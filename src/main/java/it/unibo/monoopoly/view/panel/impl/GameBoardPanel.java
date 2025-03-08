@@ -26,9 +26,9 @@ public final class GameBoardPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private final int mainFrameHeight;
-    private final transient Image backgroundImage;
-    private List<NumberAndCirclePosition> numberAndCirclePositions;
-    private final PositionAllocator positionAllocator;
+    private transient final Image backgroundImage;
+    private transient List<NumberAndCirclePosition> numberAndCirclePositions;
+    private transient final PositionAllocator positionAllocator;
 
     /**
      * initialize all the information to create the initial gameBoard.
