@@ -57,7 +57,7 @@ public class ControllerPrisonState implements ControllerState {
             final Player currentPlayer = this.player;
             if (currentPlayer.isPrisoned()) {
                 final boolean hasCard = currentPlayer.getFreeJailCards() > 0;
-                viewState.visualize(dataBuilder.isEnabled(hasCard).build());
+                viewState.visualize(dataBuilder.enabled(hasCard).build());
                 modelState.doAction(new DataOutput(Optional.empty(), Optional.empty()));
             }
         }
