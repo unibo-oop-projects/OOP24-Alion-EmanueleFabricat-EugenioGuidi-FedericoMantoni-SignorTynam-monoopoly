@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
@@ -48,7 +47,6 @@ public class MainControllerImpl implements MainController {
     private final MainView mainView;
     private final MainModel model;
     private ControllerState actualState;
-    private DataInput inputData;
 
     /**
      * Constructor that creates the model (TurnImpl) and the main view.
@@ -75,7 +73,6 @@ public class MainControllerImpl implements MainController {
         if (this.model.getGameBoard().isGameEnded()) {
             this.mainView.endGame(this.model.getGameBoard().getCurrentPlayer().getName());
         }
-        System.out.println(this.model.getState().getClass() + String.valueOf(this.model.getGameBoard().isGameEnded()));
         this.mainView.update();
         switch (this.model.getState()) {
             case ModelPrisonState p -> {
@@ -133,15 +130,6 @@ public class MainControllerImpl implements MainController {
     @Override
     public ControllerState getControllerState() {
         return this.actualState;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public DataInput getDataInput() {
-        return this.inputData;
     }
 
     /**

@@ -2,6 +2,7 @@ package it.unibo.monoopoly.model.state.impl;
 
 import java.util.Optional;
 
+import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.main.api.MainModel;
@@ -29,6 +30,7 @@ public class ModelUnmortgageState implements ModelState {
      */
     public ModelUnmortgageState(final MainModel mainModel) {
         this.mainModel = mainModel;
+        this.dataOutput = new DataBuilderOutputImpl().build();
     }
 
     /**
