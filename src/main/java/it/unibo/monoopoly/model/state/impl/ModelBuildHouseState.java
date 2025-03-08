@@ -29,9 +29,9 @@ public class ModelBuildHouseState implements ModelState {
     }
 
     /**
-     * Verifies if the current player has properties on which houses can be built.
+     * Verifies if the player can build houses.
      * 
-     * @return true if house building is possible, false otherwise
+     * @return true if the player can build houses, false otherwise
      */
     @Override
     public boolean verify() {
