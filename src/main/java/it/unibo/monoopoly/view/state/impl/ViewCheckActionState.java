@@ -58,10 +58,10 @@ public class ViewCheckActionState implements ViewState {
                         JOptionPane.QUESTION_MESSAGE, null,
                         YES_NO, 1);
                 if (choice == 0) {
-                    mainView.getMainController().getControllerState()
+                    mainView.getControllerState()
                             .closeControllerState(new DataOutput(Optional.of(true), Optional.empty()));
                 } else {
-                    mainView.getMainController().getControllerState()
+                    mainView.getControllerState()
                             .closeControllerState(new DataOutput(Optional.of(false), Optional.empty()));
                 }
             }

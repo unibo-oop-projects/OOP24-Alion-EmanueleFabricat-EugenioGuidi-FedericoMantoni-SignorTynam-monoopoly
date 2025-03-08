@@ -42,10 +42,10 @@ public class ViewCellGiver implements ActionListener {
         final int cell = mainView.getNameCells().indexOf(cellName);
         this.mainView.setInteractivePanel(new DefaultInteractivePanel(this.mainView.getMainFrame().getHeight()));
         if (NO_CHOICE.equals(cellName)) {
-            mainView.getMainController().getControllerState().closeControllerState(
+            mainView.getControllerState().closeControllerState(
                     new DataBuilderOutputImpl().build());
         } else {
-            mainView.getMainController().getControllerState().closeControllerState(
+            mainView.getControllerState().closeControllerState(
                     new DataBuilderOutputImpl().selectedCell(cell).build());
         }
     }
