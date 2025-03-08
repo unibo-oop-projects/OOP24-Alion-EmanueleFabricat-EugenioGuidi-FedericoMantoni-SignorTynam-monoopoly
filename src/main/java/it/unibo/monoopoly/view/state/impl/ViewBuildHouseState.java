@@ -57,7 +57,7 @@ public class ViewBuildHouseState implements ViewState {
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Non hai proprietà su cui costruire case",
                     "Build House", JOptionPane.PLAIN_MESSAGE);
-            this.mainView.getMainController().getControllerState().closeControllerState(new DataBuilderOutputImpl().build());
+            this.mainView.getControllerState().closeControllerState(new DataBuilderOutputImpl().build());
         }
         // System.out.println(data.toString());
     }

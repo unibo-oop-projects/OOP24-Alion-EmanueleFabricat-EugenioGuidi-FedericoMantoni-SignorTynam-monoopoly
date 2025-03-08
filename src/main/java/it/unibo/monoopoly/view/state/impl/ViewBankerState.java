@@ -49,7 +49,7 @@ public class ViewBankerState implements ViewState {
         if (!isIndebted) {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
                     "Pagamento effetuato con successo", "Pagamento", JOptionPane.PLAIN_MESSAGE);
-            this.mainView.getMainController().getControllerState().closeControllerState(new DataBuilderOutputImpl().build());
+            this.mainView.getControllerState().closeControllerState(new DataBuilderOutputImpl().build());
         } else {
             switch (data.event().get()) {
                 case Event.SELL_HOUSE:
@@ -68,7 +68,7 @@ public class ViewBankerState implements ViewState {
                     JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
                             "HAI FINITO I SOLDI E LE PROPRIETA' SEI IN BANCAROTTA, PER TE IL GIOCO E' FINITO",
                             "Bancarotta", JOptionPane.PLAIN_MESSAGE);
-                    this.mainView.getMainController().getControllerState()
+                    this.mainView.getControllerState()
                             .closeControllerState(new DataBuilderOutputImpl().build());
                     break;
                 default:

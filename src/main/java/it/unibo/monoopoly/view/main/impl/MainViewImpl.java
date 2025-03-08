@@ -22,6 +22,7 @@ import javax.swing.JTextArea;
 import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.main.api.MainController;
+import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.GamePanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -107,8 +108,8 @@ public class MainViewImpl extends AbstractView implements MainView {
      * {@inheritDoc}
      */
     @Override
-    public MainController getMainController() {
-        return this.controller;
+    public ControllerState getControllerState() {
+        return this.controller.getControllerState();
     }
 
     /**
