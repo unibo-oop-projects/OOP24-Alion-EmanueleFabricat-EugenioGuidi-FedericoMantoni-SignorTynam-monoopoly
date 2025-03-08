@@ -3,7 +3,6 @@ package it.unibo.monoopoly.controller.main.api;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
@@ -18,12 +17,6 @@ public interface MainController {
      * @return comment.
      */
     ControllerState getControllerState();
-
-    /**
-     * 
-     * @return comment.
-     */
-    DataInput getDataInput();
 
     /**
      * 

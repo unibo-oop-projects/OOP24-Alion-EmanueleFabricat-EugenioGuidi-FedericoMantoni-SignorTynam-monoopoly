@@ -10,14 +10,12 @@ import java.util.Set;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.common.Message;
 import it.unibo.monoopoly.model.deck.api.Card;
-import it.unibo.monoopoly.model.deck.api.CardsFactory;
 import it.unibo.monoopoly.model.deck.api.Deck;
 
 /**
  * Implementation of {@link Deck}.
  */
 public class DeckImpl implements Deck {
-    private final CardsFactory factory = new CardsFactoryImpl();
     private final  List<Card> deck = new LinkedList<>();
     private final Set<Card> discardPile = new HashSet<>();
     private Card actualCard;
@@ -26,7 +24,7 @@ public class DeckImpl implements Deck {
      * Constructor that initialize and shuffle the deck.
      */
     public DeckImpl() {
-        this.deck.addAll(factory.createDeck());
+        this.deck.addAll(new CardsFactoryImpl().createDeck());
         shuffleDeck();
     }
 
@@ -47,7 +45,7 @@ public class DeckImpl implements Deck {
     private void shuffleDeck() {
         if (this.deck.isEmpty()) {
             this.deck.addAll(this.discardPile);
-            this.discardPile.removeAll(this.discardPile);
+            this.discardPile.clear();
         }
         Collections.shuffle(this.deck);
     }

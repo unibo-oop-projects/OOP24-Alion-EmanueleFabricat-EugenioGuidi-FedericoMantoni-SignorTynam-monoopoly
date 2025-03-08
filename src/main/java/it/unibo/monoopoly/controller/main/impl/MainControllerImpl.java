@@ -136,15 +136,6 @@ public class MainControllerImpl implements MainController {
     }
 
     /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public DataInput getDataInput() {
-        return this.inputData;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
