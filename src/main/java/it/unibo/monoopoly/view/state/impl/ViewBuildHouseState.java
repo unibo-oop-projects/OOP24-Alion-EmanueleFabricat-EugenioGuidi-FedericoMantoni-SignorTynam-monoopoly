@@ -62,6 +62,12 @@ public class ViewBuildHouseState implements ViewState {
         // System.out.println(data.toString());
     }
 
+    /**
+     * Converts a map of cell indices to a map of cell names and house counts.
+     * 
+     * @param cellMap the map of cell indices and house counts
+     * @return a map of cell names and house counts
+     */
     private Map<String, Integer> intToTextCell(final Map<Integer, Integer> cellMap) {
         return cellMap.entrySet().stream()
                 .collect(Collectors.toMap(e -> this.mainView.getNameCells().get(e.getKey()), Entry::getValue));
