@@ -11,7 +11,11 @@ import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
-
+/**
+ * Implementations of {@link ControllerState} for the movement's state,
+ * that call the {@link ModelState} and {@link ViewState} methods.
+ * Build with {@link DataBuilderInput} all the data that need the View.
+ */
 public class ControllerPrisonState implements ControllerState {
 
     private final ModelState modelState;

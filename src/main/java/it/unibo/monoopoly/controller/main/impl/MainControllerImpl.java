@@ -53,7 +53,6 @@ public class MainControllerImpl implements MainController {
     /**
      * Constructor that creates the model (TurnImpl) and the main view.
      * 
-     * @param model       the game model (Turn)
      * @param playersName list of players' names
      */
     public MainControllerImpl(final List<String> playersName) {
