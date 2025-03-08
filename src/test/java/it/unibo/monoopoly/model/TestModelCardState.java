@@ -47,7 +47,7 @@ class TestModelCardState {
                 case Event.FREE_CARD:
                     assertTrue(1 == model.getGameBoard().getCurrentPlayer().getFreeJailCards()
                             || 2 == model.getGameBoard().getCurrentPlayer().getFreeJailCards());
-                    assert (model.getState() instanceof ModelUnmortgageState);
+                    assertInstanceOf(ModelUnmortgageState.class, model.getState());
                     break;
                 case Event.MOVE_CARD:
                     assertInstanceOf(ModelMovementState.class, model.getState());

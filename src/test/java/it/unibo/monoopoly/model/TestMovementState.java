@@ -22,21 +22,21 @@ import it.unibo.monoopoly.model.state.impl.ModelMovementState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 
 /**
- * Test for the {@link ModelMovementState}
+ * Test for the {@link ModelMovementState}.
  */
-public class TestMovementState {
+class TestMovementState {
 
     private ModelState firstModelMovemenState;
     private ModelState secondModelMovemenState;
     private MainModel firstMainModel;
-    private MainModel secondMainModel;
-
+    /**
+     * comment.
+     */
     @BeforeEach
     void init() {
-        this.firstMainModel =  new MainModelImpl(List.of("Mauro", "Francesca"));
-        this.secondMainModel = new MainModelImpl(List.of("Mauro", "Francesca"));
+        this.firstMainModel = new MainModelImpl(List.of("Mauro", "Francesca"));
         this.firstModelMovemenState = new ModelMovementState(this.firstMainModel, Optional.empty());
-        this.secondModelMovemenState = new ModelMovementState(this.secondMainModel, Optional.of(1));
+        this.secondModelMovemenState = new ModelMovementState(new MainModelImpl(List.of("Mauro", "Francesca")), Optional.of(1));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TestMovementState {
         this.firstModelMovemenState.doAction(new DataBuilderOutputImpl().build());
         final Player firstPlayer = this.firstMainModel.getGameBoard().getCurrentPlayer();
         this.firstModelMovemenState.closeState();
-        if(this.firstMainModel.getGameBoard().getCurrentPlayer().isPrisoned()) {
+        if (this.firstMainModel.getGameBoard().getCurrentPlayer().isPrisoned()) {
             assertNotEquals(firstPlayer, this.firstMainModel.getGameBoard().getCurrentPlayer());
             assertInstanceOf(ModelPrisonState.class, this.firstMainModel.getState());
         } else {
