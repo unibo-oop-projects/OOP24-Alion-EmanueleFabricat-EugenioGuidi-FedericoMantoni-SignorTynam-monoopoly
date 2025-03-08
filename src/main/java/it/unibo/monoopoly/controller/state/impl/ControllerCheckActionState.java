@@ -71,7 +71,7 @@ public class ControllerCheckActionState implements ControllerState {
                 .event(actualEvent.get())
                 .valueToPay(((Functional) actualCell).getAction().get().data().get()).build());
     }
-    
+
     /**
      * If needed perform the action of buy a property given the input of the player,
      * and next ends the state.
@@ -86,7 +86,7 @@ public class ControllerCheckActionState implements ControllerState {
         mainController.nextPhase();
 
     }
-    
+
     private void visualizeRentPayment(final Cell actualCell, final Optional<Event> actualEvent) {
         viewState.visualize(new DataBuilderInputImpl().event(actualEvent.get())
                 .valueToPay(((Buyable) actualCell).getRentalValue())

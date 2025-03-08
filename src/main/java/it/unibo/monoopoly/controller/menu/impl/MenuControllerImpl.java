@@ -5,7 +5,6 @@ import java.util.Objects;
 
 import it.unibo.monoopoly.controller.main.impl.MainControllerImpl;
 import it.unibo.monoopoly.controller.menu.api.MenuController;
-import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.main.impl.MenuView;
 
 /**

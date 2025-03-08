@@ -162,7 +162,6 @@ public class MainViewImpl extends AbstractView implements MainView {
         closeWindow.setVisible(true);
         closeWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         for (Window window : Window.getWindows()) {
-            System.out.println(Window.getWindows());
             window.dispose();
         }
     }
