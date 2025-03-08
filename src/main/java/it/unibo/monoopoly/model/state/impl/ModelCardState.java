@@ -81,7 +81,7 @@ public class ModelCardState implements ModelState {
                             yield new ModelBankerState(mainModel, false);
                         }
                     }
-                case Event.RECEIVE_CARD ->{
+                case Event.RECEIVE_CARD -> {
                         this.mainModel.getGameBoard().getCurrentPlayer().receive(getCard().getMessage().data().get());
                         yield new ModelUnmortgageState(mainModel);
                     }   
