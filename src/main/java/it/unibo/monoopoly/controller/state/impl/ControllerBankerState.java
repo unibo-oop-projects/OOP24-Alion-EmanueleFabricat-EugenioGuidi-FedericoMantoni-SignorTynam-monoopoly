@@ -78,11 +78,8 @@ public class ControllerBankerState implements ControllerState {
         }
         final Event event = this.mainController.getActualEvent().get();
         return switch (event) {
-            case Event.SELL_HOUSE -> this.dataBuilderInput
-                    .event(event)
-                    .cellMap(cellListChooser(event))
-                    .build();
-            case Event.MORTGAGE_PROPERTY -> this.dataBuilderInput
+            case Event.SELL_HOUSE,
+                Event.MORTGAGE_PROPERTY -> this.dataBuilderInput
                     .event(event)
                     .cellMap(cellListChooser(event))
                     .build();

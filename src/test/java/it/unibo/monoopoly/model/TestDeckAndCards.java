@@ -96,7 +96,7 @@ class TestDeckAndCards {
                 .count());
         this.deck.addPrisonCard();
         this.deck.addPrisonCard();
-        cards.removeAll(cards);
+        cards.clear();
         cards.addAll(getList(NUMBER_OF_ALL_CARDS));
         assertEquals(2, cards.stream()
                 .map(c -> c.getMessage().typeOfAction())
