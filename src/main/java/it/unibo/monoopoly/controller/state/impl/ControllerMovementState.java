@@ -48,7 +48,7 @@ public class ControllerMovementState implements ControllerState {
     public void startControllerState() {
         this.rollDice = this.actualModelState.verify();
         if (this.rollDice) {
-            this.actualViewState.visualize(new DataBuilderInputImpl().isEnabled(this.rollDice).build());
+            this.actualViewState.visualize(new DataBuilderInputImpl().enabled(this.rollDice).build());
         } else {
             closeControllerState(new DataBuilderOutputImpl().build());
         }
