@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.gameboard.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -28,12 +29,11 @@ public class GameBoardImpl implements GameBoard {
      * @param playersList is the list of players in the current game.
      */
     public GameBoardImpl(final List<Cell> cellsList, final List<Player> playersList) {
-        this.cellsList = cellsList;
-        this.playersList = playersList;
+        this.cellsList = new ArrayList<>(cellsList);
+        this.playersList = new ArrayList<>(playersList);
         this.dices = new DicesImpl();
         this.deck = new DeckImpl();
-        final Random randomInt = new Random();
-        this.currentPlayerIndex = randomInt.nextInt(playersList.size());
+        this.currentPlayerIndex = new Random().nextInt(playersList.size());
     }
 
     /**
@@ -72,9 +72,8 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public Player getNextPlayer() {
+    public void nextPlayer() {
         this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playersList.size();
-        return this.getCurrentPlayer();
     }
 
     /**

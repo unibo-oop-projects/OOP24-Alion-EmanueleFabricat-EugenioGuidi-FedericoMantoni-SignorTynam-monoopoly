@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.controller.state.impl;
 
 
+import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
@@ -11,7 +12,9 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * comment.
+ * Implementations of {@link ControllerState} for the movement's state,
+ * that call the {@link ModelState} and {@link ViewState} methods.
+ * Build with {@link DataBuilderInput} all the data that need the View.
  */
 public class ControllerMovementState implements ControllerState {
 
@@ -42,12 +45,12 @@ public class ControllerMovementState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void startState() {
+    public void startControllerState() {
         this.rollDice = this.actualModelState.verify();
         if (this.rollDice) {
-            this.actualViewState.visualize(new DataBuilderInputImpl().mode(this.rollDice).build());
+            this.actualViewState.visualize(new DataBuilderInputImpl().isEnabled(this.rollDice).build());
         } else {
-            continueState(new DataBuilderOutputImpl().build());
+            closeControllerState(new DataBuilderOutputImpl().build());
         }
     }
 
@@ -56,7 +59,7 @@ public class ControllerMovementState implements ControllerState {
      * {@inheritDoc}
      */
     @Override
-    public void continueState(final DataOutput dataOutput) {
+    public void closeControllerState(final DataOutput dataOutput) {
         this.actualModelState.doAction(new DataBuilderOutputImpl().build());
         if (this.rollDice) {
             this.actualViewState.visualize(new DataBuilderInputImpl().dices(this.dices.getDices()).build());

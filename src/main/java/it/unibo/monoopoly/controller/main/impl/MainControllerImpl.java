@@ -67,7 +67,7 @@ public class MainControllerImpl implements MainController {
         this.mainView.update();
         this.actualState = new ControllerPrisonState(this, this.model.getState(), this.mainView.getViewState(),
                 model.getGameBoard().getCurrentPlayer());
-        this.actualState.startState();
+        this.actualState.startControllerState();
         // this.nextPhase();
     }
 
@@ -119,7 +119,7 @@ public class MainControllerImpl implements MainController {
             }
             default -> throw new IllegalArgumentException("Implementation of ModelState not supported");
         }
-        this.actualState.startState();
+        this.actualState.startControllerState();
     }
 
     /**

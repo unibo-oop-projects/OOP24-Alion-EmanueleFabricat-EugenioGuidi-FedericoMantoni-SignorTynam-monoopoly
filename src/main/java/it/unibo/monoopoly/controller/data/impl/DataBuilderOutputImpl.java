@@ -9,7 +9,7 @@ import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
  */
 public class DataBuilderOutputImpl implements DataBuilderOutput {
     private Optional<Boolean> buyProperty = Optional.empty();
-    private Optional<Integer> cellChoose = Optional.empty();
+    private Optional<Integer> selectedCell = Optional.empty();
 
     /**
      *
@@ -26,8 +26,8 @@ public class DataBuilderOutputImpl implements DataBuilderOutput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderOutput cellChoose(final int cell) {
-        this.cellChoose = Optional.of(cell);
+    public DataBuilderOutput selectedCell(final int cell) {
+        this.selectedCell = Optional.of(cell);
         return this;
     }
 
@@ -37,6 +37,6 @@ public class DataBuilderOutputImpl implements DataBuilderOutput {
      */
     @Override
     public DataOutput build() {
-        return new DataOutput(this.buyProperty, this.cellChoose);
+        return new DataOutput(this.buyProperty, this.selectedCell);
     }
 }

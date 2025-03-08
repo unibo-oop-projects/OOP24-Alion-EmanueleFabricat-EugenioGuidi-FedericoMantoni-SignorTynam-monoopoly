@@ -55,7 +55,7 @@ public class ViewUnmortgageState implements ViewState {
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
                     "Mi spiace non hai proprietà da disipotecare", "Disipoteca", JOptionPane.PLAIN_MESSAGE);
-            this.mainView.getMainController().getControllerState().continueState(new DataBuilderOutputImpl().build());
+            this.mainView.getMainController().getControllerState().closeControllerState(new DataBuilderOutputImpl().build());
         }
     }
 

@@ -6,7 +6,7 @@ package it.unibo.monoopoly.model.gameboard.api;
 public interface Dices {
 
     /**
-     * This inner class rapresent the effective couple of dices.
+     * This inner class rapresent the effective couple of dices throwed.
      */
     class Pair {
         private final Integer firstRoll;

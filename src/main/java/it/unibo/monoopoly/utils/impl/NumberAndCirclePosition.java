@@ -1,9 +1,9 @@
-package it.unibo.monoopoly.view.panel.impl;
+package it.unibo.monoopoly.utils.impl;
 
 import java.awt.Color;
 
 /**
- * this class create a Builder of position of circle and number in the game board.
+ * This class create a Builder of position of circle and number in the game board.
  */
 public final class NumberAndCirclePosition {
 

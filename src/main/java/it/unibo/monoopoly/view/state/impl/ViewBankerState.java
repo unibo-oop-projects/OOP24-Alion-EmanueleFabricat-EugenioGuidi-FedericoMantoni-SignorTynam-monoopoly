@@ -20,7 +20,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  */
 public class ViewBankerState implements ViewState {
     private final MainView mainView;
-    private boolean isIndebited;
+    private boolean isIndebted;
 
     /**
      * comment.
@@ -37,7 +37,7 @@ public class ViewBankerState implements ViewState {
      */
     @Override
     public void setMode(final Boolean setter) {
-        this.isIndebited = setter;
+        this.isIndebted = setter;
     }
 
     /**
@@ -46,10 +46,10 @@ public class ViewBankerState implements ViewState {
      */
     @Override
     public void visualize(final DataInput data) {
-        if (!isIndebited) {
+        if (!isIndebted) {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
                     "Pagamento effetuato con successo", "Pagamento", JOptionPane.PLAIN_MESSAGE);
-            this.mainView.getMainController().getControllerState().continueState(new DataBuilderOutputImpl().build());
+            this.mainView.getMainController().getControllerState().closeControllerState(new DataBuilderOutputImpl().build());
         } else {
             switch (data.event().get()) {
                 case Event.SELL_HOUSE:
@@ -69,10 +69,10 @@ public class ViewBankerState implements ViewState {
                             "HAI FINITO I SOLDI E LE PROPRIETA' SEI IN BANCAROTTA, PER TE IL GIOCO E' FINITO",
                             "Bancarotta", JOptionPane.PLAIN_MESSAGE);
                     this.mainView.getMainController().getControllerState()
-                            .continueState(new DataBuilderOutputImpl().build());
+                            .closeControllerState(new DataBuilderOutputImpl().build());
                     break;
                 default:
-                    throw new IllegalStateException("ViewBankerState non riconosce lo stato in cui ti trovi");
+                    throw new IllegalStateException("ViewBankerState doesn't recognize the state in witch it is");
             }
         }
     }

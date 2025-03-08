@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 
 /**
- * Represents a buildable property in the game.
+ * Represents a buildable property in the game implementing {@link Buildable}.
  */
 @JsonTypeName("Buildable")
 public class BuildableImpl extends AbstractBuyable implements Buildable {
@@ -21,7 +21,6 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
 
     /**
      * Create a new buildable property.
-     * 
      * @param rentalMap the map of rent values for the property
      * @param name the name of the property
      * @param cost the cost of the property
@@ -107,7 +106,7 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
     }
 
     /**
-     * calculate the effective rental based on number of houses constructed.
+     * {@inheritDoc}.
      */
     @Override
     public int calculateRentalValue() {

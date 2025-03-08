@@ -12,19 +12,19 @@ public interface DataBuilderOutput {
      * Fluent method that insert a boolean to decide if the property has been bought
      * or not, in the {@link DataOutput}.
      * 
-     * @param buy to be inserted.
+     * @param buyProperty to be inserted.
      * @return this.
      */
-    DataBuilderOutput buyProperty(boolean buy);
+    DataBuilderOutput buyProperty(boolean buyProperty);
 
     /**
      * Fluent method that insert a int that represents the index of the chosen
      * {@link Cell}, in the {@link DataOutput}.
      * 
-     * @param cell to be inserted.
+     * @param selectedCell to be inserted.
      * @return this.
      */
-    DataBuilderOutput cellChoose(int cell);
+    DataBuilderOutput selectedCell(int selectedCell);
 
     /**
      * 

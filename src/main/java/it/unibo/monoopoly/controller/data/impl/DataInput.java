@@ -16,7 +16,7 @@ import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
  *                   {@link Dices}.
  * @param event      could contains the actual {@link Event} of the
  *                   {@link MainModel}.
- * @param mode       could contains a boolean useful in some {@link ViewState}.
+ * @param isEnabled       could contains a boolean useful in some {@link ViewState}.
  * @param text       could contains text that need to be passed to the View.
  * @param valueToPay could contains a value that need to be shown.
  */
@@ -24,7 +24,7 @@ public record DataInput(
                 Optional<Map<Integer, Integer>> cellMap,
                 Optional<Pair> dices,
                 Optional<Event> event,
-                Optional<Boolean> mode,
+                Optional<Boolean> isEnabled,
                 Optional<String> text,
                 Optional<Integer> valueToPay) {
 }

@@ -60,10 +60,10 @@ public class ModelBankerState implements ModelState {
      */
     @Override
     public void doAction(final DataOutput data) {
-        if (data.cellChoose().isEmpty()) {
+        if (data.selectedCell().isEmpty()) {
             return;
         }
-        final Cell chosen = this.mainModel.getGameBoard().getCell(data.cellChoose().get());
+        final Cell chosen = this.mainModel.getGameBoard().getCell(data.selectedCell().get());
         if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
             getPlayer().receive(((Buildable) chosen).sellHouse());
         } else {

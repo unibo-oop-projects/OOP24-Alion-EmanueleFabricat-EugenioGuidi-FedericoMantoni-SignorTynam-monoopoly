@@ -8,8 +8,9 @@ import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.DefaultInteractivePanel;
 
 /**
- * this class is used to set up an interactive panel with a listener attached, for 
- * the user, to press a button to roll the dices.
+ * This class is used to set up an interactive panel with a listener attached, for 
+ * the user, to press a button to roll the dices implementing {@link ActionListener}
+ * interface.
  */
 public class RollDicesListener implements ActionListener {
 
@@ -29,7 +30,7 @@ public class RollDicesListener implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent e) {
         this.mainView.setInteractivePanel(new DefaultInteractivePanel(this.mainView.getMainFrame().getHeight()));
-        this.mainView.getMainController().getControllerState().continueState(
+        this.mainView.getMainController().getControllerState().closeControllerState(
                     new DataBuilderOutputImpl().build());
     }
 }

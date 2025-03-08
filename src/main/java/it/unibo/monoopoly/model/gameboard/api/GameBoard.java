@@ -31,7 +31,7 @@ public interface GameBoard {
     /**
      * @return next player to play.
      */
-    Player getNextPlayer();
+    void nextPlayer();
 
     /**
      * @return current player to play.

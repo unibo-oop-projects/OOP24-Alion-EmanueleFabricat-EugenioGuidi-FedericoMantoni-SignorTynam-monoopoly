@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import it.unibo.monoopoly.controller.data.api.DataBuilderOutput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.utils.impl.ViewCellGiver;
@@ -24,7 +23,6 @@ public class ViewBuildHouseState implements ViewState {
 
     private final MainView mainView;
     private boolean canBuild;
-    private final DataBuilderOutput dataBuilder;
 
     /**
      * Constructs the view state for house building.
@@ -33,7 +31,6 @@ public class ViewBuildHouseState implements ViewState {
      */
     public ViewBuildHouseState(final MainView mainView) {
         this.mainView = mainView;
-        this.dataBuilder = new DataBuilderOutputImpl();
     }
 
     /**
@@ -60,7 +57,7 @@ public class ViewBuildHouseState implements ViewState {
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Non hai proprietà su cui costruire case",
                     "Build House", JOptionPane.PLAIN_MESSAGE);
-            this.mainView.getMainController().getControllerState().continueState(new DataBuilderOutputImpl().build());
+            this.mainView.getMainController().getControllerState().closeControllerState(new DataBuilderOutputImpl().build());
         }
         // System.out.println(data.toString());
     }

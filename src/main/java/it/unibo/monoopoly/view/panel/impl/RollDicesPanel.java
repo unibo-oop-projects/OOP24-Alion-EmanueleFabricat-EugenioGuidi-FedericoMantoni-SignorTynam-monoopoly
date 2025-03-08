@@ -8,7 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * this class implement a panel to allow player to throw dices.
+ * this class implement a panel to allow player to throw dices,
+ * that implement {@link JPanel}.
  */
 public final class RollDicesPanel extends JPanel {
 

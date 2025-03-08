@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.utils.impl;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import it.unibo.monoopoly.utils.api.PositionsFactory;
 /**
  * implement a factory to realize the lists of {@link Position} associated to all possible colors
  * of players.
+ * The class implement {@link PositionsFactory} interface.
  */
 public class PositionsFactoryImpl implements PositionsFactory {
 
@@ -33,7 +35,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
     public PositionsFactoryImpl(final int mainFrameHeight, final List<Color> colors) {
         this.mainFrameHeight = mainFrameHeight;
         this.converter = new JsonConverterImpl<>(Position.class);
-        this.colors = colors;
+        this.colors = new ArrayList<>(colors);
     }
 
     /**
