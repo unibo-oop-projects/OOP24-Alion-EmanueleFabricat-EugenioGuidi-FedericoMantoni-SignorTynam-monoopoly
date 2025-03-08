@@ -11,6 +11,7 @@ import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
+
 /**
  * Implementations of {@link ControllerState} for the movement's state,
  * that call the {@link ModelState} and {@link ViewState} methods.
@@ -42,11 +43,9 @@ public class ControllerPrisonState implements ControllerState {
     /**
      * Starts the state.
      * 
-     * <p>
-     * If the player must go to jail, the state is visualized and the player is sent
-     * to jail. If the player must exit jail, the state is visualized and the player
-     * is given the option to use a "Get Out of Jail Free" card or pay €50.
-     * </p>
+     * Verifies if the player must go to jail or if the player is in jail.
+     * If the player must go to jail, the view is set to visualize the message.
+     * If the player is in jail, the view is set to visualize the message and the options to get out of jail.
      */
     @Override
     public void startControllerState() {
@@ -71,7 +70,7 @@ public class ControllerPrisonState implements ControllerState {
     /**
      * Continues the state.
      * 
-     * @param data
+     * @param data the data related to the user's selection
      */
     @Override
     public void closeControllerState(final DataOutput data) {
