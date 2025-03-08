@@ -12,7 +12,8 @@ import it.unibo.monoopoly.utils.api.JsonConverter;
 import it.unibo.monoopoly.utils.api.PositionsFactory;
 
 /**
- * implement a factory to realize the lists of {@link Position} associated to all possible colors
+ * implement a factory to realize the lists of {@link Position} associated to
+ * all possible colors
  * of players.
  * The class implement {@link PositionsFactory} interface.
  */
@@ -29,8 +30,10 @@ public class PositionsFactoryImpl implements PositionsFactory {
 
     /**
      * initialize some fields of factory.
+     * 
      * @param mainFrameHeight to calculate the exactly coordinates of position.
-     * @param colors to be associated with the list of positions for each player.
+     * @param colors          to be associated with the list of positions for each
+     *                        player.
      */
     public PositionsFactoryImpl(final int mainFrameHeight, final List<Color> colors) {
         this.mainFrameHeight = mainFrameHeight;

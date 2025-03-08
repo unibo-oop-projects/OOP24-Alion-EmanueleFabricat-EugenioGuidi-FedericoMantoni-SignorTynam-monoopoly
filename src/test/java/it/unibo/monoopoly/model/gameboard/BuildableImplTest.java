@@ -37,7 +37,7 @@ class BuildableImplTest {
     static final int RENT_FOUR_HOUSE = 2200;
     static final int RENT_FIVE_HOUSE = 2625;
 
-    static final int COST = 550;
+    static final int PROPERTY_COST = 550;
     static final int HOUSE_COST = 100;
     static final String PROPERTY_NAME = "Corso Magellano";
     static final Optional<Player> FIRSTOWNER = Optional.of(new PlayerImpl("Mario", 1500, 0, false));
@@ -58,11 +58,12 @@ class BuildableImplTest {
     }
 
     /**
-     * This is executed before every test to initialize the field property to be tested.
+     * This is executed before every test to initialize the field property to be
+     * tested.
      */
     @BeforeEach
     public void initialization() {
-        this.property = new BuildableImpl(RENTAL_MAP, PROPERTY_NAME, COST, HOUSE_COST);
+        this.property = new BuildableImpl(RENTAL_MAP, PROPERTY_NAME, PROPERTY_COST, HOUSE_COST);
     }
 
     /**
@@ -93,7 +94,7 @@ class BuildableImplTest {
      */
     @Test
     void testGetCost() {
-        assertEquals(COST, property.getCost());
+        assertEquals(PROPERTY_COST, property.getCost());
     }
 
     /**
@@ -123,11 +124,12 @@ class BuildableImplTest {
     }
 
     /**
-     * Test the methods getMortgageValue, isMortgaged, setMortgage and removeMortgage.
+     * Test the methods getMortgageValue, isMortgaged, setMortgage and
+     * removeMortgage.
      */
     @Test
     void testIsMortgaged() {
-        assertEquals(COST / 2, this.property.getMortgageValue());
+        assertEquals(PROPERTY_COST / 2, this.property.getMortgageValue());
         assertFalse(this.property.isMortgaged());
         this.property.setMortgage();
         assertTrue(this.property.isMortgaged());

@@ -15,6 +15,7 @@ public abstract class AbstractCell implements Cell {
 
     /**
      * Constructor in common for any cell.
+     * 
      * @param name the name of the cell
      */
     public AbstractCell(final String name) {
@@ -28,7 +29,6 @@ public abstract class AbstractCell implements Cell {
     public String getName() {
         return this.name;
     }
-
 
     /**
      * {@inheritDoc}

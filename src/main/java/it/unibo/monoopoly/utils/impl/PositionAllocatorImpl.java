@@ -25,12 +25,13 @@ public class PositionAllocatorImpl implements PositionAllocator {
 
     /**
      * initialize all fields needed.
+     * 
      * @param mainFrameHeight
      * @param playersColors
      * @param colors
      */
     public PositionAllocatorImpl(final int mainFrameHeight, final Map<Color, String> playersColors,
-                                 final List<Color> colors) {
+            final List<Color> colors) {
         this.playersColors = reverseColor(playersColors);
         final PositionsFactory positionsFactory = new PositionsFactoryImpl(mainFrameHeight, colors);
         this.playersPositions = positionsFactory.createPlayersPositions();
@@ -59,7 +60,8 @@ public class PositionAllocatorImpl implements PositionAllocator {
         return newList;
     }
 
-    private List<NumberAndCirclePosition> createCircleOfPlayersPositions(final Map<String, Integer> newPlayersPositions) {
+    private List<NumberAndCirclePosition> createCircleOfPlayersPositions(
+            final Map<String, Integer> newPlayersPositions) {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var entry : this.playersColors.entrySet()) {
             if (newPlayersPositions.containsKey(entry.getKey())) {
@@ -75,7 +77,8 @@ public class PositionAllocatorImpl implements PositionAllocator {
         return newList;
     }
 
-    private List<NumberAndCirclePosition> createCircleOfPropertyPositions(final Map<Integer, Optional<String>> cellsOwners) {
+    private List<NumberAndCirclePosition> createCircleOfPropertyPositions(
+            final Map<Integer, Optional<String>> cellsOwners) {
         final List<NumberAndCirclePosition> newList = new ArrayList<>();
         for (final var entry : cellsOwners.entrySet()) {
             if (entry.getValue().isPresent()) {

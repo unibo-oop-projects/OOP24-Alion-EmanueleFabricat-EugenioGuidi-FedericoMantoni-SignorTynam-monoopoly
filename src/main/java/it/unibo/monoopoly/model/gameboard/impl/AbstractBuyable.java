@@ -18,6 +18,7 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
 
     /**
      * Constructor of a {@link Buyable} cell.
+     * 
      * @param name the name of the cell
      * @param cost the cost of the property
      */

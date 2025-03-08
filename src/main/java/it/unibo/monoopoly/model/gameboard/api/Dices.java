@@ -14,6 +14,7 @@ public interface Dices {
 
         /**
          * constructor of Pair.
+         * 
          * @param firstRoll
          * @param secondRoll
          */

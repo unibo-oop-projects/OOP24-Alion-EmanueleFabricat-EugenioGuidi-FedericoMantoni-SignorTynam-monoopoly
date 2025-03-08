@@ -21,17 +21,17 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
 
     /**
      * Create a new buildable property.
+     * 
      * @param rentalMap the map of rent values for the property
-     * @param name the name of the property
-     * @param cost the cost of the property
+     * @param name      the name of the property
+     * @param cost      the cost of the property
      * @param houseCost the cost of building a house on the property
      */
     public BuildableImpl(
-        @JsonProperty("rentalMap")final Map<Integer, Integer> rentalMap,
-        @JsonProperty("name")final String name,
-        @JsonProperty("cost")final int cost,
-        @JsonProperty("houseCost")final int houseCost
-    ) {
+            @JsonProperty("rentalMap") final Map<Integer, Integer> rentalMap,
+            @JsonProperty("name") final String name,
+            @JsonProperty("cost") final int cost,
+            @JsonProperty("houseCost") final int houseCost) {
         super(name, cost);
         this.rentalMap = new HashMap<>();
         this.rentalMap.putAll(rentalMap);
@@ -52,35 +52,42 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
     /**
      * Add a house to the property.
      * 
-     * @throws IllegalStateException if the property is mortgaged or there are already 5 houses on the property.
+     * @throws IllegalStateException if the property is mortgaged or there are
+     *                               already 5 houses on the property.
      */
     @Override
     public void buildHouse() {
-       this.checkMortgageAndHouseLimit(true);
-       this.houses++;
+        this.checkMortgageAndHouseLimit(true);
+        this.houses++;
     }
 
     /**
-    * Remove a house from the property.
-    * 
-    * @return the houses
-    * @throws IllegalStateException if the property is mortgaged or there are no houses on the property
-    */
+     * Remove a house from the property.
+     * 
+     * @return the houses
+     * @throws IllegalStateException if the property is mortgaged or there are no
+     *                               houses on the property
+     */
     @Override
     public int sellHouse() {
-       this.checkMortgageAndHouseLimit(false);
-       this.houses--;
-       return getSellHouseCost();
+        this.checkMortgageAndHouseLimit(false);
+        this.houses--;
+        return getSellHouseCost();
     }
 
     /**
-     * Verify if the property is mortgaged and if it is possible to build or sell houses.
-     * @param isBuilding true if the operation is building a house, false if it is selling a house
-     * @throws IllegalStateException if the property is mortgaged or there are already 5 houses on the property
+     * Verify if the property is mortgaged and if it is possible to build or sell
+     * houses.
+     * 
+     * @param isBuilding true if the operation is building a house, false if it is
+     *                   selling a house
+     * @throws IllegalStateException if the property is mortgaged or there are
+     *                               already 5 houses on the property
      */
     private void checkMortgageAndHouseLimit(final boolean isBuilding) {
         if (this.isMortgaged()) {
-            throw new IllegalStateException("Cannot " + (isBuilding ? "build" : "sell") + " a house on a mortgaged property");
+            throw new IllegalStateException(
+                    "Cannot " + (isBuilding ? "build" : "sell") + " a house on a mortgaged property");
         }
 
         if (isBuilding) {

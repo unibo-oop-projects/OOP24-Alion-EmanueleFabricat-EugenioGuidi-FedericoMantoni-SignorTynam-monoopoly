@@ -19,6 +19,7 @@ public final class RollDicesPanel extends JPanel {
 
     /**
      * initialize all needed fields.
+     * 
      * @param actionListener
      * @param mainFrameHeight
      */

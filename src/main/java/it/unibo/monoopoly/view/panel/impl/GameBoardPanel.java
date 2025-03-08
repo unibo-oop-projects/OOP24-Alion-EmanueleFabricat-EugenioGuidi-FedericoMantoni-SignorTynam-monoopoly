@@ -15,15 +15,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import it.unibo.monoopoly.utils.impl.NumberAndCirclePosition;
-import it.unibo.monoopoly.view.panel.api.PositionAllocator;
+import it.unibo.monoopoly.utils.api.PositionAllocator;
+import it.unibo.monoopoly.utils.impl.PositionAllocatorImpl;
 
 /**
- * The class is used to realize the vision of the main gameBoard and 
+ * The class is used to realize the vision of the main gameBoard and
  * dynamically update the game implementing {@link JPanel}.
  */
 public final class GameBoardPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
+    
+    private static final double CIRCLE_DIAMETER_RATIO = 0.025;
+    private static final double NUMBER_SIZE_RATIO = 0.025;
 
     private final int mainFrameHeight;
     private final transient Image backgroundImage;
@@ -32,6 +36,7 @@ public final class GameBoardPanel extends JPanel {
 
     /**
      * initialize all the information to create the initial gameBoard.
+     * 
      * @param mainFrameHeight
      * @param players
      * @param colors
@@ -49,6 +54,7 @@ public final class GameBoardPanel extends JPanel {
 
     /**
      * this method is used to update the view of gameBoard.
+     * 
      * @param newPlayersPositions
      * @param cellsOwners
      * @param nBuiltHouses
@@ -56,13 +62,13 @@ public final class GameBoardPanel extends JPanel {
      * @param mortgagedProperties
      */
     public void update(final Map<String, Integer> newPlayersPositions, final Map<Integer, Optional<String>> cellsOwners,
-                       final Map<Integer, Integer> nBuiltHouses, final List<String> prisonedPlayers,
-                       final List<Integer> mortgagedProperties) {
-        this.numberAndCirclePositions = this.positionAllocator.createListCircleNumberPosition(newPlayersPositions, 
-                                                                                              cellsOwners, 
-                                                                                              prisonedPlayers,
-                                                                                              nBuiltHouses,
-                                                                                              mortgagedProperties);
+            final Map<Integer, Integer> nBuiltHouses, final List<String> prisonedPlayers,
+            final List<Integer> mortgagedProperties) {
+        this.numberAndCirclePositions = this.positionAllocator.createListCircleNumberPosition(newPlayersPositions,
+                cellsOwners,
+                prisonedPlayers,
+                nBuiltHouses,
+                mortgagedProperties);
         this.repaint();
     }
 
@@ -74,8 +80,8 @@ public final class GameBoardPanel extends JPanel {
         super.paintComponent(g);
 
         g.drawImage(backgroundImage, 0, 0, this.mainFrameHeight, this.mainFrameHeight, this);
-        final int circleDiameter = (int) (this.mainFrameHeight * 0.025);
-        final int numberSize = (int) (this.mainFrameHeight * 0.022);
+        final int circleDiameter = (int) (this.mainFrameHeight * CIRCLE_DIAMETER_RATIO);
+        final int numberSize = (int) (this.mainFrameHeight * NUMBER_SIZE_RATIO);
 
         for (final var position : this.numberAndCirclePositions) {
             if (position.isCircle()) {

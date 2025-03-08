@@ -13,15 +13,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 /**
  * Cell interface.
  */
-@JsonTypeInfo(
-use = JsonTypeInfo.Id.NAME,
-include = JsonTypeInfo.As.PROPERTY,
-property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-    @Type(value = BuildableImpl.class, name = "Buildable"),
-    @Type(value = CompanyImpl.class, name = "Company"),
-    @Type(value = RailroadImpl.class, name = "Railroad"),
-    @Type(value = FunctionalImpl.class, name = "Functional")
+        @Type(value = BuildableImpl.class, name = "Buildable"),
+        @Type(value = CompanyImpl.class, name = "Company"),
+        @Type(value = RailroadImpl.class, name = "Railroad"),
+        @Type(value = FunctionalImpl.class, name = "Functional")
 })
 public interface Cell {
 

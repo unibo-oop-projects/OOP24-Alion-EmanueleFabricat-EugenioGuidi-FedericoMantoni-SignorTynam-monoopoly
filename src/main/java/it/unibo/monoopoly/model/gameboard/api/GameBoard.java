@@ -24,6 +24,7 @@ public interface GameBoard {
 
     /**
      * Control if the game is ended checking the number of player remaining.
+     * 
      * @return true if the game is ended.
      */
     boolean isGameEnded();

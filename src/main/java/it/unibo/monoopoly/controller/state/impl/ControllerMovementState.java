@@ -1,6 +1,5 @@
 package it.unibo.monoopoly.controller.state.impl;
 
-
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
@@ -26,15 +25,16 @@ public class ControllerMovementState implements ControllerState {
 
     /**
      * inizialize fields of class.
+     * 
      * @param mainController
      * @param modelState
      * @param viewState
      * @param dices
      */
-    public ControllerMovementState(final MainController mainController, 
-                                   final ModelState modelState,
-                                   final ViewState viewState, 
-                                   final Dices dices) {
+    public ControllerMovementState(final MainController mainController,
+            final ModelState modelState,
+            final ViewState viewState,
+            final Dices dices) {
         this.mainController = mainController;
         this.actualModelState = modelState;
         this.actualViewState = viewState;

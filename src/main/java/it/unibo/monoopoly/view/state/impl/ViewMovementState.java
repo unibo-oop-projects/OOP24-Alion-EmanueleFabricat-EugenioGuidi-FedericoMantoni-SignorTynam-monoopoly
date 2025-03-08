@@ -19,6 +19,7 @@ public class ViewMovementState implements ViewState {
 
     /**
      * Constructor of the class that sets the field.
+     * 
      * @param mainView
      */
     public ViewMovementState(final MainView mainView) {
@@ -38,12 +39,12 @@ public class ViewMovementState implements ViewState {
     @Override
     public void visualize(final DataInput dataInput) {
         if (dataInput.isEnabled().isPresent() && dataInput.isEnabled().get()) {
-            this.mainView.setInteractivePanel(new RollDicesPanel(new RollDicesListener(this.mainView), 
-                                              mainView.getMainFrame().getHeight()));
+            this.mainView.setInteractivePanel(new RollDicesPanel(new RollDicesListener(this.mainView),
+                    mainView.getMainFrame().getHeight()));
         } else if (dataInput.dices().isPresent()) {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
-                    "Primo dado: " + dataInput.dices().get().getFirstRoll() 
-                    + "\nSecondo dado: " + dataInput.dices().get().getSecondRoll(),
+                    "Primo dado: " + dataInput.dices().get().getFirstRoll()
+                            + "\nSecondo dado: " + dataInput.dices().get().getSecondRoll(),
                     null, JOptionPane.PLAIN_MESSAGE);
         }
     }

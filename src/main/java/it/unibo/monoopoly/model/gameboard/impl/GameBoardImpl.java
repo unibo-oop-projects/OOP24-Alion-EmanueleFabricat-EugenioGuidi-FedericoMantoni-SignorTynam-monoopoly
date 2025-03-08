@@ -13,7 +13,8 @@ import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.player.api.Player;
 
 /**
- * This class implement the {@link GameBoard} interface to simulate the game board of Monopoly game.
+ * This class implement the {@link GameBoard} interface to simulate the game
+ * board of Monopoly game.
  */
 public class GameBoardImpl implements GameBoard {
 
@@ -26,7 +27,8 @@ public class GameBoardImpl implements GameBoard {
 
     /**
      * Initialize the fields to save players and cells.
-     * @param cellsList is the list of cells in the game board.
+     * 
+     * @param cellsList   is the list of cells in the game board.
      * @param playersList is the list of players in the current game.
      */
     public GameBoardImpl(final List<Cell> cellsList, final List<Player> playersList) {
@@ -99,8 +101,8 @@ public class GameBoardImpl implements GameBoard {
     @Override
     public List<String> getCellsNames() {
         return this.cellsList.stream()
-                            .map(Cell::getName)
-                            .collect(Collectors.toList());
+                .map(Cell::getName)
+                .collect(Collectors.toList());
     }
 
     /**

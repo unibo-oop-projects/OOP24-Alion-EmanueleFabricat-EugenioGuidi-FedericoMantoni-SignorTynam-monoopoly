@@ -14,7 +14,8 @@ import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 
 /**
- * The class implements the principal panel {@link UpdateblePanel} that contain the 
+ * The class implements the principal panel {@link UpdateblePanel} that contain
+ * the
  * game board panel and player panel.
  */
 public final class GamePanel extends JPanel implements UpdatablePanel {
@@ -30,7 +31,9 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
     private final List<Triple<String, Integer, Color>> initializedList;
 
     /**
-     * initialize all the fields needed and set the preferred size based on dimension of frame.
+     * initialize all the fields needed and set the preferred size based on
+     * dimension of frame.
+     * 
      * @param mainFrameHeight
      * @param mainFrameWidth
      * @param firstPlayer

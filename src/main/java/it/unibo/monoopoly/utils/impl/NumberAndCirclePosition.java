@@ -3,7 +3,8 @@ package it.unibo.monoopoly.utils.impl;
 import java.awt.Color;
 
 /**
- * This class create a Builder of position of circle and number in the game board.
+ * This class create a Builder of position of circle and number in the game
+ * board.
  */
 public final class NumberAndCirclePosition {
 
@@ -113,6 +114,7 @@ public final class NumberAndCirclePosition {
 
         /**
          * create the effective object whit data setted.
+         * 
          * @return the object created with builder.
          */
         public NumberAndCirclePosition build() {
