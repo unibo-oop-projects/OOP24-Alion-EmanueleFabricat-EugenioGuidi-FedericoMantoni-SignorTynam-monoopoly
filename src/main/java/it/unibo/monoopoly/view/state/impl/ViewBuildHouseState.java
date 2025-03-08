@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.utils.impl.ViewCellGiver;
@@ -29,6 +30,7 @@ public class ViewBuildHouseState implements ViewState {
      * 
      * @param mainView the main view
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ViewBuildHouseState(final MainView mainView) {
         this.mainView = mainView;
     }

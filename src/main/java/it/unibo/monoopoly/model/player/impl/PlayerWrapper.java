@@ -2,6 +2,7 @@ package it.unibo.monoopoly.model.player.impl;
 
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.player.api.Player;
 
@@ -17,6 +18,7 @@ public class PlayerWrapper implements Player {
      * 
      * @param player the real Player.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern Proxy")
     public PlayerWrapper(final Player player) {
         this.player = player;
     }

@@ -3,6 +3,7 @@ package it.unibo.monoopoly.model.state.impl;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.main.api.MainModel;
@@ -24,6 +25,7 @@ public class ModelBuildHouseState implements ModelState {
      * 
      * @param model the main game model
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ModelBuildHouseState(final MainModel model) {
         this.model = model;
     }

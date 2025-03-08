@@ -2,6 +2,7 @@ package it.unibo.monoopoly.model.state.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.common.Message;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
@@ -28,6 +29,7 @@ public class ModelCheckActionState implements ModelState {
      * 
      * @param mainModel the main model
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ModelCheckActionState(final MainModel mainModel) {
         this.mainModel = mainModel;
     }

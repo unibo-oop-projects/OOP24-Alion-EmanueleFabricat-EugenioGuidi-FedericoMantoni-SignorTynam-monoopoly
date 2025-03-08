@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
@@ -44,12 +45,13 @@ public class ControllerBankerState implements ControllerState {
      * @param actualViewState  the actual {@link ViewState} to be set.
      * @param gameBoard        the {@link GameBoard} to be set.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ControllerBankerState(final MainController mainController, final ModelState actualModelState,
             final ViewState actualViewState, final Set<Buyable> playerProperty, final List<Cell> gameBoardCellList) {
         this.mainController = mainController;
         this.actualModelState = actualModelState;
         this.actualViewState = actualViewState;
-        this.playerProperty = playerProperty;
+        this.playerProperty = Set.copyOf(playerProperty);
         this.gameBoardCellList = List.copyOf(gameBoardCellList);
     }
 
