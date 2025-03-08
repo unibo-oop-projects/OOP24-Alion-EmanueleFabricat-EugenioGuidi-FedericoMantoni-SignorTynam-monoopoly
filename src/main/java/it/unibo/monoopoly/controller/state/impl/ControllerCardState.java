@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.controller.state.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
@@ -31,6 +32,7 @@ public class ControllerCardState implements ControllerState {
      * @param actualViewState  to set.
      * @param gameBoard        to set.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerCardState(final MainController mainController, final ModelState actualModelState,
             final ViewState actualViewState, final DeckWrapper deckWrapper) {
         this.mainController = mainController;

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
@@ -38,12 +39,13 @@ public class ControllerBuildHouseState implements ControllerState {
      * @param viewState      the view state
      * @param gameBoard      the game board
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerBuildHouseState(final MainController mainController, final ModelState modelState,
             final ViewState viewState, final PlayerWrapper playerWrapper, final List<Cell> gameBoardCellList) {
         this.modelState = modelState;
         this.viewState = viewState;
         this.mainController = mainController;
-        this.gameBoardCellList = gameBoardCellList;
+        this.gameBoardCellList = List.copyOf(gameBoardCellList);
         this.playerWrapper = playerWrapper;
     }
 
