@@ -87,7 +87,7 @@ public class MainControllerImpl implements MainController {
             case final ModelCheckActionState ca -> {
                 this.mainView.setState(new ViewCheckActionState(mainView));
                 this.actualState = new ControllerCheckActionState(this, model.getState(), mainView.getViewState(),
-                        model.getGameBoard(), this.model.getPlayerWrapper());
+                        model.getCellWrapper());
             }
             case ModelCardState c -> {
                 this.mainView.setState(new ViewCardState(mainView));

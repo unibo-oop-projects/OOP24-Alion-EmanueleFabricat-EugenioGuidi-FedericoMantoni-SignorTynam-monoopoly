@@ -13,7 +13,7 @@ import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
-import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
+import it.unibo.monoopoly.model.gameboard.impl.CellWrapper;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -25,8 +25,7 @@ public class ControllerCheckActionState implements ControllerState {
     private final MainController mainController;
     private final ModelState modelState;
     private final ViewState viewState;
-    private final GameBoard gameBoard;
-    private final PlayerWrapper playerWrapper;
+    private final CellWrapper cellWrapper;
 
     /**
      * Construct the {@link ControllerCheckActionState}.
@@ -37,12 +36,11 @@ public class ControllerCheckActionState implements ControllerState {
      * @param gameBoard      the {@link GameBoard}
      */
     public ControllerCheckActionState(final MainController mainController, final ModelState modelState,
-            final ViewState viewState, final GameBoard gameBoard, final PlayerWrapper playerWrapper) {
+            final ViewState viewState, final CellWrapper cellWrapper) {
         this.mainController = mainController;
         this.modelState = modelState;
         this.viewState = viewState;
-        this.gameBoard = gameBoard;
-        this.playerWrapper = playerWrapper;
+        this.cellWrapper = cellWrapper;
     }
 
     /**
@@ -52,17 +50,16 @@ public class ControllerCheckActionState implements ControllerState {
      */
     @Override
     public void startControllerState() {
-        final Cell actualCell = this.gameBoard.getCell(this.playerWrapper.getActualPosition());
         if (modelState.verify()) {
-            visualizeBuyProperty(actualCell);
+            visualizeBuyProperty(cellWrapper);
         } else {
             modelState.doAction(new DataBuilderOutputImpl().build());
             final Optional<Event> actualEvent = this.mainController.getActualEvent();
             if (actualEvent.isPresent()) {
                 if (actualEvent.get().equals(Event.RENT_PAYMENT)) {
-                    visualizeRentPayment(actualCell, actualEvent);
+                    visualizeRentPayment(cellWrapper, actualEvent);
                 } else if (actualEvent.get().equals(Event.TAX_PAYMENT)) {
-                    visualizeTaxPayment(actualCell, actualEvent);
+                    visualizeTaxPayment(cellWrapper, actualEvent);
                 }
             }
             this.closeControllerState(new DataBuilderOutputImpl().build());
@@ -102,6 +99,5 @@ public class ControllerCheckActionState implements ControllerState {
         .valueToPay(((Buyable) actualCell).getCost())
         .text(actualCell.getName()).build());
     }
-
 
 }
