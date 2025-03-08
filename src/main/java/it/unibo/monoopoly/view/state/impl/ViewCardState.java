@@ -2,6 +2,7 @@ package it.unibo.monoopoly.view.state.impl;
 
 import javax.swing.JOptionPane;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -18,6 +19,7 @@ public class ViewCardState implements ViewState {
      * 
      * @param mainView to set.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ViewCardState(final MainView mainView) {
         this.mainView = mainView;
     }
