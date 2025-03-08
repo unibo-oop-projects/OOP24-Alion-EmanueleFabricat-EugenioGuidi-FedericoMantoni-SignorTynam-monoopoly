@@ -39,7 +39,7 @@ public class NotaryImpl implements Notary {
     public boolean isActionBuy(final Cell cell, final Player actualPlayer) {
         Objects.requireNonNull(actualPlayer);
         Objects.requireNonNull(cell);
-        if (cell.isBuyable()) {
+        if (cell instanceof Buyable) {
             final Buyable buyableCell = (Buyable) cell;
             return buyableCell.isAvailable() && actualPlayer.isPayable(buyableCell.getCost());
         } else {
@@ -54,7 +54,7 @@ public class NotaryImpl implements Notary {
     public Optional<Event> checkProperty(final Player player, final Cell cell) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(cell);
-        if (!cell.isBuyable()) {
+        if (!(cell instanceof Buyable)) {
             throw new IllegalArgumentException("Expected a buyable cell in input");
         }
         final Buyable buyableCell = (Buyable) cell;

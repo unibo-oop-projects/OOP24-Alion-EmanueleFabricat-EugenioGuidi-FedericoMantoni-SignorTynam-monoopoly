@@ -29,6 +29,7 @@ public abstract class AbstractCell implements Cell {
         return this.name;
     }
 
+    
     /**
      * {@inheritDoc}
      */
