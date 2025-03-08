@@ -35,7 +35,7 @@ class TestMovementState {
      */
     @BeforeEach
     void init() {
-        this.firstMainModel =  new MainModelImpl(List.of("Mauro", "Francesca"));
+        this.firstMainModel = new MainModelImpl(List.of("Mauro", "Francesca"));
         this.firstModelMovemenState = new ModelMovementState(this.firstMainModel, Optional.empty());
         this.secondModelMovemenState = new ModelMovementState(new MainModelImpl(List.of("Mauro", "Francesca")), Optional.of(1));
     }

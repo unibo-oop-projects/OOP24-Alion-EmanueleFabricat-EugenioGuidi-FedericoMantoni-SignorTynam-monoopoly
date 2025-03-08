@@ -60,8 +60,6 @@ public class MainControllerImpl implements MainController {
     public MainControllerImpl(final List<String> playersName) {
         this.model = new MainModelImpl(playersName);
         final List<String> cellsNames = model.getGameBoard().getCellsNames();
-        // Create the main view passing this controller, players' names, and the cells'
-        // names
         this.mainView = new MainViewImpl(this, playersName, cellsNames);
         this.mainView.display();
         this.mainView.update();

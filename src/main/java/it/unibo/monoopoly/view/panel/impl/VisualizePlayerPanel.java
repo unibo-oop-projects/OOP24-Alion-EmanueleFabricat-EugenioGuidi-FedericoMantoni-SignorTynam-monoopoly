@@ -11,7 +11,6 @@ import java.util.Map.Entry;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
 
 import org.apache.commons.lang3.tuple.Triple;
 

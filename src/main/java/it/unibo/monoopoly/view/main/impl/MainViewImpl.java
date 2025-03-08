@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -70,10 +71,10 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     private List<Triple<String, Integer, Color>> initPlayerView(final List<String> namePlayers) {
         final List<Triple<String, Integer, Color>> l = new LinkedList<>();
-        for (var name : namePlayers) {
+        for (final var name : namePlayers) {
             l.add(Triple.of(name, 0, players.entrySet().stream()
-                    .filter(e -> e.getValue() == name)
-                    .map(e -> e.getKey())
+                    .filter(e -> e.getValue().equals(name))
+                    .map(Entry::getKey)
                     .findFirst().get()));
         }
         return l;
