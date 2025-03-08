@@ -43,6 +43,7 @@ public class ModelPrisonState implements ModelState {
 
     /**
      * Performs the state action.
+     * 
      * <p>
      * If the player must go to jail, they are imprisoned.
      * Otherwise, if the player has at least one "Get Out of Jail Free" card,
@@ -66,6 +67,7 @@ public class ModelPrisonState implements ModelState {
 
     /**
      * Closes the state.
+     * 
      * <p>
      * If the player must go to jail, the next turn is started.
      * Otherwise, if the player used a card, the model state is set to ModelMovementState.
