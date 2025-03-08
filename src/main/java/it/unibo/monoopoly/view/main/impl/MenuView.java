@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.menu.api.MenuController;
 import it.unibo.monoopoly.view.panel.impl.MenuPanel;
 
@@ -36,6 +37,7 @@ public class MenuView extends AbstractView {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public JPanel getMainPanel() {
         return this.menuPanel;
     }
