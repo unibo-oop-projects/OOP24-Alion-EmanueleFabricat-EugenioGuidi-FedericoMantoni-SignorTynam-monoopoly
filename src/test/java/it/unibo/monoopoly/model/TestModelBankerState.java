@@ -26,8 +26,9 @@ public class TestModelBankerState {
     private static final int BUILDABLE_CELL1 = 39;
     private static final int BUILDABLE_CELL2 = 37;
     private static final int START_AMOUNT = 1500;
+    private static final int AMOUNT_TO_PAY = 200;
+    private static final int AMOUNT_TO_PAY_2 = 100;
     private MainModel model;
-    private ModelBankerState state;
 
     /**
      * Initialization for the test.
@@ -58,7 +59,7 @@ public class TestModelBankerState {
         property.buildHouse();
         this.model.getGameBoard().getCurrentPlayer().addProperty(property);
         property.buildHouse();
-        model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + 200);
+        model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + AMOUNT_TO_PAY);
         ModelBankerState state = new ModelBankerState(this.model, false);
         assertEquals(true, state.verify());
         assertEquals(Optional.of(Event.SELL_HOUSE), this.model.getEvent());
@@ -80,30 +81,30 @@ public class TestModelBankerState {
         Buildable property2 = (Buildable) (this.model.getGameBoard().getCell(BUILDABLE_CELL2));
         this.model.getGameBoard().getCurrentPlayer().addProperty(property);
         this.model.getGameBoard().getCurrentPlayer().addProperty(property2);
-        model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + 200);
+        model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + AMOUNT_TO_PAY);
         ModelBankerState state = new ModelBankerState(this.model, false);
         assertEquals(true, state.verify());
         assertEquals(Optional.of(Event.MORTGAGE_PROPERTY), this.model.getEvent());
         state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL1).build());
         assertEquals(true, property.isMortgaged());
-        assertEquals(property.getMortgageValue() - 200, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
+        assertEquals(property.getMortgageValue() - AMOUNT_TO_PAY, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();
         assertInstanceOf(ModelBankerState.class, this.model.getState());
         assertEquals(true, this.model.getState().verify());
         assertEquals(Optional.of(Event.MORTGAGE_PROPERTY), this.model.getEvent());
         state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL2).build());
-        assertEquals(START_AMOUNT - 1700 + property.getMortgageValue() + property2.getMortgageValue(),
+        assertEquals(START_AMOUNT - START_AMOUNT + AMOUNT_TO_PAY + property.getMortgageValue() + property2.getMortgageValue(),
                 this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
     }
 
     /* */
     @Test
     void testOperationBankrupt() {
-        model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + 100);
+        model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + AMOUNT_TO_PAY_2);
         ModelBankerState state = new ModelBankerState(this.model, false);
         assertEquals(true, state.verify());
         state.doAction(new DataBuilderOutputImpl().build());
-        assertEquals(- 100, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
+        assertEquals( - AMOUNT_TO_PAY_2, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         assertEquals(Optional.of(Event.BANKRUPT), this.model.getEvent());
     }
 
