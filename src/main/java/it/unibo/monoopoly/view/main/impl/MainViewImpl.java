@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 
 import org.apache.commons.lang3.tuple.Triple;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.view.main.api.MainView;
@@ -89,6 +90,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public JPanel getMainPanel() {
         return this.gamePanel;
     }
@@ -99,6 +101,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      * @return the actual {@link ViewState}.
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ViewState getViewState() {
         return this.viewState;
     }
@@ -132,6 +135,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     /**
      * {@inheritDoc}
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     @Override
     public void setState(final ViewState state) {
         Objects.requireNonNull(state);
