@@ -16,7 +16,7 @@ import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
  * {@link ActionListener} used to take a selected cell in an
  * {@link SelectionCellsPanel}.
  */
-public class ViewCellGiver implements ActionListener {
+public class CellGiverListener implements ActionListener {
     private final MainView mainView;
     /**
      * Field use to control if the related button was pressed.
@@ -30,7 +30,7 @@ public class ViewCellGiver implements ActionListener {
      *                 {@link ControllerState}.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
-    public ViewCellGiver(final MainView mainView) {
+    public CellGiverListener(final MainView mainView) {
         this.mainView = mainView;
     }
 
@@ -41,14 +41,14 @@ public class ViewCellGiver implements ActionListener {
     public void actionPerformed(final ActionEvent e) {
         final var button = (JButton) e.getSource();
         final String cellName = button.getText().split("\n")[0];
-        final int cell = mainView.getNameCells().indexOf(cellName);
+        final int cellIndex = mainView.getNameCells().indexOf(cellName);
         this.mainView.setInteractivePanel(new DefaultInteractivePanel(this.mainView.getMainFrame().getHeight()));
         if (NO_CHOICE.equals(cellName)) {
             mainView.getControllerState().closeControllerState(
                     new DataBuilderOutputImpl().build());
         } else {
             mainView.getControllerState().closeControllerState(
-                    new DataBuilderOutputImpl().selectedCell(cell).build());
+                    new DataBuilderOutputImpl().selectedCell(cellIndex).build());
         }
     }
 }

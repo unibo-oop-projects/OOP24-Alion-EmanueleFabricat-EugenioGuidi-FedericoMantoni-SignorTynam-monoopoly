@@ -77,7 +77,7 @@ public class ModelPrisonState implements ModelState {
      * </p>
      */
     @Override
-    public void closeState() {
+    public void closeModelState() {
         if (goInJail) {
             this.model.setState(new ModelMovementState(this.model, Optional.of(PRISON_INDEX)));
         } else if (this.model.getGameBoard().getCurrentPlayer().isPrisoned()) {

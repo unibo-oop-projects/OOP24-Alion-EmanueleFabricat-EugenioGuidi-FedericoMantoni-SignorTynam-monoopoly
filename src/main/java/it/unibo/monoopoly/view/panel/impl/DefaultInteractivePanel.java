@@ -9,13 +9,12 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 /**
- * The default {@link JPanel} that should be placed at the bottom right of the
- * interface,
+ * The default {@link JPanel} that should be placed at the {@link InteractivePanel},
  * when a selection doesn't need to be made.
  */
 public final class DefaultInteractivePanel extends JPanel {
 
-    private static final int TEXT_SIZE = 50;
+    private static final int TEXT_RESIZE = 50;
     private static final long serialVersionUID = 1L;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
@@ -43,7 +42,7 @@ public final class DefaultInteractivePanel extends JPanel {
                         + "Infine i messaggi di notifica o le scelte semplici"
                         + " compariranno in una finestrella al centro del pannello.");
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        startText.setFont(new Font("Arial", Font.PLAIN, mainFrameHeight / TEXT_SIZE));
+        startText.setFont(new Font("Arial", Font.PLAIN, mainFrameHeight / TEXT_RESIZE));
         startText.setEnabled(false);
         startText.setLineWrap(true);
         startText.setWrapStyleWord(true);

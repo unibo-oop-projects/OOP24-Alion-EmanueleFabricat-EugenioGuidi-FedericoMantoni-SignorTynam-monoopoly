@@ -83,7 +83,7 @@ public class ControllerCheckActionState implements ControllerState {
         if (dataOutput.buyProperty().isPresent()) {
             modelState.doAction(dataOutput);
         }
-        modelState.closeState();
+        modelState.closeModelState();
         mainController.nextPhase();
 
     }

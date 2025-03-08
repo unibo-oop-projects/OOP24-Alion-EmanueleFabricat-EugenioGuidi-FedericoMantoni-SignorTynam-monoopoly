@@ -60,14 +60,14 @@ public class ControllerBankerState implements ControllerState {
     /**
      *
      * {@inheritDoc}
-     * In this specific case,3
+     * In this specific case,
      * then communicates this to the {@link ViewState} and calls the visualize method,
      * correctly constructing the {@link DataInput}.
      */
     @Override
     public void startControllerState() {
         isIndebted = this.actualModelState.verify();
-        this.actualViewState.setMode(isIndebted);
+        this.actualViewState.setter(isIndebted);
         this.actualViewState.visualize(buildDataInput());
     }
 
@@ -82,7 +82,7 @@ public class ControllerBankerState implements ControllerState {
     @Override
     public void closeControllerState(final DataOutput dataOutput) {
         this.actualModelState.doAction(dataOutput);
-        this.actualModelState.closeState();
+        this.actualModelState.closeModelState();
         mainController.nextPhase();
 
     }

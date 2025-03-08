@@ -17,7 +17,7 @@ public class ViewCardState implements ViewState {
     /**
      * Constructor of the class that sets the field.
      * 
-     * @param mainView to set.
+     * @param mainView to visualize the correct panel on that.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ViewCardState(final MainView mainView) {
@@ -27,14 +27,18 @@ public class ViewCardState implements ViewState {
     /**
      *
      * {@inheritDoc}
+     * in this specific case,
+     * is useless.
      */
     @Override
-    public void setMode(final Boolean setter) {
+    public void setter(final Boolean setter) {
     }
 
     /**
      *
      * {@inheritDoc}
+     * in this specific case,
+     * display the card text.
      */
     @Override
     public void visualize(final DataInput data) {

@@ -33,7 +33,7 @@ class TestModelUnmortgageState {
     void testNothingToUnmortgage() {
         final ModelUnmortgageState state = new ModelUnmortgageState(model);
         assertFalse(state.verify());
-        state.closeState();
+        state.closeModelState();
         assertInstanceOf(ModelBuildHouseState.class, this.model.getState());
     }
 
@@ -51,7 +51,7 @@ class TestModelUnmortgageState {
         assertTrue(state.verify());
         state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL).build());
         assertFalse(property.isMortgaged());
-        state.closeState();
+        state.closeModelState();
         assertInstanceOf(ModelUnmortgageState.class, this.model.getState());
         assertEquals(START_AMOUNT - property.getUnmortgageValue(),
                 this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());

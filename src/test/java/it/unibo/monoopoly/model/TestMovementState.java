@@ -57,7 +57,7 @@ class TestMovementState {
     void testDoActionAndCloseState() {
         this.firstModelMovemenState.doAction(new DataBuilderOutputImpl().build());
         final Player firstPlayer = this.firstMainModel.getGameBoard().getCurrentPlayer();
-        this.firstModelMovemenState.closeState();
+        this.firstModelMovemenState.closeModelState();
         if (this.firstMainModel.getGameBoard().getCurrentPlayer().isPrisoned()) {
             assertNotEquals(firstPlayer, this.firstMainModel.getGameBoard().getCurrentPlayer());
             assertInstanceOf(ModelPrisonState.class, this.firstMainModel.getState());

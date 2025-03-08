@@ -75,7 +75,7 @@ public class ModelCheckActionState implements ModelState {
      * The next state is set based of the action to perform or to be performed.
      */
     @Override
-    public void closeState() {
+    public void closeModelState() {
         final Optional<Event> event = this.mainModel.getEvent();
         if (event.isEmpty() || event.get().equals(Event.BUY_PROPERTY)) {
             this.mainModel.setState(new ModelUnmortgageState(mainModel));

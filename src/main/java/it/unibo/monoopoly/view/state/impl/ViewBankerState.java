@@ -11,22 +11,25 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
-import it.unibo.monoopoly.utils.impl.ViewCellGiver;
+import it.unibo.monoopoly.utils.impl.CellGiverListener;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * comment.
+ * Implementation of {@link ViewState} that depending on the situation,
+ * either notifies the success of the payment,
+ * allows the player to choose which property to sell or mortgage,
+ * or declares bankruptcy.
  */
 public class ViewBankerState implements ViewState {
     private final MainView mainView;
     private boolean isIndebted;
 
     /**
-     * comment.
+     * Constructor of the class.
      * 
-     * @param mainView
+     * @param mainView to visualize the correct panel on that.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ViewBankerState(final MainView mainView) {
@@ -36,15 +39,20 @@ public class ViewBankerState implements ViewState {
     /**
      *
      * {@inheritDoc}
+     * in this specific case,
+     * set the field isIndebted.
      */
     @Override
-    public void setMode(final Boolean setter) {
+    public void setter(final Boolean setter) {
         this.isIndebted = setter;
     }
 
     /**
      *
      * {@inheritDoc}
+     * in this specific case,
+     * displays the appropriate dialog or sets the interactive panel based on what
+     * the player needs to do.
      */
     @Override
     public void visualize(final DataInput data) {
@@ -56,13 +64,13 @@ public class ViewBankerState implements ViewState {
             switch (data.event().get()) {
                 case Event.SELL_HOUSE:
                     final JPanel panel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(),
-                            new ViewCellGiver(this.mainView),
+                            new CellGiverListener(this.mainView),
                             intToTextCell(data.cellMap().get()), "in cui vendere una casa", false);
                     this.mainView.setInteractivePanel(panel);
                     break;
                 case Event.MORTGAGE_PROPERTY:
                     final JPanel panel1 = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(),
-                            new ViewCellGiver(this.mainView),
+                            new CellGiverListener(this.mainView),
                             intToTextCell(data.cellMap().get()), "da disipotecare", false);
                     this.mainView.setInteractivePanel(panel1);
                     break;

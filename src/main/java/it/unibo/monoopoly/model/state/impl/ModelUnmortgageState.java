@@ -17,7 +17,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
  * for simplicity, one can only release the mortgage if they have liquid funds.
  */
 public class ModelUnmortgageState implements ModelState {
-    private boolean makeState;
+    private boolean havePropertyToUnmortgage;
     private final MainModel mainModel;
     private DataOutput dataOutput;
 
@@ -43,8 +43,8 @@ public class ModelUnmortgageState implements ModelState {
      */
     @Override
     public boolean verify() {
-        this.makeState = havePropertyToUnmortgage();
-        return this.makeState;
+        this.havePropertyToUnmortgage = havePropertyToUnmortgage();
+        return this.havePropertyToUnmortgage;
     }
 
     private boolean havePropertyToUnmortgage() {
@@ -87,8 +87,8 @@ public class ModelUnmortgageState implements ModelState {
      * {@link BuildHouseModelState} otherwise.
      */
     @Override
-    public void closeState() {
-        if (makeState && dataOutput.selectedCell().isPresent()) {
+    public void closeModelState() {
+        if (havePropertyToUnmortgage && dataOutput.selectedCell().isPresent()) {
             this.mainModel.setState(new ModelUnmortgageState(mainModel));
         } else {
             this.mainModel.setState(new ModelBuildHouseState(mainModel));

@@ -61,16 +61,16 @@ public class ModelBankerState implements ModelState {
      * pay the {@link Player} depending on the property chosen by the player.
      */
     @Override
-    public void doAction(final DataOutput data) {
-        if (data.selectedCell().isEmpty()) {
+    public void doAction(final DataOutput dataOutput) {
+        if (dataOutput.selectedCell().isEmpty()) {
             return;
         }
-        final Cell chosen = this.mainModel.getGameBoard().getCell(data.selectedCell().get());
-        if (chosen instanceof Buildable && ((Buildable) chosen).getHousesNumber() > 0) {
-            getPlayer().receive(((Buildable) chosen).sellHouse());
+        final Cell cellChosen = this.mainModel.getGameBoard().getCell(dataOutput.selectedCell().get());
+        if (cellChosen instanceof Buildable && ((Buildable) cellChosen).getHousesNumber() > 0) {
+            getPlayer().receive(((Buildable) cellChosen).sellHouse());
         } else {
-            getPlayer().receive(((Buyable) chosen).getMortgageValue());
-            ((Buyable) chosen).setMortgage();
+            getPlayer().receive(((Buyable) cellChosen).getMortgageValue());
+            ((Buyable) cellChosen).setMortgage();
         }
     }
     /**
@@ -82,7 +82,7 @@ public class ModelBankerState implements ModelState {
      * -{@link ModelConstructionState} if the payment is enough to pay the amount
      */
     @Override
-    public void closeState() {
+    public void closeModelState() {
         if (getPlayer().isBankrupt()) {
             completeBankrupt();
             this.mainModel.nextTurn();

@@ -42,7 +42,7 @@ class TestModelCardState {
         for (int i = 0; i < NUMBER_OF_CARD; i++) {
             final int startAmount = model.getGameBoard().getCurrentPlayer().getMoneyAmount();
             state.doAction(new DataOutput(Optional.empty(), Optional.empty()));
-            state.closeState();
+            state.closeModelState();
             switch (getActualEvent(model)) {
                 case Event.FREE_CARD:
                     assertTrue(1 == model.getGameBoard().getCurrentPlayer().getFreeJailCards()

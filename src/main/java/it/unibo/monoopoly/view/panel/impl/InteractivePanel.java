@@ -13,7 +13,7 @@ public final class InteractivePanel extends JPanel {
     /**
      * Constructor of the class.
      * 
-     * @param initPanel to add.
+     * @param initPanel first {@link JPanel}
      */
     public InteractivePanel(final JPanel initPanel) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

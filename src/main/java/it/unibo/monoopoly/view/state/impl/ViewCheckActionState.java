@@ -34,7 +34,7 @@ public class ViewCheckActionState implements ViewState {
      * Unused in this class.
      */
     @Override
-    public void setMode(final Boolean mode) {
+    public void setter(final Boolean mode) {
 
     }
 

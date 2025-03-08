@@ -16,7 +16,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
  * it changes the state.
  */
 public class ModelCardState implements ModelState {
-    private static final int N_CELLS = 40;
+    private static final int TAX_FOR_HOUSE = 40;
     private final MainModel mainModel;
 
     /**
@@ -53,7 +53,7 @@ public class ModelCardState implements ModelState {
      * the method draw the next {@link Card}.
      */
     @Override
-    public void doAction(final DataOutput data) {
+    public void doAction(final DataOutput dataOutput) {
         getDeck().draw();
     }
 
@@ -63,7 +63,7 @@ public class ModelCardState implements ModelState {
      * depending on the {@link typeOfAction} set the next state.
      */
     @Override
-    public void closeState() {
+    public void closeModelState() {
         this.mainModel.setState(
             switch (getCard().getMessage().typeOfAction()) {
                 case Event.FREE_CARD -> {
@@ -94,7 +94,7 @@ public class ModelCardState implements ModelState {
     }
 
     private int payForHouse() {
-        return numberOfHouses() * N_CELLS;
+        return numberOfHouses() * TAX_FOR_HOUSE;
 
     }
 

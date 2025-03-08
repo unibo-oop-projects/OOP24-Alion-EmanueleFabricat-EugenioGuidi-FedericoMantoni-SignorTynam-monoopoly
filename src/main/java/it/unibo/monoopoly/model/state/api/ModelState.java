@@ -23,6 +23,6 @@ public interface ModelState {
     /**
      * ends the state and sets the next one.
      */
-    void closeState();
+    void closeModelState();
 
 }

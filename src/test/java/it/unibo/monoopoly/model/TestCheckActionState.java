@@ -53,7 +53,7 @@ class TestCheckActionState {
         this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertTrue(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().buyProperty(true).build());
-        this.checkActionState.closeState();
+        this.checkActionState.closeModelState();
         assertInstanceOf(ModelUnmortgageState.class, model.getState());
     }
 
@@ -62,7 +62,7 @@ class TestCheckActionState {
         this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertTrue(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().buyProperty(false).build());
-        this.checkActionState.closeState();
+        this.checkActionState.closeModelState();
         assertInstanceOf(ModelUnmortgageState.class, model.getState());
     }
 
@@ -74,7 +74,7 @@ class TestCheckActionState {
         this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
-        this.checkActionState.closeState();
+        this.checkActionState.closeModelState();
         assertInstanceOf(ModelUnmortgageState.class, model.getState());
     }
 
@@ -87,7 +87,7 @@ class TestCheckActionState {
         this.model.getGameBoard().getCurrentPlayer().changePosition(BUYABLE_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
-        this.checkActionState.closeState();
+        this.checkActionState.closeModelState();
         assertInstanceOf(ModelBankerState.class, model.getState());
     }
 
@@ -96,7 +96,7 @@ class TestCheckActionState {
         this.model.getGameBoard().getCurrentPlayer().changePosition(0);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
-        this.checkActionState.closeState();
+        this.checkActionState.closeModelState();
         assertInstanceOf(ModelUnmortgageState.class, model.getState());
     }
 
@@ -105,7 +105,7 @@ class TestCheckActionState {
         this.model.getGameBoard().getCurrentPlayer().changePosition(CARD_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
-        this.checkActionState.closeState();
+        this.checkActionState.closeModelState();
         assertInstanceOf(ModelCardState.class, model.getState());
     }
 
@@ -114,7 +114,7 @@ class TestCheckActionState {
         this.model.getGameBoard().getCurrentPlayer().changePosition(TAX_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
-        this.checkActionState.closeState();
+        this.checkActionState.closeModelState();
         assertInstanceOf(ModelBankerState.class, model.getState());
     }
 
@@ -123,7 +123,7 @@ class TestCheckActionState {
         this.model.getGameBoard().getCurrentPlayer().changePosition(PRISON_CELL);
         assertFalse(this.checkActionState.verify());
         this.checkActionState.doAction(new DataBuilderOutputImpl().build());
-        this.checkActionState.closeState();
+        this.checkActionState.closeModelState();
         assertInstanceOf(ModelPrisonState.class, model.getState());
     }
 

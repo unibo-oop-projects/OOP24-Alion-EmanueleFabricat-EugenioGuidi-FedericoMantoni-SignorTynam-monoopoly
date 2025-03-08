@@ -11,7 +11,7 @@ public interface ViewState {
      * 
      * @param setter to set the state if necessary
      */
-    void setMode(Boolean setter);
+    void setter(Boolean setter);
 
     /**
      * Display all the views necessary for the state.

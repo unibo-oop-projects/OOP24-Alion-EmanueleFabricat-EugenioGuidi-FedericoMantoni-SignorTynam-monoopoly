@@ -8,12 +8,14 @@ import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 
 /**
- * Interface that implements a banker who help the player decide witch house
- * sell or properties mortagage.
+ * Interface that implements a banker which when a {@link Player},
+ * in indebted chooses the correct operation for the player to perform,
+ * or, if necessary, sends the player into bankruptcy.
  */
 public interface Banker {
     /**
-     * Select the right Operations to pay the amount.
+     * Select the right Operations to pay the amount,
+     * or sends the player into bankruptcy.
      * 
      * @param player on which to perform the operation.
      * @return the {@link Message} to {@link MainModel}.

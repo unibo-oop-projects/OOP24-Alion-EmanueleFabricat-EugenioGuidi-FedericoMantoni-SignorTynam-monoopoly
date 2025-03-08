@@ -56,7 +56,7 @@ public class ControllerCardState implements ControllerState {
      */
     @Override
     public void startControllerState() {
-        this.actualViewState.setMode(this.actualModelState.verify());
+        this.actualViewState.setter(this.actualModelState.verify());
         this.actualModelState.doAction(new DataBuilderOutputImpl().build());
         this.actualViewState.visualize(new DataBuilderInputImpl().text(
                 this.deckWrapper.getActualCard().getEffectText()).build());
@@ -71,7 +71,7 @@ public class ControllerCardState implements ControllerState {
      */
     @Override
     public void closeControllerState(final DataOutput dataOutput) {
-        this.actualModelState.closeState();
+        this.actualModelState.closeModelState();
         this.mainController.nextPhase();
     }
 

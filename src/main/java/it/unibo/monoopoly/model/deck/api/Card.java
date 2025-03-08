@@ -6,16 +6,19 @@ import it.unibo.monoopoly.common.Message;
 import it.unibo.monoopoly.model.deck.impl.CardImpl;
 
 /**
- * The interface that implement the resolution of draw a card.
- * The card must apply the effects itself to the player who drew the card.
+ * The interface that implement a Chance Card,
+ * composed of a textual effect and a {@link Message} that contains the type of card and
+ * a piece of data.
  */
 @JsonDeserialize(as = CardImpl.class)
 public interface Card {
     /**
      * 
-     * @return the {@link Message} to interpret represents the action of the {@link Card}.
+     * @return the {@link Message} to interpret represents the action of the
+     *         {@link Card}.
      */
     Message getMessage();
+
     /**
      * @return the text of the card.
      */

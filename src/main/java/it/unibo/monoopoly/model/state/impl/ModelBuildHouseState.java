@@ -69,7 +69,7 @@ public class ModelBuildHouseState implements ModelState {
      * Closes the current state and sets the next state.
      */
     @Override
-    public void closeState() {
+    public void closeModelState() {
         if (!canBuild) {
             model.nextTurn();
         } else {

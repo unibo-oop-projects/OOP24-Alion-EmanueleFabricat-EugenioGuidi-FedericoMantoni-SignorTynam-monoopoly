@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
-import it.unibo.monoopoly.utils.impl.ViewCellGiver;
+import it.unibo.monoopoly.utils.impl.CellGiverListener;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -21,12 +21,12 @@ import it.unibo.monoopoly.view.state.api.ViewState;
  */
 public class ViewUnmortgageState implements ViewState {
     private final MainView mainView;
-    private boolean makeState;
+    private boolean havePropertyToUnmortgage;
 
     /**
      * Constructor of the class that sets the field.
      * 
-     * @param mainView to set.
+     * @param mainView to visualize the correct panel on that.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ViewUnmortgageState(final MainView mainView) {
@@ -36,22 +36,28 @@ public class ViewUnmortgageState implements ViewState {
     /**
      *
      * {@inheritDoc}
+     * in this specific case,
+     * set the field havePropertyToUnmortgage.
      */
 
     @Override
-    public void setMode(final Boolean setter) {
-        this.makeState = setter;
+    public void setter(final Boolean setter) {
+        this.havePropertyToUnmortgage = setter;
     }
 
     /**
      *
      * {@inheritDoc}
+     * in this specific case,
+     * if the {@link Player} has properties to unmortgage,
+     * it will set the {@link InteractivePanel} with a panel to choose which
+     * property to unmortgage.
      */
     @Override
     public void visualize(final DataInput dataInput) {
-        if (this.makeState) {
+        if (this.havePropertyToUnmortgage) {
             final JPanel panel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(),
-                    new ViewCellGiver(this.mainView),
+                    new CellGiverListener(this.mainView),
                     intToTextCell(dataInput.cellMap().get()), "da disipotecare", true);
             this.mainView.setInteractivePanel(panel);
         } else {

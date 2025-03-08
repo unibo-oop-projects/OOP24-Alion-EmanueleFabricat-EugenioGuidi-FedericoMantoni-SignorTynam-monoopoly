@@ -32,7 +32,7 @@ public class ViewMovementState implements ViewState {
      * {@inheritDoc}
      */
     @Override
-    public void setMode(final Boolean setter) {
+    public void setter(final Boolean setter) {
     }
 
     /**

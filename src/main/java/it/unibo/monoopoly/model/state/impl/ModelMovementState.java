@@ -63,7 +63,7 @@ public class ModelMovementState implements ModelState {
      * {@inheritDoc}
      */
     @Override
-    public void closeState() {
+    public void closeModelState() {
         if (getPlayer().isPrisoned()) {
             this.mainModel.nextTurn();
         } else {

@@ -31,7 +31,7 @@ public class ViewPrisonState implements ViewState {
      * @param mode the mode
      */
     @Override
-    public void setMode(final Boolean mode) {
+    public void setter(final Boolean mode) {
         this.goToJail = mode;
     }
 

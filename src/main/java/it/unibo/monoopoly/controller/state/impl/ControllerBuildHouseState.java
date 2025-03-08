@@ -58,7 +58,7 @@ public class ControllerBuildHouseState implements ControllerState {
     @Override
     public void startControllerState() {
         canBuild = modelState.verify();
-        viewState.setMode(canBuild);
+        viewState.setter(canBuild);
         final Map<Integer, Integer> buildableCells = canBuild
                 ? this.playerWrapper.getProperties().stream()
                         .filter(p -> p instanceof Buildable)
@@ -82,7 +82,7 @@ public class ControllerBuildHouseState implements ControllerState {
         if (canBuild) {
             modelState.doAction(data);
         }
-        modelState.closeState();
+        modelState.closeModelState();
         mainController.nextPhase();
     }
 }

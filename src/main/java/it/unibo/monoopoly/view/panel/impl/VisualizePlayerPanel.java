@@ -17,8 +17,10 @@ import org.apache.commons.lang3.tuple.Triple;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
+
 /**
- * {@link JPanel} where the players and their financial situation will be displayed,
+ * {@link JPanel} where the players and their financial situation will be
+ * displayed,
  * as well as the current {@link Player}.
  */
 public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel {
@@ -29,14 +31,16 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
     private final int mainFrameHeight;
     private final String firstPlayer;
     private final List<JTextArea> textList = new LinkedList<>();
-    private static final double PERC_RESIZE = 0.035;
+    private static final double TEXT_RESIZE = 0.035;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
     /**
      * Constructor of the class.
+     * 
      * @param mainFrameHeight used to size the text.
-     * @param firstPlayer the name of the first {@link Player} that play.
-     * @param initializedList the list of players with their respective color, name, and initial money.
+     * @param firstPlayer     the name of the first {@link Player} that play.
+     * @param initializedList the list of players with their respective color, name,
+     *                        and initial money.
      */
     public VisualizePlayerPanel(final int mainFrameHeight, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList) {
@@ -55,7 +59,7 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
         }
         for (final var text : this.textList) {
             text.setEnabled(false);
-            text.setFont(new Font("Arial", Font.PLAIN, (int) (PERC_RESIZE * this.mainFrameHeight)));
+            text.setFont(new Font("Arial", Font.PLAIN, (int) (TEXT_RESIZE * this.mainFrameHeight)));
             text.setDisabledTextColor(Color.BLACK);
             add(text);
         }

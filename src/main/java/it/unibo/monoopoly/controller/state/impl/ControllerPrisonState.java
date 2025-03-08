@@ -53,7 +53,7 @@ public class ControllerPrisonState implements ControllerState {
     @Override
     public void startControllerState() {
         final boolean goToJail = modelState.verify();
-        viewState.setMode(goToJail);
+        viewState.setter(goToJail);
 
         final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
         if (goToJail) {
@@ -77,7 +77,7 @@ public class ControllerPrisonState implements ControllerState {
      */
     @Override
     public void closeControllerState(final DataOutput data) {
-        modelState.closeState();
+        modelState.closeModelState();
         mainController.nextPhase();
     }
 }

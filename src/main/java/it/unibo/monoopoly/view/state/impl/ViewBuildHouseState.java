@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
-import it.unibo.monoopoly.utils.impl.ViewCellGiver;
+import it.unibo.monoopoly.utils.impl.CellGiverListener;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -41,7 +41,7 @@ public class ViewBuildHouseState implements ViewState {
      * @param setter true if the player can build, false otherwise
      */
     @Override
-    public void setMode(final Boolean setter) {
+    public void setter(final Boolean setter) {
         this.canBuild = setter;
     }
 
@@ -54,7 +54,7 @@ public class ViewBuildHouseState implements ViewState {
     public void visualize(final DataInput data) {
         if (canBuild) {
             final JPanel interactivePanel = new SelectionCellsPanel(this.mainView.getMainFrame().getHeight(),
-                    new ViewCellGiver(mainView), intToTextCell(data.cellMap().get()), "su cui comprare una casa", true);
+                    new CellGiverListener(mainView), intToTextCell(data.cellMap().get()), "su cui comprare una casa", true);
             mainView.setInteractivePanel(interactivePanel);
         } else {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(), "Non hai proprietà su cui costruire case",

@@ -13,6 +13,7 @@ import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -55,22 +56,33 @@ public class ControllerUnmortgageState implements ControllerState {
     /**
      *
      * {@inheritDoc}
+     * In this specific case,
+     * sets the field haveMortgagePayableProperty using the verify method of the
+     * model,
+     * then passes the field to set the view.
+     * After that,
+     * calls the visualize method of the view state with a correctly formatted
+     * {@link DataInput}.
      */
     @Override
     public void startControllerState() {
         this.haveMortgagePayableProperty = this.actualModelState.verify();
-        this.actualViewState.setMode(this.haveMortgagePayableProperty);
+        this.actualViewState.setter(this.haveMortgagePayableProperty);
         this.actualViewState.visualize(buildData());
     }
 
     /**
      *
      * {@inheritDoc}
+     * In this specific case,
+     * executes the operations in the model according to the logic,
+     * passing the player's possible choices,
+     * then finalizes the model's state and calls the nextPhase method of the {@link MainController}.
      */
     @Override
     public void closeControllerState(final DataOutput dataOutput) {
         this.actualModelState.doAction(dataOutput);
-        this.actualModelState.closeState();
+        this.actualModelState.closeModelState();
         this.mainController.nextPhase();
     }
 
