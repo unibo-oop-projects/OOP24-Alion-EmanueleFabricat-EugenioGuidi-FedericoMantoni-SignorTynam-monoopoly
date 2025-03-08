@@ -48,7 +48,7 @@ public interface DataBuilderInput {
      * @param isEnabled to be inserted.
      * @return this.
      */
-    DataBuilderInput isEnabled(boolean isEnabled);
+    DataBuilderInput enabled(boolean isEnabled);
 
     /**
      * Fluent method that insert a {@link String} to set some text, in the

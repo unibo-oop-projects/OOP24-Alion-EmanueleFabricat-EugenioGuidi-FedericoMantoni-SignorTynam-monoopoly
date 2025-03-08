@@ -53,7 +53,7 @@ public class DataBuilderInputImpl implements DataBuilderInput {
      * {@inheritDoc}
      */
     @Override
-    public DataBuilderInput isEnabled(final boolean mode) {
+    public DataBuilderInput enabled(final boolean mode) {
         this.isEnabled = Optional.of(mode);
         return this;
     }

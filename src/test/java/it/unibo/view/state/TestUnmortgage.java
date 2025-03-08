@@ -12,20 +12,26 @@ import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.state.impl.ViewUnmortgageState;
 
-public class TestUnmortgage extends JFrame{
-
-    public static void main(String[] strg) {
+/**
+ * Test for UnmortgageState in View.
+ */
+public class TestUnmortgage extends JFrame {
+    /**
+     * 
+     * @param strg initialization.
+     */
+    public static void main(final String[] strg) {
         ViewUnmortgageState state;
-        List<String> lista = new ArrayList<>();
+        final List<String> lista = new ArrayList<>();
         lista.add("ciao");
         lista.add("lol");
-        List<String> lis = new ArrayList<>();
+        final List<String> lis = new ArrayList<>();
         lis.add("Franco");
         lis.add("Luca");
-        List<Integer> cells = new LinkedList<>();
+        final List<Integer> cells = new LinkedList<>();
         cells.add(1);
         cells.add(0);
-        final MainController controller = new MainControllerImpl(new MainModelImpl(lista), lis);        
+        final MainController controller = new MainControllerImpl(new MainModelImpl(lista), lis);
         state = new ViewUnmortgageState(new MainViewImpl(controller, lista, lis));
     }
 

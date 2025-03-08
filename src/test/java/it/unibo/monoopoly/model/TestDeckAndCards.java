@@ -14,6 +14,7 @@ import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.deck.impl.DeckImpl;
+
 /**
  * Tester of {@link Deck} and {@link Card}.
  */
@@ -25,6 +26,7 @@ class TestDeckAndCards {
     private static final int NUMBER_OF_PRISON = 2;
     private static final int NUMBER_OF_RECEIVE = 10;
     private static final int NUMBER_OF_ALL_CARDS = 31;
+
     /**
      * Initialization for the test.
      */
@@ -32,6 +34,7 @@ class TestDeckAndCards {
     void init() {
         this.deck = new DeckImpl();
     }
+
     /**
      * Test to make sure of all cards are correctly set up,
      * the last assert is for control that the refill of deck go successfully.
@@ -39,27 +42,22 @@ class TestDeckAndCards {
     @Test
     void testNumberOfCardsAndRestoreDeck() {
         boolean catchIt = false;
-        List<Card> cards = getList(NUMBER_OF_ALL_CARDS);
-        assertTrue(cards.stream()
+        final List<Card> cards = getList(NUMBER_OF_ALL_CARDS);
+        assertEquals(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.FREE_CARD)
-                .count() == NUMBER_OF_FREE_CARD
-        );
-        assertTrue(cards.stream()
+                .count(), NUMBER_OF_FREE_CARD);
+        assertEquals(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.MOVE_CARD)
-                .count() == NUMBER_OF_MOVE
-        );
-        assertTrue(cards.stream()
+                .count(), NUMBER_OF_MOVE);
+        assertEquals(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.CARD_PAYMENT)
-                .count() == NUMBER_OF_PAY
-        );
-        assertTrue(cards.stream()
+                .count(), NUMBER_OF_PAY);
+        assertEquals(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.PRISON)
-                .count() == NUMBER_OF_PRISON
-        );
-        assertTrue(cards.stream()
+                .count(), NUMBER_OF_PRISON);
+        assertEquals(cards.stream()
                 .filter(p -> p.getMessage().typeOfAction() == Event.RECEIVE_CARD)
-                .count() == NUMBER_OF_RECEIVE
-        );
+                .count(), NUMBER_OF_RECEIVE);
         try {
             this.deck.draw();
         } catch (final NoSuchElementException e) {
@@ -67,13 +65,14 @@ class TestDeckAndCards {
         }
         assertEquals(false, catchIt, "exception thrown");
     }
+
     /**
      * Gets the {@link List} composed of each card drawn,
-     * with a given number of draws as input. 
+     * with a given number of draws as input.
      * 
      * @param times the card is drawn.
      * @return the {@link List} composed of each card drawn in 39 draws.
-    */
+     */
     List<Card> getList(final int times) {
         final List<Card> cards = new LinkedList<>();
         for (int i = 0; i < times; i++) {
@@ -82,6 +81,7 @@ class TestDeckAndCards {
         }
         return cards;
     }
+
     /**
      * Test to make sure that the functions that concern,
      * the insertion or removal of the 'Go to Jail' card works.
@@ -94,8 +94,7 @@ class TestDeckAndCards {
         assertEquals(0, cards.stream()
                 .map(c -> c.getMessage().typeOfAction())
                 .filter(a -> a.equals(Event.FREE_CARD))
-                .count()
-        );
+                .count());
         this.deck.addPrisonCard();
         this.deck.addPrisonCard();
         cards.removeAll(cards);
@@ -103,7 +102,6 @@ class TestDeckAndCards {
         assertEquals(2, cards.stream()
                 .map(c -> c.getMessage().typeOfAction())
                 .filter(a -> a.equals(Event.FREE_CARD))
-                .count()
-        );
+                .count());
     }
 }
