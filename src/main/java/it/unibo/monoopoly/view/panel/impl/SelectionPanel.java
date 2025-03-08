@@ -8,7 +8,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -45,7 +47,7 @@ public final class SelectionPanel extends JPanel {
     private final JPanel numberPanel;
     private final List<Color> colors;
     private final List<JTextField> players;
-    private final MenuController menuController;
+    private transient final MenuController menuController;
     private final Font font = new Font("Arial", Font.BOLD, 15);
 
     /**
@@ -57,7 +59,7 @@ public final class SelectionPanel extends JPanel {
     public SelectionPanel(final MenuController controller, final List<Color> colors) {
         super();
         this.menuController = controller;
-        this.colors = colors;
+        this.colors = new ArrayList<>(colors);
         this.players = new ArrayList<>();
 
         this.setLayout(new GridBagLayout());
@@ -144,7 +146,7 @@ public final class SelectionPanel extends JPanel {
     }
 
     private List<String> getPlayersNames() {
-        return this.players.stream().map(JTextComponent::getText).toList();
+        return this.players.stream().map(JTextComponent::getText).collect(Collectors.toList());
     }
 
     private boolean legalNames() {

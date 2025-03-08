@@ -17,6 +17,7 @@ import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.main.api.MainModel;
+import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.controller.state.impl.ControllerCheckActionState;
 import it.unibo.monoopoly.controller.state.impl.ControllerMovementState;
@@ -56,9 +57,8 @@ public class MainControllerImpl implements MainController {
      * @param model       the game model (Turn)
      * @param playersName list of players' names
      */
-    public MainControllerImpl(final MainModel model, final List<String> playersName) {
-        Objects.requireNonNull(model);
-        this.model = model;
+    public MainControllerImpl(final List<String> playersName) {
+        this.model = new MainModelImpl(playersName);
         final List<String> cellsNames = model.getGameBoard().getCellsNames();
         // Create the main view passing this controller, players' names, and the cells'
         // names

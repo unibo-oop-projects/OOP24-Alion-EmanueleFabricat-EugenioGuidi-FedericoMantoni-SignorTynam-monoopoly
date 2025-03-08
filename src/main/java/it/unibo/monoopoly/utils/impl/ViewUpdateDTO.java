@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.utils.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import java.util.Map;
@@ -31,4 +32,20 @@ public record ViewUpdateDTO(
                 List<Integer> mortgagedProperties,
                 Map<String, Integer> playersMoney,
                 String actualPlayer) {
+        
+    public ViewUpdateDTO (Map<String, Integer> playerPositions,
+    Map<Integer, Optional<String>> cellsOwners,
+    Map<Integer, Integer> nBuiltHouses,
+    List<String> prisonedPlayers,
+    List<Integer> mortgagedProperties,
+    Map<String, Integer> playersMoney,
+    String actualPlayer) {
+        this.playerPositions = Collections.unmodifiableMap(playerPositions);
+        this.cellsOwners = Collections.unmodifiableMap(cellsOwners);
+        this.nBuiltHouses = Collections.unmodifiableMap(nBuiltHouses);
+        this.prisonedPlayers = Collections.unmodifiableList(prisonedPlayers);
+        this.mortgagedProperties = Collections.unmodifiableList(mortgagedProperties);
+        this.playersMoney = Collections.unmodifiableMap(playersMoney);
+        this.actualPlayer = actualPlayer;
+    }
 }

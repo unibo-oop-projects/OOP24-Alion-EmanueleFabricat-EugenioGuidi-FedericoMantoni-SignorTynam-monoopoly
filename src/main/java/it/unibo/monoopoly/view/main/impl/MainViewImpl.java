@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.Window;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +62,7 @@ public class MainViewImpl extends AbstractView implements MainView {
         this.colors = super.getColors();
         this.players = IntStream.range(0, namePlayers.size()).boxed()
                 .collect(Collectors.toMap(colors::get, namePlayers::get));
-        this.nameCells = nameCells;
+        this.nameCells = new ArrayList<>(nameCells);
         this.gamePanel = new GamePanel(mainFrame().getHeight(), mainFrame().getWidth(), "1",
                 initPlayerView(namePlayers), this.players, this.colors);
         this.viewState = new ViewPrisonState(this);
@@ -114,7 +116,7 @@ public class MainViewImpl extends AbstractView implements MainView {
      */
     @Override
     public List<String> getNameCells() {
-        return this.nameCells;
+        return List.copyOf(this.nameCells);
     }
 
     /**
@@ -158,6 +160,9 @@ public class MainViewImpl extends AbstractView implements MainView {
         closeWindow.setLocationRelativeTo(null);
         closeWindow.setVisible(true);
         closeWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        System.exit(0);
+        for (Window window : Window.getWindows()) {
+            System.out.println(Window.getWindows());
+            window.dispose();
+        }
     }
 }
