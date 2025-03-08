@@ -1,7 +1,9 @@
 package it.unibo.monoopoly.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +47,7 @@ class TestModelBankerState {
     void testOperationSuccess() {
         model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT);
         final ModelBankerState state = new ModelBankerState(this.model, false);
-        assertEquals(false, state.verify());
+        assertFalse(state.verify());
         state.doAction(new DataBuilderOutputImpl().build());
         assertEquals(0, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();
@@ -55,21 +57,21 @@ class TestModelBankerState {
     /* */
     @Test
     void testOperationSellHouse() {
-        final Buildable property = (Buildable) (this.model.getGameBoard().getCell(BUILDABLE_CELL1));
+        final Buildable property = (Buildable) this.model.getGameBoard().getCell(BUILDABLE_CELL1);
         property.buildHouse();
         this.model.getGameBoard().getCurrentPlayer().addProperty(property);
         property.buildHouse();
         model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + AMOUNT_TO_PAY);
         final ModelBankerState state = new ModelBankerState(this.model, false);
-        assertEquals(true, state.verify());
+        assertTrue(state.verify());
         assertEquals(Optional.of(Event.SELL_HOUSE), this.model.getEvent());
         state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL1).build());
         assertEquals(property.getSellHouseCost() - AMOUNT_TO_PAY,
                 this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();
-        assert (this.model.getState() instanceof ModelBankerState);
+        assertInstanceOf(ModelBankerState.class, this.model.getState());
         property.buildHouse();
-        assertEquals(true, this.model.getState().verify());
+        assertTrue(this.model.getState().verify());
         assertEquals(Optional.of(Event.SELL_HOUSE), this.model.getEvent());
         state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL1).build());
         assertEquals(0, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
@@ -78,21 +80,21 @@ class TestModelBankerState {
     /* */
     @Test
     void testOperationMortgage() {
-        final Buildable property = (Buildable) (this.model.getGameBoard().getCell(BUILDABLE_CELL1));
-        final Buildable property2 = (Buildable) (this.model.getGameBoard().getCell(BUILDABLE_CELL2));
+        final Buildable property = (Buildable) this.model.getGameBoard().getCell(BUILDABLE_CELL1);
+        final Buildable property2 = (Buildable) this.model.getGameBoard().getCell(BUILDABLE_CELL2);
         this.model.getGameBoard().getCurrentPlayer().addProperty(property);
         this.model.getGameBoard().getCurrentPlayer().addProperty(property2);
         model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + AMOUNT_TO_PAY);
         final ModelBankerState state = new ModelBankerState(this.model, false);
-        assertEquals(true, state.verify());
+        assertTrue(state.verify());
         assertEquals(Optional.of(Event.MORTGAGE_PROPERTY), this.model.getEvent());
         state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL1).build());
-        assertEquals(true, property.isMortgaged());
+        assertTrue(property.isMortgaged());
         assertEquals(property.getMortgageValue() - AMOUNT_TO_PAY,
                 this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();
         assertInstanceOf(ModelBankerState.class, this.model.getState());
-        assertEquals(true, this.model.getState().verify());
+        assertTrue(this.model.getState().verify());
         assertEquals(Optional.of(Event.MORTGAGE_PROPERTY), this.model.getEvent());
         state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL2).build());
         assertEquals(
@@ -106,7 +108,7 @@ class TestModelBankerState {
     void testOperationBankrupt() {
         model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT + AMOUNT_TO_PAY_2);
         final ModelBankerState state = new ModelBankerState(this.model, false);
-        assertEquals(true, state.verify());
+        assertTrue(state.verify());
         state.doAction(new DataBuilderOutputImpl().build());
         assertEquals(-AMOUNT_TO_PAY_2, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         assertEquals(Optional.of(Event.BANKRUPT), this.model.getEvent());
@@ -117,7 +119,7 @@ class TestModelBankerState {
     void testOperationInPrison() {
         model.getGameBoard().getCurrentPlayer().pay(START_AMOUNT);
         final ModelBankerState state = new ModelBankerState(this.model, true);
-        assertEquals(false, state.verify());
+        assertFalse(state.verify());
         state.doAction(new DataBuilderOutputImpl().build());
         assertEquals(0, this.model.getGameBoard().getCurrentPlayer().getMoneyAmount());
         state.closeState();

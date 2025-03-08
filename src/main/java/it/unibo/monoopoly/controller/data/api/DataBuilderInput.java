@@ -45,10 +45,10 @@ public interface DataBuilderInput {
      * Fluent method that insert a boolean useful to make decision, in the
      * {@link DataInput}.
      * 
-     * @param isEnabled to be inserted.
+     * @param enabled to be inserted.
      * @return this.
      */
-    DataBuilderInput enabled(boolean isEnabled);
+    DataBuilderInput enabled(boolean enabled);
 
     /**
      * Fluent method that insert a {@link String} to set some text, in the

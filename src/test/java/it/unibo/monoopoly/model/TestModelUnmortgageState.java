@@ -3,6 +3,7 @@ package it.unibo.monoopoly.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -39,17 +40,17 @@ class TestModelUnmortgageState {
     /* */
     @Test
     void testUnmortgage() {
-        final Buildable property = (Buildable) (this.model.getGameBoard().getCell(BUILDABLE_CELL));
+        final Buildable property = (Buildable) this.model.getGameBoard().getCell(BUILDABLE_CELL);
         final ModelUnmortgageState state = new ModelUnmortgageState(model);
         this.model.getGameBoard().getCurrentPlayer().addProperty(property);
-        assertEquals(false, state.verify());
+        assertFalse(state.verify());
         property.setMortgage();
         this.model.getGameBoard().getCurrentPlayer().pay(AMOUNT_TO_PAY);
-        assertEquals(false, state.verify());
+        assertFalse(state.verify());
         this.model.getGameBoard().getCurrentPlayer().receive(AMOUNT_TO_PAY);
-        assertEquals(true, state.verify());
+        assertTrue(state.verify());
         state.doAction(new DataBuilderOutputImpl().selectedCell(BUILDABLE_CELL).build());
-        assertEquals(false, property.isMortgaged());
+        assertFalse(property.isMortgaged());
         state.closeState();
         assertInstanceOf(ModelUnmortgageState.class, this.model.getState());
         assertEquals(START_AMOUNT - property.getUnmortgageValue(),
