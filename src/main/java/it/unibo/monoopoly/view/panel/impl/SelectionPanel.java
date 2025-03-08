@@ -8,7 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +46,7 @@ public final class SelectionPanel extends JPanel {
     private final JPanel numberPanel;
     private final List<Color> colors;
     private final List<JTextField> players;
-    private transient final MenuController menuController;
+    private final transient MenuController menuController;
     private final Font font = new Font("Arial", Font.BOLD, 15);
 
     /**

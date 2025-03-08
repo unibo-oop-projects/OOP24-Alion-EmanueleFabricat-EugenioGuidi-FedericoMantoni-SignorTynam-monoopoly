@@ -32,14 +32,14 @@ public record ViewUpdateDTO(
                 List<Integer> mortgagedProperties,
                 Map<String, Integer> playersMoney,
                 String actualPlayer) {
-        
-    public ViewUpdateDTO (Map<String, Integer> playerPositions,
-    Map<Integer, Optional<String>> cellsOwners,
-    Map<Integer, Integer> nBuiltHouses,
-    List<String> prisonedPlayers,
-    List<Integer> mortgagedProperties,
-    Map<String, Integer> playersMoney,
-    String actualPlayer) {
+
+    public ViewUpdateDTO(final Map<String, Integer> playerPositions,
+    final Map<Integer, Optional<String>> cellsOwners,
+    final Map<Integer, Integer> nBuiltHouses,
+    final List<String> prisonedPlayers,
+    final List<Integer> mortgagedProperties,
+    final Map<String, Integer> playersMoney,
+    final String actualPlayer) {
         this.playerPositions = Collections.unmodifiableMap(playerPositions);
         this.cellsOwners = Collections.unmodifiableMap(cellsOwners);
         this.nBuiltHouses = Collections.unmodifiableMap(nBuiltHouses);
