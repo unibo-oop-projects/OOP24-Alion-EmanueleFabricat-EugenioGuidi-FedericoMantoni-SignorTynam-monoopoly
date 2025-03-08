@@ -6,12 +6,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.model.deck.impl.DeckWrapper;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.gameboard.impl.CellFactoryImpl;
 import it.unibo.monoopoly.model.gameboard.impl.GameBoardImpl;
 import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.player.impl.PlayerImpl;
+import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 
@@ -88,6 +90,22 @@ public class MainModelImpl implements MainModel {
     public void nextTurn() {
         gameBoard.nextPlayer(); //TODO Valore di ritorno non usato, si può togliere?
         this.actualState = new ModelPrisonState(this, false);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PlayerWrapper getPlayerWrapper() {
+        return new PlayerWrapper(this.getGameBoard().getCurrentPlayer());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DeckWrapper getDeckWrapper() {
+        return new DeckWrapper(this.getGameBoard().getDeck());
     }
 
 }

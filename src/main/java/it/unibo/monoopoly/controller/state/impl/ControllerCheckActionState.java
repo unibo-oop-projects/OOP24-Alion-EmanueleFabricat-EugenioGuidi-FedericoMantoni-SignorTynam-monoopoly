@@ -13,6 +13,7 @@ import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
+import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
@@ -25,6 +26,7 @@ public class ControllerCheckActionState implements ControllerState {
     private final ModelState modelState;
     private final ViewState viewState;
     private final GameBoard gameBoard;
+    private final PlayerWrapper playerWrapper;
 
     /**
      * Construct the {@link ControllerCheckActionState}.
@@ -35,11 +37,12 @@ public class ControllerCheckActionState implements ControllerState {
      * @param gameBoard      the {@link GameBoard}
      */
     public ControllerCheckActionState(final MainController mainController, final ModelState modelState,
-            final ViewState viewState, final GameBoard gameBoard) {
+            final ViewState viewState, final GameBoard gameBoard, final PlayerWrapper playerWrapper) {
         this.mainController = mainController;
         this.modelState = modelState;
         this.viewState = viewState;
         this.gameBoard = gameBoard;
+        this.playerWrapper = playerWrapper;
     }
 
     /**
@@ -49,7 +52,7 @@ public class ControllerCheckActionState implements ControllerState {
      */
     @Override
     public void startControllerState() {
-        final Cell actualCell = this.gameBoard.getCell(this.gameBoard.getCurrentPlayer().getActualPosition());
+        final Cell actualCell = this.gameBoard.getCell(this.playerWrapper.getActualPosition());
         if (modelState.verify()) {
             visualizeBuyProperty(actualCell);
         } else {

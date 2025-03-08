@@ -3,7 +3,9 @@ package it.unibo.monoopoly.model.main.api;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.model.deck.impl.DeckWrapper;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
+import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 
 /**
@@ -47,5 +49,17 @@ public interface MainModel {
      * Correctly finish a turn and set the {@link ModelState}.
      */
     void nextTurn();
+    
+    /**
+     * Return the {@link PlayerImpl} wrapped according the pattern Proxy.
+     * @return the {@link PlayerWrapper}.
+     */
+    PlayerWrapper getPlayerWrapper();
+
+    /**
+     * Return the {@link DeckImpl} wrapped according the pattern Proxy.
+     * @return the {@link DeckWrapper}.
+     */
+    DeckWrapper getDeckWrapper();
 
 }

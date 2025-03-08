@@ -1,6 +1,7 @@
 package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,8 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
-import it.unibo.monoopoly.model.gameboard.api.GameBoard;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -24,23 +26,25 @@ public class ControllerBuildHouseState implements ControllerState {
     private final ModelState modelState;
     private final ViewState viewState;
     private final MainController mainController;
-    private final GameBoard gameBoard;
     private boolean canBuild;
+    private final List<Cell> gameBoardCellList;
+    private final PlayerWrapper playerWrapper;
 
     /**
      * Constructs the controller for the house building state.
      * 
      * @param mainController the main controller
-     * @param modelState the model state
-     * @param viewState  the view state
-     * @param gameBoard the game board
+     * @param modelState     the model state
+     * @param viewState      the view state
+     * @param gameBoard      the game board
      */
     public ControllerBuildHouseState(final MainController mainController, final ModelState modelState,
-            final ViewState viewState, final GameBoard gameBoard) {
+            final ViewState viewState, final PlayerWrapper playerWrapper, final List<Cell> gameBoardCellList) {
         this.modelState = modelState;
         this.viewState = viewState;
         this.mainController = mainController;
-        this.gameBoard = gameBoard;
+        this.gameBoardCellList = gameBoardCellList;
+        this.playerWrapper = playerWrapper;
     }
 
     /**
@@ -51,18 +55,16 @@ public class ControllerBuildHouseState implements ControllerState {
     public void startControllerState() {
         canBuild = modelState.verify();
         viewState.setMode(canBuild);
-        if (this.gameBoard != null) {
-            final Map<Integer, Integer> buildableCells = canBuild
-                    ? this.gameBoard.getCurrentPlayer().getProperties().stream()
+        final Map<Integer, Integer> buildableCells = canBuild
+                ? this.playerWrapper.getProperties().stream()
                         .filter(p -> p instanceof Buildable)
                         .map(p -> (Buildable) p)
                         .filter(p -> p.getHousesNumber() < MAX_HOUSES && !p.isMortgaged())
-                        .filter(p -> this.gameBoard.getCurrentPlayer().isPayable(p.getHouseCost()))
-                        .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, Buildable::getHouseCost))
-                    : new HashMap<>();
-            final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
-            viewState.visualize(dataBuilder.cellMap(buildableCells).build());
-        }
+                        .filter(p -> this.playerWrapper.isPayable(p.getHouseCost()))
+                        .collect(Collectors.toMap(this.gameBoardCellList::indexOf, Buildable::getHouseCost))
+                : new HashMap<>();
+        final DataBuilderInput dataBuilder = new DataBuilderInputImpl();
+        viewState.visualize(dataBuilder.cellMap(buildableCells).build());
     }
 
     /**

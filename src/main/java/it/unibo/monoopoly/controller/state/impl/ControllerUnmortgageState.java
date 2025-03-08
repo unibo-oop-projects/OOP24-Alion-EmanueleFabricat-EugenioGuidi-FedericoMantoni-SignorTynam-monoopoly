@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.controller.state.impl;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,8 @@ import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
-import it.unibo.monoopoly.model.gameboard.api.GameBoard;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -25,9 +27,10 @@ public class ControllerUnmortgageState implements ControllerState {
     private final MainController mainController;
     private final ModelState actualModelState;
     private final ViewState actualViewState;
-    private final GameBoard gameBoard;
     private boolean haveMortgagePayableProperty;
     private final DataBuilderInput dataBuilderInput = new DataBuilderInputImpl();
+    private final PlayerWrapper playerWrapper;
+    private final List<Cell> gameBoardCellList;
 
     /**
      * Constructor of the class that sets the fields.
@@ -38,11 +41,12 @@ public class ControllerUnmortgageState implements ControllerState {
      * @param gameBoard        to be set.
      */
     public ControllerUnmortgageState(final MainController mainController, final ModelState actualModelState,
-            final ViewState actualViewState, final GameBoard gameBoard) {
+            final ViewState actualViewState, PlayerWrapper playerWrapper, List<Cell> gameBoardCellList) {
         this.mainController = mainController;
         this.actualModelState = actualModelState;
         this.actualViewState = actualViewState;
-        this.gameBoard = gameBoard;
+        this.playerWrapper = playerWrapper;
+        this.gameBoardCellList = List.copyOf(gameBoardCellList);
     }
 
     /**
@@ -76,15 +80,15 @@ public class ControllerUnmortgageState implements ControllerState {
     }
 
     private Map<Integer, Integer> unmortgageableList() {
-        return this.gameBoard.getCurrentPlayer().getProperties().stream()
+        return this.playerWrapper.getProperties().stream()
                 .filter(Buyable::isMortgaged)
                 .filter(this::isPayable)
-                .collect(Collectors.toMap(this.gameBoard.getCellsList()::indexOf, Buyable::getUnmortgageValue));
+                .collect(Collectors.toMap(this.gameBoardCellList::indexOf, Buyable::getUnmortgageValue));
     }
 
     private boolean isPayable(final Buyable property) {
         final int toPay = property.getUnmortgageValue();
-        return this.gameBoard.getCurrentPlayer().isPayable(toPay);
+        return this.playerWrapper.isPayable(toPay);
     }
 
 }
