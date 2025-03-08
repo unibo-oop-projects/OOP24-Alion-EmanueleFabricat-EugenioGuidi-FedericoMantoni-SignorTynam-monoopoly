@@ -16,12 +16,13 @@ public class DeckWrapper implements Deck {
      * @param deck the real Deck.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern Proxy")
-    public DeckWrapper(Deck deck) {
+    public DeckWrapper(final Deck deck) {
         this.deck = deck;
     }
 
     /**
-     * {@inheritedDoc}
+     * Proxy version.
+     * {@inheritedDoc}.
      */
     @Override
     public void draw() {
@@ -30,7 +31,8 @@ public class DeckWrapper implements Deck {
     }
 
     /**
-     * {@inheritedDoc}
+     * Proxy version.
+     * {@inheritedDoc}.
      */
     @Override
     public Card getActualCard() {
@@ -38,7 +40,8 @@ public class DeckWrapper implements Deck {
     }
 
     /**
-     * {@inheritedDoc}
+     * Proxy version.
+     * {@inheritedDoc}.
      */
     @Override
     public void addPrisonCard() {

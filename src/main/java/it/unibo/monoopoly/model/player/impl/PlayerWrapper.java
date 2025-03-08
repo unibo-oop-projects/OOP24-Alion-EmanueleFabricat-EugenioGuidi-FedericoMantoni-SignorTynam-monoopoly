@@ -64,7 +64,7 @@ public class PlayerWrapper implements Player {
      * {@inheritDoc}
      */
     @Override
-    public void changePosition(int position) {
+    public void changePosition(final int position) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'changePosition'");
     }
@@ -74,7 +74,7 @@ public class PlayerWrapper implements Player {
      * {@inheritDoc}
      */
     @Override
-    public boolean isPayable(int amount) {
+    public boolean isPayable(final int amount) {
         return this.player.isPayable(amount);
     }
 
@@ -83,7 +83,7 @@ public class PlayerWrapper implements Player {
      * {@inheritDoc}
      */
     @Override
-    public void pay(int amount) {
+    public void pay(final int amount) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'pay'");
     }
@@ -93,7 +93,7 @@ public class PlayerWrapper implements Player {
      * {@inheritDoc}
      */
     @Override
-    public void receive(int amount) {
+    public void receive(final int amount) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'receive'");
     }
@@ -103,7 +103,7 @@ public class PlayerWrapper implements Player {
      * {@inheritDoc}
      */
     @Override
-    public boolean addProperty(Buyable property) {
+    public boolean addProperty(final Buyable property) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addProperty'");
     }
@@ -113,7 +113,7 @@ public class PlayerWrapper implements Player {
      * {@inheritDoc}
      */
     @Override
-    public boolean removeProperty(Buyable property) {
+    public boolean removeProperty(final Buyable property) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeProperty'");
     }

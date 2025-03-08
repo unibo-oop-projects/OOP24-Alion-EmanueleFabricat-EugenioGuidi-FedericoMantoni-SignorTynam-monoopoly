@@ -49,15 +49,17 @@ public interface MainModel {
      * Correctly finish a turn and set the {@link ModelState}.
      */
     void nextTurn();
-    
+
     /**
      * Return the {@link PlayerImpl} wrapped according the pattern Proxy.
+     * 
      * @return the {@link PlayerWrapper}.
      */
     PlayerWrapper getPlayerWrapper();
 
     /**
      * Return the {@link DeckImpl} wrapped according the pattern Proxy.
+     * 
      * @return the {@link DeckWrapper}.
      */
     DeckWrapper getDeckWrapper();

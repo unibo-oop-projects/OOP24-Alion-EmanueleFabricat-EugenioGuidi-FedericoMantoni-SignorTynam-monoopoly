@@ -27,10 +27,10 @@ public class ControllerCardState implements ControllerState {
     /**
      * Constructor of the class that sets the fields.
      * 
-     * @param mainController   to set.
-     * @param actualModelState to set.
-     * @param actualViewState  to set.
-     * @param gameBoard        to set.
+     * @param mainController   the main controller to be set.
+     * @param actualModelState the actual {@link ModelState} to be set.
+     * @param actualViewState  the actual {@link ViewState} to be set.
+     * @param deckWrapper      the wrap of the {@link DeckImpl}.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerCardState(final MainController mainController, final ModelState actualModelState,

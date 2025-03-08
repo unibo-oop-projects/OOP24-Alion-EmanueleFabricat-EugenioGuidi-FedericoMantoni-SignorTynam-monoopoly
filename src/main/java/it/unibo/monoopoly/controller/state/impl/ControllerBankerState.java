@@ -17,7 +17,6 @@ import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
-import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -40,10 +39,12 @@ public class ControllerBankerState implements ControllerState {
     /**
      * Constructor of the class that sets the fields.
      * 
-     * @param mainController   the main controller to be set.
-     * @param actualModelState the actual {@link ModelState} to be set.
-     * @param actualViewState  the actual {@link ViewState} to be set.
-     * @param gameBoard        the {@link GameBoard} to be set.
+     * @param mainController    the main controller to be set.
+     * @param actualModelState  the actual {@link ModelState} to be set.
+     * @param actualViewState   the actual {@link ViewState} to be set.
+     * @param playerProperty    the {@link Set} of property of the actual
+     *                          {@link Player}.
+     * @param gameBoardCellList the {@link List} of all {@link Cell} of the game.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ControllerBankerState(final MainController mainController, final ModelState actualModelState,
@@ -85,10 +86,11 @@ public class ControllerBankerState implements ControllerState {
         final Event event = this.mainController.getActualEvent().get();
         return switch (event) {
             case Event.SELL_HOUSE,
-                Event.MORTGAGE_PROPERTY -> this.dataBuilderInput
-                    .event(event)
-                    .cellMap(cellListChooser(event))
-                    .build();
+                    Event.MORTGAGE_PROPERTY ->
+                this.dataBuilderInput
+                        .event(event)
+                        .cellMap(cellListChooser(event))
+                        .build();
             case Event.BANKRUPT -> this.dataBuilderInput
                     .event(event)
                     .build();
