@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.api;
+package it.unibo.monoopoly.utils.api;
 
 import java.util.List;
 import java.util.Map;
