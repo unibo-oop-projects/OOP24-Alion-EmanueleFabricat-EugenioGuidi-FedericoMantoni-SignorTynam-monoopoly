@@ -10,7 +10,6 @@ import it.unibo.monoopoly.model.player.api.Player;
 /**
  * Represents the player of the game.
  */
-
 public class PlayerImpl implements Player {
 
     private static final int MAX_CELL = 39;
@@ -54,7 +53,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -63,7 +61,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -72,7 +69,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -81,7 +77,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -90,7 +85,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -99,7 +93,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -108,7 +101,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -117,7 +109,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -126,7 +117,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -135,7 +125,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -144,7 +133,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -153,7 +141,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -162,7 +149,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -171,7 +157,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -180,16 +165,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public void setPrisoned() {
-        this.prisoned = true;
-    }
-
-    /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -198,7 +173,14 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPrisoned() {
+        this.prisoned = true;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -207,7 +189,6 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
