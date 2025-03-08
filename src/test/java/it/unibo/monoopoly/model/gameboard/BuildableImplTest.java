@@ -154,7 +154,7 @@ class BuildableImplTest {
     }
 
     /**
-     * Test the method sellHJouse
+     * Test the method sellHJouse.
      */
     @Test
     void testSellHouse() {
