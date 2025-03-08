@@ -22,6 +22,7 @@ public class GameBoardImpl implements GameBoard {
     private final Dices dices;
     private final Deck deck;
     private int currentPlayerIndex;
+    private final Random random = new Random();
 
     /**
      * Initialize the fields to save players and cells.
@@ -33,7 +34,7 @@ public class GameBoardImpl implements GameBoard {
         this.playersList = new ArrayList<>(playersList);
         this.dices = new DicesImpl();
         this.deck = new DeckImpl();
-        this.currentPlayerIndex = new Random().nextInt(playersList.size());
+        this.currentPlayerIndex = this.random.nextInt(playersList.size());
     }
 
     /**
