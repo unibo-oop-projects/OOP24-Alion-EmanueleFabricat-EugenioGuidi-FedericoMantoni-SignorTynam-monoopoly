@@ -18,18 +18,18 @@ public interface GameBoard {
     Cell getCell(int index);
 
     /**
-     * remove a player from the game.
+     * Remove a player from the game.
      */
     void removePlayer();
 
     /**
-     * control if the game is ended checking the number of player remaining.
+     * Control if the game is ended checking the number of player remaining.
      * @return true if the game is ended.
      */
     boolean isGameEnded();
 
     /**
-     * @return next player to play.
+     * Set the next player.
      */
     void nextPlayer();
 
