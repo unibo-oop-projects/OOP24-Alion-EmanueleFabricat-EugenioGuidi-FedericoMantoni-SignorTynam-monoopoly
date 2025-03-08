@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
@@ -35,13 +36,15 @@ public class ControllerUnmortgageState implements ControllerState {
     /**
      * Constructor of the class that sets the fields.
      * 
-     * @param mainController   to be set.
-     * @param actualModelState to be set.
-     * @param actualViewState  to be set.
-     * @param gameBoard        to be set.
+     * @param mainController    the main controller to be set.
+     * @param actualModelState  the actual {@link ModelState} to be set.
+     * @param actualViewState   the actual {@link ViewState} to be set.
+     * @param playerWrapper     the wrap of the {@link PlayerImpl}.
+     * @param gameBoardCellList the {@link List} of all {@link Cell} of the game.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerUnmortgageState(final MainController mainController, final ModelState actualModelState,
-            final ViewState actualViewState, PlayerWrapper playerWrapper, List<Cell> gameBoardCellList) {
+            final ViewState actualViewState, final PlayerWrapper playerWrapper, final List<Cell> gameBoardCellList) {
         this.mainController = mainController;
         this.actualModelState = actualModelState;
         this.actualViewState = actualViewState;

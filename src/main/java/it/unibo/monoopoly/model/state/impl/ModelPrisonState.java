@@ -2,6 +2,7 @@ package it.unibo.monoopoly.model.state.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
@@ -25,6 +26,7 @@ public class ModelPrisonState implements ModelState {
      * @param model    the main game model
      * @param goInJail a boolean flag indicating whether the player must go to jail
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ModelPrisonState(final MainModel model, final boolean goInJail) {
         this.model = model;
         this.goInJail = goInJail;

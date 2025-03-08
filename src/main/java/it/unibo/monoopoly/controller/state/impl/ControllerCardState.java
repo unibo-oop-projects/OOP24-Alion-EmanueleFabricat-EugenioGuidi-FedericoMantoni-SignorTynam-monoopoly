@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.controller.state.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
@@ -26,11 +27,12 @@ public class ControllerCardState implements ControllerState {
     /**
      * Constructor of the class that sets the fields.
      * 
-     * @param mainController   to set.
-     * @param actualModelState to set.
-     * @param actualViewState  to set.
-     * @param gameBoard        to set.
+     * @param mainController   the main controller to be set.
+     * @param actualModelState the actual {@link ModelState} to be set.
+     * @param actualViewState  the actual {@link ViewState} to be set.
+     * @param deckWrapper      the wrap of the {@link DeckImpl}.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerCardState(final MainController mainController, final ModelState actualModelState,
             final ViewState actualViewState, final DeckWrapper deckWrapper) {
         this.mainController = mainController;

@@ -2,6 +2,7 @@ package it.unibo.monoopoly.model.state.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.model.main.api.MainModel;
@@ -16,7 +17,7 @@ public class ModelMovementState implements ModelState {
 
     private static final int PASS_GO_REWARD = 200;
 
-    private final MainModel turn;
+    private final MainModel mainModel;
     private final Dices dices;
     private final Optional<Integer> cellIndex;
 
@@ -29,10 +30,11 @@ public class ModelMovementState implements ModelState {
      *                  next state to execute.
      * @param cellIndex
      */
-    public ModelMovementState(final MainModel turn, final Optional<Integer> cellIndex) {
-        this.turn = turn;
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
+    public ModelMovementState(final MainModel mainModel, final Optional<Integer> cellIndex) {
+        this.mainModel = mainModel;
         this.cellIndex = cellIndex;
-        this.dices = turn.getGameBoard().getDices();
+        this.dices = mainModel.getGameBoard().getDices();
     }
 
     /**
@@ -63,9 +65,9 @@ public class ModelMovementState implements ModelState {
     @Override
     public void closeState() {
         if (getPlayer().isPrisoned()) {
-            this.turn.nextTurn();
+            this.mainModel.nextTurn();
         } else {
-            this.turn.setState(new ModelCheckActionState(this.turn));
+            this.mainModel.setState(new ModelCheckActionState(this.mainModel));
         }
     }
 
@@ -103,7 +105,7 @@ public class ModelMovementState implements ModelState {
     }
 
     private int numberOfCells() {
-        return this.turn.getGameBoard().getCellsList().size();
+        return this.mainModel.getGameBoard().getCellsList().size();
     }
 
     private int getPlayerPosition() {
@@ -111,7 +113,7 @@ public class ModelMovementState implements ModelState {
     }
 
     private Player getPlayer() {
-        return this.turn.getGameBoard().getCurrentPlayer();
+        return this.mainModel.getGameBoard().getCurrentPlayer();
     }
 
     private void movePlayer(final int cellIndex) {

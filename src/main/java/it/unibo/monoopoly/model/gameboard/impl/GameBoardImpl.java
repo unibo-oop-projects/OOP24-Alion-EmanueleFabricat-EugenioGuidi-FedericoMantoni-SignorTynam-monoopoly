@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.deck.impl.DeckImpl;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
@@ -124,6 +125,7 @@ public class GameBoardImpl implements GameBoard {
     /**
      * {@inheritDoc}
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern Proxy")
     @Override
     public Deck getDeck() {
         return this.deck;

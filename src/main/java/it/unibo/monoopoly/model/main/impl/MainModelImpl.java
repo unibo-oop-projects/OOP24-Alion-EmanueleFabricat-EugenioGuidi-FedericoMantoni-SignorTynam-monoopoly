@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.deck.impl.DeckWrapper;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
@@ -63,6 +64,7 @@ public class MainModelImpl implements MainModel {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public GameBoard getGameBoard() {
         return this.gameBoard;
     }

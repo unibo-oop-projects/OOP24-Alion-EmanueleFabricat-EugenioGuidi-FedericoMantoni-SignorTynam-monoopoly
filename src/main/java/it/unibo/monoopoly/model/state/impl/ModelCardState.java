@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.state.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.deck.api.Card;
@@ -23,6 +24,7 @@ public class ModelCardState implements ModelState {
      * 
      * @param mainModel to set.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ModelCardState(final MainModel mainModel) {
         this.mainModel = mainModel;
     }

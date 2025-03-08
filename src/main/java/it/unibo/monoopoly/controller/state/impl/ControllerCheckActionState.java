@@ -2,6 +2,7 @@ package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
@@ -35,6 +36,7 @@ public class ControllerCheckActionState implements ControllerState {
      * @param viewState      the view state
      * @param gameBoard      the {@link GameBoard}
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerCheckActionState(final MainController mainController, final ModelState modelState,
             final ViewState viewState, final CellWrapper cellWrapper) {
         this.mainController = mainController;

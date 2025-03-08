@@ -2,6 +2,7 @@ package it.unibo.monoopoly.model.state.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.model.banker.api.Banker;
 import it.unibo.monoopoly.model.banker.impl.BankerImpl;
@@ -29,6 +30,7 @@ public class ModelBankerState implements ModelState {
      * @param mainModel the reference to perform the operations.
      * @param isInPrison tells if the {@link Player} is paying to get out of prison
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ModelBankerState(final MainModel mainModel, final boolean isInPrison) {
         this.mainModel = mainModel;
         this.isInPrison = isInPrison;

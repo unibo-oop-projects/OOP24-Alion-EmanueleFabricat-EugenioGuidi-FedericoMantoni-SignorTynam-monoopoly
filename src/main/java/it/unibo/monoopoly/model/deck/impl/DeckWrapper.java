@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.model.deck.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
 
@@ -14,12 +15,14 @@ public class DeckWrapper implements Deck {
      * 
      * @param deck the real Deck.
      */
-    public DeckWrapper(Deck deck) {
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern Proxy")
+    public DeckWrapper(final Deck deck) {
         this.deck = deck;
     }
 
     /**
-     * {@inheritedDoc}
+     * Proxy version.
+     * {@inheritedDoc}.
      */
     @Override
     public void draw() {
@@ -28,7 +31,8 @@ public class DeckWrapper implements Deck {
     }
 
     /**
-     * {@inheritedDoc}
+     * Proxy version.
+     * {@inheritedDoc}.
      */
     @Override
     public Card getActualCard() {
@@ -36,7 +40,8 @@ public class DeckWrapper implements Deck {
     }
 
     /**
-     * {@inheritedDoc}
+     * Proxy version.
+     * {@inheritedDoc}.
      */
     @Override
     public void addPrisonCard() {

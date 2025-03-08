@@ -2,6 +2,7 @@ package it.unibo.monoopoly.controller.state.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
@@ -33,6 +34,7 @@ public class ControllerPrisonState implements ControllerState {
      * @param viewState      the actual {@link ViewState}
      * @param playerWrapper  the {@link PlayerWrapper} of the turn.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerPrisonState(final MainController mainController, final ModelState modelState,
             final ViewState viewState, final PlayerWrapper playerWrapper) {
         this.modelState = modelState;

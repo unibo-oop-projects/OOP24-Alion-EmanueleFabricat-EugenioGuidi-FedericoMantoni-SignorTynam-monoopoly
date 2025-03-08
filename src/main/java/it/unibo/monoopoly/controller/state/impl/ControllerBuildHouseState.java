@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
@@ -12,6 +13,7 @@ import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buildable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.player.api.Player;
 import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
@@ -33,17 +35,19 @@ public class ControllerBuildHouseState implements ControllerState {
     /**
      * Constructs the controller for the house building state.
      * 
-     * @param mainController the main controller
-     * @param modelState     the model state
-     * @param viewState      the view state
-     * @param gameBoard      the game board
+     * @param mainController    the main controller
+     * @param modelState        the model state
+     * @param viewState         the view state
+     * @param playerWrapper     the wrap of the actual {@link Player}.
+     * @param gameBoardCellList the {@link List} of all {@link Cell} of the game.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State and pattern Proxy")
     public ControllerBuildHouseState(final MainController mainController, final ModelState modelState,
             final ViewState viewState, final PlayerWrapper playerWrapper, final List<Cell> gameBoardCellList) {
         this.modelState = modelState;
         this.viewState = viewState;
         this.mainController = mainController;
-        this.gameBoardCellList = gameBoardCellList;
+        this.gameBoardCellList = List.copyOf(gameBoardCellList);
         this.playerWrapper = playerWrapper;
     }
 
