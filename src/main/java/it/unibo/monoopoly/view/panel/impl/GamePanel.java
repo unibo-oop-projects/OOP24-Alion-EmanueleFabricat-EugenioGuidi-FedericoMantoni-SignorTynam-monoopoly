@@ -48,7 +48,7 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
         this.mainFrameHeight = mainFrameHeight;
         this.mainFrameWidth = mainFrameWidth;
         this.firstPlayer = firstPlayer;
-        this.initializedList = initializedList;
+        this.initializedList = List.copyOf(initializedList);
         this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, players, colors);
         this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
 

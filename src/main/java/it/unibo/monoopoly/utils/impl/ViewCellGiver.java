@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.view.main.api.MainView;
@@ -28,6 +29,7 @@ public class ViewCellGiver implements ActionListener {
      * @param mainView used to call the {@link continueState} method of the
      *                 {@link ControllerState}.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ViewCellGiver(final MainView mainView) {
         this.mainView = mainView;
     }
