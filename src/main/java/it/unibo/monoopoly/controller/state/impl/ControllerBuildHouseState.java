@@ -30,8 +30,10 @@ public class ControllerBuildHouseState implements ControllerState {
     /**
      * Constructs the controller for the house building state.
      * 
+     * @param mainController the main controller
      * @param modelState the model state
      * @param viewState  the view state
+     * @param gameBoard the game board
      */
     public ControllerBuildHouseState(final MainController mainController, final ModelState modelState,
             final ViewState viewState, final GameBoard gameBoard) {

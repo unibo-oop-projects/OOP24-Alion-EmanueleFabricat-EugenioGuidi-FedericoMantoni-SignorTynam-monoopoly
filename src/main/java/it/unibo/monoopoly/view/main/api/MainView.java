@@ -30,7 +30,10 @@ public interface MainView extends View {
      * @param state the {@link ViewState} to set
      */
     void setState(ViewState state);
-
+    /**
+     * Set the new {@link JPanel} for the {@link InteractivePanel}.
+     * @param panel the new {@link JPanel}.
+     */
     void setInteractivePanel(JPanel panel);
 
     /**
