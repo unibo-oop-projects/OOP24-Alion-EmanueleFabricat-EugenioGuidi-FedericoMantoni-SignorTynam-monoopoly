@@ -62,36 +62,33 @@ public class ModelCardState implements ModelState {
      */
     @Override
     public void closeState() {
-        ModelState nextState = new ModelUnmortgageState(mainModel);
-        switch (getCard().getMessage().typeOfAction()) {
-            case Event.FREE_CARD:
-                this.mainModel.getGameBoard().getCurrentPlayer().addGetOutOfJailCard();
-                nextState = new ModelUnmortgageState(mainModel);
-                break;
-            case Event.MOVE_CARD:
-                nextState = new ModelMovementState(mainModel, getCard().getMessage().data());
-                break;
-            case Event.PRISON:
-                nextState = new ModelPrisonState(this.mainModel, true);
-                break;
-            case Event.CARD_PAYMENT:
-                if (getCard().getMessage().data().isPresent()) {
-                    this.mainModel.getGameBoard().getCurrentPlayer().pay(getCard().getMessage().data().get());
-                    nextState = new ModelBankerState(mainModel, false);
-                    break;
-                } else {
-                    this.mainModel.getGameBoard().getCurrentPlayer().pay(payForHouse());
-                    nextState = new ModelBankerState(mainModel, false);
-                    break;
+        this.mainModel.setState(
+            switch (getCard().getMessage().typeOfAction()) {
+                case Event.FREE_CARD -> {
+                        this.mainModel.getGameBoard().getCurrentPlayer().addGetOutOfJailCard();
+                        yield new ModelUnmortgageState(mainModel);
                 }
-            case Event.RECEIVE_CARD:
-                this.mainModel.getGameBoard().getCurrentPlayer().receive(getCard().getMessage().data().get());
-                nextState = new ModelUnmortgageState(mainModel);
-                break;
-            default:
-                throw new IllegalStateException("la carta non dovrebbe non far niente");
-        }
-        this.mainModel.setState(nextState);
+                case Event.MOVE_CARD ->
+                    new ModelMovementState(mainModel, getCard().getMessage().data());
+                case Event.PRISON ->
+                    new ModelPrisonState(this.mainModel, true);
+                case Event.CARD_PAYMENT -> {
+                        if (getCard().getMessage().data().isPresent()) {
+                            this.mainModel.getGameBoard().getCurrentPlayer().pay(getCard().getMessage().data().get());
+                            yield new ModelBankerState(mainModel, false);
+                        } else {
+                            this.mainModel.getGameBoard().getCurrentPlayer().pay(payForHouse());
+                            yield new ModelBankerState(mainModel, false);
+                        }
+                    }
+                case Event.RECEIVE_CARD ->{
+                        this.mainModel.getGameBoard().getCurrentPlayer().receive(getCard().getMessage().data().get());
+                        yield new ModelUnmortgageState(mainModel);
+                    }   
+                default ->
+                    throw new IllegalStateException("la carta non dovrebbe non far niente");
+            }
+        );
     }
 
     private int payForHouse() {

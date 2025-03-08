@@ -63,7 +63,7 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
             if (i == 0) {
                 this.textList.get(i).setBorder(BorderFactory.createMatteBorder(4, 4, 2, 4, Color.BLACK));
             } else {
-                if (i % 2 == 1) {
+                if (i % 2 != 0) {
                     this.textList.get(i).setBorder(BorderFactory.createMatteBorder(2, 4, 1, 4, Color.BLACK));
                 } else {
                     this.textList.get(i).setBorder(BorderFactory.createMatteBorder(1, 4, 2, 4, Color.BLACK));
@@ -86,7 +86,7 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
                     .findFirst().get().setText(entry.getValue() + " €");
         }
         this.textList.stream()
-                .filter(t -> this.textList.indexOf(t) % 2 == 1 && this.textList.indexOf(t) > 0)
+                .filter(t -> this.textList.indexOf(t) % 2 != 0 && this.textList.indexOf(t) > 0)
                 .filter(t -> !keysList(updateData.playersMoney()).contains(t.getText()))
                 .map(t -> this.textList.get(this.textList.indexOf(t) + 1))
                 .forEach(t -> {
