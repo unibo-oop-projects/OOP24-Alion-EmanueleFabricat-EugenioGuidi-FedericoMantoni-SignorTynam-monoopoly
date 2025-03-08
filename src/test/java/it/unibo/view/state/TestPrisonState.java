@@ -28,7 +28,7 @@ public class TestPrisonState extends JFrame {
             playerList.add("Player 2");
 
             MainModel mainModel = new MainModelImpl(propertyList);
-            MainController controller = new MainControllerImpl(mainModel, playerList);
+            MainController controller = new MainControllerImpl(playerList);
             MainView view = new MainViewImpl(controller, propertyList, playerList);
 
             ModelPrisonState modelStateJail = new ModelPrisonState(mainModel, true);

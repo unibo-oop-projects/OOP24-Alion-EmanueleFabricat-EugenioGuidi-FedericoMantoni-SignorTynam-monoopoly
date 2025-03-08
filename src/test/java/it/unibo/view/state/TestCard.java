@@ -23,7 +23,7 @@ public class TestCard extends JFrame{
         List<String> lis = new ArrayList<>();
         lis.add("Franco");
         lis.add("Luca");
-        final MainController controller = new MainControllerImpl(new MainModelImpl(lista), lis);        
+        final MainController controller = new MainControllerImpl(lis);        
         state = new ViewCardState(new MainViewImpl(controller, lista, lis));
     }
 }

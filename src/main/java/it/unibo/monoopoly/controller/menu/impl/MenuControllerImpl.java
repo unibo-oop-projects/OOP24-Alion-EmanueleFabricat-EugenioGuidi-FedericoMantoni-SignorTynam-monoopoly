@@ -27,7 +27,7 @@ public class MenuControllerImpl implements MenuController {
     @Override
     public void goGame(final List<String> namePlayers) {
         Objects.requireNonNull(namePlayers);
-        new MainControllerImpl(new MainModelImpl(namePlayers), namePlayers);
+        new MainControllerImpl(namePlayers);
     }
 
 }
