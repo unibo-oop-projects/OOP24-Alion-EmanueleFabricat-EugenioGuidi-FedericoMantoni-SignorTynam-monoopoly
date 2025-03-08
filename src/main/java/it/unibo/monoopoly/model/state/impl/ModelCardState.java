@@ -84,7 +84,7 @@ public class ModelCardState implements ModelState {
                 case Event.RECEIVE_CARD -> {
                         this.mainModel.getGameBoard().getCurrentPlayer().receive(getCard().getMessage().data().get());
                         yield new ModelUnmortgageState(mainModel);
-                    }   
+                    }
                 default ->
                     throw new IllegalStateException("la carta non dovrebbe non far niente");
             }
