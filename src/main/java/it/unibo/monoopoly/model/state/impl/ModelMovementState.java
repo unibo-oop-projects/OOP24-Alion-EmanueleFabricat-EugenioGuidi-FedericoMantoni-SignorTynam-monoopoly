@@ -26,7 +26,7 @@ public class ModelMovementState implements ModelState {
      * This state is used to move the current {@link Player} based on the dice
      * result.
      * 
-     * @param turn      used to associate the dices roll state with the specific
+     * @param mainModel used to associate the dices roll state with the specific
      *                  next state to execute.
      * @param cellIndex
      */
