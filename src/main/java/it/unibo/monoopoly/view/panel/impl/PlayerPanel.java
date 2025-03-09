@@ -32,7 +32,6 @@ public final class PlayerPanel extends JPanel implements UpdatablePanel {
             final List<Triple<String, Integer, Color>> initializedList) {
         this.interactivePanel = new InteractivePanel(new DefaultInteractivePanel(mainFrameHeight));
         this.visualizePlayerPanel = new VisualizePlayerPanel(mainFrameHeight, firstPlayer, initializedList);
-        setBackground(Color.BLUE);
         setLayout(new GridLayout(2, 1));
         add(visualizePlayerPanel);
         add(interactivePanel);
