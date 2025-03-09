@@ -44,9 +44,11 @@ public class CellGiverListener implements ActionListener {
         final int cellIndex = mainView.getNameCells().indexOf(cellName);
         this.mainView.setInteractivePanel(new DefaultInteractivePanel(this.mainView.getMainFrame().getHeight()));
         if (NO_CHOICE.equals(cellName)) {
+            this.mainView.getMainFrame().requestFocusInWindow();
             mainView.getControllerState().closeControllerState(
                     new DataBuilderOutputImpl().build());
         } else {
+            this.mainView.getMainFrame().requestFocusInWindow();
             mainView.getControllerState().closeControllerState(
                     new DataBuilderOutputImpl().selectedCell(cellIndex).build());
         }
