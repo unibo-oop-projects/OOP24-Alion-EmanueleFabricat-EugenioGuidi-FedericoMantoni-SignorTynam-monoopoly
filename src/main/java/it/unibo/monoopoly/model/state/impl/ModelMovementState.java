@@ -54,7 +54,7 @@ public class ModelMovementState implements ModelState {
         if (verify()) {
             moveWithDices();
         } else {
-            moveWithCards(cellIndex());
+            moveWithCards(this.cellIndex.get());
         }
     }
 
@@ -94,10 +94,6 @@ public class ModelMovementState implements ModelState {
                 movePlayer(getPlayerPosition() + cellIndex);
             }
         }
-    }
-
-    private int cellIndex() {
-        return this.cellIndex.get();
     }
 
     private int diceResult() {
