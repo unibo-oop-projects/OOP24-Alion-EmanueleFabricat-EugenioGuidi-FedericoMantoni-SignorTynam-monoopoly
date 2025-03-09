@@ -99,17 +99,14 @@ public class PositionAllocatorImpl implements PositionAllocator {
     }
 
     private List<NumberAndCirclePosition> createCircleOfMortgagedProperties(final List<Integer> mortgagedProperties) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var cellIndex : mortgagedProperties) {
-            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .x((int) this.propertyPositions.get(cellIndex).x())
-                    .y((int) this.propertyPositions.get(cellIndex).y())
-                    .circle(true)
-                    .color(Color.BLACK)
-                    .build();
-            newList.add(numberAndCirclePosition);
-        }
-        return newList;
+        return mortgagedProperties.stream()
+                .map(c -> new NumberAndCirclePosition.Builder()
+                        .x((int) this.propertyPositions.get(c).x())
+                        .y((int) this.propertyPositions.get(c).y())
+                        .circle(true)
+                        .color(Color.BLACK)
+                        .build())
+                .toList();
     }
 
     private List<NumberAndCirclePosition> createNumberOfHousesBuilded(final Map<Integer, Integer> nBuiltHouses) {
