@@ -74,10 +74,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     private List<Triple<String, Integer, Color>> initPlayerView(final List<String> namePlayers) {
         final List<Triple<String, Integer, Color>> l = new LinkedList<>();
         for (final var name : namePlayers) {
-            l.add(Triple.of(name, 0, players.entrySet().stream()
-                    .filter(e -> e.getValue().equals(name))
-                    .map(Entry::getKey)
-                    .findFirst().get()));
+            l.add(Triple.of(name, 0, players.get(name)));
         }
         return l;
     }
