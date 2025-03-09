@@ -2,6 +2,7 @@ package it.unibo.monoopoly.utils.impl;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -31,7 +32,7 @@ public class PositionAllocatorImpl implements PositionAllocator {
      */
     public PositionAllocatorImpl(final int mainFrameHeight, final Map<String, Color> playersColors,
             final List<Color> colors) {
-        this.playersColors = playersColors;
+        this.playersColors = new HashMap<>(playersColors);
         final PositionsFactory positionsFactory = new PositionsFactoryImpl(mainFrameHeight, colors);
         this.playersPositions = positionsFactory.createPlayersPositions();
         this.propertyPositions = positionsFactory.createPropertyPositions();
