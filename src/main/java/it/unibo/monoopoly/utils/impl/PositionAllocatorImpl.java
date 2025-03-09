@@ -62,80 +62,63 @@ public class PositionAllocatorImpl implements PositionAllocator {
 
     private List<NumberAndCirclePosition> createCircleOfPlayersPositions(
             final Map<String, Integer> newPlayersPositions) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var entry : this.playersColors.entrySet()) {
-            if (newPlayersPositions.containsKey(entry.getKey())) {
-                final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                        .x((int) getX(entry, newPlayersPositions))
-                        .y((int) getY(entry, newPlayersPositions))
+        return this.playersColors.entrySet().stream()
+                .filter(e -> newPlayersPositions.containsKey(e.getKey()))
+                .map(e -> new NumberAndCirclePosition.Builder()
+                        .x((int) getX(e, newPlayersPositions))
+                        .y((int) getY(e, newPlayersPositions))
                         .circle(true)
-                        .color(this.playersColors.get(entry.getKey()))
-                        .build();
-                newList.add(numberAndCirclePosition);
-            }
-        }
-        return newList;
+                        .color(this.playersColors.get(e.getKey()))
+                        .build())
+                .toList();
     }
 
     private List<NumberAndCirclePosition> createCircleOfPropertyPositions(
             final Map<Integer, Optional<String>> cellsOwners) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var entry : cellsOwners.entrySet()) {
-            if (entry.getValue().isPresent()) {
-                final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                        .x((int) this.propertyPositions.get(entry.getKey()).x())
-                        .y((int) this.propertyPositions.get(entry.getKey()).y())
+        return cellsOwners.entrySet().stream()
+                .filter(e -> e.getValue().isPresent())
+                .map(e -> new NumberAndCirclePosition.Builder()
+                        .x((int) this.propertyPositions.get(e.getKey()).x())
+                        .y((int) this.propertyPositions.get(e.getKey()).y())
                         .circle(true)
-                        .color(this.playersColors.get(entry.getValue().get()))
-                        .build();
-                newList.add(numberAndCirclePosition);
-            }
-        }
-        return newList;
+                        .color(this.playersColors.get(e.getValue().get()))
+                        .build())
+                .toList();
     }
 
     private List<NumberAndCirclePosition> createCircleOfPrisonedPlayers(final List<String> prisonedPlayers) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var prisonedPlayer : prisonedPlayers) {
-            final Color color = this.playersColors.get(prisonedPlayer);
-            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .x((int) this.prisonPositions.get(color).x())
-                    .y((int) this.prisonPositions.get(color).y())
-                    .circle(true)
-                    .color(color)
-                    .build();
-            newList.add(numberAndCirclePosition);
-        }
-        return newList;
+        return prisonedPlayers.stream()
+                .map(this.playersColors::get)
+                .map(c -> new NumberAndCirclePosition.Builder()
+                        .x((int) this.prisonPositions.get(c).x())
+                        .y((int) this.prisonPositions.get(c).y())
+                        .circle(true)
+                        .color(c)
+                        .build())
+                .toList();
     }
 
     private List<NumberAndCirclePosition> createCircleOfMortgagedProperties(final List<Integer> mortgagedProperties) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var cellIndex : mortgagedProperties) {
-            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .x((int) this.propertyPositions.get(cellIndex).x())
-                    .y((int) this.propertyPositions.get(cellIndex).y())
-                    .circle(true)
-                    .color(Color.BLACK)
-                    .build();
-            newList.add(numberAndCirclePosition);
-        }
-        return newList;
+        return mortgagedProperties.stream()
+                .map(c -> new NumberAndCirclePosition.Builder()
+                        .x((int) this.propertyPositions.get(c).x())
+                        .y((int) this.propertyPositions.get(c).y())
+                        .circle(true)
+                        .color(Color.BLACK)
+                        .build())
+                .toList();
     }
 
     private List<NumberAndCirclePosition> createNumberOfHousesBuilded(final Map<Integer, Integer> nBuiltHouses) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var entry : nBuiltHouses.entrySet()) {
-            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .x((int) this.housesPositions.get(entry.getKey()).x())
-                    .y((int) this.housesPositions.get(entry.getKey()).y())
-                    .circle(false)
-                    .color(Color.BLACK)
-                    .number(entry.getValue().toString())
-                    .build();
-            newList.add(numberAndCirclePosition);
-        }
-        return newList;
+        return nBuiltHouses.entrySet().stream()
+                .map(e -> new NumberAndCirclePosition.Builder()
+                        .x((int) this.housesPositions.get(e.getKey()).x())
+                        .y((int) this.housesPositions.get(e.getKey()).y())
+                        .circle(false)
+                        .color(Color.BLACK)
+                        .number(e.getValue().toString())
+                        .build())
+                .toList();
     }
 
     private double getX(final Map.Entry<String, Color> entry, final Map<String, Integer> newPlayersPositions) {
