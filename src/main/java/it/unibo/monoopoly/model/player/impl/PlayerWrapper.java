@@ -12,6 +12,8 @@ import it.unibo.monoopoly.model.player.api.Player;
 public class PlayerWrapper implements Player {
 
     private final Player player;
+    private static final String START_MESSAGE_ERROR = "The method";
+    private static final String FINISH_MESSAGE_ERROR = "is not implemented in the Proxy pattern.";
 
     /**
      * Constructor of the proxy.
@@ -65,8 +67,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public void changePosition(final int position) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'changePosition'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'changePosition' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -84,8 +85,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public void pay(final int amount) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pay'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'pay' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -94,8 +94,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public void receive(final int amount) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'receive'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'receive' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -104,8 +103,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public boolean addProperty(final Buyable property) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addProperty'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'addProperty' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -114,8 +112,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public boolean removeProperty(final Buyable property) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeProperty'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'removeProperty' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -133,8 +130,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public void inBankrupt() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'inBankrupt'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'inBankrupt' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -152,8 +148,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public void addGetOutOfJailCard() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addGetOutOfJailCard'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'addGetOutOfJailCard' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -171,8 +166,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public boolean useGetOutOfJailCard() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'useGetOutOfJailCard'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'useGetOutOfJailCard' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -181,8 +175,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public void setPrisoned() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPrisoned'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'setPrisoned' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -191,8 +184,7 @@ public class PlayerWrapper implements Player {
      */
     @Override
     public void releaseFromPrison() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'releaseFromPrison'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'releaseFromPrison' " + FINISH_MESSAGE_ERROR);
     }
 
 }

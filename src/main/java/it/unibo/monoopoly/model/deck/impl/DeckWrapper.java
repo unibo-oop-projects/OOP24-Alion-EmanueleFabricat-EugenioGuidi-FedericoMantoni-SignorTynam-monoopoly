@@ -9,6 +9,8 @@ import it.unibo.monoopoly.model.deck.api.Deck;
  */
 public class DeckWrapper implements Deck {
     private final Deck deck;
+    private static final String START_MESSAGE_ERROR = "The method";
+    private static final String FINISH_MESSAGE_ERROR = "is not implemented in the Proxy pattern.";
 
     /**
      * Constructor of the proxy.
@@ -27,7 +29,7 @@ public class DeckWrapper implements Deck {
     @Override
     public void draw() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'draw'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'draw' " + FINISH_MESSAGE_ERROR);
     }
 
     /**
@@ -46,7 +48,7 @@ public class DeckWrapper implements Deck {
     @Override
     public void addPrisonCard() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addPrisonCard'");
+        throw new UnsupportedOperationException(START_MESSAGE_ERROR + " 'addPrisonCard' " + FINISH_MESSAGE_ERROR);
     }
 
 }
