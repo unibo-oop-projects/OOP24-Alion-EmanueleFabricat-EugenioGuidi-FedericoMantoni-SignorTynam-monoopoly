@@ -72,6 +72,7 @@ public class MainControllerImpl implements MainController {
     public void nextPhase() {
         if (this.model.getGameBoard().isGameEnded()) {
             this.mainView.endGame(this.model.getGameBoard().getCurrentPlayer().getName());
+            return;
         }
         this.mainView.update();
         switch (this.model.getState()) {
