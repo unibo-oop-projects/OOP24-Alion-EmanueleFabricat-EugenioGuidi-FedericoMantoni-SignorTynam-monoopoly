@@ -75,19 +75,15 @@ public class PositionAllocatorImpl implements PositionAllocator {
 
     private List<NumberAndCirclePosition> createCircleOfPropertyPositions(
             final Map<Integer, Optional<String>> cellsOwners) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var entry : cellsOwners.entrySet()) {
-            if (entry.getValue().isPresent()) {
-                final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                        .x((int) this.propertyPositions.get(entry.getKey()).x())
-                        .y((int) this.propertyPositions.get(entry.getKey()).y())
+        return cellsOwners.entrySet().stream()
+                .filter(e -> e.getValue().isPresent())
+                .map(e -> new NumberAndCirclePosition.Builder()
+                        .x((int) this.propertyPositions.get(e.getKey()).x())
+                        .y((int) this.propertyPositions.get(e.getKey()).y())
                         .circle(true)
-                        .color(this.playersColors.get(entry.getValue().get()))
-                        .build();
-                newList.add(numberAndCirclePosition);
-            }
-        }
-        return newList;
+                        .color(this.playersColors.get(e.getValue().get()))
+                        .build())
+                .toList();
     }
 
     private List<NumberAndCirclePosition> createCircleOfPrisonedPlayers(final List<String> prisonedPlayers) {
