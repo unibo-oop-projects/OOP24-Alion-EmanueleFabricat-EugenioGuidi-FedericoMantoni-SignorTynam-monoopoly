@@ -62,19 +62,15 @@ public class PositionAllocatorImpl implements PositionAllocator {
 
     private List<NumberAndCirclePosition> createCircleOfPlayersPositions(
             final Map<String, Integer> newPlayersPositions) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var entry : this.playersColors.entrySet()) {
-            if (newPlayersPositions.containsKey(entry.getKey())) {
-                final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                        .x((int) getX(entry, newPlayersPositions))
-                        .y((int) getY(entry, newPlayersPositions))
+        return this.playersColors.entrySet().stream()
+                .filter(e -> newPlayersPositions.containsKey(e.getKey()))
+                .map(e -> new NumberAndCirclePosition.Builder()
+                        .x((int) getX(e, newPlayersPositions))
+                        .y((int) getY(e, newPlayersPositions))
                         .circle(true)
-                        .color(this.playersColors.get(entry.getKey()))
-                        .build();
-                newList.add(numberAndCirclePosition);
-            }
-        }
-        return newList;
+                        .color(this.playersColors.get(e.getKey()))
+                        .build())
+                .toList();
     }
 
     private List<NumberAndCirclePosition> createCircleOfPropertyPositions(
