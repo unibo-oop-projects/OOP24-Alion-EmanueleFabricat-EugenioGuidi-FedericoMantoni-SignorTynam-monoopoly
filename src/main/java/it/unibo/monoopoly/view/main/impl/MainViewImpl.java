@@ -157,6 +157,8 @@ public class MainViewImpl extends AbstractView implements MainView {
         final JTextArea winnerText = new JTextArea("BRAVO, " + player + " HAI VINTO IL GIOCO");
         winnerText.setEditable(false);
         winnerText.setFont(new Font("Arial", Font.PLAIN, END_MESSAGE_FONT_SIZE));
+        winnerText.setLineWrap(true);
+        winnerText.setWrapStyleWord(true);
         closeWindow.add(winnerText);
         closeWindow.setSize(1000, 100);
         closeWindow.setLocationRelativeTo(null);
