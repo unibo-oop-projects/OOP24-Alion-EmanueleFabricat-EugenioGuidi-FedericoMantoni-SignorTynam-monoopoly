@@ -39,7 +39,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     private final MainController controller;
     private ViewState viewState;
     private final List<Color> colors;
-    private final Map<Color, String> players;
+    private final Map<String, Color> players;
     private final List<String> nameCells;
 
     /**
@@ -64,7 +64,7 @@ public class MainViewImpl extends AbstractView implements MainView {
 
         this.colors = super.getColors();
         this.players = IntStream.range(0, namePlayers.size()).boxed()
-                .collect(Collectors.toMap(colors::get, namePlayers::get));
+                .collect(Collectors.toMap(namePlayers::get, colors::get));
         this.nameCells = new ArrayList<>(nameCells);
         this.gamePanel = new GamePanel(mainFrame().getHeight(), mainFrame().getWidth(), "1",
                 initPlayerView(namePlayers), this.players, this.colors);
