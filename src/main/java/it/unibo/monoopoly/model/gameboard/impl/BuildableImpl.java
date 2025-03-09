@@ -89,7 +89,6 @@ public class BuildableImpl extends AbstractBuyable implements Buildable {
             throw new IllegalStateException(
                     "Cannot " + (isBuilding ? "build" : "sell") + " a house on a mortgaged property");
         }
-
         if (isBuilding) {
             if (this.houses >= MAX_HOUSES) {
                 throw new IllegalStateException("Cannot build more than " + MAX_HOUSES + " houses on a property");

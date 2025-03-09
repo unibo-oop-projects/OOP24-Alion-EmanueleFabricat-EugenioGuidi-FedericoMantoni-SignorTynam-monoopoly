@@ -7,14 +7,13 @@ import java.util.Map;
 import it.unibo.monoopoly.utils.impl.Position;
 
 /**
- * create Position.
+ * create Position using pattern factory.
  */
 public interface PositionsFactory {
 
     /**
      * create map to associate to all color the relative list of all possible
-     * position
-     * in the gameboard.
+     * position in the gameboard.
      * 
      * @return map of all position based on color.
      */

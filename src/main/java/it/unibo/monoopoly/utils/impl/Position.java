@@ -1,7 +1,7 @@
 package it.unibo.monoopoly.utils.impl;
 
 /**
- * create a record class to save the coordinates
+ * Create a record class to save the coordinates
  * of a possible position within the gameboard.
  * 
  * @param x

@@ -119,5 +119,4 @@ public class ModelMovementState implements ModelState {
     private boolean hasPassedGo() {
         return getPlayerPosition() + diceResult() >= numberOfCells();
     }
-
 }

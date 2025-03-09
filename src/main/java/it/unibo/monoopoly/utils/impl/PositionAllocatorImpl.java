@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.utils.api.PositionAllocator;
 import it.unibo.monoopoly.utils.api.PositionsFactory;
@@ -30,9 +29,9 @@ public class PositionAllocatorImpl implements PositionAllocator {
      * @param playersColors
      * @param colors
      */
-    public PositionAllocatorImpl(final int mainFrameHeight, final Map<Color, String> playersColors,
+    public PositionAllocatorImpl(final int mainFrameHeight, final Map<String, Color> playersColors,
             final List<Color> colors) {
-        this.playersColors = reverseColor(playersColors);
+        this.playersColors = playersColors;
         final PositionsFactory positionsFactory = new PositionsFactoryImpl(mainFrameHeight, colors);
         this.playersPositions = positionsFactory.createPlayersPositions();
         this.propertyPositions = positionsFactory.createPropertyPositions();
@@ -127,10 +126,5 @@ public class PositionAllocatorImpl implements PositionAllocator {
 
     private double getY(final Map.Entry<String, Color> entry, final Map<String, Integer> newPlayersPositions) {
         return this.playersPositions.get(entry.getValue()).get(newPlayersPositions.get(entry.getKey())).y();
-    }
-
-    private Map<String, Color> reverseColor(final Map<Color, String> list) {
-        return list.entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 }
