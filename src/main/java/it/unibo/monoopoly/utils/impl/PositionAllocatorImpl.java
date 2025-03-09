@@ -88,7 +88,7 @@ public class PositionAllocatorImpl implements PositionAllocator {
 
     private List<NumberAndCirclePosition> createCircleOfPrisonedPlayers(final List<String> prisonedPlayers) {
         return prisonedPlayers.stream()
-                .map(p -> this.playersColors.get(p))
+                .map(this.playersColors::get)
                 .map(c -> new NumberAndCirclePosition.Builder()
                         .x((int) this.prisonPositions.get(c).x())
                         .y((int) this.prisonPositions.get(c).y())
@@ -110,18 +110,15 @@ public class PositionAllocatorImpl implements PositionAllocator {
     }
 
     private List<NumberAndCirclePosition> createNumberOfHousesBuilded(final Map<Integer, Integer> nBuiltHouses) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var entry : nBuiltHouses.entrySet()) {
-            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .x((int) this.housesPositions.get(entry.getKey()).x())
-                    .y((int) this.housesPositions.get(entry.getKey()).y())
-                    .circle(false)
-                    .color(Color.BLACK)
-                    .number(entry.getValue().toString())
-                    .build();
-            newList.add(numberAndCirclePosition);
-        }
-        return newList;
+        return nBuiltHouses.entrySet().stream()
+                .map(e -> new NumberAndCirclePosition.Builder()
+                        .x((int) this.housesPositions.get(e.getKey()).x())
+                        .y((int) this.housesPositions.get(e.getKey()).y())
+                        .circle(false)
+                        .color(Color.BLACK)
+                        .number(e.getValue().toString())
+                        .build())
+                .toList();
     }
 
     private double getX(final Map.Entry<String, Color> entry, final Map<String, Integer> newPlayersPositions) {
