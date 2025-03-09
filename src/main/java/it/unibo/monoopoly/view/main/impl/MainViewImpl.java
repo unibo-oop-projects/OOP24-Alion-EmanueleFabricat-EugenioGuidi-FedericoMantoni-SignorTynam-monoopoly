@@ -33,7 +33,8 @@ import it.unibo.monoopoly.view.state.impl.ViewPrisonState;
  */
 public class MainViewImpl extends AbstractView implements MainView {
 
-    private static final int END_MESSAGE_FONT_SIZE = 50;
+    private static final int RESIZE_TEXT = 10;
+    private static final int RESIZE_PANEL = 2;
     private final GamePanel gamePanel;
     private final MainController controller;
     private ViewState viewState;
@@ -156,11 +157,11 @@ public class MainViewImpl extends AbstractView implements MainView {
         closeWindow.setModal(true);
         final JTextArea winnerText = new JTextArea("BRAVO, " + player + " HAI VINTO IL GIOCO");
         winnerText.setEditable(false);
-        winnerText.setFont(new Font("Arial", Font.PLAIN, END_MESSAGE_FONT_SIZE));
+        winnerText.setFont(new Font("Arial", Font.PLAIN, Toolkit.getDefaultToolkit().getScreenSize().height/RESIZE_TEXT));
         winnerText.setLineWrap(true);
         winnerText.setWrapStyleWord(true);
         closeWindow.add(winnerText);
-        closeWindow.setSize(1000, 100);
+        closeWindow.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/RESIZE_TEXT, Toolkit.getDefaultToolkit().getScreenSize().height/RESIZE_TEXT);
         closeWindow.setLocationRelativeTo(null);
         closeWindow.setVisible(true);
         closeWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
