@@ -87,18 +87,15 @@ public class PositionAllocatorImpl implements PositionAllocator {
     }
 
     private List<NumberAndCirclePosition> createCircleOfPrisonedPlayers(final List<String> prisonedPlayers) {
-        final List<NumberAndCirclePosition> newList = new ArrayList<>();
-        for (final var prisonedPlayer : prisonedPlayers) {
-            final Color color = this.playersColors.get(prisonedPlayer);
-            final NumberAndCirclePosition numberAndCirclePosition = new NumberAndCirclePosition.Builder()
-                    .x((int) this.prisonPositions.get(color).x())
-                    .y((int) this.prisonPositions.get(color).y())
-                    .circle(true)
-                    .color(color)
-                    .build();
-            newList.add(numberAndCirclePosition);
-        }
-        return newList;
+        return prisonedPlayers.stream()
+                .map(p -> this.playersColors.get(p))
+                .map(c -> new NumberAndCirclePosition.Builder()
+                        .x((int) this.prisonPositions.get(c).x())
+                        .y((int) this.prisonPositions.get(c).y())
+                        .circle(true)
+                        .color(c)
+                        .build())
+                .toList();
     }
 
     private List<NumberAndCirclePosition> createCircleOfMortgagedProperties(final List<Integer> mortgagedProperties) {
