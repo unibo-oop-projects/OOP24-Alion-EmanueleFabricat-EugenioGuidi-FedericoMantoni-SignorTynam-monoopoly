@@ -41,7 +41,7 @@ public final class GameBoardPanel extends JPanel {
      * @param players
      * @param colors
      */
-    public GameBoardPanel(final int mainFrameHeight, final Map<Color, String> players, final List<Color> colors) {
+    public GameBoardPanel(final int mainFrameHeight, final Map<String, Color> players, final List<Color> colors) {
         this.mainFrameHeight = mainFrameHeight;
         this.positionAllocator = new PositionAllocatorImpl(mainFrameHeight, players, colors);
 

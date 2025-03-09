@@ -8,9 +8,8 @@ import it.unibo.monoopoly.utils.impl.NumberAndCirclePosition;
 
 /**
  * It is used to create a class that takes lists of player {@link Position},
- * cells,
- * prison and houses and creates a list of objects that will be displayed on the
- * gameBoard.
+ * cells, prison and houses and creates a list of objects that will be displayed
+ * on the gameBoard.
  */
 public interface PositionAllocator {
 

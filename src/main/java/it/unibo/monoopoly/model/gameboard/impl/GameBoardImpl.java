@@ -130,5 +130,4 @@ public class GameBoardImpl implements GameBoard {
     public Deck getDeck() {
         return this.deck;
     }
-
 }

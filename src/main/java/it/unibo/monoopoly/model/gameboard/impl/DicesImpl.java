@@ -50,5 +50,4 @@ public class DicesImpl implements Dices {
     public int getResult() {
         return this.totalResult;
     }
-
 }
