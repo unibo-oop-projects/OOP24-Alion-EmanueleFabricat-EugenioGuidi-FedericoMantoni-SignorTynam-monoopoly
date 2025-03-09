@@ -19,7 +19,8 @@ public class DeckImpl implements Deck {
     private final List<Card> deck = new LinkedList<>();
     private final Set<Card> discardPile = new HashSet<>();
     private Card actualCard;
-    private static final String PRISON_CARD_TEXT = "Uscite gratis di prigione, se non ci siete: potete conservare questo cartoncino sino al momento di servirvene";
+    private static final String PRISON_CARD_TEXT = "Uscite gratis di prigione,"
+            + " se non ci siete: potete conservare questo cartoncino sino al momento di servirvene";
 
     /**
      * Constructor that initialize and shuffle the deck.
