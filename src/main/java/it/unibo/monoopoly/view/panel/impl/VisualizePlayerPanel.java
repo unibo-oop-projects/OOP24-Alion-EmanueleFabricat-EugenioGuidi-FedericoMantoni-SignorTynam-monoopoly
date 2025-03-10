@@ -46,10 +46,12 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
             final List<Triple<String, Integer, Color>> initializedList) {
         super();
         this.playersNumber = initializedList.size();
-        setLayout(new GridLayout(playersNumber * 2 + 1, 1));
+        setLayout(new GridLayout(playersNumber * 2 + 2, 1));
         this.mainFrameHeight = mainFrameHeight;
         this.firstPlayer = firstPlayer;
-        this.textList.add(new JTextArea("E' il turno di " + this.firstPlayer));
+        this.textList.add(new JTextArea("E' il turno di:"));
+        this.textList.getLast().setBackground(GREEN_MONOPOLY);
+        this.textList.add(new JTextArea(this.firstPlayer));
         this.textList.getLast().setBackground(GREEN_MONOPOLY);
         for (final Triple<String, Integer, Color> triple : initializedList) {
             this.textList.add(new JTextArea(triple.getLeft()));
@@ -64,14 +66,10 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
             add(text);
         }
         for (int i = 0; i < this.textList.size(); i++) {
-            if (i == 0) {
-                this.textList.get(i).setBorder(BorderFactory.createMatteBorder(4, 4, 2, 4, Color.BLACK));
+            if (i % 2 == 0) {
+                this.textList.get(i).setBorder(BorderFactory.createMatteBorder(2, 4, 1, 4, Color.BLACK));
             } else {
-                if (i % 2 != 0) {
-                    this.textList.get(i).setBorder(BorderFactory.createMatteBorder(2, 4, 1, 4, Color.BLACK));
-                } else {
-                    this.textList.get(i).setBorder(BorderFactory.createMatteBorder(1, 4, 2, 4, Color.BLACK));
-                }
+                this.textList.get(i).setBorder(BorderFactory.createMatteBorder(1, 4, 2, 4, Color.BLACK));
             }
         }
     }
@@ -81,16 +79,15 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
      */
     @Override
     public void update(final ViewUpdateDTO updateData) {
-        this.textList.getFirst().setText("E' il turno di " + updateData.actualPlayer());
-        this.textList.getFirst().setBackground(GREEN_MONOPOLY);
-        for (final var entry : updateData.playersMoney().entrySet()) {
-            this.textList.stream()
-                    .filter(t -> t.getText().equals(entry.getKey()))
-                    .map(t -> this.textList.get(this.textList.indexOf(t) + 1))
-                    .findFirst().get().setText(entry.getValue() + " €");
+        this.textList.get(1).setText(updateData.actualPlayer());
+        for (int i = 2; i < this.textList.size(); i++) {
+            if (i % 2 == 0) {
+                this.textList.get(i + 1)
+                    .setText(String.valueOf(updateData.playersMoney().get(this.textList.get(i).getText())));
+            }
         }
         this.textList.stream()
-                .filter(t -> this.textList.indexOf(t) % 2 != 0 && this.textList.indexOf(t) > 0)
+                .filter(t -> this.textList.indexOf(t) % 2 == 0 && this.textList.indexOf(t) > 1)
                 .filter(t -> !keysList(updateData.playersMoney()).contains(t.getText()))
                 .map(t -> this.textList.get(this.textList.indexOf(t) + 1))
                 .forEach(t -> {
