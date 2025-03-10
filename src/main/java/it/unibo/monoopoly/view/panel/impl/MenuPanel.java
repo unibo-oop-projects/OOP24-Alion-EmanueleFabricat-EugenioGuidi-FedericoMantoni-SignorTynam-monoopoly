@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -31,7 +34,11 @@ public final class MenuPanel extends JPanel {
     private static final int FONT_SIZE_BUTTON = 20;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
-    private final SelectionPanel playerSelection;
+    private final SelectionPanel numberSelectionPanel;
+    private NameSelectorPanel nameSelectorPanel;
+
+    private final transient MenuController controller;
+    private final List<Color> colors;
 
     private final JButton start;
     private final JLabel monoopoly;
@@ -41,32 +48,61 @@ public final class MenuPanel extends JPanel {
      * 
      * @param controller the istance of {@link MenuController}, needed to initialize
      *                   the game based on player inputs
-     * @param colors the colors used in the game to represent the players
+     * @param colors     the colors used in the game to represent the players
      */
     public MenuPanel(final MenuController controller, final List<Color> colors) {
         super();
-        this.playerSelection = new SelectionPanel(controller, colors);
-
-        final JPanel title = new JPanel(new BorderLayout());
+        this.numberSelectionPanel = new SelectionPanel(this::showNamePanel);
+        this.colors = new ArrayList<>(colors);
+        this.controller = controller;
         this.start = new JButton("START");
         this.monoopoly = new JLabel("MONOOPOLY");
-        this.setBackground(GREEN_MONOPOLY);
+        final JPanel title = new JPanel(new BorderLayout());
+        final JPanel selection = new JPanel(new GridBagLayout());
+
         this.setLayout(new GridBagLayout());
+
+        this.setBackground(GREEN_MONOPOLY);
+
         this.start.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_BUTTON));
         this.start.setPreferredSize(start.getPreferredSize());
+
         title.setBackground(Color.RED);
+
         this.monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_TITLE));
         this.monoopoly.setForeground(Color.WHITE);
         this.monoopoly.setHorizontalAlignment(SwingConstants.CENTER);
         title.add(monoopoly, BorderLayout.CENTER);
+
         this.start.addActionListener(e -> {
             start.setVisible(false);
-            this.add(playerSelection, getSelectionConstraints());
+            this.add(selection, getSelectionConstraints());
+            selection.add(numberSelectionPanel, getBasicConstraints());
         });
+
         this.add(start, getButtonCostraints());
         this.add(title, getTitleConstraints());
         this.revalidate();
         this.repaint();
+    }
+
+    private ActionListener getBackListener(final JPanel panel) {
+        return new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                nameSelectorPanel.setVisible(false);
+                numberSelectionPanel.setVisible(true);
+                panel.revalidate();
+                panel.repaint();
+            }
+        };
+    }
+
+    private void showNamePanel(final int nPlayers) {
+        this.remove(numberSelectionPanel);
+        this.nameSelectorPanel = new NameSelectorPanel(colors, controller, getBackListener(this), nPlayers);
+        this.add(this.nameSelectorPanel, getNamesConstraint());
     }
 
     private GridBagConstraints getButtonCostraints() {
@@ -106,4 +142,18 @@ public final class MenuPanel extends JPanel {
         return out;
     }
 
+    private GridBagConstraints getNamesConstraint() {
+        final GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weighty = 1;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        return gbc;
+    }
+
+    private GridBagConstraints getBasicConstraints() {
+        final GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        return gbc;
+    }
 }
