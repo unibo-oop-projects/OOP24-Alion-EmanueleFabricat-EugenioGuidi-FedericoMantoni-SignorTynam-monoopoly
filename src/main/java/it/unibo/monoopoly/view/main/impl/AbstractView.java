@@ -49,6 +49,7 @@ public abstract class AbstractView implements View {
     public void display() {
         this.getMainFrame().add(this.getMainPanel());
         this.mainFrame.setVisible(true);
+        this.getMainFrame().requestFocusInWindow();
     }
 
     /**
