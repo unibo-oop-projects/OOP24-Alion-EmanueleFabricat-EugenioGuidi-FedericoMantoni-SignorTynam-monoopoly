@@ -28,7 +28,7 @@ public final class NameSelectorPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    private static final int MAX_NAME_LENGTH = 25;
+    private static final int MAX_NAME_LENGTH = 20;
     private static final double COLOR_WEIGHT = 0.05;
     private static final double NAME_LABEL_WEIGHT = 0.3;
     private static final double TEXTFIELD_WEIGHT = 0.65;
@@ -64,7 +64,7 @@ public final class NameSelectorPanel extends JPanel {
                 menuController.goGame(getPlayersNames());
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "Ogni giocatore deve avere un nome diverso dagli altri e di lunghezza minore di 25 caratteri",
+                        "Ogni giocatore deve avere un nome diverso dagli altri e di lunghezza minore di "+ MAX_NAME_LENGTH + " caratteri",
                         "Warning",
                         JOptionPane.WARNING_MESSAGE);
             }
@@ -72,7 +72,7 @@ public final class NameSelectorPanel extends JPanel {
 
         for (int i = 0; i < nPlayers; i++) {
             final GridBagConstraints gbc = getBasicConstraints();
-            final JTextField nameField = new JTextField(25);
+            final JTextField nameField = new JTextField(MAX_NAME_LENGTH);
             players.add(nameField);
             final JLabel nameLabel = new JLabel("Inserisci il nome del player: ");
             final JPanel color = new JPanel();
