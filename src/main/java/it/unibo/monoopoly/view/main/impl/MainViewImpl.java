@@ -161,7 +161,7 @@ public class MainViewImpl extends AbstractView implements MainView {
         winnerText.setLineWrap(true);
         winnerText.setWrapStyleWord(true);
         closeWindow.add(winnerText);
-        closeWindow.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/RESIZE_TEXT, Toolkit.getDefaultToolkit().getScreenSize().height/RESIZE_TEXT);
+        closeWindow.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/RESIZE_PANEL, Toolkit.getDefaultToolkit().getScreenSize().height/RESIZE_PANEL);
         closeWindow.setLocationRelativeTo(null);
         closeWindow.setVisible(true);
         closeWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
