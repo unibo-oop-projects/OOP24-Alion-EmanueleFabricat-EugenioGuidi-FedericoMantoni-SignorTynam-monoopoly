@@ -118,7 +118,7 @@ public class ControllerBankerState implements ControllerState {
 
     private Stream<Buyable> unmortgagedList(final Set<Buyable> properties) {
         return properties.stream()
-                .filter(p -> p instanceof Buildable && !p.isMortgaged());
+                .filter(p -> p instanceof Buyable && !p.isMortgaged());
     }
 
     private Map<Integer, Integer> sellHouseList() {

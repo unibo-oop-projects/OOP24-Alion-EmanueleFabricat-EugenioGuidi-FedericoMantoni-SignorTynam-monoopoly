@@ -29,12 +29,12 @@ public class BankerImpl implements Banker {
 
     private Stream<Buyable> unmortgagedList(final Set<Buyable> properties) {
         return properties.stream()
-                .filter(p -> p instanceof Buildable)
                 .filter(p -> !p.isMortgaged());
     }
 
     private boolean haveHouse(final Set<Buyable> properties) {
         return unmortgagedList(properties)
+                .filter(p -> p instanceof Buildable) 
                 .map(p -> (Buildable) p)
                 .anyMatch(p -> p.getHousesNumber() != 0);
     }
