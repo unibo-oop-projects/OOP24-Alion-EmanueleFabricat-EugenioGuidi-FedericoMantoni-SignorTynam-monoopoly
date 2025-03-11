@@ -83,7 +83,7 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
         for (int i = 2; i < this.textList.size(); i++) {
             if (i % 2 == 0) {
                 this.textList.get(i + 1)
-                        .setText(String.valueOf(updateData.playersMoney().get(this.textList.get(i).getText())) + "€");
+                        .setText(updateData.playersMoney().get(this.textList.get(i).getText()) + "€");
             }
         }
         this.textList.stream()
