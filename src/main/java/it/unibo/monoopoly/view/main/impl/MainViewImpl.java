@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.stream.IntStream;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -69,6 +72,21 @@ public class MainViewImpl extends AbstractView implements MainView {
         this.gamePanel = new GamePanel(mainFrame().getHeight(), mainFrame().getWidth(), "1",
                 initPlayerView(namePlayers), this.players, this.colors);
         this.viewState = new ViewPrisonState(this);
+        this.mainFrame().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(final KeyEvent k) {
+                if (k.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    showConfirmToExit();
+                }
+            }
+        });
+    }
+
+    private void showConfirmToExit() {
+        if (JOptionPane.showConfirmDialog(this.getMainFrame(), "Siete sicuri di voler chiudere l'applicazione?",
+                "Chiudere applicazione", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }
 
     private List<Triple<String, Integer, Color>> initPlayerView(final List<String> namePlayers) {
@@ -157,11 +175,13 @@ public class MainViewImpl extends AbstractView implements MainView {
         closeWindow.setModal(true);
         final JTextArea winnerText = new JTextArea("BRAVO, " + player + " HAI VINTO IL GIOCO");
         winnerText.setEditable(false);
-        winnerText.setFont(new Font("Arial", Font.PLAIN, Toolkit.getDefaultToolkit().getScreenSize().height/RESIZE_TEXT));
+        winnerText.setFont(
+                new Font("Arial", Font.PLAIN, Toolkit.getDefaultToolkit().getScreenSize().height / RESIZE_TEXT));
         winnerText.setLineWrap(true);
         winnerText.setWrapStyleWord(true);
         closeWindow.add(winnerText);
-        closeWindow.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/RESIZE_PANEL, Toolkit.getDefaultToolkit().getScreenSize().height/RESIZE_PANEL);
+        closeWindow.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / RESIZE_PANEL,
+                Toolkit.getDefaultToolkit().getScreenSize().height / RESIZE_PANEL);
         closeWindow.setLocationRelativeTo(null);
         closeWindow.setVisible(true);
         closeWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

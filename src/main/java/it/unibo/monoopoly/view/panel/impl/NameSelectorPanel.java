@@ -42,10 +42,12 @@ public final class NameSelectorPanel extends JPanel {
 
     /**
      * Constructor and initialize the NameSelectorPanel.
-     * @param colors the list of the colors used in the game
+     * 
+     * @param colors         the list of the colors used in the game
      * @param menuController the istance of {@link MenuController}.
-     * @param backListener the {@link ActionListener} used to go back to the previous window
-     * @param nPlayers the number of players previously selected
+     * @param backListener   the {@link ActionListener} used to go back to the
+     *                       previous window
+     * @param nPlayers       the number of players previously selected
      */
     public NameSelectorPanel(final List<Color> colors, final MenuController menuController,
             final ActionListener backListener, final int nPlayers) {
@@ -64,7 +66,8 @@ public final class NameSelectorPanel extends JPanel {
                 menuController.goGame(getPlayersNames());
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "Ogni giocatore deve avere un nome diverso dagli altri e di lunghezza minore di "+ MAX_NAME_LENGTH + " caratteri",
+                        "Ogni giocatore deve avere un nome diverso dagli altri e di lunghezza minore di "
+                                + MAX_NAME_LENGTH + " caratteri",
                         "Warning",
                         JOptionPane.WARNING_MESSAGE);
             }
