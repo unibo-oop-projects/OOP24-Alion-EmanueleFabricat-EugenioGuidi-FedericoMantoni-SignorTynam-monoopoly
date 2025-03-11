@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model;
+package it.unibo.monoopoly.model.state;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,7 +23,7 @@ import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
 /**
  * Tester of {@link Banker}.
  */
-class TestModelCardState {
+class ModelCardStateTest {
     private MainModel model;
     private static final int NUMBER_OF_CARD = 31;
 

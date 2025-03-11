@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model;
+package it.unibo.monoopoly.model.state;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
@@ -25,7 +25,7 @@ import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
 /**
  * Test for the {@link ModelCheckActionState}.
  */
-class TestCheckActionState {
+class CheckActionStateTest {
 
     private static final int TEST_AMOUNT = 1480;
     private static final int BUYABLE_CELL = 1;

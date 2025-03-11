@@ -25,7 +25,7 @@ import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 /**
  * Test class for {@link Railroad} and {@link Company} classes.
  */
-class TestBuyable {
+class CompanyAndRailroadTest {
 
     private static final int RENT_ONE_RAILROAD = 25;
     private static final int MIN_RENT_ONE_COMPANY = 8;

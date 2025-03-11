@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model;
+package it.unibo.monoopoly.model.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,7 +24,7 @@ import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 /**
  * Test class for {@link NotaryImpl} class.
  */
-class TestNotary {
+class NotaryTest {
 
     private static final int START_MONEY1 = 50;
     private static final int START_MONEY2 = 1500;

@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model;
+package it.unibo.monoopoly.model.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,7 +17,7 @@ import it.unibo.monoopoly.model.main.impl.MainModelImpl;
 import it.unibo.monoopoly.model.state.impl.ModelBuildHouseState;
 import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
 
-class TestModelUnmortgageState {
+class ModelUnmortgageStateTest {
     private static final int START_AMOUNT = 1500;
     private static final int AMOUNT_TO_PAY = START_AMOUNT;
     private static final int BUILDABLE_CELL = 39;

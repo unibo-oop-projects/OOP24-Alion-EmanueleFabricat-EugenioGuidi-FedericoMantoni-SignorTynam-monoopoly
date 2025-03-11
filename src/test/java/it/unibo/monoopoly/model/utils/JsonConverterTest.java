@@ -9,7 +9,7 @@ import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
 /**
  * Test for the Json deserialization.
  */
-class TestJsonConverter {
+class JsonConverterTest {
 
     @Test
     void testConversion() {

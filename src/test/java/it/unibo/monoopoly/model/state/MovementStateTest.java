@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model;
+package it.unibo.monoopoly.model.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,7 +24,7 @@ import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 /**
  * Test for the {@link ModelMovementState}.
  */
-class TestMovementState {
+class MovementStateTest {
 
     private ModelState firstModelMovemenState;
     private ModelState secondModelMovemenState;

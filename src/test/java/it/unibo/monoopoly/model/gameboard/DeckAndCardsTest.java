@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.model;
+package it.unibo.monoopoly.model.gameboard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,7 +17,7 @@ import it.unibo.monoopoly.model.deck.impl.DeckImpl;
 /**
  * Tester of {@link Deck} and {@link Card}.
  */
-class TestDeckAndCards {
+class DeckAndCardsTest {
     private Deck deck;
     private static final int NUMBER_OF_FREE_CARD = 2;
     private static final int NUMBER_OF_MOVE = 8;
