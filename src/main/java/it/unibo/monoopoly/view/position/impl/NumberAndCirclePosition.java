@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.utils.impl;
+package it.unibo.monoopoly.view.position.impl;
 
 import java.awt.Color;
 

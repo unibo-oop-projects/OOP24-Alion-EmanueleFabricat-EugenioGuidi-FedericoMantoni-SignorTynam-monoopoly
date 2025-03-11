@@ -14,9 +14,9 @@ import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import it.unibo.monoopoly.utils.impl.NumberAndCirclePosition;
-import it.unibo.monoopoly.utils.api.PositionAllocator;
-import it.unibo.monoopoly.utils.impl.PositionAllocatorImpl;
+import it.unibo.monoopoly.view.position.api.PositionAllocator;
+import it.unibo.monoopoly.view.position.impl.NumberAndCirclePosition;
+import it.unibo.monoopoly.view.position.impl.PositionAllocatorImpl;
 
 /**
  * The class is used to realize the vision of the main gameBoard and

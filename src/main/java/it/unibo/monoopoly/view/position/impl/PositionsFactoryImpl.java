@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.utils.impl;
+package it.unibo.monoopoly.view.position.impl;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import it.unibo.monoopoly.utils.api.JsonConverter;
-import it.unibo.monoopoly.utils.api.PositionsFactory;
+import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
+import it.unibo.monoopoly.view.position.api.PositionsFactory;
 
 /**
  * implement a factory to realize the lists of {@link Position} associated to

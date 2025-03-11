@@ -1,10 +1,10 @@
-package it.unibo.monoopoly.utils.api;
+package it.unibo.monoopoly.view.position.api;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import it.unibo.monoopoly.utils.impl.NumberAndCirclePosition;
+import it.unibo.monoopoly.view.position.impl.NumberAndCirclePosition;
 
 /**
  * It is used to create a class that takes lists of player {@link Position},

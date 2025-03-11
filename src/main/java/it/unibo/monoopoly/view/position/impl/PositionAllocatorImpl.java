@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.utils.impl;
+package it.unibo.monoopoly.view.position.impl;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import it.unibo.monoopoly.utils.api.PositionAllocator;
-import it.unibo.monoopoly.utils.api.PositionsFactory;
+import it.unibo.monoopoly.view.position.api.PositionAllocator;
+import it.unibo.monoopoly.view.position.api.PositionsFactory;
 
 /**
  * Class that takes lists of player positions, cells, prison and houses
