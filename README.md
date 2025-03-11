@@ -1,4 +1,9 @@
-# Sample Gradle Project
+# Monoopoly
 
-This is a repository that can be used as a base to develop an OOP project.
-The tools seen in the lab are pre-integrated in the build file.
+Una versione semplificata del famoso gioco da tavolo "Monopoly", giocabile da 2 a 4 giocatori
+
+### Autori
+- [@ElManto03](https://github.com/ElManto03)
+- [@emanuele-fabricat](https://github.com/emanuele-fabricat)
+- [@EugenioGuidi](https://github.com/EugenioGuidi)
+- [@SignorTynam](https://github.com/SignorTynam)
