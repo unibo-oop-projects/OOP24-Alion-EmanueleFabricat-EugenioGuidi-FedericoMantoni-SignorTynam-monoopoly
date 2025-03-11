@@ -12,7 +12,7 @@ import it.unibo.monoopoly.utils.impl.JsonConverterImpl;
  */
 public class CellFactoryImpl implements CellFactory {
 
-    private static final String PATH = "cells.json";
+    private static final String PATH = "json/data/cells.json";
 
     private final JsonConverter<Cell> deserializer;
 

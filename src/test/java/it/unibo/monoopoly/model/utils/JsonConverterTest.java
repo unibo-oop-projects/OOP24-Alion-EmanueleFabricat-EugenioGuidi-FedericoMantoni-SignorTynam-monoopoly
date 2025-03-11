@@ -15,7 +15,7 @@ class JsonConverterTest {
     void testConversion() {
         final JsonConverter<Cell> converter;
         converter = new JsonConverterImpl<>(Cell.class);
-        converter.jsonToList(ClassLoader.getSystemResourceAsStream("cells.json"));
+        converter.jsonToList(ClassLoader.getSystemResourceAsStream("json/data/cells.json"));
     }
 
 }

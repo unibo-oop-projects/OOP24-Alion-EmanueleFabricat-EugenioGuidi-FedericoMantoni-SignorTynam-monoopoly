@@ -19,10 +19,10 @@ import it.unibo.monoopoly.utils.api.PositionsFactory;
  */
 public class PositionsFactoryImpl implements PositionsFactory {
 
-    private static final String PLAYERS_POSITIONS_FILE_NAME = "players_positions.json";
-    private static final String PROPERTY_POSITIONS_FILE_NAME = "property_positions.json";
-    private static final String HOUSES_POSITIONS_FILE_NAME = "houses_positions.json";
-    private static final String PRISON_POSITIONS_FILE_NAME = "prison_positions.json";
+    private static final String PLAYERS_POSITIONS_FILE_NAME = "json/assets/players_positions.json";
+    private static final String PROPERTY_POSITIONS_FILE_NAME = "json/assets/property_positions.json";
+    private static final String HOUSES_POSITIONS_FILE_NAME = "json/assets/houses_positions.json";
+    private static final String PRISON_POSITIONS_FILE_NAME = "json/assets/prison_positions.json";
 
     private final JsonConverter<Position> converter;
     private final int mainFrameHeight;
