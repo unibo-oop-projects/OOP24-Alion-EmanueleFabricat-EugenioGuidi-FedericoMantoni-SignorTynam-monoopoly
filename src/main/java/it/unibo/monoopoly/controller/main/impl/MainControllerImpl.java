@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.controller.data.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.controller.state.impl.ControllerBankerState;
@@ -28,7 +29,6 @@ import it.unibo.monoopoly.model.state.impl.ModelCardState;
 import it.unibo.monoopoly.model.state.impl.ModelCheckActionState;
 import it.unibo.monoopoly.model.state.impl.ModelPrisonState;
 import it.unibo.monoopoly.model.state.impl.ModelUnmortgageState;
-import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.main.impl.MainViewImpl;
 import it.unibo.monoopoly.view.state.impl.ViewBankerState;

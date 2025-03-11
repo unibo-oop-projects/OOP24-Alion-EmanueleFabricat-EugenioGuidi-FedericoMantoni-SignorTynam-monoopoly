@@ -2,7 +2,7 @@ package it.unibo.monoopoly.view.panel.api;
 
 import javax.swing.JPanel;
 
-import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
+import it.unibo.monoopoly.controller.data.impl.ViewUpdateDTO;
 
 /**
  * Interface for {@link JPanel} to be updated every time a game phase finishes.

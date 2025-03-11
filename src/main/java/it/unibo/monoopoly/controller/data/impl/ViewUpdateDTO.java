@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.utils.impl;
+package it.unibo.monoopoly.controller.data.impl;
 
 import java.util.Collections;
 import java.util.List;

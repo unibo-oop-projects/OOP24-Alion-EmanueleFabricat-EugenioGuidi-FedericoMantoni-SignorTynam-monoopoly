@@ -14,8 +14,8 @@ import javax.swing.JTextArea;
 
 import org.apache.commons.lang3.tuple.Triple;
 
+import it.unibo.monoopoly.controller.data.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.model.player.api.Player;
-import it.unibo.monoopoly.utils.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
 
 /**
