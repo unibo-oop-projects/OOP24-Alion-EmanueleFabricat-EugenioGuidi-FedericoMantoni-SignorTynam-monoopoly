@@ -2,6 +2,8 @@ package it.unibo.monoopoly.model.gameboard.impl;
 
 import java.util.Random;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import it.unibo.monoopoly.model.gameboard.api.Dices;
 
 /**
@@ -12,7 +14,7 @@ public class DicesImpl implements Dices {
 
     static final int DICE_FACES = 6;
 
-    private Pair currentRoll;
+    private Pair<Integer, Integer> currentRoll;
     private int totalResult;
     private final Random random = new Random();
 
@@ -32,14 +34,14 @@ public class DicesImpl implements Dices {
         final int firstRoll = this.random.nextInt(DICE_FACES) + 1;
         final int secondRoll = this.random.nextInt(DICE_FACES) + 1;
         this.totalResult = firstRoll + secondRoll;
-        this.currentRoll = new Pair(firstRoll, secondRoll);
+        this.currentRoll = Pair.of(firstRoll, secondRoll);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Pair getDices() {
+    public Pair<Integer, Integer> getDices() {
         return this.currentRoll;
     }
 

@@ -3,9 +3,10 @@ package it.unibo.monoopoly.controller.data.impl;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
-import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 
 /**
  * The {@link record} built by a {@link DataBuilderInput} that packages the
@@ -22,7 +23,7 @@ import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
  */
 public record DataInput(
                 Optional<Map<Integer, Integer>> cellMap,
-                Optional<Pair> dices,
+                Optional<Pair<Integer, Integer>> dices,
                 Optional<Event> event,
                 Optional<Boolean> isEnabled,
                 Optional<String> text,

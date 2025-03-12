@@ -3,10 +3,10 @@ package it.unibo.monoopoly.model.gameboard;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 import it.unibo.monoopoly.model.gameboard.impl.DicesImpl;
 
 /**
@@ -40,11 +40,11 @@ class DicesImplTest {
     @Test
     void testGetResult() {
         final int sumOfDices;
-        final Pair pair;
+        final Pair<Integer, Integer> pair;
         assertEquals(0, this.diceImpl.getResult());
         this.diceImpl.rollDices();
         pair = this.diceImpl.getDices();
-        sumOfDices = pair.getFirstRoll() + pair.getSecondRoll();
+        sumOfDices = pair.getLeft() + pair.getRight();
         assertEquals(sumOfDices, this.diceImpl.getResult());
     }
 

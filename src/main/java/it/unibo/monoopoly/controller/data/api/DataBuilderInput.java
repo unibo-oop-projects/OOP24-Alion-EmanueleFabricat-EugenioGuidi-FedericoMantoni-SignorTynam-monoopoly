@@ -2,10 +2,11 @@ package it.unibo.monoopoly.controller.data.api;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.model.gameboard.api.Dices;
-import it.unibo.monoopoly.model.gameboard.api.Dices.Pair;
 import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 
@@ -30,7 +31,7 @@ public interface DataBuilderInput {
      * @param dices to be inserted.
      * @return this.
      */
-    DataBuilderInput dices(Pair dices);
+    DataBuilderInput dices(Pair<Integer, Integer> dices);
 
     /**
      * Fluent method that insert the {@link Event} taken from the {@link MainModel},

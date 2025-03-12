@@ -45,8 +45,8 @@ public class ViewMovementState implements ViewState {
                     mainView.getMainFrame().getHeight()));
         } else if (dataInput.dices().isPresent()) {
             JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
-                    "Primo dado: " + dataInput.dices().get().getFirstRoll()
-                            + "\nSecondo dado: " + dataInput.dices().get().getSecondRoll(),
+                    "Primo dado: " + dataInput.dices().get().getLeft()
+                            + "\nSecondo dado: " + dataInput.dices().get().getRight(),
                     null, JOptionPane.PLAIN_MESSAGE);
         }
     }
