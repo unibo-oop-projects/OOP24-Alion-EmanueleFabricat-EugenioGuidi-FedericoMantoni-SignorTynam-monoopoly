@@ -9,8 +9,8 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.panel.impl.DefaultInteractivePanel;
-import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
+import it.unibo.monoopoly.view.panel.game.DefaultInteractivePanel;
+import it.unibo.monoopoly.view.panel.game.SelectionCellsPanel;
 
 /**
  * {@link ActionListener} used to take a selected cell in an

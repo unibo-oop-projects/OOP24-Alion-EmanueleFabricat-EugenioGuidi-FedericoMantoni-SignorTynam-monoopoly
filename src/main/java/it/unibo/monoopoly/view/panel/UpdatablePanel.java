@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.api;
+package it.unibo.monoopoly.view.panel;
 
 import javax.swing.JPanel;
 

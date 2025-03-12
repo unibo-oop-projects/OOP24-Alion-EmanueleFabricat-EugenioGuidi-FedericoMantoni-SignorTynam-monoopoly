@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.impl;
+package it.unibo.monoopoly.view.panel.game;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;

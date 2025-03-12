@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.impl;
+package it.unibo.monoopoly.view.panel.menu;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;

@@ -13,7 +13,7 @@ import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.utils.impl.CellGiverListener;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.panel.impl.SelectionCellsPanel;
+import it.unibo.monoopoly.view.panel.game.SelectionCellsPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**

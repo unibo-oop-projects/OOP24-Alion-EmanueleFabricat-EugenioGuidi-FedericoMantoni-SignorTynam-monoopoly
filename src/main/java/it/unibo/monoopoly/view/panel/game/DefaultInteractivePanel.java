@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.impl;
+package it.unibo.monoopoly.view.panel.game;
 
 import java.awt.Color;
 import java.awt.Font;

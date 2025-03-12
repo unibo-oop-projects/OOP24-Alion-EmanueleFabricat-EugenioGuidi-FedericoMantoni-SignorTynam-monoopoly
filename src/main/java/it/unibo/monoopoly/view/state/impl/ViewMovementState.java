@@ -7,7 +7,7 @@ import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.model.gameboard.api.Dices;
 import it.unibo.monoopoly.utils.impl.RollDicesListener;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.panel.impl.RollDicesPanel;
+import it.unibo.monoopoly.view.panel.game.RollDicesPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**

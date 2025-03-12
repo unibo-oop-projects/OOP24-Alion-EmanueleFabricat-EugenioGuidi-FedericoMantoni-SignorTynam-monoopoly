@@ -27,7 +27,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.view.main.api.MainView;
-import it.unibo.monoopoly.view.panel.impl.GamePanel;
+import it.unibo.monoopoly.view.panel.game.GamePanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 import it.unibo.monoopoly.view.state.impl.ViewPrisonState;
 

@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.impl;
+package it.unibo.monoopoly.view.panel.game;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.data.impl.ViewUpdateDTO;
-import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
+import it.unibo.monoopoly.view.panel.UpdatablePanel;
 
 /**
  * 

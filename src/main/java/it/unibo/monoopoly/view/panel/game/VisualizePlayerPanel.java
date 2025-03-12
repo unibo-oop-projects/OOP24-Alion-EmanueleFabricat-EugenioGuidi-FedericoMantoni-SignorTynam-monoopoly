@@ -1,4 +1,4 @@
-package it.unibo.monoopoly.view.panel.impl;
+package it.unibo.monoopoly.view.panel.game;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,7 +16,7 @@ import org.apache.commons.lang3.tuple.Triple;
 
 import it.unibo.monoopoly.controller.data.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.model.player.api.Player;
-import it.unibo.monoopoly.view.panel.api.UpdatablePanel;
+import it.unibo.monoopoly.view.panel.UpdatablePanel;
 
 /**
  * {@link JPanel} where the players and their financial situation will be

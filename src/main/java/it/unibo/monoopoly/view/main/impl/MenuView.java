@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.menu.api.MenuController;
-import it.unibo.monoopoly.view.panel.impl.MenuPanel;
+import it.unibo.monoopoly.view.panel.menu.MenuPanel;
 
 /**
  * Initial view shown at the start of application.
