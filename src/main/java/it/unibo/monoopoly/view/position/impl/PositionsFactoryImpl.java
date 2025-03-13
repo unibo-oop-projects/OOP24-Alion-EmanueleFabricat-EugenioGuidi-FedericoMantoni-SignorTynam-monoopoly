@@ -48,7 +48,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
     @Override
     public Map<Color, List<Position>> createPlayersPositions() {
         final List<List<Position>> listFromJson = this.converter
-                .jsonToListOfList(ClassLoader.getSystemResourceAsStream(PLAYERS_POSITIONS_FILE_NAME));
+                .jsonToListOfList(PLAYERS_POSITIONS_FILE_NAME);
         return IntStream.range(0, this.colors.size())
                 .boxed()
                 .collect(Collectors.toMap(this.colors::get, i -> updateList(listFromJson.get(i))));
@@ -60,7 +60,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
     @Override
     public Map<Integer, Position> createPropertyPositions() {
         final Map<Integer, Position> propertyPositionsFromJson = this.converter
-                .jsonToMap(ClassLoader.getSystemResourceAsStream(PROPERTY_POSITIONS_FILE_NAME));
+                .jsonToMap(PROPERTY_POSITIONS_FILE_NAME);
 
         return updateMap(propertyPositionsFromJson);
     }
@@ -71,7 +71,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
     @Override
     public Map<Integer, Position> createHousesPositions() {
         final Map<Integer, Position> housesPositionsFromJson = this.converter
-                .jsonToMap(ClassLoader.getSystemResourceAsStream(HOUSES_POSITIONS_FILE_NAME));
+                .jsonToMap(HOUSES_POSITIONS_FILE_NAME);
 
         return updateMap(housesPositionsFromJson);
     }
@@ -82,7 +82,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
     @Override
     public Map<Color, Position> createPrisonPositions() {
         final List<Position> newList = updateList(
-                this.converter.jsonToList(ClassLoader.getSystemResourceAsStream(PRISON_POSITIONS_FILE_NAME)));
+                this.converter.jsonToList(PRISON_POSITIONS_FILE_NAME));
         return IntStream.range(0, colors.size())
                 .boxed()
                 .collect(Collectors.toMap(colors::get, newList::get));

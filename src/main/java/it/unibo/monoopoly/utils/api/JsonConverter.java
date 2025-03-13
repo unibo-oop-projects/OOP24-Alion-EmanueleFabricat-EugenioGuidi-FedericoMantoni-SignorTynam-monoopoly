@@ -1,6 +1,5 @@
 package it.unibo.monoopoly.utils.api;
 
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -15,25 +14,25 @@ public interface JsonConverter<T> {
     /**
      * Convert a json file in a list of type T.
      * 
-     * @param fileJson the path of the file to convert
+     * @param path the path of the file to convert
      * @return the converted list.
      */
-    List<T> jsonToList(InputStream fileJson);
+    List<T> jsonToList(String path);
 
     /**
      * Convert a json file in a list of list of type T.
      * 
-     * @param fileJson the path of the file to convert.
+     * @param path the path of the file to convert.
      * @return the converted list of list.
      */
-    List<List<T>> jsonToListOfList(InputStream fileJson);
+    List<List<T>> jsonToListOfList(String path);
 
     /**
      * Convert a json file in a Map of type Integer, T.
      * 
-     * @param fileJson the path of the file to convert.
+     * @param path the path of the file to convert.
      * @return the converted Map.
      */
-    Map<Integer, T> jsonToMap(InputStream fileJson);
+    Map<Integer, T> jsonToMap(String path);
 
 }

@@ -28,7 +28,7 @@ public class CellFactoryImpl implements CellFactory {
      */
     @Override
     public List<Cell> createCells() {
-        return this.deserializer.jsonToList(ClassLoader.getSystemResourceAsStream(PATH));
+        return this.deserializer.jsonToList(PATH);
     }
 
 }

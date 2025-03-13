@@ -24,6 +24,6 @@ public class CardsFactoryImpl implements CardsFactory {
      */
     @Override
     public List<Card> createDeck() {
-        return this.deserializer.jsonToList(ClassLoader.getSystemResourceAsStream(PATH));
+        return this.deserializer.jsonToList(PATH);
     } 
 }

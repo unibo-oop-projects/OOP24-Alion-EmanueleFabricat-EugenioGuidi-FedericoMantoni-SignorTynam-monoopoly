@@ -36,9 +36,9 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
      * {@inheritDoc}
      */
     @Override
-    public List<T> jsonToList(final InputStream fileJson) {
+    public List<T> jsonToList(final String path) {
         final List<T> out;
-        try {
+        try (InputStream fileJson = ClassLoader.getSystemResourceAsStream(path)) {
             final JavaType outType = mapper.getTypeFactory()
                     .constructCollectionLikeType(List.class, type);
             out = mapper.readValue(fileJson, outType);
@@ -52,9 +52,9 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
      * {@inheritDoc}
      */
     @Override
-    public List<List<T>> jsonToListOfList(final InputStream fileJson) {
+    public List<List<T>> jsonToListOfList(final String path) {
         final List<List<T>> out;
-        try {
+        try (InputStream fileJson = ClassLoader.getSystemResourceAsStream(path)) {
             final JavaType outType = mapper.getTypeFactory()
                     .constructCollectionType(List.class,
                             mapper.getTypeFactory().constructCollectionType(List.class, type));
@@ -69,9 +69,9 @@ public class JsonConverterImpl<T> implements JsonConverter<T> {
      * {@inheritDoc}
      */
     @Override
-    public Map<Integer, T> jsonToMap(final InputStream fileJson) {
+    public Map<Integer, T> jsonToMap(final String path) {
         final Map<Integer, T> out;
-        try {
+        try (InputStream fileJson = ClassLoader.getSystemResourceAsStream(path)) {
             final JavaType outType = mapper.getTypeFactory()
                     .constructMapType(Map.class, Integer.class, type);
 
