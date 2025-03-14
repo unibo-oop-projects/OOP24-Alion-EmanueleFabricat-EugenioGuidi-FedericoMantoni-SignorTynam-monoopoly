@@ -42,16 +42,18 @@ public class ViewPrisonState implements ViewState {
      */
     @Override
     public void visualize(final DataInput data) {
-        final String message;
         if (goToJail) {
-            message = "Devi andare in prigione senza passare dal VIA!";
+            JOptionPane.showMessageDialog(mainView.getMainFrame(), "Devi andare in prigione senza passare dal VIA!");
         } else {
-            if (data.isEnabled().isPresent() && data.isEnabled().get()) {
-                message = "Sei uscito di prigione usando la tua carta 'Esci Gratis di Prigione'.";
-            } else {
-                message = "Devi uscire di prigione e pagare €50.";
+            JOptionPane.showMessageDialog(mainView.getMainFrame(), "É il turno di " + data.text().get());
+            if (data.isEnabled().isPresent()) {
+                if (data.isEnabled().get()) {
+                    JOptionPane.showMessageDialog(mainView.getMainFrame(),
+                            "Sei uscito di prigione usando la tua carta 'Esci Gratis di Prigione'.");
+                } else {
+                    JOptionPane.showMessageDialog(mainView.getMainFrame(), "Devi uscire di prigione e pagare €50.");
+                }
             }
         }
-        JOptionPane.showMessageDialog(mainView.getMainFrame(), message);
     }
 }
