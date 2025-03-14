@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.common;
 
+import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
 import it.unibo.monoopoly.model.player.api.Player;

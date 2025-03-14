@@ -34,14 +34,22 @@ public final class MenuPanel extends JPanel {
     private static final int FONT_SIZE_BUTTON = 20;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
+    /**
+     * The istance of {@link SelectionPanel}.
+     */
     private final SelectionPanel numberSelectionPanel;
+    /**
+     * The istance of {@link NameSelectorPanel}.
+     */
     private NameSelectorPanel nameSelectorPanel;
-
+    /**
+     * The controller of the menu.
+     */
     private final transient MenuController controller;
+    /**
+     * The list of colors used in the game to represent players.
+     */
     private final List<Color> colors;
-
-    private final JButton start;
-    private final JLabel monoopoly;
 
     /**
      * Construct and inizialize the MenuPanel.
@@ -52,11 +60,12 @@ public final class MenuPanel extends JPanel {
      */
     public MenuPanel(final MenuController controller, final List<Color> colors) {
         super();
+
         this.numberSelectionPanel = new SelectionPanel(this::showNamePanel);
         this.colors = new ArrayList<>(colors);
         this.controller = controller;
-        this.start = new JButton("START");
-        this.monoopoly = new JLabel("MONOOPOLY");
+        final JButton start = new JButton("START");
+        final JLabel monoopoly = new JLabel("MONOOPOLY");
         final JPanel title = new JPanel(new BorderLayout());
         final JPanel selection = new JPanel(new GridBagLayout());
 
@@ -64,17 +73,17 @@ public final class MenuPanel extends JPanel {
 
         this.setBackground(GREEN_MONOPOLY);
 
-        this.start.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_BUTTON));
-        this.start.setPreferredSize(start.getPreferredSize());
+        start.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_BUTTON));
+        start.setPreferredSize(start.getPreferredSize());
 
         title.setBackground(Color.RED);
 
-        this.monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_TITLE));
-        this.monoopoly.setForeground(Color.WHITE);
-        this.monoopoly.setHorizontalAlignment(SwingConstants.CENTER);
+        monoopoly.setFont(new Font(ARIAL_FONT, Font.BOLD, FONT_SIZE_TITLE));
+        monoopoly.setForeground(Color.WHITE);
+        monoopoly.setHorizontalAlignment(SwingConstants.CENTER);
         title.add(monoopoly, BorderLayout.CENTER);
 
-        this.start.addActionListener(e -> {
+        start.addActionListener(e -> {
             start.setVisible(false);
             this.add(selection, getSelectionConstraints());
             selection.add(numberSelectionPanel, getBasicConstraints());

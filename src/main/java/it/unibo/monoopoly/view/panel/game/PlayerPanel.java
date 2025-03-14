@@ -12,7 +12,8 @@ import it.unibo.monoopoly.controller.data.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.UpdatablePanel;
 
 /**
- * 
+ * Panel for the visualization of players and some panels for interaction of the
+ * user.
  */
 public final class PlayerPanel extends JPanel implements UpdatablePanel {
 
@@ -25,7 +26,7 @@ public final class PlayerPanel extends JPanel implements UpdatablePanel {
      * comment.
      * 
      * @param mainFrameHeight the height of main frame
-     * @param firstPlayer the name of the player starting the game
+     * @param firstPlayer     the name of the player starting the game
      * @param initializedList the starting data of the state of the game
      */
     public PlayerPanel(final int mainFrameHeight, final String firstPlayer,
@@ -38,7 +39,9 @@ public final class PlayerPanel extends JPanel implements UpdatablePanel {
     }
 
     /**
-     * {@inheritDoc}
+     * Set the new {@link JPanel} for the {@link InteractivePanel}.
+     * 
+     * @param panel the new {@link JPanel}
      */
     public void setInteractivePanel(final JPanel panel) {
         this.interactivePanel.remove(0);

@@ -24,35 +24,45 @@ public final class NumberAndCirclePosition {
     }
 
     /**
-     * @return the x of position.
+     * Gets the x of position.
+     * 
+     * @return the x of position
      */
     public int getX() {
         return this.x;
     }
 
     /**
-     * @return return the y of position.
+     * Gets the y of position.
+     * 
+     * @return return the y of position
      */
     public int getY() {
         return this.y;
     }
 
     /**
-     * @return if is a circle or a number.
+     * Return whether is a circle or a number.
+     * 
+     * @return true if is a circle, false if is a number
      */
     public boolean isCircle() {
         return this.isCircle;
     }
 
     /**
-     * @return the color of the circle.
+     * Gets the color of the circle.
+     * 
+     * @return the color of the circle
      */
     public Color getColor() {
         return this.color;
     }
 
     /**
-     * @return return the number of house to show.
+     * Gets the number of house to show.
+     * 
+     * @return the number of house to show
      */
     public String getNumber() {
         return this.number;

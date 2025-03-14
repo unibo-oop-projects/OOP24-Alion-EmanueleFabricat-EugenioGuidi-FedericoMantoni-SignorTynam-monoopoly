@@ -14,11 +14,14 @@ public interface View {
     void display();
 
     /**
+     * Gets the main {@link JFrame} of the view.
+     * 
      * @return the main {@link JFrame} of the view
      */
     JFrame getMainFrame();
 
     /**
+     * Gets the main {@link JPanel} contained in the main frame of the view.
      * 
      * @return the main {@link JPanel} contained in the main frame of the view
      */

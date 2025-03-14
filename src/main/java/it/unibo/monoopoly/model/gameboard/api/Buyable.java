@@ -11,37 +11,51 @@ import it.unibo.monoopoly.model.player.api.Player;
 public interface Buyable extends Cell {
 
     /**
-     * @return true if is buyable.
+     * Returns whether the cell is buyable.
+     * 
+     * @return true if is buyable, false otherwise
      */
     boolean isAvailable();
 
     /**
-     * @return true if the property is already mortgaged.
+     * Returns whether the property is already mortgaged.
+     * 
+     * @return true if the property is already mortgaged, false otherwise
      */
     boolean isMortgaged();
 
     /**
-     * @return the owner of property.
+     * Gets the owner of property.
+     * 
+     * @return the owner of property
      */
     Optional<Player> getOwner();
 
     /**
+     * Gets the cost of property.
+     * 
      * @return the cost of property.
      */
     int getCost();
 
     /**
-     * @param ownerPlayer
+     * Sets the owner of the property.
+     * 
+     * @param ownerPlayer the {@link Player} that is buying the property
      */
     void setOwner(Optional<Player> ownerPlayer);
 
     /**
-     * @return the value of rent the property.
+     * Gets the value of rent the property.
+     * 
+     * @return the value of rent the property
      */
     int getRentalValue();
 
     /**
-     * @return the mortgage value.
+     * Gets the mortgage value.
+     * 
+     * @return the mortgage value
      */
     int getMortgageValue();
 
@@ -56,6 +70,8 @@ public interface Buyable extends Cell {
     void removeMortgage();
 
     /**
+     * Gets the value to remove mortgage on a property.
+     * 
      * @return the 10% incremented of mortgage value.
      */
     int getUnmortgageValue();

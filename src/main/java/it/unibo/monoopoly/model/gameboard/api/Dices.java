@@ -13,14 +13,16 @@ public interface Dices {
     void rollDices();
 
     /**
+     * Gets the dices rolled.
      * 
-     * @return dices rolled.
+     * @return the dices rolled
      */
     Pair<Integer, Integer> getDices();
 
     /**
+     * Gets the sum of two dices.
      * 
-     * @return sum of two dices.
+     * @return the sum of two dices
      */
     int getResult();
 

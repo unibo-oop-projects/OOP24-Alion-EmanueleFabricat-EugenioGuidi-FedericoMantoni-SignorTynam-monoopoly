@@ -24,7 +24,7 @@ public class DeckWrapper implements Deck {
 
     /**
      * Proxy version.
-     * {@inheritedDoc}.
+     * {@inheritDoc}.
      */
     @Override
     public void draw() {
@@ -34,7 +34,7 @@ public class DeckWrapper implements Deck {
 
     /**
      * Proxy version.
-     * {@inheritedDoc}.
+     * {@inheritDoc}.
      */
     @Override
     public Card getActualCard() {
@@ -43,7 +43,7 @@ public class DeckWrapper implements Deck {
 
     /**
      * Proxy version.
-     * {@inheritedDoc}.
+     * {@inheritDoc}.
      */
     @Override
     public void addPrisonCard() {

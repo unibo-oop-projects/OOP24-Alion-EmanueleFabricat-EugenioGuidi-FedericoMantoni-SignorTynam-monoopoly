@@ -3,9 +3,12 @@ package it.unibo.monoopoly.model.main.api;
 import java.util.Optional;
 
 import it.unibo.monoopoly.common.Event;
+import it.unibo.monoopoly.model.deck.impl.DeckImpl;
 import it.unibo.monoopoly.model.deck.impl.DeckWrapper;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.GameBoard;
 import it.unibo.monoopoly.model.gameboard.impl.CellWrapper;
+import it.unibo.monoopoly.model.player.impl.PlayerImpl;
 import it.unibo.monoopoly.model.player.impl.PlayerWrapper;
 import it.unibo.monoopoly.model.state.api.ModelState;
 
@@ -35,12 +38,14 @@ public interface MainModel {
     GameBoard getGameBoard();
 
     /**
+     * Gets the actual event occurring.
      * 
-     * @return the actual event occurring.
+     * @return the actual event occurring
      */
     Optional<Event> getEvent();
 
     /**
+     * Set the actual {@link Event}.
      * 
      * @param selectOperations the new event setted.
      */
@@ -67,6 +72,7 @@ public interface MainModel {
 
     /**
      * Return the actual {@link Cell} wrapped according the pattern Proxy.
+     * 
      * @return the {@link CellWrapper}.
      */
     CellWrapper getCellWrapper();

@@ -10,6 +10,8 @@ public interface Deck {
      */
     void draw();
     /**
+     * Gets the drawn {@link Card}.
+     * 
      * @return the drawn {@link Card}.
      */
     Card getActualCard();

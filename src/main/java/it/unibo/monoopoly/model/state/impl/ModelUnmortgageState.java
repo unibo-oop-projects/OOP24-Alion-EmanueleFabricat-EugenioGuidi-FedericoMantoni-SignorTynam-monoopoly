@@ -38,7 +38,7 @@ public class ModelUnmortgageState implements ModelState {
     /**
      * {@inheritDoc}
      * In this specific case,
-     * the method verify if the {@link player} has any property to unmortgage,
+     * the method verify if the {@link Player} has any property to unmortgage,
      * and set the relative field.
      */
     @Override
@@ -84,7 +84,7 @@ public class ModelUnmortgageState implements ModelState {
      * {@link ModelUnmortgageState} if the actual {@link Player} have properties to
      * unmortgage,
      * or wouldn't unmortgage
-     * {@link BuildHouseModelState} otherwise.
+     * {@link ModelBuildHouseState} otherwise.
      */
     @Override
     public void closeModelState() {

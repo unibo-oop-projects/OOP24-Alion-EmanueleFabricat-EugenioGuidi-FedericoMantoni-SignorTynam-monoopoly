@@ -12,6 +12,7 @@ import it.unibo.monoopoly.model.player.api.Player;
 public interface GameBoard {
 
     /**
+     * 
      * @param index
      * @return cell in index position.
      */
@@ -25,7 +26,7 @@ public interface GameBoard {
     /**
      * Control if the game is ended checking the number of player remaining.
      * 
-     * @return true if the game is ended.
+     * @return true if the game is ended, false otherwise
      */
     boolean isGameEnded();
 
@@ -35,32 +36,44 @@ public interface GameBoard {
     void nextPlayer();
 
     /**
-     * @return current player to play.
+     * Gets the current player to play.
+     * 
+     * @return the current player to play
      */
     Player getCurrentPlayer();
 
     /**
-     * @return list of players in game.
+     * Gets the the list of players in game.
+     * 
+     * @return the list of players in game
      */
     List<Player> getPlayersList();
 
     /**
-     * @return list of names of cells
+     * Gets the list of names of cells.
+     * 
+     * @return the list of names of cells
      */
     List<String> getCellsNames();
 
     /**
-     * @return list of cells.
+     * Gets the list of cells.
+     * 
+     * @return the list of cells
      */
     List<Cell> getCellsList();
 
     /**
-     * @return dices.
+     * Gets the dices.
+     * 
+     * @return the dices
      */
     Dices getDices();
 
     /**
-     * @return deck.
+     * Gets the deck.
+     * 
+     * @return the deck.
      */
     Deck getDeck();
 

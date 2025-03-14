@@ -22,7 +22,7 @@ public class RollDicesListener implements ActionListener {
     /**
      * initialize field of class in constructor.
      * 
-     * @param mainView
+     * @param mainView the main view of the application
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public RollDicesListener(final MainView mainView) {

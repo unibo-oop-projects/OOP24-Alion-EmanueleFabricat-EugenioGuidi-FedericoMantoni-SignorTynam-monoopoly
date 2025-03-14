@@ -42,7 +42,7 @@ public class ModelBankerState implements ModelState {
     /**
      * {@inheritDoc}
      * In this specific case,
-     * the method verify if the {@link player} have enough money to pay,
+     * the method verify if the {@link Player} have enough money to pay,
      * and set the relative field.
      */
     @Override
@@ -79,7 +79,7 @@ public class ModelBankerState implements ModelState {
      * set the new {@link ModelState}:
      * -{@link ModelPrisonState} if the {@link Player} is bankrupt
      * -{@link ModelBankerState} if the payment isn't enough to pay the amount
-     * -{@link ModelConstructionState} if the payment is enough to pay the amount
+     * -{@link ModelBuildHouseState} if the payment is enough to pay the amount
      */
     @Override
     public void closeModelState() {

@@ -7,7 +7,9 @@ import java.util.List;
  */
 public interface CardsFactory {
     /**
-     * @return the {@link List} of the cards in an {@link Deck}.
+     * Create the {@link List} of all {@link Card}s.
+     * 
+     * @return the {@link List} of the cards in an {@link Deck}
      */
     List<Card> createDeck();
 }

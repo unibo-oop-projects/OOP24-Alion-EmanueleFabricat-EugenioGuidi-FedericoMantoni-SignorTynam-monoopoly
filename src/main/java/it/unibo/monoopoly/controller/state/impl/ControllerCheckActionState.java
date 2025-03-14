@@ -4,16 +4,16 @@ import java.util.Optional;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.common.Event;
-import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderInputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
-import it.unibo.monoopoly.model.state.api.ModelState;
+import it.unibo.monoopoly.controller.state.api.ControllerState;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.model.gameboard.api.Functional;
 import it.unibo.monoopoly.model.gameboard.impl.CellWrapper;
+import it.unibo.monoopoly.model.state.api.ModelState;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**

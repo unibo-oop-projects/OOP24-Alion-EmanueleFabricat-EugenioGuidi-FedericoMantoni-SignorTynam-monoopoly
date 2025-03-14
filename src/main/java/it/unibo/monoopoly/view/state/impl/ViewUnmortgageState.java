@@ -12,6 +12,7 @@ import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.utils.impl.CellGiverListener;
 import it.unibo.monoopoly.view.main.api.MainView;
+import it.unibo.monoopoly.view.panel.game.InteractivePanel;
 import it.unibo.monoopoly.view.panel.game.SelectionCellsPanel;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
@@ -49,7 +50,7 @@ public class ViewUnmortgageState implements ViewState {
      *
      * {@inheritDoc}
      * in this specific case,
-     * if the {@link Player} has properties to unmortgage,
+     * if the player has properties to unmortgage,
      * it will set the {@link InteractivePanel} with a panel to choose which
      * property to unmortgage.
      */

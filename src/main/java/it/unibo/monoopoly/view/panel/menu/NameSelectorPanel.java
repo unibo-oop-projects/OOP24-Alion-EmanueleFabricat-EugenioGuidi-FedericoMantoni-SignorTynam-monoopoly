@@ -37,8 +37,6 @@ public final class NameSelectorPanel extends JPanel {
     private final Font font = new Font("Arial", Font.BOLD, 15);
 
     private final List<JTextField> players;
-    private final JButton back;
-    private final JButton confirm;
 
     /**
      * Constructor and initialize the NameSelectorPanel.
@@ -55,8 +53,8 @@ public final class NameSelectorPanel extends JPanel {
 
         this.setLayout(new GridBagLayout());
 
-        this.back = new JButton("Indietro");
-        this.confirm = new JButton("Via!");
+        final JButton back = new JButton("Indietro");
+        final JButton confirm = new JButton("Via!");
         back.setFont(font);
         confirm.setFont(font);
 

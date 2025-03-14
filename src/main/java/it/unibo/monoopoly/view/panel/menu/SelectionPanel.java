@@ -20,13 +20,12 @@ import javax.swing.SpinnerNumberModel;
  */
 public final class SelectionPanel extends JPanel {
 
+    private static final int FONT_SIZE = 15;
     private static final double NUMBER_LABEL_WEIGHT = 0.4;
     private static final double SPINNER_WEIGHT = 0.3;
     private static final double BUTTON_WEIGHT = 0.3;
 
     private static final long serialVersionUID = 1L;
-
-    private final Font font = new Font("Arial", Font.BOLD, 15);
 
     /**
      * Construct and inizialize the SelectionPanel.
@@ -39,7 +38,7 @@ public final class SelectionPanel extends JPanel {
 
         this.setLayout(new GridBagLayout());
         final JLabel nPlayerTextSelection = new JLabel("Scegli il numero di giocatori");
-        nPlayerTextSelection.setFont(this.font);
+        nPlayerTextSelection.setFont(new Font("Arial", Font.BOLD, FONT_SIZE));
 
         final JSpinner spinnerSelection = new JSpinner(new SpinnerNumberModel(4, 2, 4, 1));
         final JButton confirmSelection = new JButton("OK");

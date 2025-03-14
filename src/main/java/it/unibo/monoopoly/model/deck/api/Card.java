@@ -13,14 +13,17 @@ import it.unibo.monoopoly.model.deck.impl.CardImpl;
 @JsonDeserialize(as = CardImpl.class)
 public interface Card {
     /**
+     * Gets the {@link Message} representing the action of the {@link Card}.
      * 
      * @return the {@link Message} to interpret represents the action of the
-     *         {@link Card}.
+     * {@link Card}
      */
     Message getMessage();
 
     /**
-     * @return the text of the card.
+     * Gets the text of the card.
+     * 
+     * @return the text of the card
      */
     String getEffectText();
 }

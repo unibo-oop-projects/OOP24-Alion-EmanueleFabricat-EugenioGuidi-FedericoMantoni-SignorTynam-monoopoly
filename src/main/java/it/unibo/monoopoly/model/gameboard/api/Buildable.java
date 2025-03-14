@@ -8,7 +8,9 @@ package it.unibo.monoopoly.model.gameboard.api;
 public interface Buildable extends Buyable {
 
     /**
-     * @return the cost of the house.
+     * Gets the cost of the house.
+     * 
+     * @return the cost of the house
      */
     int getHouseCost();
 
@@ -18,17 +20,23 @@ public interface Buildable extends Buyable {
     void buildHouse();
 
     /**
-     * @return the value of selling a house.
+     * Gets the value of selling a house.
+     * 
+     * @return the value of selling a house
      */
     int sellHouse();
 
     /**
-     * @return the number of house constructed.
+     * Gets the number of house constructed.
+     * 
+     * @return the number of house constructed
      */
     int getHousesNumber();
 
     /**
-     * @return the cost of selling house.
+     * Gets the cost of selling house.
+     * 
+     * @return the cost of selling house
      */
     int getSellHouseCost();
 

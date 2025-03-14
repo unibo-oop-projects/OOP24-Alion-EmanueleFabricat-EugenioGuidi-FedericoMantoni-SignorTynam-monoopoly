@@ -9,7 +9,7 @@ import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
  * Implementations of {@link ViewState} for the card's phase:
- * that visualize in the PlayerPanel the text of the {@link Card}.
+ * that visualize the text of the card.
  */
 public class ViewCardState implements ViewState {
     private final MainView mainView;

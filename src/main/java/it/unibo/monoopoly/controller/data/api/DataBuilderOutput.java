@@ -27,7 +27,7 @@ public interface DataBuilderOutput {
     DataBuilderOutput selectedCell(int selectedCell);
 
     /**
-     * 
+     * Build the {@link DataOutput}.
      * @return product.
      */
     DataOutput build();

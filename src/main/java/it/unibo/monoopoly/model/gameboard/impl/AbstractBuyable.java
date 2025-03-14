@@ -74,6 +74,8 @@ public abstract class AbstractBuyable extends AbstractCell implements Buyable {
     }
 
     /**
+     * Calculate the relative rental of property.
+     * 
      * @return the relative rental of property.
      */
     public abstract int calculateRentalValue();

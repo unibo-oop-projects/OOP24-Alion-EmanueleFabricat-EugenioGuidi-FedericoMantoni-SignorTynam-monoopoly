@@ -2,13 +2,12 @@ package it.unibo.monoopoly.model.gameboard.api;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import it.unibo.monoopoly.model.gameboard.impl.BuildableImpl;
 import it.unibo.monoopoly.model.gameboard.impl.CompanyImpl;
 import it.unibo.monoopoly.model.gameboard.impl.FunctionalImpl;
 import it.unibo.monoopoly.model.gameboard.impl.RailroadImpl;
-
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
  * Cell interface.
@@ -23,27 +22,37 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 public interface Cell {
 
     /**
-     * @return the name of the cell.
+     * Gets the name of the cell.
+     * 
+     * @return the name of the cell
      */
     String getName();
 
     /**
-     * @return if the cell is a {@link Buyable} property
+     * Returns whether the cell is a {@link Buyable} property.
+     * 
+     * @return true if the cell is a {@link Buyable} property, false otherwise
      */
     boolean isBuyable();
 
     /**
-     * @return if the cell is a {@link Buildable} property
+     * Returns whether the cell is a {@link Buildable} property.
+     * 
+     * @return true if the cell is a {@link Buildable} property, false otherwise
      */
     boolean isBuildable();
 
     /**
-     * @return if the cell is a buyable {@link Railroad}
+     * Returns whether the cell is a buyable {@link Railroad}.
+     * 
+     * @return true if the cell is a buyable {@link Railroad}, false otherwise
      */
     boolean isRailroad();
 
     /**
-     * @return if the cell is a buyable {@link Company}
+     * Returns whether the cell is a buyable {@link Company}.
+     * 
+     * @return true if the cell is a buyable {@link Company}, false otherwise
      */
     boolean isCompany();
 

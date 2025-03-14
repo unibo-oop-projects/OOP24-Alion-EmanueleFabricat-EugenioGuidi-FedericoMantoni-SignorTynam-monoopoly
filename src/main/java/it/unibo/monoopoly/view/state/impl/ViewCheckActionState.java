@@ -7,13 +7,12 @@ import javax.swing.JOptionPane;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
-import it.unibo.monoopoly.model.gameboard.api.Cell;
 import it.unibo.monoopoly.view.main.api.MainView;
 import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
  * Implementation of {@link ViewState} that shows messages concerning payment
- * caused directly by a {@link Cell} of the {@link Gameboard}.
+ * caused by game events.
  */
 public class ViewCheckActionState implements ViewState {
 
@@ -22,6 +21,7 @@ public class ViewCheckActionState implements ViewState {
 
     /**
      * Constructor of {@link ViewCheckActionState}.
+     * 
      * @param mainView the main view of the application
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
@@ -54,7 +54,8 @@ public class ViewCheckActionState implements ViewState {
 
             case BUY_PROPERTY -> {
                 final int choice = JOptionPane.showOptionDialog(mainView.getMainFrame(),
-                        "Vuoi comprare la proprietà " + dataInput.text().get() + " al costo di " + dataInput.valueToPay().get()
+                        "Vuoi comprare la proprietà " + dataInput.text().get() + " al costo di "
+                                + dataInput.valueToPay().get()
                                 + "€ ?",
                         "Compra proprietà",
                         JOptionPane.YES_NO_OPTION,

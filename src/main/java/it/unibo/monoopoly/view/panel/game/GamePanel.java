@@ -14,7 +14,7 @@ import it.unibo.monoopoly.controller.data.impl.ViewUpdateDTO;
 import it.unibo.monoopoly.view.panel.UpdatablePanel;
 
 /**
- * The class implements the principal panel {@link UpdateblePanel} that contain
+ * The class implements the principal panel {@link UpdatablePanel} that contain
  * the
  * game board panel and player panel.
  */

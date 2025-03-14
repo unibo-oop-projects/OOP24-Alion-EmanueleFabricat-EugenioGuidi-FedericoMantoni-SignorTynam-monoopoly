@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import it.unibo.monoopoly.view.position.impl.NumberAndCirclePosition;
+import it.unibo.monoopoly.view.position.impl.Position;
 
 /**
  * It is used to create a class that takes lists of player {@link Position},

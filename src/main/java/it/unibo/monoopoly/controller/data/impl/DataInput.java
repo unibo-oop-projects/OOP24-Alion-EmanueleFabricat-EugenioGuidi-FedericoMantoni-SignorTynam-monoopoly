@@ -7,9 +7,12 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.controller.data.api.DataBuilderInput;
+import it.unibo.monoopoly.model.gameboard.api.Dices;
+import it.unibo.monoopoly.model.main.api.MainModel;
+import it.unibo.monoopoly.view.state.api.ViewState;
 
 /**
- * The {@link record} built by a {@link DataBuilderInput} that packages the
+ * The record built by a {@link DataBuilderInput} that packages the
  * input data to the View.
  * 
  * @param cellMap    could contains the entries player index -> amount of money.

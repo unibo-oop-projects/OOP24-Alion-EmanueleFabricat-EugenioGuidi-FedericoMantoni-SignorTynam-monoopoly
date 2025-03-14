@@ -2,14 +2,18 @@ package it.unibo.monoopoly.controller.data.impl;
 
 import java.util.Collections;
 import java.util.List;
-
 import java.util.Map;
 import java.util.Optional;
+
+import it.unibo.monoopoly.model.gameboard.api.Buildable;
+import it.unibo.monoopoly.model.gameboard.api.Buyable;
+import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.player.api.Player;
 
 /**
  * DTO for view update.
  * 
- * @param playerPositions     map of name of {@link player} in game and its
+ * @param playerPositions     map of name of {@link Player} in game and its
  *                            position
  *                            as a number
  * @param cellsOwners         map of {@link Buyable} cells expressed as a number
@@ -36,7 +40,7 @@ public record ViewUpdateDTO(
     /**
      * Explicit constructor to ensure unmodifiable collections are returned.
      * 
-     * @param playerPositions     map of name of {@link player} in game and its
+     * @param playerPositions     map of name of {@link Player} in game and its
      *                            position as a number
      * @param cellsOwners         map of {@link Buyable} cells expressed as a number
      *                            and

@@ -16,7 +16,7 @@ public interface ModelState {
     /**
      * Execute the state.
      * 
-     * @param data
+     * @param data the data passed used to execute the rigth action
      */
     void doAction(DataOutput data);
 

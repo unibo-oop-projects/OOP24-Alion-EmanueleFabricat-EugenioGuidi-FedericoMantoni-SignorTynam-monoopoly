@@ -16,8 +16,8 @@ public class RailroadImpl extends AbstractBuyable implements Railroad {
 
     /**
      * Constructor of a railroad cell.
-     * @param name
-     * @param cost
+     * @param name the name of the {@link Railroad}
+     * @param cost the cost the {@link Railroad}
      */
     public RailroadImpl(
         @JsonProperty("name")final String name,

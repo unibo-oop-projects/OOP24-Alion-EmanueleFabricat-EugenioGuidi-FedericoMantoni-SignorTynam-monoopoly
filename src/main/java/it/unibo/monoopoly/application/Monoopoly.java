@@ -16,7 +16,7 @@ public final class Monoopoly {
 
     /**
      * Start of the application.
-     * @param args
+     * @param args parameters not used
      */
     public static void main(final String[] args) {
         new MenuControllerImpl();

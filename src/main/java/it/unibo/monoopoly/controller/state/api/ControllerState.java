@@ -1,5 +1,6 @@
 package it.unibo.monoopoly.controller.state.api;
 
+import it.unibo.monoopoly.controller.data.impl.DataInput;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 
 /**

@@ -44,8 +44,9 @@ public abstract class AbstractView implements View {
     }
 
     /**
+     * Gets the list of colors used in the game.
      * 
-     * @return the list of colors used in the game.
+     * @return the list of colors used in the game
      */
     protected static List<Color> getColors() {
         return COLORS;

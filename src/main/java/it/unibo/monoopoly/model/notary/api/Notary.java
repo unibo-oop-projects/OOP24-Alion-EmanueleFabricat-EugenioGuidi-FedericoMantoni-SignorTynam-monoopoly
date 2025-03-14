@@ -35,7 +35,7 @@ public interface Notary {
      * Check if the cell is buyable by the actual {@link Player}.
      * 
      * @param cell         the actual cell where the player is currently
-     * @param actualPlayer the actual player in this {@link Turn}
+     * @param actualPlayer the actual player in this {@link MainModel}
      * @return if the player can buy the cell
      */
     boolean isActionBuy(Cell cell, Player actualPlayer);

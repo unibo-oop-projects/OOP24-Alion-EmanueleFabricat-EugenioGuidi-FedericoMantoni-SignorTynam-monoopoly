@@ -7,6 +7,7 @@ import it.unibo.monoopoly.controller.data.impl.DataBuilderOutputImpl;
 import it.unibo.monoopoly.controller.data.impl.DataOutput;
 import it.unibo.monoopoly.controller.main.api.MainController;
 import it.unibo.monoopoly.controller.state.api.ControllerState;
+import it.unibo.monoopoly.model.deck.api.Card;
 import it.unibo.monoopoly.model.deck.api.Deck;
 import it.unibo.monoopoly.model.deck.impl.DeckImpl;
 import it.unibo.monoopoly.model.deck.impl.DeckWrapper;

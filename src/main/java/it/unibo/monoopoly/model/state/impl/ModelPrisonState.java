@@ -10,7 +10,7 @@ import it.unibo.monoopoly.model.state.api.ModelState;
 
 /**
  * The state of the model when a player is in jail.
- * @link ModelState
+ * {@link ModelState}
  */
 public class ModelPrisonState implements ModelState {
 
