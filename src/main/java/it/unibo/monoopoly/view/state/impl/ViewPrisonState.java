@@ -45,7 +45,8 @@ public class ViewPrisonState implements ViewState {
         if (goToJail) {
             JOptionPane.showMessageDialog(mainView.getMainFrame(), "Devi andare in prigione senza passare dal VIA!");
         } else {
-            JOptionPane.showMessageDialog(mainView.getMainFrame(), "É il turno di " + data.text().get());
+            JOptionPane.showMessageDialog(mainView.getMainFrame(), "É il turno di " + data.text().get(), "Nuovo turno",
+                    JOptionPane.PLAIN_MESSAGE);
             if (data.isEnabled().isPresent()) {
                 if (data.isEnabled().get()) {
                     JOptionPane.showMessageDialog(mainView.getMainFrame(),
