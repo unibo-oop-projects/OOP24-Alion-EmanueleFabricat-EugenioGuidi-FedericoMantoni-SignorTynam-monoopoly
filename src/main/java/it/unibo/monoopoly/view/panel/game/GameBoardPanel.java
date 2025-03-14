@@ -45,7 +45,7 @@ public final class GameBoardPanel extends JPanel {
         this.mainFrameHeight = mainFrameHeight;
         this.positionAllocator = new PositionAllocatorImpl(mainFrameHeight, players, colors);
 
-        final URL imgURL = ClassLoader.getSystemResource("images/monoopoly_gameboard_image.jpg");
+        final URL imgURL = ClassLoader.getSystemResource("images/MONOOPOLY_GAMEBOARD_IMAGE.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         this.backgroundImage = icon.getImage();
         setPreferredSize(new Dimension(this.mainFrameHeight, this.mainFrameHeight));
