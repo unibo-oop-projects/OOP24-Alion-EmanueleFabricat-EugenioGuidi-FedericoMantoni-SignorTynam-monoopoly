@@ -60,7 +60,7 @@ public class ModelCardState implements ModelState {
     /**
      * {@inheritDoc}
      * In this case,
-     * depending on the {@link typeOfAction} set the next state.
+     * depending on the {@link #typeOfAction} set the next state.
      */
     @Override
     public void closeModelState() {

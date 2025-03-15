@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -62,8 +61,6 @@ public class ViewUnmortgageState implements ViewState {
                     intToTextCell(dataInput.cellMap().get()), "da disipotecare", true);
             this.mainView.setInteractivePanel(panel);
         } else {
-            JOptionPane.showMessageDialog(this.mainView.getMainFrame(),
-                    "non hai proprietà da disipotecare", "Disipoteca", JOptionPane.PLAIN_MESSAGE);
             this.mainView.getControllerState().closeControllerState(new DataBuilderOutputImpl().build());
         }
     }
