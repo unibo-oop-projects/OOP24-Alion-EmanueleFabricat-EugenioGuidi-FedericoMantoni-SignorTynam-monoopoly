@@ -9,11 +9,12 @@ import java.awt.Image;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import it.unibo.monoopoly.controller.data.impl.ViewUpdateDTO;
+import it.unibo.monoopoly.view.panel.UpdatablePanel;
 import it.unibo.monoopoly.view.position.api.PositionAllocator;
 import it.unibo.monoopoly.view.position.impl.NumberAndCirclePosition;
 import it.unibo.monoopoly.view.position.impl.PositionAllocatorImpl;
@@ -22,13 +23,16 @@ import it.unibo.monoopoly.view.position.impl.PositionAllocatorImpl;
  * The class is used to realize the vision of the main gameBoard and
  * dynamically update the game implementing {@link JPanel}.
  */
-public final class GameBoardPanel extends JPanel {
+public final class GameBoardPanel extends JPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
 
     private static final double CIRCLE_DIAMETER_RATIO = 0.025;
     private static final double NUMBER_SIZE_RATIO = 0.025;
 
+    /**
+     * the height of the frame.
+     */
     private final int mainFrameHeight;
     private final transient Image backgroundImage;
     private transient List<NumberAndCirclePosition> numberAndCirclePositions;
@@ -37,13 +41,13 @@ public final class GameBoardPanel extends JPanel {
     /**
      * initialize all the information to create the initial gameBoard.
      * 
-     * @param mainFrameHeight
-     * @param players
-     * @param colors
+     * @param mainFrameHeight height of main frame
+     * @param playersColors   data to associate colors to players
+     * @param colors          all possible colors
      */
-    public GameBoardPanel(final int mainFrameHeight, final Map<String, Color> players, final List<Color> colors) {
+    public GameBoardPanel(final int mainFrameHeight, final Map<String, Color> playersColors, final List<Color> colors) {
         this.mainFrameHeight = mainFrameHeight;
-        this.positionAllocator = new PositionAllocatorImpl(mainFrameHeight, players, colors);
+        this.positionAllocator = new PositionAllocatorImpl(mainFrameHeight, playersColors, colors);
 
         final URL imgURL = ClassLoader.getSystemResource("images/MONOOPOLY_GAMEBOARD_IMAGE.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
@@ -53,22 +57,16 @@ public final class GameBoardPanel extends JPanel {
     }
 
     /**
-     * this method is used to update the view of gameBoard.
-     * 
-     * @param newPlayersPositions
-     * @param cellsOwners
-     * @param nBuiltHouses
-     * @param prisonedPlayers
-     * @param mortgagedProperties
+     * {@inheritDoc}
      */
-    public void update(final Map<String, Integer> newPlayersPositions, final Map<Integer, Optional<String>> cellsOwners,
-            final Map<Integer, Integer> nBuiltHouses, final List<String> prisonedPlayers,
-            final List<Integer> mortgagedProperties) {
-        this.numberAndCirclePositions = this.positionAllocator.createListCircleNumberPosition(newPlayersPositions,
-                cellsOwners,
-                prisonedPlayers,
-                nBuiltHouses,
-                mortgagedProperties);
+    @Override
+    public void update(final ViewUpdateDTO updateData) {
+        this.numberAndCirclePositions = this.positionAllocator.createListCircleNumberPosition(
+                updateData.playerPositions(),
+                updateData.cellsOwners(),
+                updateData.prisonedPlayers(),
+                updateData.nBuiltHouses(),
+                updateData.mortgagedProperties());
         this.repaint();
     }
 

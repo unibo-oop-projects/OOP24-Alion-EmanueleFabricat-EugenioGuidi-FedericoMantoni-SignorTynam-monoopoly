@@ -23,9 +23,11 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
     private static final long serialVersionUID = 1L;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
-    private final int mainFrameHeight;
-    private final int mainFrameWidth;
     private final PlayerPanel playerPanel;
+    /**
+     * It is the panel where the cells, the current positions of the players, the
+     * owners of the properties and the houses built are located.
+     */
     private final GameBoardPanel gameBoardPanel;
     private final String firstPlayer;
     private final List<Triple<String, Integer, Color>> initializedList;
@@ -34,32 +36,30 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
      * initialize all the fields needed and set the preferred size based on
      * dimension of frame.
      * 
-     * @param mainFrameHeight
-     * @param mainFrameWidth
+     * @param mainFrameHeight height of the frame
+     * @param mainFrameWidth  width of the frame
      * @param firstPlayer
      * @param initializedList
-     * @param players
-     * @param colors
+     * @param playersColors   data to associate colors to players
+     * @param colors          all possible colors
      */
     public GamePanel(final int mainFrameHeight,
             final int mainFrameWidth, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList,
-            final Map<String, Color> players, final List<Color> colors) {
-        this.mainFrameHeight = mainFrameHeight;
-        this.mainFrameWidth = mainFrameWidth;
+            final Map<String, Color> playersColors, final List<Color> colors) {
         this.firstPlayer = firstPlayer;
         this.initializedList = List.copyOf(initializedList);
-        this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, players, colors);
-        this.playerPanel = new PlayerPanel(this.mainFrameHeight, this.firstPlayer, this.initializedList);
+        this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, playersColors, colors);
+        this.playerPanel = new PlayerPanel(mainFrameHeight, this.firstPlayer, this.initializedList);
 
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
         final JPanel centerPanel = new JPanel();
 
-        final int centerHeight = this.mainFrameHeight;
+        final int centerHeight = mainFrameHeight;
         final int centerWidth = centerHeight + (centerHeight / 2);
-        final int eastWestHeight = this.mainFrameHeight;
-        final int eastWestWidth = (this.mainFrameWidth - centerWidth) / 2;
+        final int eastWestHeight = mainFrameHeight;
+        final int eastWestWidth = (mainFrameWidth - centerWidth) / 2;
 
         eastPanel.setPreferredSize(new Dimension(eastWestWidth, eastWestHeight));
         westPanel.setPreferredSize(new Dimension(eastWestWidth, eastWestHeight));
@@ -91,11 +91,7 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
      */
     @Override
     public void update(final ViewUpdateDTO updateData) {
-        this.gameBoardPanel.update(updateData.playerPositions(),
-                updateData.cellsOwners(),
-                updateData.nBuiltHouses(),
-                updateData.prisonedPlayers(),
-                updateData.mortgagedProperties());
+        this.gameBoardPanel.update(updateData);
         this.playerPanel.update(updateData);
     }
 
