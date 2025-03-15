@@ -26,9 +26,9 @@ public class PositionAllocatorImpl implements PositionAllocator {
     /**
      * initialize all fields needed.
      * 
-     * @param mainFrameHeight
-     * @param playersColors
-     * @param colors
+     * @param mainFrameHeight height of frame
+     * @param playersColors data to associate colors to players
+     * @param colors all possible colors
      */
     public PositionAllocatorImpl(final int mainFrameHeight, final Map<String, Color> playersColors,
             final List<Color> colors) {

@@ -20,8 +20,8 @@ public final class RollDicesPanel extends JPanel {
     /**
      * initialize all needed fields.
      * 
-     * @param actionListener
-     * @param mainFrameHeight
+     * @param actionListener the listener to make the player roll the dice
+     * @param mainFrameHeight height of the frame
      */
     public RollDicesPanel(final ActionListener actionListener, final int mainFrameHeight) {
         final JButton rollDiceButton = new JButton("Lancia dadi");

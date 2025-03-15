@@ -12,9 +12,9 @@ import it.unibo.monoopoly.model.player.api.Player;
 public interface GameBoard {
 
     /**
-     * 
-     * @param index
-     * @return cell in index position.
+     * The next method return the cell using the index.
+     * @param index the index of cell
+     * @return cell in index position
      */
     Cell getCell(int index);
 

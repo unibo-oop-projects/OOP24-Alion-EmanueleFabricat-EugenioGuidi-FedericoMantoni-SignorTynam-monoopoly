@@ -27,10 +27,10 @@ public class ControllerMovementState implements ControllerState {
     /**
      * inizialize fields of class.
      * 
-     * @param mainController
-     * @param modelState
-     * @param viewState
-     * @param dices
+     * @param mainController used to set the next state
+     * @param modelState relative state in the model that executes the logic
+     * @param viewState relative state in the view to show information and choices to the user 
+     * @param dices used to move the player
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ControllerMovementState(final MainController mainController,

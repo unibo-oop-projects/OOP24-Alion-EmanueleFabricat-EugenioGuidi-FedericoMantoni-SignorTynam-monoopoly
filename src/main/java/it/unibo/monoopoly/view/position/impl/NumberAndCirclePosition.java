@@ -70,6 +70,8 @@ public final class NumberAndCirclePosition {
 
     /**
      * Builder of class NumberAndCirclePosition.
+     * Use the Builder pattern to allow the creation of objects with custom
+     * parameters.
      */
     public static class Builder {
         private int x;
@@ -79,6 +81,8 @@ public final class NumberAndCirclePosition {
         private String number;
 
         /**
+         * The parameter to be setted in builder.
+         * 
          * @param x to set in Builder.
          * @return the actual Builder.
          */
@@ -88,6 +92,8 @@ public final class NumberAndCirclePosition {
         }
 
         /**
+         * The parameter to be setted in builder.
+         * 
          * @param y to set in Builder.
          * @return the actual Builder.
          */
@@ -97,6 +103,8 @@ public final class NumberAndCirclePosition {
         }
 
         /**
+         * The parameter to be setted in builder.
+         * 
          * @param isCircle to set in Builder.
          * @return the actual Builder.
          */
@@ -106,6 +114,8 @@ public final class NumberAndCirclePosition {
         }
 
         /**
+         * The parameter to be setted in builder.
+         * 
          * @param color to set in Builder.
          * @return the actual Builder.
          */
@@ -115,6 +125,8 @@ public final class NumberAndCirclePosition {
         }
 
         /**
+         * The parameter to be setted in builder.
+         * 
          * @param number to set in Builder.
          * @return the actual Builder.
          */

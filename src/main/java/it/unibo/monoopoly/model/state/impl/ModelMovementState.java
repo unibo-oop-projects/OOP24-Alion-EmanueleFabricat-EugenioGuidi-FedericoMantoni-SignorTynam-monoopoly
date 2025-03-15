@@ -28,7 +28,7 @@ public class ModelMovementState implements ModelState {
      * 
      * @param mainModel used to associate the dices roll state with the specific
      *                  next state to execute.
-     * @param cellIndex
+     * @param cellIndex used to move the player by moving it to the cell index
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")
     public ModelMovementState(final MainModel mainModel, final Optional<Integer> cellIndex) {

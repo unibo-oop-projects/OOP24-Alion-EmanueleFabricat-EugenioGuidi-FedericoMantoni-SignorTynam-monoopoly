@@ -14,8 +14,7 @@ import it.unibo.monoopoly.view.position.api.PositionsFactory;
 
 /**
  * implement a factory to realize the lists of {@link Position} associated to
- * all possible colors
- * of players.
+ * all possible colors of the players.
  * The class implement {@link PositionsFactory} interface.
  */
 public class PositionsFactoryImpl implements PositionsFactory {
@@ -30,7 +29,7 @@ public class PositionsFactoryImpl implements PositionsFactory {
     private final List<Color> colors;
 
     /**
-     * initialize some fields of factory.
+     * initialize some fields of the factory.
      * 
      * @param mainFrameHeight to calculate the exactly coordinates of position.
      * @param colors          to be associated with the list of positions for each

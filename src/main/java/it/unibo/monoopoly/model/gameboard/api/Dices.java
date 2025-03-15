@@ -15,14 +15,14 @@ public interface Dices {
     /**
      * Gets the dices rolled.
      * 
-     * @return the dices rolled
+     * @return the Pair of dices rolled
      */
     Pair<Integer, Integer> getDices();
 
     /**
      * Gets the sum of two dices.
      * 
-     * @return the sum of two dices
+     * @return the sum of two dices rolled
      */
     int getResult();
 

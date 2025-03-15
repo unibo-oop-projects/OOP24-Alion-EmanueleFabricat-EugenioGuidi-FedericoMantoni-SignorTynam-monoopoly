@@ -15,12 +15,13 @@ import it.unibo.monoopoly.view.position.impl.Position;
 public interface PositionAllocator {
 
     /**
+     * The method creates a single list for everything that needs to appear on the game board.
      * 
-     * @param newPlayersPositions
-     * @param cellsOwners
-     * @param prisonedPlayers
-     * @param nBuiltHouses
-     * @param mortgagedProperties
+     * @param newPlayersPositions the position index updated of all players who have not yet gone bankrupt
+     * @param cellsOwners for each purchasable cell, associate, if it exists, the name of the owner
+     * @param nBuiltHouses for each building cells with owner associate the number of houses built
+     * @param prisonedPlayers list of possible player in prison
+     * @param mortgagedProperties list of mortgaged cells
      * @return the list of all position to be displayed in gameBoard.
      */
     List<NumberAndCirclePosition> createListCircleNumberPosition(Map<String, Integer> newPlayersPositions,
