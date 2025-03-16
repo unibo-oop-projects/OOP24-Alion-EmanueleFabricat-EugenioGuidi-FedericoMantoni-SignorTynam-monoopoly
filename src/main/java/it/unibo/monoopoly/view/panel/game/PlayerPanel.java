@@ -18,12 +18,19 @@ import it.unibo.monoopoly.view.panel.UpdatablePanel;
 public final class PlayerPanel extends JPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
-
+    /**
+     * This field is used to change the {@link InteractivePanel} to the desired
+     * {@link JPanel}.
+     */
     private final InteractivePanel interactivePanel;
+    /**
+     * This field is used to update the {@link VisualizePlayerPanel}.
+     */
     private final VisualizePlayerPanel visualizePlayerPanel;
 
     /**
-     * comment.
+     * Constructor of the class,
+     * that prepare the {@link JPAnel} to be shown.
      * 
      * @param mainFrameHeight the height of main frame
      * @param firstPlayer     the name of the player starting the game

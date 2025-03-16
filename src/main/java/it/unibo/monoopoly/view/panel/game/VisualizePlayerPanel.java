@@ -26,10 +26,9 @@ import it.unibo.monoopoly.view.panel.UpdatablePanel;
 public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel {
 
     private static final long serialVersionUID = 1L;
-
-    private final int playersNumber;
-    private final int mainFrameHeight;
-    private final String firstPlayer;
+    /**
+     * The {@link List} of {@link JTextArea} of the {@link JPanel}
+     */
     private final List<JTextArea> textList = new LinkedList<>();
     private static final double TEXT_RESIZE = 0.035;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
@@ -37,21 +36,16 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
     /**
      * Constructor of the class.
      * 
-     * @param mainFrameHeight used to size the text.
-     * @param firstPlayer     the name of the first {@link Player} that play.
      * @param initializedList the list of players with their respective color, name,
      *                        and initial money.
      */
     public VisualizePlayerPanel(final int mainFrameHeight, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList) {
         super();
-        this.playersNumber = initializedList.size();
-        setLayout(new GridLayout(playersNumber * 2 + 2, 1));
-        this.mainFrameHeight = mainFrameHeight;
-        this.firstPlayer = firstPlayer;
+        setLayout(new GridLayout(initializedList.size() * 2 + 2, 1));
         this.textList.add(new JTextArea("E' il turno di:"));
         this.textList.getLast().setBackground(GREEN_MONOPOLY);
-        this.textList.add(new JTextArea(this.firstPlayer));
+        this.textList.add(new JTextArea(firstPlayer));
         this.textList.getLast().setBackground(GREEN_MONOPOLY);
         for (final Triple<String, Integer, Color> triple : initializedList) {
             this.textList.add(new JTextArea(triple.getLeft()));
@@ -61,7 +55,7 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
         }
         for (final var text : this.textList) {
             text.setEnabled(false);
-            text.setFont(new Font("Arial", Font.PLAIN, (int) (TEXT_RESIZE * this.mainFrameHeight)));
+            text.setFont(new Font("Arial", Font.PLAIN, (int) (TEXT_RESIZE * mainFrameHeight)));
             text.setDisabledTextColor(Color.BLACK);
             add(text);
         }
