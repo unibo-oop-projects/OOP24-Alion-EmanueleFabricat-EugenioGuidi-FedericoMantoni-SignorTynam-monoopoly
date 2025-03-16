@@ -52,9 +52,8 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
             final List<Triple<String, Integer, Color>> initializedList,
             final Map<String, Color> playersColors, final List<Color> colors) {
 
-        final var initializedListCopy = List.copyOf(initializedList);
         this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, playersColors, colors);
-        this.playerPanel = new PlayerPanel(mainFrameHeight, firstPlayer, initializedListCopy);
+        this.playerPanel = new PlayerPanel(mainFrameHeight, firstPlayer, List.copyOf(initializedList));
 
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();
@@ -84,7 +83,10 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
     }
 
     /**
-     * @param panel
+     * is the method that takes care of setting the current panel dynamically during
+     * the game.
+     * 
+     * @param panel is the panel to be set dynamically during the game
      */
     public void setInteractivePanel(final JPanel panel) {
         this.playerPanel.setInteractivePanel(panel);
