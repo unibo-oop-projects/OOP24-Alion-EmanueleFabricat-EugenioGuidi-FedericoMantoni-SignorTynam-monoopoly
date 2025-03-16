@@ -27,7 +27,7 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
 
     private static final long serialVersionUID = 1L;
     /**
-     * The {@link List} of {@link JTextArea} of the {@link JPanel}
+     * The {@link List} of {@link JTextArea} of the {@link JPanel}.
      */
     private final List<JTextArea> textList = new LinkedList<>();
     private static final double TEXT_RESIZE = 0.035;
@@ -36,6 +36,8 @@ public final class VisualizePlayerPanel extends JPanel implements UpdatablePanel
     /**
      * Constructor of the class.
      * 
+     * @param mainFrameHeight the height of the main frame
+     * @param firstPlayer     the player that starts the game
      * @param initializedList the list of players with their respective color, name,
      *                        and initial money.
      */

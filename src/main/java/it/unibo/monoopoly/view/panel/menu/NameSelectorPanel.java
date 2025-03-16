@@ -34,8 +34,9 @@ public final class NameSelectorPanel extends JPanel {
     private static final double TEXTFIELD_WEIGHT = 0.65;
     private static final Dimension PREFERRED_SIZE_COLOR = new Dimension(40, 20);
 
-    private final Font font = new Font("Arial", Font.BOLD, 15);
-
+    /**
+     * The list of {@link JTextField}s containing the name of the players.
+     */
     private final List<JTextField> players;
 
     /**
@@ -52,6 +53,7 @@ public final class NameSelectorPanel extends JPanel {
         this.players = new ArrayList<>();
 
         this.setLayout(new GridBagLayout());
+        final Font font = new Font("Arial", Font.BOLD, 15);
 
         final JButton back = new JButton("Indietro");
         final JButton confirm = new JButton("Via!");
@@ -79,7 +81,7 @@ public final class NameSelectorPanel extends JPanel {
             final JPanel color = new JPanel();
             color.setPreferredSize(PREFERRED_SIZE_COLOR);
             color.setBackground(colors.get(i));
-            nameLabel.setFont(this.font);
+            nameLabel.setFont(font);
             gbc.fill = GridBagConstraints.BOTH;
             gbc.gridx = 0;
             gbc.gridy = i;

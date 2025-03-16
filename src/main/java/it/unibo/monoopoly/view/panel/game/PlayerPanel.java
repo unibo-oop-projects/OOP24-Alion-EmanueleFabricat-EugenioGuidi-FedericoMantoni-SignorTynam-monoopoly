@@ -30,7 +30,7 @@ public final class PlayerPanel extends JPanel implements UpdatablePanel {
 
     /**
      * Constructor of the class,
-     * that prepare the {@link JPAnel} to be shown.
+     * that prepare the {@link JPanel} to be shown.
      * 
      * @param mainFrameHeight the height of main frame
      * @param firstPlayer     the name of the player starting the game

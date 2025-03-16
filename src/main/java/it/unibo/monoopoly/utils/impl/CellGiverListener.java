@@ -26,7 +26,7 @@ public class CellGiverListener implements ActionListener {
     /**
      * Constructor of the class.
      * 
-     * @param mainView used to call the {@link #continueState} method of the
+     * @param mainView used to call the continueState method of the
      *                 {@link ControllerState}.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Suppressing according to pattern State")

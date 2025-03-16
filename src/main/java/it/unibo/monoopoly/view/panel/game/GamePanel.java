@@ -23,14 +23,17 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
     private static final long serialVersionUID = 1L;
     private static final Color GREEN_MONOPOLY = new Color(0xecfcf4);
 
+    /**
+     * The istance {@link PlayerPanel}. Panel for the visualization of players and
+     * some panels for interaction of the
+     * user.
+     */
     private final PlayerPanel playerPanel;
     /**
      * It is the panel where the cells, the current positions of the players, the
      * owners of the properties and the houses built are located.
      */
     private final GameBoardPanel gameBoardPanel;
-    private final String firstPlayer;
-    private final List<Triple<String, Integer, Color>> initializedList;
 
     /**
      * initialize all the fields needed and set the preferred size based on
@@ -38,8 +41,9 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
      * 
      * @param mainFrameHeight height of the frame
      * @param mainFrameWidth  width of the frame
-     * @param firstPlayer
-     * @param initializedList
+     * @param firstPlayer     the player that starts the game
+     * @param initializedList the list of players with their respective color, name,
+     *                        and initial money.
      * @param playersColors   data to associate colors to players
      * @param colors          all possible colors
      */
@@ -47,10 +51,10 @@ public final class GamePanel extends JPanel implements UpdatablePanel {
             final int mainFrameWidth, final String firstPlayer,
             final List<Triple<String, Integer, Color>> initializedList,
             final Map<String, Color> playersColors, final List<Color> colors) {
-        this.firstPlayer = firstPlayer;
-        this.initializedList = List.copyOf(initializedList);
+
+        final var initializedListCopy = List.copyOf(initializedList);
         this.gameBoardPanel = new GameBoardPanel(mainFrameHeight, playersColors, colors);
-        this.playerPanel = new PlayerPanel(mainFrameHeight, this.firstPlayer, this.initializedList);
+        this.playerPanel = new PlayerPanel(mainFrameHeight, firstPlayer, initializedListCopy);
 
         final JPanel eastPanel = new JPanel();
         final JPanel westPanel = new JPanel();

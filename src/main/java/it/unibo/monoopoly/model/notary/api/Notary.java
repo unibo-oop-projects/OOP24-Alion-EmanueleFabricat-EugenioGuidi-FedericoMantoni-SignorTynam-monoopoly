@@ -5,6 +5,7 @@ import java.util.Optional;
 import it.unibo.monoopoly.common.Event;
 import it.unibo.monoopoly.model.gameboard.api.Buyable;
 import it.unibo.monoopoly.model.gameboard.api.Cell;
+import it.unibo.monoopoly.model.main.api.MainModel;
 import it.unibo.monoopoly.model.player.api.Player;
 
 /**
